@@ -1,114 +1,24 @@
-<md-content> 
-  <div class="toolbardemoBasicUsage ng-scope">
-   <md-content>
-      <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
-         <md-card-title>
-            <md-card-title-text>
-               <span class="md-headline">Prof. Than Than Aye</span>
-               <span class="md-subhead">Chairperson</span>
-               <span class="md-subhead">Some information about that person.</span>
-            </md-card-title-text>
-            <md-card-title-media>
-               <div class="md-media-lg card-media">
-                  <img src="man.svg">
-               </div>
-            </md-card-title-media>
-         </md-card-title>
-         <md-card-actions layout="row" layout-align="end center">
-            <md-button class="md-warn">Email</md-button>
-            <md-button class="md-warn">Call</md-button>
-         </md-card-actions>
-      </md-card>
-      <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
-         <md-card-title>
-            <md-card-title-text>
-               <span class="md-headline">Prof. Than Than Aye</span>
-               <span class="md-subhead">Chairperson</span>
-               <span class="md-subhead">Some information about that person.</span>
-            </md-card-title-text>
-            <md-card-title-media>
-               <div class="md-media-lg card-media">
-                  <img src="man.svg">
-               </div>
-            </md-card-title-media>
-         </md-card-title>
-         <md-card-actions layout="row" layout-align="end center">
-            <md-button class="md-warn">Email</md-button>
-            <md-button class="md-warn">Call</md-button>
-         </md-card-actions>
-      </md-card>
-      <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
-         <md-card-title>
-            <md-card-title-text>
-               <span class="md-headline">Prof. Than Than Aye</span>
-               <span class="md-subhead">Chairperson</span>
-               <span class="md-subhead">Some information about that person.</span>
-            </md-card-title-text>
-            <md-card-title-media>
-               <div class="md-media-lg card-media">
-                  <img src="man.svg">
-               </div>
-            </md-card-title-media>
-         </md-card-title>
-         <md-card-actions layout="row" layout-align="end center">
-            <md-button class="md-warn">Email</md-button>
-            <md-button class="md-warn">Call</md-button>
-         </md-card-actions>
-      </md-card>
-      <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
-         <md-card-title>
-            <md-card-title-text>
-               <span class="md-headline">Prof. Than Than Aye</span>
-               <span class="md-subhead">Chairperson</span>
-               <span class="md-subhead">Some information about that person.</span>
-            </md-card-title-text>
-            <md-card-title-media>
-               <div class="md-media-lg card-media">
-                  <img src="man.svg">
-               </div>
-            </md-card-title-media>
-         </md-card-title>
-         <md-card-actions layout="row" layout-align="end center">
-            <md-button class="md-warn">Email</md-button>
-            <md-button class="md-warn">Call</md-button>
-         </md-card-actions>
-      </md-card>
-      <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
-         <md-card-title>
-            <md-card-title-text>
-               <span class="md-headline">Prof. Than Than Aye</span>
-               <span class="md-subhead">Chairperson</span>
-               <span class="md-subhead">Some information about that person.</span>
-            </md-card-title-text>
-            <md-card-title-media>
-               <div class="md-media-lg card-media">
-                  <img src="man.svg">
-               </div>
-            </md-card-title-media>
-         </md-card-title>
-         <md-card-actions layout="row" layout-align="end center">
-            <md-button class="md-warn">Email</md-button>
-            <md-button class="md-warn">Call</md-button>
-         </md-card-actions>
-      </md-card>
-      <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
-         <md-card-title>
-            <md-card-title-text>
-               <span class="md-headline">Prof. Than Than Aye</span>
-               <span class="md-subhead">Chairperson</span>
-               <span class="md-subhead">Some information about that person.</span>
-            </md-card-title-text>
-            <md-card-title-media>
-               <div class="md-media-lg card-media">
-                  <img src="man.svg">
-               </div>
-            </md-card-title-media>
-         </md-card-title>
-         <md-card-actions layout="row" layout-align="end center">
-            <md-button class="md-warn">Email</md-button>
-            <md-button class="md-warn">Call</md-button>
-         </md-card-actions>
-      </md-card>
-   </md-content>
-</div>
+
+<md-content style="height: 600px;" md-theme="altTheme" >
+
+   <section ng-repeat="item in app.grids[0].list[1].list">
+      <md-subheader class="md-primary">{{item.name}}</md-subheader>
+      <md-list layout-padding border>
+         <md-list-item class="md-3-line" ng-repeat="item_inner in item.list">
+            <img src="./img/man.svg" class="md-avatar" alt="{{message.who}}">
+            <div class="md-list-item-text">
+               <h3>{{item_inner.name}}</h3>
+               <p>
+                  {{item_inner.designation}}
+               </p>
+            </div>
+           
+         </md-list-item>
+      </md-list>
+   </section>
+
+  
+  
+  
+
 </md-content>

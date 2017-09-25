@@ -93,9 +93,9 @@ body{
     background: #3f51b5;
     color: #fff;
     min-height: 235px;
-    background: url(../img/calendar-event.svg) bottom right no-repeat #03A9F4;
+    background: url(../img/calendar-event.svg) bottom right no-repeat #772424;
     background-size: 30%;
-    background-position: 95% -17%;
+    background-position: 95% -11%;
     padding:18px;
 }
 .gridListdemoBasicUsage md-grid-list {
@@ -141,4 +141,18 @@ md-toolbar{
 }
 .ui-views{
    margin-top: 56px;
+}
+
+.subheaderdemoBasicUsage .face {
+  border-radius: 30px;
+  border: 1px solid #ddd;
+  width: 48px;
+  margin: 16px; }
+  md-list-item.md-3-line, md-list-item.md-3-line>.md-no-style {
+   
+    box-shadow: 0px 0px 7px -4px #000;
+}
+.md-subheader-inner{
+       background: #c40101;
+    color: #fff;
 }

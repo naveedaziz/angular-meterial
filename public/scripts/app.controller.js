@@ -240,18 +240,74 @@ var app = angular.module('appCtrl', ['jkAngularCarousel'])
       this.availableDirections = ['up', 'down', 'left', 'right'];
       this.selectedDirection = 'down';
       this.dis = false;
-  
+      
       this.grids = [
          {
             img: 'Admissions', name: 'About AFES 2017', link: 'about',
+            list:[
+               { name: 'President Message', description:'It is a great honor and distinct privilege for us to announce that Myanmar Society of Endocrinology and Metabolism is hosting the 19th ASEAN Federation of Endocrine Societies Congress 2017 (AFES2017). '},
+               { name: 'Organizing Committee', 
+                  list:[
+                     {
+                        name: 'Main Organising Committee', list: [
+                           { name: 'Prof Than Than Aye', designation: 'Chairperson' },
+                           { name: 'Prof Than Than Aye', designation: 'Chairperson' },
+                           { name: 'Prof Than Than Aye', designation: 'Chairperson' },
+                           { name: 'Prof Than Than Aye', designation: 'Chairperson' },
+                           { name: 'Prof Than Than Aye', designation: 'Chairperson' },
+                           { name: 'Prof Than Than Aye', designation: 'Chairperson' },
+                           { name: 'Prof Than Than Aye', designation: 'Chairperson' },
+                           { name: 'Prof Than Than Aye', designation: 'Chairperson' },
+                           { name: 'Prof Than Than Aye', designation: 'Chairperson' },
+                           { name: 'Prof Than Than Aye', designation: 'Chairperson' },
+
+                        ] },
+                     {
+                        name: 'Scientific Committee', list: [
+                           { name: 'Prof Than Than Aye', designation: 'Chairperson' },
+                           { name: 'Prof Than Than Aye', designation: 'Chairperson' },
+                           { name: 'Prof Than Than Aye', designation: 'Chairperson' },
+                           { name: 'Prof Than Than Aye', designation: 'Chairperson' },
+                           { name: 'Prof Than Than Aye', designation: 'Chairperson' },
+                           { name: 'Prof Than Than Aye', designation: 'Chairperson' },
+                           { name: 'Prof Than Than Aye', designation: 'Chairperson' },
+                           { name: 'Prof Than Than Aye', designation: 'Chairperson' },
+                           { name: 'Prof Than Than Aye', designation: 'Chairperson' },
+                           { name: 'Prof Than Than Aye', designation: 'Chairperson' },
+
+                        ]
+                     }
+                  ]
+                           
+                }
+
+            ]
 
          },
                      {
-            img: 'Boss', name: 'Organization Commitee',link:'organization', 
+                        img: 'Boss', name: 'Networking',link:'organization',
+                        list:[
+                           {
+                              name: 'Networking',
+                              list: [
+                                       { name: 'Prof Than Than Aye', designation: 'Chairperson' },
+                                       { name: 'Prof Than Than Aye', designation: 'Chairperson' },
+                                       { name: 'Prof Than Than Aye', designation: 'Chairperson' },
+                                       { name: 'Prof Than Than Aye', designation: 'Chairperson' },
+                                       { name: 'Prof Than Than Aye', designation: 'Chairperson' },
+                                       { name: 'Prof Than Than Aye', designation: 'Chairperson' },
+                                       { name: 'Prof Than Than Aye', designation: 'Chairperson' },
+                                       { name: 'Prof Than Than Aye', designation: 'Chairperson' },
+                                       { name: 'Prof Than Than Aye', designation: 'Chairperson' },
+                                       { name: 'Prof Than Than Aye', designation: 'Chairperson' },
+                              ]
+
+                           }
+                        ] 
                         
                      },
                      {
-                        img: 'Alerts', name: 'Agenda', link: 'agenda',
+                        img: 'Alerts', name: 'Agenda/Scientific Program', link: 'agenda',
                      },
                      {
                         img: 'Events', name: 'Schedule', link: 'agenda',

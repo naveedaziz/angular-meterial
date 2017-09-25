@@ -1,47 +1,115 @@
 <md-card layout="column" layout-align="bottom left" class="customHeader" flex="100">
    <h1>AFES 2017</h1><br>
    <p>It will be held from 9 – 12 November 2017 in Yangon, Myanmar.</p>
+   <md-fab-speed-dial md-open="false" md-direction="'right'" ng-class="'md-scale'">
+      <md-fab-trigger>
+         <md-button aria-label="menu" class="md-fab md-warn">
+            <md-icon md-svg-src="img/icons/menu.svg"></md-icon>
+         </md-button>
+      </md-fab-trigger>
+
+      <md-fab-actions>
+         <md-button aria-label="Twitter" class="md-raised">
+           Login
+         </md-button>
+         <md-button aria-label="Facebook" class="md-raised">
+           Signup
+         </md-button>
+         <md-button aria-label="Google Hangout" class="md-raised">
+            Schedule
+         </md-button>
+      </md-fab-actions>
+   </md-fab-speed-dial>
 </md-card>
+
 <md-tabs md-dynamic-height md-border-bottom>
-   <md-tab label="Schedule">
+   <md-tab label="{{grid.name}}" ng-repeat="grid in app.grids">
       <md-content class="md-padding">
-         
-      </md-content>
-   </md-tab>
-   <md-tab label="two">
-      <md-content class="md-padding">
-         <h1 class="md-display-2">Tab Two</h1>
-         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue. Phasellus volutpat neque ac
-            dui mattis vulputate. Etiam consequat aliquam cursus. In sodales pretium ultrices. Maecenas lectus est, sollicitudin
-            consectetur felis nec, feugiat ultricies mi. Aliquam erat volutpat. Nam placerat, tortor in ultrices porttitor,
-            orci enim rutrum enim, vel tempor sapien arcu a tellus. Vivamus convallis sodales ante varius gravida. Curabitur
-            a purus vel augue ultrices ultricies id a nisl. Nullam malesuada consequat diam, a facilisis tortor volutpat
-            et. Sed urna dolor, aliquet vitae posuere vulputate, euismod ac lorem. Sed felis risus, pulvinar at interdum
-            quis, vehicula sed odio. Phasellus in enim venenatis, iaculis tortor eu, bibendum ante. Donec ac tellus dictum
-            neque volutpat blandit. Praesent efficitur faucibus risus, ac auctor purus porttitor vitae. Phasellus ornare
-            dui nec orci posuere, nec luctus mauris semper.</p>
-         <p>Morbi viverra, ante vel aliquet tincidunt, leo dolor pharetra quam, at semper massa orci nec magna. Donec posuere
-            nec sapien sed laoreet. Etiam cursus nunc in condimentum facilisis. Etiam in tempor tortor. Vivamus faucibus
-            egestas enim, at convallis diam pulvinar vel. Cras ac orci eget nisi maximus cursus. Nunc urna libero, viverra
-            sit amet nisl at, hendrerit tempor turpis. Maecenas facilisis convallis mi vel tempor. Nullam vitae nunc leo.
-            Cras sed nisl consectetur, rhoncus sapien sit amet, tempus sapien.</p>
-         <p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere molestie dictum. Morbi
-            eget congue risus, quis rhoncus quam. Suspendisse vitae hendrerit erat, at posuere mi. Cras eu fermentum nunc.
-            Sed id ante eu orci commodo volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo
-            lectus.</p>
-      </md-content>
-   </md-tab>
-   <md-tab label="three">
-      <md-content class="md-padding">
-         <h1 class="md-display-2">Tab Three</h1>
-         <p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere molestie dictum. Morbi
-            eget congue risus, quis rhoncus quam. Suspendisse vitae hendrerit erat, at posuere mi. Cras eu fermentum nunc.
-            Sed id ante eu orci commodo volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo
-            lectus.</p>
+                     <md-card ng-repeat="item in grid.list" ng-if="item.name == 'President Message'">
+                        <md-card-header>
+                           <md-card-avatar>
+                              <img src="img/calendar-event.svg" />
+                           </md-card-avatar>
+                           <md-card-header-text>
+                              <span class="md-title">{{ item.name }}</span>
+                              <span class="md-subhead">President Name</span>
+                           </md-card-header-text>
+                        </md-card-header>
+                        <img ng-src="img/aec.png" class="md-card-image" alt="Washed Out">
+                        <!--<md-card-title>
+                           <md-card-title-text>
+                              <span class="md-headline">Card header</span>
+                           </md-card-title-text>
+                        </md-card-title>-->
+                        <md-card-content>
+                           <p>
+                              {{ item.description }}
+                           </p>
+                        </md-card-content>
+                     </md-card>
+                     <md-card ng-repeat="item in grid.list" ng-if="item.name == 'Organizing Committee'">
+                        <md-card-header>
+                           <md-card-avatar>
+                              <img src="img/calendar-event.svg" />
+                           </md-card-avatar>
+                           <md-card-header-text>
+                              <span class="md-title">{{ item.name }}</span>
+                              <span class="md-subhead">Some information about Organizing Committee</span>
+                           </md-card-header-text>
+                        </md-card-header>
+                        <md-card-content>
+                     <section ng-repeat="item_in in item.list">
+                        <md-subheader class="md-primary">{{item_in.name}}</md-subheader>
+                        <md-list layout-padding >
+                           <md-list-item class="md-3-line" ng-repeat="item_inner in item_in.list">
+                              <img ng-src="img/calendar-event.svg" class="md-avatar" alt="{{message.who}}">
+                              <div class="md-list-item-text">
+                                 <h4>{{item_inner.name}}</h4>
+                                 <p>
+                                     {{item_inner.designation}}
+                                 </p>
+                              </div>
+                           </md-list-item>
+                        </md-list>
+                     </section>
+                        </md-card-content>
+                     </md-card>
+
+
+                     <md-card ng-repeat="item in grid.list" ng-if="item.name == 'Networking'">
+                        <md-card-header>
+                           <md-card-avatar>
+                              <img src="img/calendar-event.svg" />
+                           </md-card-avatar>
+                           <md-card-header-text>
+                              <span class="md-title">{{ item.name }}</span>
+                              <span class="md-subhead">Some information about Networking</span>
+                           </md-card-header-text>
+                        </md-card-header>
+                        <md-card-content>
+                           <md-input-container flex class="md-block">
+                              <label>Search</label>
+                              <input type="text">
+                           </md-input-container>
+                           <section>
+                              <md-list layout-padding>
+                                 <md-list-item class="md-3-line" ng-repeat="item_inner in item.list">
+                                    <img ng-src="img/calendar-event.svg" class="md-avatar" alt="{{message.who}}">
+                                    <div class="md-list-item-text">
+                                       <h4>{{item_inner.name}}</h4>
+                                       <p>
+                                          {{item_inner.designation}}
+                                       </p>
+                                    </div>
+                                 </md-list-item>
+                              </md-list>
+                           </section>
+                        </md-card-content>
+                     </md-card>
       </md-content>
    </md-tab>
 </md-tabs>
-<md-grid-list md-cols="4" md-row-height="4:4" md-gutter="4px" md-gutter-gt-sm="4px">
+<!--<md-grid-list md-cols="4" md-row-height="4:4" md-gutter="4px" md-gutter-gt-sm="4px">
 
    <md-grid-tile ng-repeat="grid in app.grids" md-rowspan="2" md-colspan="2" ng-class="'darkBlue'" ng-click="app.openLink(grid.link,grid.params)">
 
@@ -50,4 +118,4 @@
          <h3>{{grid.name}}</h3>
       </md-grid-tile-footer>
    </md-grid-tile>
-</md-grid-list>
+</md-grid-list>-->

@@ -20,7 +20,7 @@ var materialApp = angular
    var podsharkOrange;
 
    var neonRedMap = $mdThemingProvider.extendPalette('red', {
-      '500': '#2196F3',
+      '500': '#c40101',
       'contrastDefaultColor': 'light'
    });
 

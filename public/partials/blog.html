@@ -1,0 +1,54 @@
+<div layout="column" style="height:600px" ng-cloak ng-init="helpGet()">
+        
+
+
+      <md-content flex style="background:#fff;">
+         <md-list>
+            <md-list-item class="md-3-line" ng-repeat="(ind,post) in posts">
+               <div class="md-list-item-text">
+                  <span   style="float: right;
+    color: #000;
+    font-size: 16px;
+    padding: 14px;
+    padding-left: 6px;
+    padding-right: 0px;">
+    
+                   {{post.likes.length}}
+                  </span>
+                  <span style="padding: 5px;
+    color: #fff;
+    float: right;
+    margin-bottom: 11px;
+    margin-top: 6px;
+    background: #296490;" class="fa fa-heart push-right"> <i class="material-icons">thumb_up</i>
+                  </span>
+                  <h3 ui-sref="blogdetails({page:post.id})" class="socities_title" style="    margin: 12px;
+    margin-left: 0px;">{{post.title}}</h3>
+                  <p ui-sref="blogdetails({page:ind})">{{post.description}}...</p>
+                  <span ui-sref="blogdetails({page:ind})" style="float: left;
+    color: #000;
+    font-size: 16px;
+    padding: 14px;
+    padding-left: 0;
+    padding-right: 6px;">
+                   {{post.comments.length}}
+                  </span>
+                  <span style="
+       padding: 5px;
+    color: #fff;
+    float: left;
+    margin-bottom: 11px;
+    margin-top: 6px;
+    background: #296490;" class="fa fa-comment push-left"><i class="material-icons">comment</i>
+                  </span>
+                 
+               </div>
+               <md-divider inset></md-divider>
+            </md-list-item>
+
+         </md-list>
+         <md-progress-linear md-mode="query" ng-disabled="posts.length"></md-progress-linear>
+      </md-content>
+   </div>
+
+  

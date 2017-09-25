@@ -1,0 +1,46 @@
+
+   <div layout="column" style="height:600px" ng-cloak ng-init="getBlogDetail()">
+
+
+      <md-content flex style="background: #fff;
+    padding: 12px;
+    color: #000;">
+         
+               <div class="md-list-item-text" ng-if="posts_detail.title">
+                 
+                  <h3 class="socities_title" style="    margin: 12px;
+    margin-left: 0px;">{{posts_detail.title}}</h3>
+                  <p ng-click="app.openLink(item.link)">{{posts_detail.description}}</p>
+                  <span style="float: right;
+    color: #000;
+    font-size: 16px;
+    padding: 14px;
+    padding-left: 6px;
+    padding-right: 0px;">
+                   {{posts_detail.likes.length}}
+                  </span>
+                  <span ng-class="{'disabled':liked()}"  ng-click="likeEvent()" style="padding: 5px;
+    color: #fff;
+    float: right;
+    margin-bottom: 11px;
+    margin-top: 6px;
+    background: #296490;" class="fa fa-heart push-right"> <i class="material-icons">thumb_up</i>
+                  </span>
+                  <div class="clearfix"></div>
+                  <p style="background: #296490;
+    color: white;
+    padding: 9px;" ng-repeat="comment in posts_detail.comments">{{comment.body}} 
+    <!--<span style="color:#40f937">({{getUser(comment.user_id)}})</span>-->
+    </p>
+                  <md-input-container class=" md-block">
+                     <!-- Use floating label instead of placeholder -->
+                     <label>Comment</label>
+                     <textarea id="commentText"></textarea>
+                     <button ng-click="pushComments()" class="md-raised md-warn md-button md-ink-ripple">Add</button>
+                  </md-input-container>
+               </div>
+      </md-content>
+
+            <md-progress-linear md-mode="query" ng-disabled="posts_detail.title"></md-progress-linear>
+   </div>
+  

@@ -1,0 +1,38 @@
+<md-dialog id="login-dialog" aria-label="Login" ng-cloak flex="100" ng-controller="DialogController as dialog">
+   <form name="loginForm">
+      <md-toolbar>
+         <div class="md-toolbar-tools">
+            <h2>Forget Password</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="dialog.close()">
+               <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+            </md-button>
+         </div>
+      </md-toolbar>
+      
+      <md-dialog-content>
+         <div class="md-dialog-content">
+           
+            <md-input-container class="md-block">
+               <label>User Login</label>
+               <input required type="text"  ng-model="user.username" md-autofocus required />{{user.emailAddress}}
+            </md-input-container>
+            <md-input-container class="md-block">
+
+   <p class="alert" ng-if="forgetSuccess === 1">Password sent to you email address. Kindly check your email for password recovery.</p>
+   <p ng-if="forgetSuccess === -1" class="alert">Invalid Credential</p>
+   <p ng-if="forgetSuccess === true" class="alert">Loading...</p>
+            </md-input-container>
+         </div>
+         
+      </md-dialog-content>
+
+      <md-dialog-actions layout="row">
+        
+         <a href="" ng-click="dialog.showAdvanced($event);" class="md-primary">Login</a>
+         <span flex></span>
+         <md-button type="submit" ng-disabled="loginForm.$invalid" class="md-raised md-primary">Send Password</md-button>
+        
+      </md-dialog-actions>
+   </form>
+</md-dialog>

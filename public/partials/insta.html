@@ -1,0 +1,18 @@
+<div  layout="column"  ng-cloak ng-init="instagram()">
+  <md-content flex style="background:#fff;margin-bottom: 19px;">
+    <div class="md-3-line" ng-repeat="(key,item) in instaFeeds" ng-if="item.link"  ng-click="app.openLink(item.link)" style="    height: 415px;
+    overflow: hidden;">
+     <img  src="{{item.images.standard_resolution.url}}" width="100%" style="margin-top: 1%;margin-bottom: -1%;" />
+     <p style="position: relative;
+    bottom: 98px;
+    color: #000;
+    background: rgba(255, 255, 255, 0.76);
+    padding: 10px;
+    padding-top: 8px;
+    padding-bottom: 0;
+    height: 75px;font-size: 13px;">{{item.caption.text}}</p>
+    </div>
+<md-progress-linear md-mode="query" ng-disabled="instaFeeds.length"></md-progress-linear>
+  </md-content>
+
+</div>

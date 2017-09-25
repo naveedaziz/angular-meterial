@@ -1,0 +1,46 @@
+<div  layout="column" style="height:600px" ng-cloak ng-init="getEvent()">
+
+
+  <md-content flex style="background:#fff;">
+    
+    <md-list ng-if="events.length">
+      <md-list-item class="md-3-line" ng-repeat="(key,item) in events | orderObjectBy:'id':'descending'" style="padding:10px">
+     
+      
+        <div class="md-list-item-text" style="border:1px solid #253b80;">
+            <div flex="100" style="background:#253b80;padding:10px;">
+               <h3 style="width: 57%;
+    float: left;color:#fff">
+                  {{item.title}}
+               </h3>
+               <span style="font-size: 11px;">{{returnDate(item.dated)}}</span>
+              
+              
+            </div>
+          
+         <p style="padding:10px">
+            {{item.description}}
+         </p>
+         <a style="font-size: 9px;
+    float: right;" href="https://www.google.com/calendar/render?action=TEMPLATE&text={{item.title}}&dates={{returnDate(item.dated,'google')}}00Z/{{returnDate(item.dated,'google')}}00Z&details={{item.description}}&sf=true&output=xml" class="md-raised md-warn md-button md-ink-ripple pull-right">Add To Calender</a>
+        <div class="clearfix"></div>
+        </div>
+       
+      </md-list-item>
+
+    </md-list>
+   <md-progress-linear md-mode="query" ng-disabled="returnOrderState(events)"></md-progress-linear>
+ <div align="center" ng-if="returnOrderState(events) && loadMoreCall != -1">
+   
+   <md-button class="md-raised md-warn" aria-label="Load More" style="margin: 3%;
+    width: 124px;
+    background: #8BC34A;" ng-click="getEvent()">
+   
+   <md-icon ng-if="loadMoreCall" ng-style="{color: '#fff'}" class="material-icons step ng-binding md-24 spin" role="img">sync</md-icon>
+       Load More
+
+   </md-button>
+ </div>
+  </md-content>
+
+</div>

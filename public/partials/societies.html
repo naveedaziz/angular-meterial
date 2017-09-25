@@ -1,0 +1,34 @@
+<div  layout="column"  ng-cloak>
+
+
+  <md-content flex style="background:#fff;">
+    
+    <!--<md-list class="mat-list">
+      <md-list-item class="md-3-line" ng-repeat="(key,item) in app.societies">
+         <img src="img/home/boss.svg" style="width: 45px;margin-top: 23px;">
+        <div class="md-list-item-text" ng-click="app.openLink(item.website)">
+         <md-subheader class="md-no-sticky" style="background:none;">
+            <p class="socities_title">{{item.name}}</p>
+         
+         </md-subheader>
+        </div>
+        <md-divider inset></md-divider>
+      </md-list-item>
+
+    </md-list>-->
+
+   <md-grid-list md-cols="2" md-row-height-gt-md="1:1" md-row-height="5:3" md-gutter="8px" md-gutter-gt-sm="4px">
+
+      <md-grid-tile style="    margin: 0px; background:#638eae;" md-rowspan="2" ng-repeat="(key,item) in app.societies" ng-click="app.openLink(item.website)"
+         md-colspan="1" md-colspan-sm="1" md-colspan-xs="1" ng-class="tile.background">
+         <img src="img/society/{{item.name}}.jpg" width="58%" style="position: relative;
+    top: -18px;">
+         <md-grid-tile-footer>
+            <h3>{{item.name}}</h3>
+         </md-grid-tile-footer>
+
+      </md-grid-tile>
+   </md-grid-list>
+  </md-content>
+
+</div>

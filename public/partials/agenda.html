@@ -1,0 +1,230 @@
+<div  layout="column"  ng-cloak>
+
+<md-toolbar class="md-warn">
+   <div class="md-toolbar-tools">
+      <md-button class="md-icon-button" aria-label="Settings" ng-disabled="false">
+         <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+      </md-button>
+
+      <h2 flex md-truncate>7:00 AM - 5:00 PM</h2>
+
+      <md-button class="md-icon-button" aria-label="Favorite">
+         <md-icon md-svg-icon="img/icons/favorite.svg" style="color: greenyellow;"></md-icon>
+      </md-button>
+
+      <md-button class="md-icon-button" aria-label="More">
+         <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon>
+      </md-button>
+   </div>
+</md-toolbar>
+
+
+<md-content flex layout-padding>
+   <p>Registration - From 7:00AM</p>
+</md-content>
+<md-toolbar class="md-warn">
+   <div class="md-toolbar-tools">
+      <md-button class="md-icon-button" aria-label="Settings" ng-disabled="false">
+         <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+      </md-button>
+
+      <h2 flex md-truncate>8:30 AM - 9:15 AM</h2>
+
+      <md-button class="md-icon-button" aria-label="Favorite">
+         <md-icon md-svg-icon="img/icons/favorite.svg" style="color: greenyellow;"></md-icon>
+      </md-button>
+
+      <md-button class="md-icon-button" aria-label="More">
+         <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon>
+      </md-button>
+   </div>
+</md-toolbar>
+
+
+<md-content flex layout-padding>
+   <p>Plenary 1 - Year in Adrenal William Young (USA)</p>
+</md-content>
+
+<md-toolbar >
+   <div class="md-toolbar-tools">
+      <md-button class="md-icon-button" aria-label="Settings" ng-disabled="false">
+         <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+      </md-button>
+
+      <h2 flex md-truncate>9:15 AM - 10:00 AM</h2>
+
+      <md-button class="md-icon-button" aria-label="Favorite">
+         <md-icon md-svg-icon="img/icons/favorite.svg" style="color: greenyellow;"></md-icon>
+      </md-button>
+
+      <md-button class="md-icon-button" aria-label="More">
+         <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon>
+      </md-button>
+   </div>
+</md-toolbar>
+
+
+<md-content flex layout-padding>
+   <p>Plenary 2 - Cell signaling in insulin secretion: A path to improved diabetes treatment Susumu Seino (Japan)</p>
+</md-content>
+
+
+<md-toolbar class="md-warn">
+   <div class="md-toolbar-tools">
+      <md-button class="md-icon-button" aria-label="Settings" ng-disabled="false">
+         <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+      </md-button>
+
+      <h2 flex md-truncate>10:20 AM - 12:00 PM</h2>
+
+      <md-button class="md-icon-button" aria-label="Favorite">
+         <md-icon md-svg-icon="img/icons/favorite.svg" style="color: greenyellow;"></md-icon>
+      </md-button>
+
+      <md-button class="md-icon-button" aria-label="More">
+         <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon>
+      </md-button>
+   </div>
+</md-toolbar>
+
+
+<md-content flex layout-padding>
+   <div>
+         <md-content>
+            <!-- ngRepeat: data in accordianData -->
+            <div class="md-accordion ng-scope">
+               <md-toolbar class="md-warn md-hue-3" ng-init="data.expanded = false" ng-click="data.expanded = !data.expanded" role="button" tabindex="0">
+                  <div class="md-toolbar-tools">
+                     <h3>
+                        <span class="ng-binding">Track 1 </span>
+                     </h3>
+                  
+                     <span ng-class="{expandCollapse:true, active:data.expanded}" class="expandCollapse"><i class="material-icons" flex="50">expand_more</i></span>
+                  </div>
+               </md-toolbar>
+               <div ng-class="{dataContent:true, activeContent:data.expanded}" class="ng-binding dataContent">
+                  <!--<div ng-repeat="course_department in course.departments">
+                  <h4 ng-init="dataDepartment.expanded = false">{{course_department.name}}</h4>
+                  <span  ng-class="{expandCollapse:true, active:dataDepartment.expanded}" style="color:red;" class="expandCollapse"></span>
+               </div>-->
+
+                  <div >
+                     <p class="pclass" ><i class="material-icons">stars</i>Steroid induced DM  - <small> (Kevin Yuen (USA))</small></p>
+                     <p class="pclass"><i class="material-icons">stars</i>Glucocorticoid-induced bone disease - <small> (Mo Aye (UK))</small></p>
+                     <p class="pclass"><i class="material-icons">stars</i>Steroid induced Adrenal insufficiency - <small>(Tran Quang Nam (Vietnam))</small></p>
+                     <!--<h3 ng-if="degrees.link"><a href="{{degrees.link}}" target="_blank">Roadmap for {{degrees.name}}</a></h3>-->
+                  </div>
+               </div>
+               <md-toolbar class="md-warn md-hue-3" ng-init="data.expanded = false" ng-click="data.expanded = !data.expanded" role="button"
+                  tabindex="0">
+                  <div class="md-toolbar-tools">
+                     <h3>
+                        <span class="ng-binding">Track 2 </span>
+                     </h3>
+
+                     <span ng-class="{expandCollapse:true, active:data.expanded}" class="expandCollapse"><i class="material-icons" flex="50">expand_more</i></span>
+                  </div>
+               </md-toolbar>
+               <div ng-class="{dataContent:true, activeContent:data.expanded}" class="ng-binding dataContent">
+                  <!--<div ng-repeat="course_department in course.departments">
+                  <h4 ng-init="dataDepartment.expanded = false">{{course_department.name}}</h4>
+                  <span  ng-class="{expandCollapse:true, active:dataDepartment.expanded}" style="color:red;" class="expandCollapse"></span>
+               </div>-->
+
+                  <div>
+                     <p class="pclass"><i class="material-icons">stars</i>Steroid induced DM - <small> (Kevin Yuen (USA))</small></p>
+                     <p class="pclass"><i class="material-icons">stars</i>Glucocorticoid-induced bone disease - <small> (Mo Aye (UK))</small></p>
+                     <p class="pclass"><i class="material-icons">stars</i>Steroid induced Adrenal insufficiency - <small>(Tran Quang Nam (Vietnam))</small></p>
+                     <!--<h3 ng-if="degrees.link"><a href="{{degrees.link}}" target="_blank">Roadmap for {{degrees.name}}</a></h3>-->
+                  </div>
+               </div>
+               <div>
+               </div>
+            </div>
+            <!-- end ngRepeat: data in accordianData -->
+
+
+         </md-content>
+   </div>
+</md-content>
+<md-toolbar class="md-warn">
+   <div class="md-toolbar-tools">
+      <md-button class="md-icon-button" aria-label="Settings" ng-disabled="false">
+         <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+      </md-button>
+
+      <h2 flex md-truncate>12:15 PM - 01:15 PM</h2>
+
+      <md-button class="md-icon-button" aria-label="Favorite">
+         <md-icon md-svg-icon="img/icons/favorite.svg" style="color: greenyellow;"></md-icon>
+      </md-button>
+
+      <md-button class="md-icon-button" aria-label="More">
+         <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon>
+      </md-button>
+   </div>
+</md-toolbar>
+
+
+<md-content flex layout-padding>
+   <div>
+      <md-content>
+         <!-- ngRepeat: data in accordianData -->
+         <div class="md-accordion ng-scope">
+            <md-toolbar class="md-warn md-hue-3" ng-init="data.expanded = false" ng-click="data.expanded = !data.expanded" role="button"
+               tabindex="0">
+               <div class="md-toolbar-tools">
+                  <h3>
+                     <span class="ng-binding">Track 1 </span>
+                  </h3>
+
+                  <span ng-class="{expandCollapse:true, active:data.expanded}" class="expandCollapse"><i class="material-icons" flex="50">expand_more</i></span>
+               </div>
+            </md-toolbar>
+            <div ng-class="{dataContent:true, activeContent:data.expanded}" class="ng-binding dataContent">
+               <!--<div ng-repeat="course_department in course.departments">
+                  <h4 ng-init="dataDepartment.expanded = false">{{course_department.name}}</h4>
+                  <span  ng-class="{expandCollapse:true, active:dataDepartment.expanded}" style="color:red;" class="expandCollapse"></span>
+               </div>-->
+
+               <div>
+                  <p class="pclass"><i class="material-icons">stars</i>Steroid induced DM - <small> (Kevin Yuen (USA))</small></p>
+                  <p class="pclass"><i class="material-icons">stars</i>Glucocorticoid-induced bone disease - <small> (Mo Aye (UK))</small></p>
+                  <p class="pclass"><i class="material-icons">stars</i>Steroid induced Adrenal insufficiency - <small>(Tran Quang Nam (Vietnam))</small></p>
+                  <!--<h3 ng-if="degrees.link"><a href="{{degrees.link}}" target="_blank">Roadmap for {{degrees.name}}</a></h3>-->
+               </div>
+            </div>
+            <md-toolbar class="md-warn md-hue-3" ng-init="data.expanded = false" ng-click="data.expanded = !data.expanded" role="button"
+               tabindex="0">
+               <div class="md-toolbar-tools">
+                  <h3>
+                     <span class="ng-binding">Track 2 </span>
+                  </h3>
+
+                  <span ng-class="{expandCollapse:true, active:data.expanded}" class="expandCollapse"><i class="material-icons" flex="50">expand_more</i></span>
+               </div>
+            </md-toolbar>
+            <div ng-class="{dataContent:true, activeContent:data.expanded}" class="ng-binding dataContent">
+               <!--<div ng-repeat="course_department in course.departments">
+                  <h4 ng-init="dataDepartment.expanded = false">{{course_department.name}}</h4>
+                  <span  ng-class="{expandCollapse:true, active:dataDepartment.expanded}" style="color:red;" class="expandCollapse"></span>
+               </div>-->
+
+               <div>
+                  <p class="pclass"><i class="material-icons">stars</i>Steroid induced DM - <small> (Kevin Yuen (USA))</small></p>
+                  <p class="pclass"><i class="material-icons">stars</i>Glucocorticoid-induced bone disease - <small> (Mo Aye (UK))</small></p>
+                  <p class="pclass"><i class="material-icons">stars</i>Steroid induced Adrenal insufficiency - <small>(Tran Quang Nam (Vietnam))</small></p>
+                  <!--<h3 ng-if="degrees.link"><a href="{{degrees.link}}" target="_blank">Roadmap for {{degrees.name}}</a></h3>-->
+               </div>
+            </div>
+            <div>
+            </div>
+         </div>
+         <!-- end ngRepeat: data in accordianData -->
+
+
+      </md-content>
+   </div>
+</md-content>
+
+</div>

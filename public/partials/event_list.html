@@ -1,0 +1,19 @@
+<div layout="column" ng-cloak>
+
+   <md-content flex style="background:#fff;">
+
+      <md-grid-list md-cols="2" md-row-height-gt-md="1:1" md-row-height="5:3" md-gutter="8px" md-gutter-gt-sm="4px">
+
+         <md-grid-tile style="    margin: 0px; background:#638eae;" md-rowspan="2" ng-repeat="(key,item) in app.grids[3].list" ng-click="app.openLink(item.link,item.params)"
+            md-colspan="1" md-colspan-sm="1" md-colspan-xs="1" ng-class="tile.background">
+            <img src="img/event/{{item.img}}.svg" width="58%" style="position: relative;
+    top: -18px;">
+            <md-grid-tile-footer>
+               <h3>{{item.name}}</h3>
+            </md-grid-tile-footer>
+
+         </md-grid-tile>
+      </md-grid-list>
+   </md-content>
+
+</div>

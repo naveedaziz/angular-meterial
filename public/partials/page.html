@@ -1,0 +1,28 @@
+<div  layout="column"  ng-cloak ng-init="app.stateLoader('pageState')">
+<div  ng-cloak>
+
+ 
+   <md-content layout-padding  class="pageContents" ng-init="setPageTitle(app.pageStatic[app.pageName].name)">
+      <div>
+            <p dir="ltr" ng-if="app.pageStatic[app.pageName].message">
+               <md-icon ng-style="{color: '#000'}" class="material-icons step ng-binding md-24" role="img">message</md-icon>
+              &nbsp;{{app.pageStatic[app.pageName].message}}</p>
+             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2179.2112700953744!2d74.33368374504342!3d31.522421394980267!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x8a16719091174271!2sForman+Christian+College+(A+Chartered+University)!5e0!3m2!1sen!2s!4v1501179094335"
+               width="100%" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+            <p dir="ltr" ng-if="app.pageStatic[app.pageName].address">
+               <md-icon ng-style="{color: '#000'}" class="material-icons step ng-binding md-24" role="img">address</md-icon>{{app.pageStatic[app.pageName].address}}</p>
+            <p dir="ltr" ng-if="app.pageStatic[app.pageName].link"><md-icon ng-style="{color: '#000'}" class="material-icons step ng-binding md-24" role="img">webiste</md-icon><a href="{{app.pageStatic[app.pageName].link}}">{{app.pageStatic[app.pageName].link}}</a></p>
+            
+            
+            <p dir="ltr" ng-if="app.pageStatic[app.pageName].phone"><b><md-icon ng-style="{color: '#000'}" class="material-icons step ng-binding md-24" role="img">phone</md-icon>Tel:<a href="tel:+924299231581">+92 (42) 9923 1581-8</a> <span>Ext: {{app.pageStatic[app.pageName].phone}}</span></b></p>
+           
+            <p dir="ltr" ng-if="app.pageStatic[app.pageName].email"><b><md-icon ng-style="{color: '#000'}" class="material-icons step ng-binding md-24" role="img">email</md-icon><a href="mailto:{{app.pageStatic[app.pageName].email}}">{{app.pageStatic[app.pageName].email}}</a></b></p>
+
+        
+         
+      </div>
+   </md-content>
+
+</div>
+
+</div>

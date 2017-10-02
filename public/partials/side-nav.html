@@ -13,7 +13,7 @@
                     </div>
                     <ul class="side-nav-menu scrollable ps-container ps-theme-default" data-ps-id="25564839-924f-4228-f4e7-1d23169f52b2">
                         <li class="nav-item active">
-                            <a class="mrg-top-30" href="/" onclick="$('.app').toggleClass('is-collapsed')">
+                            <a class="mrg-top-30" ui-sref="home" onclick="$('.app').toggleClass('is-collapsed')">
                                 <span class="icon-holder">
 										<i class="ti-home"></i>
 									</span>
@@ -32,15 +32,15 @@
                             </a>
                            <ul class="dropdown-menu">
                               <li>
-                                 <a onclick="$('.app').toggleClass('is-collapsed')" href="./#!/message">President Message</a>
+                                 <a onclick="$('.app').toggleClass('is-collapsed')" ui-sref="message">President Message</a>
                               </li>
                               <li>
-                                 <a onclick="$('.app').toggleClass('is-collapsed')" href="./#!/organization_comitee">Organization Commitee</a>
+                                 <a onclick="$('.app').toggleClass('is-collapsed')" ui-sref="organization">Organization Commitee</a>
                               </li>
                            </ul>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="dropdown-toggle" href="/#!/schedule" onclick="$('.app').toggleClass('is-collapsed')">
+                            <a class="dropdown-toggle" ui-sref="schedule" onclick="$('.app').toggleClass('is-collapsed')">
                                 <span class="icon-holder">
 										<i class="ti-package"></i>
 									</span>
@@ -62,7 +62,7 @@
                             </ul>-->
                         </li>
                         <li class="nav-item dropdown">
-                           <a class="dropdown-toggle" href="networking" onclick="$('.app').toggleClass('is-collapsed')">
+                           <a class="dropdown-toggle" ui-sref="network" onclick="$('.app').toggleClass('is-collapsed')">
                                 <span class="icon-holder">
 										<i class="ti-package"></i>
 									</span>

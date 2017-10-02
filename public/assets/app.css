@@ -1531,7 +1531,7 @@ iframe { border: 0; }
 @media only screen and (max-width: 767px) { .side-panel .side-panel-wrapper { width: 270px; } }
 
 .side-panel .side-panel-wrapper > div { height: 100%; }
-
+.padding-3 { padding:  3px !important; }
 .side-panel .side-panel-wrapper .nav-tabs { border-bottom: 1px solid #e6ecf5; }
 
 .side-panel .side-panel-wrapper .nav-tabs > li.active > a { color: #515365; background-color: transparent; border: 0px; border-bottom-color: transparent; }

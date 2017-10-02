@@ -4,13 +4,7 @@ app.config(function ($routeProvider) {
       .when("/", {
          templateUrl: "partials/home.html"
       })
-      .when("/red", {
-         templateUrl: "red.htm"
+      .when("/organization_commitee", {
+         templateUrl: "partials/organization_commitee.html"
       })
-      .when("/green", {
-         templateUrl: "green.htm"
-      })
-      .when("/blue", {
-         templateUrl: "blue.htm"
-      });
 });

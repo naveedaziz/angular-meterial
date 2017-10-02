@@ -12,6 +12,9 @@ app.use(express.static(__dirname + '/public'));
 app.get('/', function (req, res) {
    res.send('index.html');
 });
+app.get('/organization_commitee', function (req, res) {
+   res.send('index.html');
+});
 
 
 app.listen(app.get('port'), function () {

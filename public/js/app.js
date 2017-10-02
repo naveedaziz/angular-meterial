@@ -10,8 +10,11 @@ app.config(function ($routeProvider, $locationProvider) {
       .when("/schedule", {
          templateUrl: "partials/schedule.html"
       })
-      .when("/sponsors", {
-         templateUrl: "partials/sponsors.html"
+      .when("/organization_comitee", {
+         templateUrl: "partials/organization_comitee.html"
+      })
+      .when("/message", {
+         templateUrl: "partials/message.html"
       })
    //$locationProvider.html5Mode(true).hashPrefix('*');
 });

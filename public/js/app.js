@@ -1,24 +1,4 @@
 var app = angular.module("myApp", ['ui.router']);
-// app.config(function ($routeProvider, $locationProvider) {
-//    $routeProvider
-//       .when("/", {
-//          templateUrl: "partials/home.html"
-//       })
-//       .when("/organization_commitee", {
-//          templateUrl: "partials/organization_commitee.html"
-//       })
-//       .when("/schedule", {
-//          templateUrl: "partials/schedule.html"
-//       })
-//       .when("/organization_comitee", {
-//          templateUrl: "partials/organization_comitee.html"
-//       })
-//       .when("/message", {
-//          templateUrl: "partials/message.html"
-//       })
-//    //$locationProvider.html5Mode(true).hashPrefix('*');
-// });
-
 app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 
    $urlRouterProvider.otherwise('/');
@@ -30,7 +10,7 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
          url: '/',
          templateUrl: 'partials/home.html',
          params: {
-            title: "Welcome to"
+            title: "Welcome to AFES"
          }
 
       })
@@ -45,23 +25,51 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
          url: '/message',
          templateUrl: 'partials/message.html',
          params: {
-            title: "Agenda"
+            title: "President Message"
          }
       })
       .state('schedule', {
          url: '/schedule',
          templateUrl: 'partials/schedule.html',
          params: {
-            title: "Sponsor"
+            title: "Scientific Programe"
          }
       })
       .state('network', {
          url: '/network',
          templateUrl: 'partials/network.html',
          params: {
-            title: "Accomodation"
+            title: "Network"
+         }
+      })
+      .state('faculty', {
+         url: '/faculty',
+         templateUrl: 'partials/faculty.html',
+         params: {
+            title: "Faculty"
+         }
+      })
+      .state('gallery', {
+         url: '/gallery',
+         templateUrl: 'partials/gallery.html',
+         params: {
+            title: "Gallery"
+         }
+      })
+      .state('video', {
+         url: '/video',
+         templateUrl: 'partials/video.html',
+         params: {
+            title: "Video"
          }
       })
    //$locationProvider.html5Mode({ enabled: true, requireBase: false });
 
-});
+})
+   .controller('AppController', function ($scope, $state, $stateParams, $rootScope){
+      $scope.updateTitle = function(state,pre){
+         $scope.title = pre.params.title;
+      }
+      $rootScope.$on('$stateChangeSuccess', $scope.updateTitle);
+      
+})

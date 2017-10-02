@@ -56,6 +56,13 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
             title: "Gallery"
          }
       })
+      .state('sponsors', {
+         url: '/sponsors',
+         templateUrl: 'partials/sponsors.html',
+         params: {
+            title: "Gallery"
+         }
+      })
       .state('video', {
          url: '/video',
          templateUrl: 'partials/video.html',

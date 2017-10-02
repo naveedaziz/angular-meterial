@@ -17,6 +17,9 @@ app.get('/', function (req, res) {
 app.get('/organization_commitee', function (req, res) {
    res.sendfile(path.join(__dirname, 'public/index.html'));
 });
+app.get('/sponsors', function (req, res) {
+   res.sendfile(path.join(__dirname, 'public/index.html'));
+});
 
 
 

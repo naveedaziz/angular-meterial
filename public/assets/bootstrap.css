@@ -645,7 +645,20 @@ pre code {
   margin-right: -15px;
   margin-left: -15px;
 }
-
+::-webkit-scrollbar {
+    width: 0px;  /* remove scrollbar space */
+    background: transparent;  /* optional: just make scrollbar invisible */
+}
+.theme-toggle-schedule {
+    position: absolute;
+    bottom: 9px;
+    right: 9px;
+    padding: 15px !important;
+    z-index: 1001;
+    font-size: 15px !important;
+    color: #ffffff;
+    background-color: #0f9aee;
+}
 .no-gutters {
   margin-right: 0;
   margin-left: 0;

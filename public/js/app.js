@@ -10,5 +10,8 @@ app.config(function ($routeProvider, $locationProvider) {
       .when("/schedule", {
          templateUrl: "partials/schedule.html"
       })
+      .when("/sponsors", {
+         templateUrl: "partials/sponsors.html"
+      })
    $locationProvider.html5Mode(true).hashPrefix('*');
 });

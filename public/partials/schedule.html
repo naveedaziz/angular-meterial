@@ -1,61 +1,382 @@
 <div class="main-content">
                     <div class="container-fluid">
                         <div class="row">
-                            
+                            <div class="col-lg-3 social">
                                  <div class="card">
                                     <!--<div class="padding-20">
                                         <h4 class="card-title no-mrg-btm">Tabs Danger</h4>
                                     </div>-->
                                     <div class="tab-danger">
-                                        <ul class="nav nav-tabs" role="tablist">
+                                       <div class="tab-scroll" style="width:100%; overflow:scroll;">
+                                          <ul class="nav nav-tabs" role="tablist" style="width:550px;">
                                             <li class="nav-item">
-                                                <a href="javascript:void(0)" onclick="$('.nav-tabs .nav-item').children().removeClass('active');$(this).addClass('active');$('.tab-content').children().removeClass('in');$('.tab-content').children().removeClass('active');$('#tab-danger-1').addClass('in');$('#tab-danger-1').addClass('active')" class="nav-link active" role="tab" data-toggle="tab">About AFES</a>
+                                                <a href="javascript:void(0)" onclick="$('.nav-tabs .nav-item').children().removeClass('active');$(this).addClass('active');$('.tab-content').children().removeClass('in');$('.tab-content').children().removeClass('active');$('#tab-danger-1').addClass('in');$('#tab-danger-1').addClass('active')" class="nav-link active" role="tab" data-toggle="tab">MON (10th AUG)</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a href="javascript:void(0)" onclick="$('.nav-tabs .nav-item').children().removeClass('active');$(this).addClass('active');$('.tab-content').children().removeClass('in');$('.tab-content').children().removeClass('active');$('#tab-danger-2').addClass('in');$('#tab-danger-2').addClass('active')" class="nav-link" role="tab" data-toggle="tab">Profile</a>
+                                                <a href="javascript:void(0)" onclick="$('.nav-tabs .nav-item').children().removeClass('active');$(this).addClass('active');$('.tab-content').children().removeClass('in');$('.tab-content').children().removeClass('active');$('#tab-danger-2').addClass('in');$('#tab-danger-2').addClass('active')" class="nav-link" role="tab" data-toggle="tab">TUES (11th AUG)</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a href="javascript:void(0)" onclick="$('.nav-tabs .nav-item').children().removeClass('active');$(this).addClass('active');$('.tab-content').children().removeClass('in');$('.tab-content').children().removeClass('active');$('#tab-danger-3').addClass('in');$('#tab-danger-3').addClass('active')" class="nav-link" role="tab" data-toggle="tab">Setting</a>
+                                                <a href="javascript:void(0)" onclick="$('.nav-tabs .nav-item').children().removeClass('active');$(this).addClass('active');$('.tab-content').children().removeClass('in');$('.tab-content').children().removeClass('active');$('#tab-danger-3').addClass('in');$('#tab-danger-3').addClass('active')" class="nav-link" role="tab" data-toggle="tab">WED (12th AUG)</a>
                                             </li>
+                                          <li class="nav-item">
+                                             <a href="javascript:void(0)" onclick="$('.nav-tabs .nav-item').children().removeClass('active');$(this).addClass('active');$('.tab-content').children().removeClass('in');$('.tab-content').children().removeClass('active');$('#tab-danger-3').addClass('in');$('#tab-danger-3').addClass('active')"
+                                                class="nav-link" role="tab" data-toggle="tab">THU (13th AUG)</a>
+                                          </li>
                                         </ul>
+                                       </div>
                                         <div class="tab-content">
-                                            <div role="tabpanel" class="tab-pane fade in active" id="tab-danger-1">
-                                             <div class="card">
-                                                <ul class="list-unstyled list-info">
-                                                   <li>
-                                                      <div class="pdd-vertical-10 pdd-horizon-20">
-                                                         <!--<img class="thumb-img img-circle" src="assets/user.jpeg" alt="">-->
-                                                         <div class="info" style="padding-left:0">
-                                                            <span class="title">Jordan Hurst</span>
-                                                            <span class="sub-title">
-																<i class="ti-timer pdd-right-5"></i>
-																<span>President Message</span>
-                                                            </span>
-                                                         </div>
-                                                      </div>
-                                                   </li>
-                                                </ul>
-                                                <div class="card-media">
-                                                   <img class="img-responsive" src="assets/user.jpeg" alt="">
-                                                </div>
+                                            <div role="tabpanel" class="tab-pane" id="tab-danger-2" style="background:#f7f7f7">
+                                             <div class="card" style="border:none;margin-top:2px;">
                                                 <div class="card-block">
-                                                   <h4>Welcome to AFES</h4>
-                                                   <p>Hey, whoa, just where do you think you're going? Master Luke here is your
-                                                      rightful owner. We'll have no more of this Obi-Wan Kenobi. I have decided
-                                                      that we shall stay here.Well, look at you, a general</p>
+                                                   <h4>Introduction Speech Than Than Aye (AFES President)</h4>
+                                                   <p>Please bring your NIC and ....</p>
                                                 </div>
                                              </div>
-                                            </div>
-                                            <div role="tabpanel" class="tab-pane fade" id="tab-danger-2">
-                                                <div class="pdd-horizon-15 pdd-vertical-20">
-                                                    <p>Rouge Group, use your harpoons and tow cables. Go for the legs. It might be our only chance of stopping them. All right, stand by, Dack. Luke, we've got a malfunction in fire control. I'll have to cut in the auxiliary. ust hang on. Hang on, Dack. Get ready to fire that tow cable. Dack? Dack! Yes, Lord Vader. I've reached the main power generator. The shield will be down in moments. You may start your landing. Rouge Three. Copy, Rouge Leader Wedge, I've lost my gunner.You'll have to make this shot.</p>
+                                             <div id="accordion-1" class="accordion panel-group" role="tablist" aria-multiselectable="true">
+                                                <div class="panel panel-default">
+                                                   <div class="panel-heading" role="tab" id="headingOne">
+                                                      <h4 class="panel-title">
+                                                         <a  onclick="$(this).children('i').toggleClass('ti-arrow-circle-down');$('#collapseOne2').toggleClass('show');" data-parent="#accordion-1" href="#collapseOne" aria-expanded="false" class="">
+                                                         <span>Track 1</span>
+                                                         <i class="icon ti-arrow-circle-right"></i> 
+                                                      </a>
+                                                                  </h4>
+                                                               </div>
+
+                                                               <div id="collapseOne2" class="panel-collapse collapse" style="">
+                                                                  <div class="panel-body" style="background:#f7f7f7; padding:10px;">
+                                                                     <div class="card" style="border:none;margin-top:2px;">
+                                                                        <div class="card-block">
+                                                                           <h4>Symposium 1 - Steroid Induced Disorders</h4>
+                                                                           <p>Please bring your NIC and ....</p>
+                                                                        </div>
+                                                                     </div>
+                                                                     <div class="card" style="border:none;margin-top:2px;">
+                                                                        <div class="card-block">
+                                                                           <h4>1.1 - Steroid induced DM Kevin Yuen (USA)</h4>
+                                                                           <p>Please bring your NIC and ....</p>
+                                                                        </div>
+                                                                     </div>
+                                                                  </div>
+                                                               </div>
+                                                            </div>
+                                                            <div class="panel panel-default">
+                                                               <div class="panel-heading" role="tab" id="headingTwo">
+                                                                  <h4 class="panel-title">
+                                                                     <a  onclick="$(this).children('i').toggleClass('ti-arrow-circle-down');$('#collapseTwo2').toggleClass('show');" data-toggle="collapse" data-parent="#accordion-1" href="#collapseTwo" aria-expanded="false">
+                                                         <span>Track 2</span> 
+                                                         <i class="icon ti-arrow-circle-right"></i>
+                                                      </a>
+                                                                  </h4>
+                                                               </div>
+                                                               <div id="collapseTwo2" class="panel-collapse collapse" role="tabpanel" style="">
+                                                                  <div class="panel-body" style="background:#f7f7f7; padding:10px;">
+                                                                     <div class="card" style="border:none;margin-top:2px;">
+                                                                        <div class="card-block">
+                                                                           <h4>Symposium 1 - Steroid Induced Disorders</h4>
+                                                                           <p>Please bring your NIC and ....</p>
+                                                                        </div>
+                                                                     </div>
+                                                                     <div class="card" style="border:none;margin-top:2px;">
+                                                                        <div class="card-block">
+                                                                           <h4>1.1 - Steroid induced DM Kevin Yuen (USA)</h4>
+                                                                           <p>Please bring your NIC and ....</p>
+                                                                        </div>
+                                                                     </div>
+                                                                  </div>
+                                                               </div>
+                                                            </div>
+                                                            <div class="panel panel-default">
+                                                               <div class="panel-heading" role="tab" id="headingThree">
+                                                                  <h4 class="panel-title">
+                                                                     <a onclick="$(this).children('i').toggleClass('ti-arrow-circle-down');$('#collapseThree2').toggleClass('show');" data-toggle="collapse" data-parent="#accordion-1" href="#collapseThree" aria-expanded="false">
+                                                         <span>Track 3</span> 
+                                                         <i class="icon ti-arrow-circle-right"></i> 
+                                                      </a>
+                                                                  </h4>
+                                                               </div>
+                                                               <div id="collapseThree2" class="panel-collapse collapse" role="tabpanel" style="">
+                                                                  <div class="panel-body"style="background:#f7f7f7; padding:10px;">
+                                                                     <div class="card" style="border:none;margin-top:2px;">
+                                                                        <div class="card-block">
+                                                                           <h4>Symposium 1 - Steroid Induced Disorders</h4>
+                                                                           <p>Please bring your NIC and ....</p>
+                                                                        </div>
+                                                                     </div>
+                                                                     <div class="card" style="border:none;margin-top:2px;">
+                                                                        <div class="card-block">
+                                                                           <h4>1.1 - Steroid induced DM Kevin Yuen (USA)</h4>
+                                                                           <p>Please bring your NIC and ....</p>
+                                                                        </div>
+                                                                     </div>
+                                                                  </div>
+                                                               </div>
+                                                            </div>
+                                                         </div>
+                                             <!--<div class="card bg-info">
+                                                <div class="card-block">
+                                                   <div class="row">
+                                                      <div class="col-md-7">
+                                                         <p class="text-uppercase font-size-13"><b>Hall 1</b></p>
+                                                      </div>
+                                                      <div class="col-md-5">
+                                                         <div class="card" style="border:none;margin-top:2px;background: #1f7fbb;">
+                                                            <div class="card-block">
+                                                               <h4>Symposium 1 - Steroid Induced Disorders</h4>
+                                                               <p>Please bring your NIC and ....</p>
+                                                            </div>
+                                                         </div>
+                                                            <div class="card" style="border:none;margin-top:2px;background: #1f7fbb;">
+                                                               <div class="card-block">
+                                                                  <h4>1.1 - Steroid induced DM Kevin Yuen (USA)</h4>
+                                                                  <p>Please bring your NIC and ....</p>
+                                                               </div>
+                                                            </div>
+                                                      </div>
+                                                   </div>
                                                 </div>
+                                             </div>-->
                                             </div>
-                                            <div role="tabpanel" class="tab-pane fade" id="tab-danger-3">
-                                                <div class="pdd-horizon-15 pdd-vertical-20">
-                                                    <p>If only you had attached my legs, I wouldn't be in this ridiculous position. Now, remember, Chewbacca, you have a responsibility to me, so don't do anything foolish. What's going on...buddy? You're being put into carbon freeze. What if he doesn't survive? He's worth a lot to me. The Empire will compensate you if he dies. Put him in! Oh, no! No, no, no! Stop, Chewbacca, stop...! Stop, Chewie, stop! Do you hear me? Stop! Yes, stop, please! I'm not ready to die. Chewie! Chewie, this won't help me.</p>
+                                             <div role="tabpanel" class="tab-pane fade in active" id="tab-danger-1" style="background:#f7f7f7">
+                                                <div class="card" style="border:none;margin-top:2px;">
+                                                   <div class="card-block">
+                                                      <h4>Registration (8:00 AM - 4:30 PM)</h4>
+                                                      <p>Please bring your NIC and ....</p>
+                                                   </div>
                                                 </div>
-                                            </div>
+                                                <div class="card" style="border:none;margin-top:2px;">
+                                                   <div class="card-block">
+                                                      <h4>WS1: Thyroid Workshop Programme</h4>
+                                                      <p>Please bring your NIC and ....</p>
+                                                      <button class="theme-toggle-schedule btn btn-rounded btn-icon">
+                                                      <i class="ti-star"></i>
+                                                   </button>
+                                                   </div>
+                                                </div>
+                                                <div class="card" style="border:none;margin-top:2px;">
+                                                   <div class="card-block">
+                                                      <h4>Introduction Speech Than Than Aye (AFES President)</h4>
+                                                      <p>Please bring your NIC and ....</p>
+                                                   </div>
+                                                </div>
+                                                <div id="accordion-1" class="accordion panel-group" role="tablist" aria-multiselectable="true">
+                                                   <div class="panel panel-default">
+                                                      <div class="panel-heading" role="tab" id="headingOne">
+                                                         <h4 class="panel-title">
+                                                            <a onclick="$(this).children('i').toggleClass('ti-arrow-circle-down');$('#collapseOne').toggleClass('show');" data-parent="#accordion-1"
+                                                               href="#collapseOne" aria-expanded="false" class="">
+                                                         <span>Track 1</span>
+                                                         <i class="icon ti-arrow-circle-right"></i> 
+                                                      </a>
+                                                         </h4>
+                                                      </div>
+
+                                                      <div id="collapseOne" class="panel-collapse collapse" style="">
+                                                         <div class="panel-body" style="background:#f7f7f7; padding:10px;">
+                                                            <div class="card" style="border:none;margin-top:2px;">
+                                                               <div class="card-block">
+                                                                  <h4>Symposium 1 - Steroid Induced Disorders</h4>
+                                                                  <p>Please bring your NIC and ....</p>
+                                                               </div>
+                                                            </div>
+                                                            <div class="card" style="border:none;margin-top:2px;">
+                                                               <div class="card-block">
+                                                                  <h4>1.1 - Steroid induced DM Kevin Yuen (USA)</h4>
+                                                                  <p>Please bring your NIC and ....</p>
+                                                               </div>
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                   <div class="panel panel-default">
+                                                      <div class="panel-heading" role="tab" id="headingTwo">
+                                                         <h4 class="panel-title">
+                                                            <a onclick="$(this).children('i').toggleClass('ti-arrow-circle-down');$('#collapseTwo').toggleClass('show');" data-toggle="collapse"
+                                                               data-parent="#accordion-1" href="#collapseTwo" aria-expanded="false">
+                                                         <span>Track 2</span> 
+                                                         <i class="icon ti-arrow-circle-right"></i>
+                                                      </a>
+                                                         </h4>
+                                                      </div>
+                                                      <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" style="">
+                                                         <div class="panel-body"style="background:#f7f7f7; padding:10px;">
+                                                            <div class="card" style="border:none;margin-top:2px;">
+                                                               <div class="card-block">
+                                                                  <h4>Symposium 1 - Steroid Induced Disorders</h4>
+                                                                  <p>Please bring your NIC and ....</p>
+                                                               </div>
+                                                            </div>
+                                                            <div class="card" style="border:none;margin-top:2px;">
+                                                               <div class="card-block">
+                                                                  <h4>1.1 - Steroid induced DM Kevin Yuen (USA)</h4>
+                                                                  <p>Please bring your NIC and ....</p>
+                                                               </div>
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                   <div class="panel panel-default">
+                                                      <div class="panel-heading" role="tab" id="headingThree">
+                                                         <h4 class="panel-title">
+                                                            <a onclick="$(this).children('i').toggleClass('ti-arrow-circle-down');$('#collapseThree').toggleClass('show');" data-toggle="collapse"
+                                                               data-parent="#accordion-1" href="#collapseThree" aria-expanded="false">
+                                                         <span>Track 3</span> 
+                                                         <i class="icon ti-arrow-circle-right"></i> 
+                                                      </a>
+                                                         </h4>
+                                                      </div>
+                                                      <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" style="">
+                                                         <div class="panel-body" style="background:#f7f7f7; padding:10px;">
+                                                            <div class="card" style="border:none;margin-top:2px;">
+                                                               <div class="card-block">
+                                                                  <h4>Symposium 1 - Steroid Induced Disorders</h4>
+                                                                  <p>Please bring your NIC and ....</p>
+                                                               </div>
+                                                            </div>
+                                                            <div class="card" style="border:none;margin-top:2px;">
+                                                               <div class="card-block">
+                                                                  <h4>1.1 - Steroid induced DM Kevin Yuen (USA)</h4>
+                                                                  <p>Please bring your NIC and ....</p>
+                                                               </div>
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                                <!--<div class="card bg-info">
+                                                <div class="card-block">
+                                                   <div class="row">
+                                                      <div class="col-md-7">
+                                                         <p class="text-uppercase font-size-13"><b>Hall 1</b></p>
+                                                      </div>
+                                                      <div class="col-md-5">
+                                                         <div class="card" style="border:none;margin-top:2px;background: #1f7fbb;">
+                                                            <div class="card-block">
+                                                               <h4>Symposium 1 - Steroid Induced Disorders</h4>
+                                                               <p>Please bring your NIC and ....</p>
+                                                            </div>
+                                                         </div>
+                                                            <div class="card" style="border:none;margin-top:2px;background: #1f7fbb;">
+                                                               <div class="card-block">
+                                                                  <h4>1.1 - Steroid induced DM Kevin Yuen (USA)</h4>
+                                                                  <p>Please bring your NIC and ....</p>
+                                                               </div>
+                                                            </div>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                             </div>-->
+                                             </div>
+                                          <div role="tabpanel" class="tab-pane" id="tab-danger-3" style="background:#f7f7f7">
+                                            
+                                             <div id="accordion-1" class="accordion panel-group" role="tablist" aria-multiselectable="true">
+                                                <div class="panel panel-default">
+                                                   <div class="panel-heading" role="tab" id="headingOne">
+                                                      <h4 class="panel-title">
+                                                         <a onclick="$(this).children('i').toggleClass('ti-arrow-circle-down');$('#collapseOne3').toggleClass('show');" data-parent="#accordion-1"
+                                                            href="#collapseOne" aria-expanded="false" class="">
+                                                         <span>Track 1</span>
+                                                         <i class="icon ti-arrow-circle-right"></i> 
+                                                      </a>
+                                                      </h4>
+                                                   </div>
+
+                                                   <div id="collapseOne3" class="panel-collapse collapse" style="">
+                                                      <div class="panel-body" style="background:#f7f7f7; padding:10px;">
+                                                         <div class="card" style="border:none;margin-top:2px;">
+                                                            <div class="card-block">
+                                                               <h4>Symposium 1 - Steroid Induced Disorders</h4>
+                                                               <p>Please bring your NIC and ....</p>
+                                                            </div>
+                                                         </div>
+                                                         <div class="card" style="border:none;margin-top:2px;">
+                                                            <div class="card-block">
+                                                               <h4>1.1 - Steroid induced DM Kevin Yuen (USA)</h4>
+                                                               <p>Please bring your NIC and ....</p>
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                                <div class="panel panel-default">
+                                                   <div class="panel-heading" role="tab" id="headingTwo">
+                                                      <h4 class="panel-title">
+                                                         <a onclick="$(this).children('i').toggleClass('ti-arrow-circle-down');$('#collapseTwo3').toggleClass('show');" data-toggle="collapse"
+                                                            data-parent="#accordion-1" href="#collapseTwo" aria-expanded="false">
+                                                         <span>Track 2</span> 
+                                                         <i class="icon ti-arrow-circle-right"></i>
+                                                      </a>
+                                                      </h4>
+                                                   </div>
+                                                   <div id="collapseTwo3" class="panel-collapse collapse" role="tabpanel" style="">
+                                                      <div class="panel-body"style="background:#f7f7f7; padding:10px;">
+                                                         <div class="card" style="border:none;margin-top:2px;">
+                                                            <div class="card-block">
+                                                               <h4>Symposium 1 - Steroid Induced Disorders</h4>
+                                                               <p>Please bring your NIC and ....</p>
+                                                            </div>
+                                                         </div>
+                                                         <div class="card" style="border:none;margin-top:2px;">
+                                                            <div class="card-block">
+                                                               <h4>1.1 - Steroid induced DM Kevin Yuen (USA)</h4>
+                                                               <p>Please bring your NIC and ....</p>
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                                <div class="panel panel-default">
+                                                   <div class="panel-heading" role="tab" id="headingThree">
+                                                      <h4 class="panel-title">
+                                                         <a onclick="$(this).children('i').toggleClass('ti-arrow-circle-down');$('#collapseThree3').toggleClass('show');" data-toggle="collapse"
+                                                            data-parent="#accordion-1" href="#collapseThree" aria-expanded="false">
+                                                         <span>Track 3</span> 
+                                                         <i class="icon ti-arrow-circle-right"></i> 
+                                                      </a>
+                                                      </h4>
+                                                   </div>
+                                                   <div id="collapseThree3" class="panel-collapse collapse" role="tabpanel" style="">
+                                                      <div class="panel-body"style="background:#f7f7f7; padding:10px;">
+                                                         <div class="card" style="border:none;margin-top:2px;">
+                                                            <div class="card-block">
+                                                               <h4>Symposium 1 - Steroid Induced Disorders</h4>
+                                                               <p>Please bring your NIC and ....</p>
+                                                            </div>
+                                                         </div>
+                                                         <div class="card" style="border:none;margin-top:2px;">
+                                                            <div class="card-block">
+                                                               <h4>1.1 - Steroid induced DM Kevin Yuen (USA)</h4>
+                                                               <p>Please bring your NIC and ....</p>
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                             <!--<div class="card bg-info">
+                                                <div class="card-block">
+                                                   <div class="row">
+                                                      <div class="col-md-7">
+                                                         <p class="text-uppercase font-size-13"><b>Hall 1</b></p>
+                                                      </div>
+                                                      <div class="col-md-5">
+                                                         <div class="card" style="border:none;margin-top:2px;background: #1f7fbb;">
+                                                            <div class="card-block">
+                                                               <h4>Symposium 1 - Steroid Induced Disorders</h4>
+                                                               <p>Please bring your NIC and ....</p>
+                                                            </div>
+                                                         </div>
+                                                            <div class="card" style="border:none;margin-top:2px;background: #1f7fbb;">
+                                                               <div class="card-block">
+                                                                  <h4>1.1 - Steroid induced DM Kevin Yuen (USA)</h4>
+                                                                  <p>Please bring your NIC and ....</p>
+                                                               </div>
+                                                            </div>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                             </div>-->
+                                          </div>
                                         </div>
                                     </div>
                                 </div>

@@ -18,7 +18,7 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
          url: '/organization',
          templateUrl: 'partials/organization_comitee.html',
          params: {
-            title: "Organization Commitee"
+            title: "Organization Co.. "
          }
       })
       .state('message', {

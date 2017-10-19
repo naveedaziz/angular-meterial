@@ -4,17 +4,20 @@
             <div class="col-lg-3 social">
                 <div class="card">
                     <div class="card-heading border bottom">
-                        <h4 class="card-title">Our Valued Sponsors are:</h4>
+                        <h4 class="card-title">Our Valued Sponsors</h4>
                     </div>
                     <div class="card-block" style="padding:10px;">
+                        <p class="col-md-12 h5 text-danger text-center" ng-if="loadingData">
+                            <span class="fa fa-spinner fa-spin "></span> Loading
+                        </p>
                         <ul class="list-unstyled list-info">
                             <li class="pdd-vertical-10 pdd-horizon-20 border bottom" ng-repeat="sponsor in sponsors">
                                 <img class="thumb-img img-circle" src="assets/sponsors.jpg" alt="">
                                 <div class="info">
                                     <a href="" class="title no-pdd-vertical text-semibold inline-block">{{sponsor.name}}</a>
-                                    <span class="sub-title">
+                                    <!--<span class="sub-title">
                                         <span>{{sponsor.description}}</span>
-                                    </span>
+                                    </span>-->
                                 </div>
                                 <span class="clearfix"></span>
                             </li>

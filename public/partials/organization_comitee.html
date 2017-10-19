@@ -13,6 +13,9 @@
                </div>
                <div class="card-block">
                   <div class="feed-header">
+                        <p class="col-md-12 h5 text-danger text-center padding-25" ng-if="loadingData">
+                                <span class="fa fa-spinner fa-spin "></span> Loading
+                            </p>
                      <ul class="list-unstyled list-info">
                         <li class="pdd-vertical-15 border bottom" ng-repeat="committee in organization_commitees">
                            <img class="thumb-img img-circle" src="assets/user.png" alt="No Image Available" ng-if="!committee.image" />

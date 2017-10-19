@@ -3605,3 +3605,41 @@ glyphs.character-mapping { margin: 0 0 20px 0; padding: 20px 0 20px 30px; color:
 .gallery-item:hover .overlay { opacity: 1; visibility: visible; }
 
 .pswp__caption__center { text-align: center; }
+
+
+.card{
+   box-shadow:0px 4px 7px -4px rgba(0,0,0,0.5);
+   margin-bottom: 10px;
+}
+.card-header {
+    background-color: #d91f29;
+}
+.card-header h4{
+   color:#fff;
+} 
+.schedule-card-header h4{
+   color:#fff !important;
+   float:left;
+   width: auto;
+}
+.schedule-card-header a,.schedule-card-header a i{
+   color: #fff !important;
+   margin-top: 5px;
+}
+.schedule-card-header .header-right{
+   width:30%;
+   float: right;
+}
+
+
+
+/*Custom Classes -- Override Classes */
+
+.list-info .info .sub-title { max-width: 100%; }
+
+@media only screen and (max-width: 992px) {
+  .header .header-container .nav-left > li > a, .header .header-container .nav-right > li > a {
+    padding: 0 8px;
+  }
+}
+

@@ -1,150 +1,94 @@
-<div class="main-content">
-   <div class="full-container">
-      <div class="email-app">
-         <div class="email-wrapper row">
-            <div class="email-list">
-               <div class="email-list-tools">
-                  <div class="form-group input-group no-mrg-btm">
-                     <input type="text" class="form-control input-sm" placeholder="Search">
-                     <div class=" input-group-addon padding-3">
-                        <button class="btn btn-sm" type="submit"> <i class="ti-search"></i></button>
-                     </div>
-                  </div>
-               </div>
-
-
-               <div id="chat" role="tabpanel" class="tab-pane fade in active show" aria-expanded="true">
-                  <div class="chat">
-                     <div class="chat-user-list scrollable ps-container ps-theme-default ps-active-y" data-ps-id="600b22a2-c49e-0691-1a8f-5f29c083167a">
-                        <div class="chat-section">
-                           <a href="javascript:void(0);" class="chat-user chat-toggle" onclick="toggleChat()">
-										<img class="thumb-img" src="assets/thumb-1.jpg" alt="">
-										<div class="user-info">
-											<span class="user-name">Jordan Hurst</span>
-											<span class="prev-chat">General Kenobi, years ago you served my ...</span>
-										</div>
-									</a>
-                           <a href="javascript:void(0);" class="chat-user chat-toggle" onclick="toggleChat()">
-										<img class="thumb-img" src="assets/thumb-2.jpg" alt="">
-										<div class="user-info">
-											<span class="user-name">Harriet Douglas</span>
-											<span class="prev-chat">General Kenobi, years ago you served my ...</span>
-										</div>
-									</a>
-                           <a href="javascript:void(0);" class="chat-user chat-toggle" onclick="toggleChat()">
-										<img class="thumb-img" src="assets/thumb-3.jpg" alt="">
-										<div class="user-info">
-											<span class="user-name">Victoria Clayton</span>
-											<span class="prev-chat">General Kenobi, years ago you served my ...</span>
-										</div>
-									</a>
-                           <a href="javascript:void(0);" class="chat-user chat-toggle" onclick="toggleChat()">
-										<img class="thumb-img" src="assets/thumb-6.jpg" alt="">
-										<div class="user-info">
-											<span class="user-name">Michael Birch</span>
-											<span class="prev-chat">General Kenobi, years ago you served my ...</span>
-										</div>
-									</a>
-                           <a href="javascript:void(0);" class="chat-user chat-toggle" onclick="toggleChat()">
-										<img class="thumb-img" src="assets/thumb-1.jpg" alt="">
-										<div class="user-info">
-											<span class="user-name">Jordan Hurst</span>
-											<span class="prev-chat">General Kenobi, years ago you served my ...</span>
-										</div>
-									</a>
-                           <a href="javascript:void(0);" class="chat-user chat-toggle" onclick="toggleChat()">
-										<img class="thumb-img" src="assets/thumb-2.jpg" alt="">
-										<div class="user-info">
-											<span class="user-name">Harriet Douglas</span>
-											<span class="prev-chat">General Kenobi, years ago you served my ...</span>
-										</div>
-									</a>
-                           <a href="javascript:void(0);" class="chat-user chat-toggle">
-										<img class="thumb-img" src="assets/thumb-3.jpg" alt="">
-										<div class="user-info">
-											<span class="user-name">Victoria Clayton</span>
-											<span class="prev-chat">General Kenobi, years ago you served my ...</span>
-										</div>
-									</a>
-                           <a href="javascript:void(0);" class="chat-user chat-toggle">
-										<img class="thumb-img" src="assets/thumb-6.jpg" alt="">
-										<div class="user-info">
-											<span class="user-name">Michael Birch</span>
-											<span class="prev-chat">General Kenobi, years ago you served my ...</span>
-										</div>
-									</a>
-
+<div class="main-content" ng-init="get_data('evocon_admin','users')">
+    <div class="full-container">
+        <div class="email-app">
+            <div class="email-wrapper row">
+                <div class="email-list">
+                    <div class="email-list-tools">
+                        <div class="form-group input-group no-mrg-btm">
+                            <input type="text" class="form-control input-sm" placeholder="Search">
+                            <div class=" input-group-addon padding-3">
+                                <button class="btn btn-sm" type="submit">
+                                    <i class="ti-search"></i>
+                                </button>
+                            </div>
                         </div>
-
-                        <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;">
-                           <div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+                    </div>
+                    <div id="chat" role="tabpanel" class="tab-pane fade in active show" aria-expanded="true">
+                        <div class="chat">
+                            <div class="chat-user-list scrollable ps-container ps-theme-default ps-active-y" data-ps-id="600b22a2-c49e-0691-1a8f-5f29c083167a">
+                                <div class="chat-section">
+                                    <a href="javascript:void(0);" class="chat-user chat-toggle" onclick="toggleChat()" ng-repeat="user in users">
+                                        <img class="thumb-img" src="assets/thumb-1.jpg" alt="">
+                                        <div class="user-info">
+                                            <span class="user-name">{{user.name}}</span>
+                                            <span class="prev-chat">{{user.email}}</span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;">
+                                    <div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+                                </div>
+                                <div class="ps-scrollbar-y-rail" style="top: 0px; height: 602px; right: 0px;">
+                                    <div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 439px;"></div>
+                                </div>
+                            </div>
+                            <div class="conversation">
+                                <div class="conversation-wrapper">
+                                    <div class="conversation-header border bottom">
+                                        <a href="javascript:void(0);" class="back chat-toggle" onclick="toggleChat()">
+                                            <i class="ti-arrow-circle-left"></i>
+                                        </a>
+                                        <span class="user-name">Jordan Hurst</span>
+                                    </div>
+                                    <div class="conversation-body" style="margin-top:20px;">
+                                        <div class="msg">
+                                            <div class="bubble me">
+                                                <span>Feeling all right, sir?</span>
+                                            </div>
+                                        </div>
+                                        <div class="msg">
+                                            <div class="bubble friend">
+                                                <span>Just like new</span>
+                                            </div>
+                                        </div>
+                                        <div class="msg">
+                                            <div class="bubble friend">
+                                                <span>How about you?</span>
+                                            </div>
+                                        </div>
+                                        <div class="msg">
+                                            <div class="bubble me">
+                                                <span>Right now I feel I could take on the whole Empire myself</span>
+                                            </div>
+                                        </div>
+                                        <div class="msg">
+                                            <div class="bubble friend">
+                                                <span>All right</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="conversation-footer">
+                                        <button class="upload-btn">
+                                            <i class="ti-camera"></i>
+                                        </button>
+                                        <input class="chat-input" type="text" placeholder="Type a message...">
+                                        <button class="sent-btn">
+                                            <i class="fa fa-send-o"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="ps-scrollbar-y-rail" style="top: 0px; height: 602px; right: 0px;">
-                           <div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 439px;"></div>
-                        </div>
-                     </div>
-                     <div class="conversation">
-                        <div class="conversation-wrapper">
-                           <div class="conversation-header border bottom">
-                              <a href="javascript:void(0);" class="back chat-toggle" onclick="toggleChat()">
-											<i class="ti-arrow-circle-left"></i>
-										</a>
-                              <span class="user-name">Jordan Hurst</span>
-                           </div>
-                           <div class="conversation-body" style="margin-top:20px;">
-                              <div class="msg">
-                                 <div class="bubble me">
-                                    <span>Feeling all right, sir?</span>
-                                 </div>
-                              </div>
-                              <div class="msg">
-                                 <div class="bubble friend">
-                                    <span>Just like new</span>
-                                 </div>
-                              </div>
-                              <div class="msg">
-                                 <div class="bubble friend">
-                                    <span>How about you?</span>
-                                 </div>
-                              </div>
-                              <div class="msg">
-                                 <div class="bubble me">
-                                    <span>Right now I feel I could take on the whole Empire myself</span>
-                                 </div>
-                              </div>
-                              <div class="msg">
-                                 <div class="bubble friend">
-                                    <span>All right</span>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="conversation-footer">
-                              <button class="upload-btn">
-                                                    <i class="ti-camera"></i>
-                                                </button>
-                              <input class="chat-input" type="text" placeholder="Type a message...">
-                              <button class="sent-btn">
-                                                    <i class="fa fa-send-o"></i>
-                                                </button>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-
-
+                    </div>
+                </div>
             </div>
-         </div>
-
-      </div>
-   </div>
+        </div>
+    </div>
 </div>
 </div>
 
 <script type="text/javascript">
-   function toggleChat() {
-      $(".chat").toggleClass("open");
-   }
-
+    function toggleChat() {
+        $(".chat").toggleClass("open");
+    }
 </script>
-

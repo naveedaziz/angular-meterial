@@ -1,4 +1,13 @@
-var app = angular.module("myApp", ['ui.router']);
+var app = angular.module("myApp", ['ui.router','chat']);
+app.constant('config', {
+   rltm: {
+      service: "pubnub",
+      config: {
+         "publishKey": "pub-c-dbef8903-a5ed-4354-be8d-10f671659eec",
+         "subscribeKey": "sub-c-1baa496c-b504-11e7-af03-56d0cae65fed"
+      }
+   }
+});
 app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
             $urlRouterProvider.otherwise('/');
 
@@ -19,9 +28,9 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                               title: "Register to AFES"
                         }
                   })
-                  .state('home_v2', {
-                        url: '/home_v2',
-                        templateUrl: 'partials/home_v2.html',
+                  .state('chat', {
+                     url: '/chat',
+                     templateUrl: 'partials/chat.html',
                         params: {
                               title: "Welcome to AFES"
                         }
@@ -92,8 +101,68 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
             //$locationProvider.html5Mode({ enabled: true, requireBase: false });
 
       })
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// Chat App Controller
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+   .controller('ChatController', ['$scope', 'Messages','$state', function ($scope, Messages,$state) {
+      console.log($state);
+   // Sent Indicator
+   $scope.status = "";
 
-   .controller('AppController', function ($scope, $state, $stateParams, $rootScope, $location, $http) {
+   // Keep an Array of Messages
+   $scope.messages = [];
+
+   $scope.me = { name: 'user 1', id: 2 };
+
+   // Set User Data
+   Messages.user($scope.me);
+
+   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+   // Get Received Messages and Add it to Messages Array.
+   // This will automatically update the view.
+   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+   var chatmessages = document.querySelector(".chat-messages");
+
+   Messages.receive(function (msg) {
+
+      $scope.messages.push(msg);
+
+      setTimeout(function () {
+         chatmessages.scrollTop = chatmessages.scrollHeight;
+      }, 10);
+
+   });
+
+   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+   // Send Messages
+   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+   $scope.send = function () {
+      Messages.send({ data: $scope.textbox, to: 2 });
+
+      $scope.status = "sending";
+      $scope.textbox = "";
+
+      setTimeout(function () {
+         $scope.status = ""
+      }, 1200);
+
+   };
+
+}])
+   .controller('AppController', function ($scope, $state, $stateParams, $rootScope, $location, $http, Messages) {
+      $scope.messages = [];
+      // Receive Messages
+      Messages.receive(function (message) {
+         $scope.messages.push(message);
+         console.log($scope.messages)
+      });
+      // Send Messages
+      $scope.send = function () {
+         console.log(Messages)
+         Messages.send({
+            data: $scope.textbox
+         });
+      };
             $scope.updateTitle = function (state, pre) {
                   $scope.title = pre.params.title;
             }

@@ -1,68 +1,94 @@
 <!DOCTYPE html>
 <html>
-  
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
-    <title>Event App</title>
 
-    <!-- plugins css -->
-    <link rel="stylesheet" href="assets/bootstrap.css">
-    <link rel="stylesheet" href="assets/pace-theme-minimal.css">
-    <link rel="stylesheet" href="assets/perfect-scrollbar.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+<title>Event App</title>
 
-    <!-- page plugins css -->
-    <link rel="stylesheet" href="assets/jquery-jvectormap-1.2.2.css">
-    <link rel="stylesheet" href="assets/nv.d3.min.css">
+<!-- plugins css -->
+<link rel="stylesheet" href="assets/bootstrap.css">
+<link rel="stylesheet" href="assets/pace-theme-minimal.css">
+<link rel="stylesheet" href="assets/perfect-scrollbar.min.css">
 
-    <!-- core css -->
-    <link href="assets/ei-icon.css" rel="stylesheet">
-    <link href="assets/themify-icons.css" rel="stylesheet">
-    <link href="assets/font-awesome.min.css" rel="stylesheet">
-    <link href="assets/animate.min.css" rel="stylesheet">
-    <link href="assets/app.css" rel="stylesheet">
-<style type="text/css">.jqstooltip { position: absolute;left: 0px;top: 0px;visibility: hidden;background: rgb(0, 0, 0) transparent;background-color: rgba(0,0,0,0.6);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";color: white;font: 10px arial, san serif;text-align: left;white-space: nowrap;padding: 5px;border: 1px solid white;z-index: 10000;}.jqsfield { color: white;font: 10px arial, san serif;text-align: left;}</style></head>
+<!-- page plugins css -->
+<link rel="stylesheet" href="assets/jquery-jvectormap-1.2.2.css">
+<link rel="stylesheet" href="assets/nv.d3.min.css">
+
+<!-- core css -->
+<link href="assets/ei-icon.css" rel="stylesheet">
+<link href="assets/themify-icons.css" rel="stylesheet">
+<link href="assets/font-awesome.min.css" rel="stylesheet">
+<link href="assets/animate.min.css" rel="stylesheet">
+<link rel="stylesheet" href="chat/chat.css">
+<link href="assets/app.css" rel="stylesheet">
+<style type="text/css">
+   .jqstooltip {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      visibility: hidden;
+      background: rgb(0, 0, 0) transparent;
+      background-color: rgba(0, 0, 0, 0.6);
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+      -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
+      color: white;
+      font: 10px arial, san serif;
+      text-align: left;
+      white-space: nowrap;
+      padding: 5px;
+      border: 1px solid white;
+      z-index: 10000;
+   }
+
+   .jqsfield {
+      color: white;
+      font: 10px arial, san serif;
+      text-align: left;
+   }
+</style>
+</head>
 
 <body class="pace-done" ng-app="myApp" ng-controller="AppController">
-    <div class="app header-dark">
-        <div class="layout">
-            <!-- Side Nav START -->
-            <div ng-include="'partials/side-nav.html'"></div>
-            <!-- Side Nav END -->
+   <div class="app header-dark">
+      <div class="layout">
+         <!-- Side Nav START -->
+         <div ng-include="'partials/side-nav.html'"></div>
+         <!-- Side Nav END -->
 
-            <!-- Page Container START -->
-            <div class="page-container" >
-                <!-- Header START -->
-               <div ng-include="'partials/header-nav.html'" ></div>
-                <!-- Header END -->
+         <!-- Page Container START -->
+         <div class="page-container">
+            <!-- Header START -->
+            <div ng-include="'partials/header-nav.html'"></div>
+            <!-- Header END -->
 
-                <!-- Side Panel START -->
-               <div ng-include="'partials/side-panel.html'"></div>
-                <!-- Side Panel END -->
+            <!-- Side Panel START -->
+            <div ng-include="'partials/side-panel.html'"></div>
+            <!-- Side Panel END -->
 
-                <!-- theme configurator START -->
-               <div ng-include="'partials/theme-config.html'"></div>
-                <!-- theme configurator END -->
+            <!-- theme configurator START -->
+            <div ng-include="'partials/theme-config.html'"></div>
+            <!-- theme configurator END -->
 
-                <!-- Theme Toggle Button START -->
-                <!--<button class="theme-toggle btn btn-rounded btn-icon">
+            <!-- Theme Toggle Button START -->
+            <!--<button class="theme-toggle btn btn-rounded btn-icon">
                     <i class="ti-palette"></i>
                 </button>-->
-                <!-- Theme Toggle Button END -->
+            <!-- Theme Toggle Button END -->
 
-                <!-- Content Wrapper START -->
-               <ui-view></ui-view>
-                <!-- Content Wrapper END -->
+            <!-- Content Wrapper START -->
+            <ui-view></ui-view>
+            <!-- Content Wrapper END -->
 
-                <!-- Footer START -->
-              
-                <!-- Footer END -->
+            <!-- Footer START -->
 
-            </div>
-            <!-- Page Container END -->
+            <!-- Footer END -->
 
-        </div>
-    </div>
+         </div>
+         <!-- Page Container END -->
 
-    <!--<script src="assets/vendor.js"></script>
+      </div>
+   </div>
+
+   <!--<script src="assets/vendor.js"></script>
 
 
     <script src="assets/jquery-jvectormap-1.2.2.min.js"></script>
@@ -79,13 +105,18 @@
    <script src="js/angular-ui-router.min.js"></script>
    <script src="js/moment.min.js"></script>
 
+   <script src="chat/assets/rltm/web/rltm.js"></script>
+   <script src="chat/assets/angular-chat/angular-chat.js"></script>
+
    <script src="js/azure-mobile-apps-client.js"></script>
    <script>
       var appUrl = 'https://fishry-app-services.azurewebsites.net/';
       var clientRef = new WindowsAzure.MobileServiceClient(appUrl);
    </script>
-   
+
    <script src="js/app.js"></script>
 
 
-</body></html>
+</body>
+
+</html>

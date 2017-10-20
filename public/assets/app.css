@@ -1389,11 +1389,13 @@ iframe { border: 0; }
   p.width-95, p.width-90, p.width-85, p.width-80, p.width-75, p.width-70, p.width-65, p.width-60, p.width-55, p.width-50, p.width-45, p.width-40, p.width-35, p.width-30, p.width-25, p.width-20, p.width-15, p.width-10 { width: 100% !important; }
   input.width-95, input.width-90, input.width-85, input.width-80, input.width-75, input.width-70, input.width-65, input.width-60, input.width-55, input.width-50, input.width-45, input.width-40, input.width-35, input.width-30, input.width-25, input.width-20, input.width-15, input.width-10 { width: 100% !important; } }
 
-.side-nav { width: 280px; background-color: #ffffff; z-index: 1000; top: 0px; bottom: 0px; position: fixed; overflow: hidden; transition: all 0.2s ease; -webkit-transition: all 0.2s ease; -moz-transition: all 0.2s ease; -o-transition: all 0.2s ease; -ms-transition: all 0.2s ease; }
+.side-nav { width: 280px;    width: 100%;
+    background: rgba(0,0,0,0.35);  z-index: 9999; top: 0px; bottom: 0px; position: fixed; overflow: hidden; transition: all 0.2s ease; -webkit-transition: all 0.2s ease; -moz-transition: all 0.2s ease; -o-transition: all 0.2s ease; -ms-transition: all 0.2s ease; }
 
 @media print { .side-nav { display: none; } }
 
-.side-nav .side-nav-inner { position: relative; height: 100%; }
+.side-nav .side-nav-inner { position: relative; height: 100%;    width: 66%;
+    background: #fff; }
 
 .side-nav .side-nav-inner .side-nav-logo { padding: 0px 20px; border-bottom: 1px solid #e6ecf5; border-right: 1px solid #e6ecf5; line-height: 0; transition: all 0.2s ease; -webkit-transition: all 0.2s ease; -moz-transition: all 0.2s ease; -o-transition: all 0.2s ease; -ms-transition: all 0.2s ease; }
 
@@ -1471,7 +1473,7 @@ iframe { border: 0; }
   .side-nav:hover .side-nav-inner .side-nav-menu li.dropdown .arrow { opacity: 1; }
   .side-nav:hover .side-nav-inner .side-nav-menu li.open > ul.dropdown-menu { display: block !important; } }
 
-@media only screen and (max-width: 992px) { .side-nav { left: -280px; width: calc(280px - 30px); } }
+@media only screen and (max-width: 992px) { .side-nav { left: -100%;  } }
 
 @media only screen and (min-width: 1440px) { .is-collapsed .side-nav { width: 70px; }
   .is-collapsed .side-nav .side-nav-inner .side-nav-logo { border-bottom: 1px solid transparent; padding: 0px; }
@@ -1558,7 +1560,7 @@ iframe { border: 0; }
 
 .side-panel .profile { height: calc(100vh - 65px); position: relative; }
 
-.header { display: block; height: 65px; width: calc(100% - 280px); position: fixed; padding: 0px; z-index: 800; background-color: #ffffff; border-bottom: 1px solid #e6ecf5; margin-bottom: 0px; transition: all 0.2s ease; -webkit-transition: all 0.2s ease; -moz-transition: all 0.2s ease; -o-transition: all 0.2s ease; -ms-transition: all 0.2s ease; }
+.header { display: block; height: 65px; width: calc(100% - 280px); position: fixed; padding: 0px; z-index: 8888; background-color: #ffffff; border-bottom: 1px solid #e6ecf5; margin-bottom: 0px; transition: all 0.2s ease; -webkit-transition: all 0.2s ease; -moz-transition: all 0.2s ease; -o-transition: all 0.2s ease; -ms-transition: all 0.2s ease; }
 
 @media print { .header { display: none; } }
 
@@ -1961,7 +1963,7 @@ iframe { border: 0; }
 
 .header-dark .side-nav .side-nav-inner .side-nav-logo a .logo-white { display: block; }
 
-.theme-toggle { position: fixed; bottom: 20px; right: 20px; padding: 15px !important; z-index: 1001; font-size: 15px !important; color: #ffffff; background-color: #0f9aee; }
+.theme-toggle { position: absolute;    top: 330px; right: 20px; padding: 15px !important; z-index: 1001; font-size: 15px !important; color: #ffffff; background-color: #d91f29; }
 
 .theme-toggle:hover { opacity: 0.85; }
 
@@ -3606,9 +3608,11 @@ glyphs.character-mapping { margin: 0 0 20px 0; padding: 20px 0 20px 30px; color:
 
 .pswp__caption__center { text-align: center; }
 
-
+.hidden{
+   display: none !important;
+}
 .card{
-   box-shadow:0px 4px 7px -4px rgba(0,0,0,0.5);
+   border:none;
    margin-bottom: 10px;
 }
 .card-header {
@@ -3642,4 +3646,47 @@ glyphs.character-mapping { margin: 0 0 20px 0; padding: 20px 0 20px 30px; color:
     padding: 0 8px;
   }
 }
-
+.chat-icon{
+   float: right;
+    top: -37px;
+    font-size: 23px;
+    position: relative;
+}
+.icon-tab{
+   width:100%;
+   background:#fff;
+}
+.icon-tab a{
+    background: rgba(217, 31, 41,1);
+    width: 48%;
+    text-align: center;
+}
+.icon-tab a i{
+   font-size: 85px;
+    color: #fff;
+}
+.icon-tab a h4{
+    color: #fff;
+    font-size: 14px;
+}
+.schedule-detail{
+   width: 100%;
+   padding: 0;
+}
+.schedule-detail li{
+       list-style: none;
+    width: 46%;
+    background: #d91f29;
+    padding: 18px;
+    float: left;
+    margin: 2%;
+    color: #fff;
+    font-size: 13px;
+        min-height: 152px;
+}
+.schedule-detail li i{
+       font-size: 52px;
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+}

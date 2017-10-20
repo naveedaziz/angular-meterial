@@ -12,12 +12,14 @@
                         </p>
                         <ul class="list-unstyled list-info">
                             <li class="pdd-vertical-10 pdd-horizon-20 border bottom" ng-repeat="sponsor in sponsors">
-                                <img class="thumb-img img-circle" src="assets/image.svg" alt="">
+                                <img class="thumb-img img-circle" src="main_images/Sponsors/{{sponsor.name}}.jpg" alt="">
                                 <div class="info">
-                                    <a href="" class="title no-pdd-vertical text-semibold inline-block">{{sponsor.name}}</a>
-                                    <!--<span class="sub-title">
+                                    <a href="javascript:void(0)" ng-click="toggleClassHidden('.sub-title'+$index)" class="title no-pdd-vertical text-semibold inline-block">{{sponsor.name}}</a>
+                                   <div class="clearfix">
+                                    <p class="sub-title{{$index}} hidden">
                                         <span>{{sponsor.description}}</span>
-                                    </span>-->
+                                    </p>
+                                   </div>
                                 </div>
                                 <span class="clearfix"></span>
                             </li>

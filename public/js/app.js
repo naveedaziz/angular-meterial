@@ -1,12 +1,12 @@
-var app = angular.module("myApp", ['ui.router','chat']);
+var app = angular.module("myApp", ['ui.router', 'chat']);
 app.constant('config', {
-   rltm: {
-      service: "pubnub",
-      config: {
-         "publishKey": "pub-c-dbef8903-a5ed-4354-be8d-10f671659eec",
-         "subscribeKey": "sub-c-1baa496c-b504-11e7-af03-56d0cae65fed"
+      rltm: {
+            service: "pubnub",
+            config: {
+                  "publishKey": "pub-c-dbef8903-a5ed-4354-be8d-10f671659eec",
+                  "subscribeKey": "sub-c-1baa496c-b504-11e7-af03-56d0cae65fed"
+            }
       }
-   }
 });
 app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
             $urlRouterProvider.otherwise('/');
@@ -29,8 +29,8 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                         }
                   })
                   .state('chat', {
-                     url: '/chat',
-                     templateUrl: 'partials/chat.html',
+                        url: '/chat/:from',
+                        templateUrl: 'partials/chat.html',
                         params: {
                               title: "Welcome to AFES"
                         }
@@ -42,11 +42,18 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                               title: "Welcome to AFES"
                         }
                   })
-                  .state('organization', {
-                        url: '/organization',
-                        templateUrl: 'partials/organization_comitee.html',
+                  .state('home2', {
+                     url: '/home2',
+                     templateUrl: 'partials/home2.html',
+                     params: {
+                        title: "Welcome to AFES"
+                     }
+                  })
+                  .state('about', {
+                        url: '/about',
+                        templateUrl: 'partials/about.html',
                         params: {
-                              title: "Organization Co.. "
+                              title: "About AFES"
                         }
                   })
                   .state('message', {
@@ -61,6 +68,13 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                         templateUrl: 'partials/schedule.html',
                         params: {
                               title: "Scientific Programe"
+                        }
+                  })
+                  .state('agenda_detail', {
+                        url: '/agenda_detail/:id',
+                        templateUrl: 'partials/agenda_detail.html',
+                        params: {
+                              title: "Agenda Detail"
                         }
                   })
                   .state('network', {
@@ -98,58 +112,124 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                               title: "Video"
                         }
                   })
+               .state('agenda', {
+                  url: '/agenda',
+                  templateUrl: 'partials/agenda.html',
+                  params: {
+                     title: "My Agenda"
+                  }
+               })
             //$locationProvider.html5Mode({ enabled: true, requireBase: false });
 
       })
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-// Chat App Controller
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-   .controller('ChatController', ['$scope', 'Messages','$state', function ($scope, Messages,$state) {
-      console.log($state);
-   // Sent Indicator
-   $scope.status = "";
+      // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+      // Chat App Controller
+      // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+      .controller('ChatController', ['$scope', 'Messages', '$state', function ($scope, Messages, $state) {
+            console.log($state);
+            // Sent Indicator
+            $scope.status = "";
 
-   // Keep an Array of Messages
-   $scope.messages = [];
+            // Keep an Array of Messages
+            $scope.userInfo = {
+                  name: 'nido',
+                  id: 1
+            };
+            $scope.messages = [];
+            if (localStorage.getItem('user_info')) {
+                  $scope.userInfo = JSON.parse(localStorage.getItem('user_info'));
+            }
+            $scope.me = {
+                  name: $scope.userInfo.name,
+                  id: $scope.userInfo.id
+            };
+            // Set User Data
+            Messages.user($scope.me);
 
-   $scope.me = { name: 'user 1', id: 2 };
+            // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+            // Get Received Messages and Add it to Messages Array.
+            // This will automatically update the view.
+            // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+            var chatmessages = document.querySelector(".chat-messages");
 
-   // Set User Data
-   Messages.user($scope.me);
+            Messages.receive(function (msg) {
+                  console.log(msg);
+                  $scope.messages.push(msg);
 
-   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-   // Get Received Messages and Add it to Messages Array.
-   // This will automatically update the view.
-   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-   var chatmessages = document.querySelector(".chat-messages");
+                  setTimeout(function () {
+                        chatmessages.scrollTop = chatmessages.scrollHeight;
+                  }, 10);
 
-   Messages.receive(function (msg) {
+            });
 
-      $scope.messages.push(msg);
+            // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+            // Send Messages
+            // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+            $scope.send = function () {
+               console.log($scope.textbox)
+               if (typeof ($scope.textbox) == 'undefined' || $scope.textbox == '')
+               return false;
+                  $scope.messages.push({
+                        data: $scope.textbox,
+                        user: $scope.me
+                  });
+                  Messages.send({
+                        data: $scope.textbox,
+                        to: $state.params.from
+                  });
 
-      setTimeout(function () {
-         chatmessages.scrollTop = chatmessages.scrollHeight;
-      }, 10);
+                  $scope.status = "sending";
+                  $scope.textbox = "";
 
-   });
+                  setTimeout(function () {
+                        $scope.status = ""
+                  }, 1200);
 
-   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-   // Send Messages
-   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-   $scope.send = function () {
-      Messages.send({ data: $scope.textbox, to: 2 });
-
-      $scope.status = "sending";
-      $scope.textbox = "";
-
-      setTimeout(function () {
-         $scope.status = ""
-      }, 1200);
-
-   };
+            };
 
 }])
    .controller('AppController', function ($scope, $state, $stateParams, $rootScope, $location, $http, Messages) {
+      $rootScope.$on('$stateChangeStart',
+         function (event, toState, toParams, fromState, fromParams) {
+            // do something
+            $('.main-content').scrollTop(0);
+         })
+      $scope.my_agenda = [];
+      $scope.userAgendaCheck = function(id){
+         var found = false;
+         for(var sch in $scope.my_agenda){
+            if ($scope.my_agenda[sch].agenda_id == id){
+                found = true;
+            }
+         }
+         return found;
+      }
+      $scope.userAgenda = function () {
+         if ($scope.user_info){
+            $scope.loadingData = true;
+            var table = clientRef.getTable('agenda');
+            table.where({
+               user_id: $scope.user_info.id
+            }).read().then(function (data) {
+               $scope.my_agenda = data;
+               $scope.loadingData = false;
+               $scope.$apply();
+            }, $scope.failure);
+         }
+      }
+      $scope.userAgenda();
+      $scope.addToAgenda = function(id,date,time,name){
+         if ($scope.user_info) {
+            var data = { user_id: $scope.user_info.id,agenda_id:id,date:date,time:time,name:name};
+            var table = clientRef.getTable('agenda');
+            table.insert(data)
+               .done(function (insertedItem) {
+                  console.log(insertedItem)
+                  $scope.userAgenda();
+                  $scope.$apply()
+               }, $scope.failure);
+         }
+      }
       $scope.messages = [];
       // Receive Messages
       Messages.receive(function (message) {
@@ -163,6 +243,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
             data: $scope.textbox
          });
       };
+
             $scope.updateTitle = function (state, pre) {
                   $scope.title = pre.params.title;
             }
@@ -181,6 +262,29 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                   }, $scope.failure);
             }
             // Read data from database End -----
+
+
+            // Edit data start
+            $scope.getEdit = function (table, scope) {
+                  if ($stateParams.id) {
+                     $scope.loadingData = true;
+                        var table = clientRef.getTable(table);
+                        table.where({
+                              id: $stateParams.id
+                        }).read().then(function (data) {
+                              $scope[scope] = data[0];
+                              console.log($scope[scope]);
+                              $scope.loadingData = false;
+                              // if($scope[scope].faculty) {
+                              //       $scope[scope].faculty = JSON.parse($scope[scope].faculty);
+                              // }
+                              $scope.faculty_detail = JSON.parse($scope[scope].faculty);
+                              console.log($scope.faculty_detail);
+                              $scope.$apply();
+                        }, $scope.failure);
+                  }
+            }
+            // Edit data end 
 
 
             // Insert Data in database Start -----
@@ -226,17 +330,17 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
             // Login Start ----
             $scope.user = {};
             $scope.signinError = false;
-            $scope.loggedIn = {};
+            $rootScope.loggedIn = {};
             if (localStorage.getItem('user_name')) {
-                  $scope.loggedIn = localStorage.getItem('user_name');
+                  $rootScope.loggedIn = localStorage.getItem('user_name');
             }
             // $scope.table = [];
+            $scope.user_info = false;
             if (localStorage.getItem('user_info')) {
                   $scope.user_info = JSON.parse(localStorage.getItem('user_info'));
             }
-            $scope.user_info = {};
             $scope.login = function () {
-                  $scope.loginError = false;
+                  $scope.signinError = false;
                   console.log($scope.user);
                   var table = clientRef.getTable('appuser');
                   table.where($scope.user).read().then(function (data) {
@@ -247,7 +351,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                               localStorage.setItem('user_id', data[0].id);
                               localStorage.setItem('user_email', data[0].email);
                               localStorage.setItem('user_name', data[0].name);
-                              $scope.loggedIn = data[0].name;
+                              $rootScope.loggedIn = data[0].name;
                               $location.path('/');
                               $scope.$apply()
                         } else {
@@ -262,14 +366,14 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
             // Register start 
             $scope.register = {};
             $scope.registerError = false;
-            $scope.registerUser = function() {
-                  console.log($scope.register.email);
+            $scope.registerUser = function () {
                   $scope.registerError = false;
                   var table = clientRef.getTable('appuser');
-                  table.where({email:$scope.register.email}).read().then(function (data) {
+                  table.where({
+                        email: $scope.register.email
+                  }).read().then(function (data) {
                         if (data.length) {
                               $scope.registerError = true;
-                              console.log("email found");
                               $scope.$apply();
                               $('#duplicateEmailError').delay(5000).fadeOut();
                         } else {
@@ -283,78 +387,115 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                                     }
                               }
                               var table = clientRef.getTable('appuser');
-                              table.insert(data)
+                              table.insert($scope.register)
                                     .done(function (insertedItem) {
+                                       $scope.user_info = insertedItem;
+                                       localStorage.setItem('user_info', JSON.stringify($scope.user_info));
                                           var id = insertedItem.id;
                                           //console.log(id);
                                           //console.log(redirect)
-                                          $location.path('/signin')
+                                          $location.path('/')
                                           $scope.$apply()
                                     }, $scope.failure);
-
                               $scope.$apply();
                         }
                   })
-
-
             }
             // Register End
 
+            // Logout Start
+            $scope.logout = function () {
+                  $scope.user_info = '';
+                  localStorage.removeItem('user_info');
+                  localStorage.removeItem('user_id');
+                  localStorage.removeItem('user_email');
+                  localStorage.removeItem('user_name');
+                  $rootScope.loggedIn = '';
+                  $location.path('/');
+                  $scope.$apply()
 
-            $scope.loadSchedule = function(){
-               $scope.loadingData = true;
+            }
+            // Logout End 
+
+            $scope.returnDated = function(date){
+               if (date){
+                  var dated_pre = date.split('T');
+                  var date = dated_pre[0].replace('"', '');
+                  return moment(date).format('ddd (Do MMM)');
+               }
+            }
+            $scope.loadSchedule = function () {
+                  $scope.loadingData = true;
                   var filter = {};
                   $scope.loadingData = true;
                   $http({
-                     method: 'GET',
-                     url: 'https://fishry-app-services.azurewebsites.net/api/table_read?table=schedule'
+                        method: 'GET',
+                        url: 'https://fishry-app-services.azurewebsites.net/api/table_read?table=schedule'
                   }).then(function successCallback(response) {
-                     var data = response.data;
-                     $scope.schedule = {};
-                     for(var index in data){
-                        if (data[index].dated){
-                           var dated_pre = data[index].dated.split('T');
-                           var date = dated_pre[0].replace('"','');
-                           var dated = moment(date + ' ' + data[index].start_hours + ':' + data[index].start_minutes).format('ddd (Do MMM)');
-                           if (!$scope.schedule[dated]) {
-                              $scope.schedule[dated] = {};
-                           }
-                           var timeCap = data[index].start_hours + ':' + data[index].start_minutes + '-' + data[index].end_hours + ':' + data[index].end_minutes;
-                           if (!$scope.schedule[dated][timeCap]){
-                              $scope.schedule[dated][timeCap] = {};
-                           }
-                           if (data[index].hall && data[index].hall != ''){
-                              var halls = JSON.parse(data[index].hall);
-                                 for(hall in halls){
-                                    if (!$scope.schedule[dated][timeCap][halls[hall]]){
-                                       $scope.schedule[dated][timeCap][halls[hall]] = [];
+                        var data = response.data;
+                        // console.log(data);
+                        $scope.schedule = {};
+                        for (var index in data) {
+                              console.log($scope.schedule.id);
+                              if (data[index].dated) {
+                                    var dated_pre = data[index].dated.split('T');
+                                    var date = dated_pre[0].replace('"', '');
+                                    var dated = moment(date + ' ' + data[index].start_hours + ':' + data[index].start_minutes).format('ddd (Do MMM)');
+                                    if (!$scope.schedule[dated]) {
+                                          $scope.schedule[dated] = {};
                                     }
-                                    $scope.schedule[dated][timeCap][halls[hall]].push({ name: data[index].name, faculty: JSON.parse(data[index].faculty), room : JSON.parse(data[index].room)});
-                                 }
-                                 
-                           }else{
-                              if (!$scope.schedule[dated][timeCap]['open']){
-                                 $scope.schedule[dated][timeCap]['open'] = [];
+                                    var timeCap = data[index].start_hours + ':' + data[index].start_minutes + '-' + data[index].end_hours + ':' + data[index].end_minutes;
+                                    if (!$scope.schedule[dated][timeCap]) {
+                                          $scope.schedule[dated][timeCap] = {};
+                                    }
+                                    if (data[index].hall && data[index].hall != '') {
+                                          var halls = JSON.parse(data[index].hall);
+                                          for (hall in halls) {
+                                                if (!$scope.schedule[dated][timeCap][halls[hall]]) {
+                                                      $scope.schedule[dated][timeCap][halls[hall]] = [];
+                                                }
+                                                $scope.schedule[dated][timeCap][halls[hall]].push({
+                                                      name: data[index].name,
+                                                      faculty: JSON.parse(data[index].faculty),
+                                                      room: JSON.parse(data[index].room),
+                                                      id: data[index].id,
+                                                      dated: dated,
+                                                      time: timeCap,
+                                                      room: JSON.parse(data[index].room)
+                                                });
+                                          }
+                                    } else {
+                                          if (!$scope.schedule[dated][timeCap]['open']) {
+                                                $scope.schedule[dated][timeCap]['open'] = [];
+                                          }
+                                          $scope.schedule[dated][timeCap]['open'].push({
+                                                name: data[index].name,
+                                                faculty: JSON.parse(data[index].faculty),
+                                                room: JSON.parse(data[index].room),
+                                                id: data[index].id,
+                                                dated: dated,
+                                                time: timeCap,
+                                                room: JSON.parse(data[index].room)
+
+                                          })
+                                    }
+                                    $scope.loadingData = false;
                               }
-                              $scope.schedule[dated][timeCap]['open'].push({ name: data[index].name, faculty: JSON.parse(data[index].faculty), room: JSON.parse(data[index].room) })
-                           }
-                           $scope.loadingData = false;
                         }
-                     }
-                     console.log($scope.schedule);
+                        console.log($scope.schedule);
                   }, $scope.failure);
-               }
-               $scope.activeTab = function(id){
+            }
+            $scope.activeTab = function (id) {
                   $('.nav-tabs .nav-item').children().removeClass('active');
                   $('#tab-' + id).addClass('active');
                   $('.tab-content').children().removeClass('in');
-                  $('.tab-content').children().removeClass('active'); 
-                  $('#tab-content-'+id).addClass('in'); 
-                  $('#tab-content-'+id).addClass('active');
-               }
-            
-
-            
+                  $('.tab-content').children().removeClass('active');
+                  $('#tab-content-' + id).addClass('in');
+                  $('#tab-content-' + id).addClass('active');
+            }
+            $scope.toggleClassHidden = function (id) {
+               $(id).toggleClass('hidden')
+            }
       })
       .filter('unique', function () {
             return function (collection, primaryKey, secondaryKey) { //optional secondary key

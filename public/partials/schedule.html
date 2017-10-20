@@ -1,58 +1,61 @@
 <div class="main-content" ng-init="loadSchedule()">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-3 social">
+            <div class="col-lg-3 social" style="min-height:100%;background:#fff;">
                 <div class="card">
-                    
+
                     <!--<div class="padding-20">
                                         <h4 class="card-title no-mrg-btm">Tabs Danger</h4>
                                     </div>-->
                     <div class="tab-danger">
                         <p class="col-md-12 h5 text-danger text-center padding-25" ng-if="loadingData">
-                           <span class="fa fa-spinner fa-spin "></span> Loading
+                            <span class="fa fa-spinner fa-spin "></span> Loading
                         </p>
-                        <div class="tab-scroll" style="width:100%; overflow:scroll;">
+                        <div class="tab-scroll" style="width:100%; overflow:scroll;" ng-if="schedule">
                             <ul class="nav nav-tabs" role="tablist" style="width:550px;">
                                 <li class="nav-item" ng-repeat="(key,sch) in schedule">
                                     <a href="javascript:void(0)" ng-class="{'active':$index == 0}" id="tab-{{$index}}" ng-click="activeTab($index)" class="nav-link"
                                         role="tab" data-toggle="tab">{{key}}</a>
                                 </li>
-
                             </ul>
                         </div>
                         <div class="tab-content">
                             <div ng-repeat="(key,sch) in schedule" ng-class="{'active':$index == 0}" role="tabpanel" class="tab-pane" id="tab-content-{{$index}}"
                                 style="background:#f6f7fb">
                                 <div class="card" style="border:none;margin-top:2px;" ng-repeat="(key_first,sch_first) in sch">
+                                    
                                     <div class="card-header schedule-card-header">
+
                                         <h4>
                                             <i class="ti-timer"></i> {{key_first}}</h4>
-                                        <a class="pull-right">
-                                            <i class="ti-heart text-danger pdd-right-5"></i>
-                                            <span>My Agenda</span>
-                                        </a>
+                                       
                                     </div>
                                     <div class="card-block" ng-repeat="(key_second,sch_second) in sch_first">
                                         <a>
-                                            <h4>{{sch_second[0].name}}</h4>
-                                            <small ng-if="key_second != 'open'">{{key_second}}</small>
-                                            <span class="pull-right btn-icon">
-                                                <i class="ei ei-menu-6 pdd-right-5"></i>Room 1</span>
+                                            <h4 ui-sref="agenda_detail({id:sch_second[0].id})">{{sch_second[0].name}}</h4>
+                                            <span class="pull-left btn-icon">
+                                                <i class="ei ei-menu-6 pdd-right-5" ng-if="sch_second[0].room[0] || key_second != 'open'"></i>
+                                                 {{sch_second[0].room[0]}} <small  ng-if="key_second != 'open'">({{key_second}})</small>
+                                            </span>
+                                             <a ng-if="!userAgendaCheck(sch_second[0].id)" class="pull-right" ng-click="addToAgenda(sch_second[0].id,key,key_first,sch_second[0].name)" style="margin-top:12px">
+                                                <i class="ti-heart text-danger pdd-right-5"></i>
+                                                <span>Add to My Agenda</span>
+                                             </a>
+                                             <a ng-if="userAgendaCheck(sch_second[0].id)" class="pull-right" ng-click="addToAgenda(sch_second[0].id)" style="margin-top:12px">
+                                                <i class="ti-check text-danger pdd-right-5"></i>
+                                                <span>My Agenda</span>
+                                             </a>
                                         </a>
-
+                                        <div class="clearfix"></div>
                                         <hr>
+
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-</div>
-</div>
-</div>
 </div>

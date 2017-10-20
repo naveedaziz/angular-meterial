@@ -105,52 +105,47 @@
                 <a href="javascript:void(0)" onclick="$(this).parent().toggleClass('show');$('#userdrop').toggleClass('show')" class="dropdown-toggle"
                     data-toggle="dropdown">
                     <i class="ti-user pdd-right-10"></i>
-                    <div class="user-info">
+                    <!--<div class="user-info">
                         <span class="name pdd-right-5">Nate Leong</span>
                         <i class="ti-angle-down font-size-10"></i>
-                    </div>
+                    </div>-->
                 </a>
-                <ul class="dropdown-menu " id="userdrop" >
-                    <li>
-                            <a ui-sref="signin">
-                                    <i class="ti-settings pdd-right-10"></i>
-                                    <span>Login</span>
-                                </a>
+                <ul class="dropdown-menu" id="userdrop">
+                    <!-- <li>{{loggedIn}}</li> -->
+                    <li ng-if="!user_info">
+                        <a ui-sref="signin" onclick="$('#userdrop').toggleClass('show')">
+                            <i class="ti-settings pdd-right-10"></i>
+                            <span>Login</span>
+                        </a>
                     </li>
-                    <li>
-                        <a ui-sref="register">
+                    <li ng-if="!user_info">
+                        <a ui-sref="register" onclick="$('#userdrop').toggleClass('show')">
                             <i class="ti-settings pdd-right-10"></i>
                             <span>Signup</span>
                         </a>
                     </li>
-                  <li>
-                     <a ui-sref="chat">
-                            <i class="ti-settings pdd-right-10"></i>
-                            <span>Chat</span>
+                    <!-- <li role="separator" class="divider"></li> -->
+                  <li ng-if="user_info">
+                     <a ui-sref="home" onclick="$('#userdrop').toggleClass('show')">
+                            <i class="ti-user pdd-right-10"></i>
+                            <span>Welcome {{user_info.name}}</span>
                         </a>
                   </li>
-                    <!--<li>
-                        <a href="">
+                  <li ng-if="user_info">
+                     <a ui-sref="agenda" onclick="$('#userdrop').toggleClass('show')">
                             <i class="ti-user pdd-right-10"></i>
-                            <span>Profile</span>
+                            <span>My Agenda</span>
                         </a>
-                    </li>
-                    <li>
-                        <a href="">
-                            <i class="ti-email pdd-right-10"></i>
-                            <span>Inbox</span>
-                        </a>
-                    </li>
-                    <li role="separator" class="divider"></li>
-                    <li>
-                        <a href="">
+                  </li>
+                    <li ng-if="user_info">
+                        <a href="" ng-click="logout();" onclick="$('#userdrop').toggleClass('show')">
                             <i class="ti-power-off pdd-right-10"></i>
                             <span>Logout</span>
                         </a>
-                    </li>-->
+                    </li>
                 </ul>
             </li>
-            <li class="notifications dropdown">
+            <!--<li class="notifications dropdown">
                 <a onclick="$(this).parent().toggleClass('show');$('#userdrop').toggleClass('show')" href="javascript:void(0)" class="dropdown-toggle"
                     data-toggle="dropdown">
                     <i class="ti-bell"></i>
@@ -255,12 +250,12 @@
                         </span>
                     </li>
                 </ul>
-            </li>
-            <li>
+            </li>-->
+            <!--<li>
                 <a class="side-panel-toggle" href="javascript:void(0);" onclick="$('.side-panel').toggleClass('side-panel-open')">
                     <i class="ti-align-right"></i>
                 </a>
-            </li>
+            </li>-->
         </ul>
     </div>
 </div>

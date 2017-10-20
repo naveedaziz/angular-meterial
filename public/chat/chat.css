@@ -161,10 +161,11 @@ form.chat-input input[type="submit"] {
 }
 
 form.chat-input input[type="submit"].send-icon {
-    background: rgba(144,134,251,1.0) url(send-icon.png);
+    background: rgba(217, 31, 41,1) url(send-icon.png);
     background-size: 60%;
     background-repeat: no-repeat;
     background-position: 7px 8px;
+    border:none;
 }
 form.chat-input input[type="submit"].sent-indicator {
     opacity: 0;

@@ -1,11 +1,11 @@
- <div class="side-nav">
+ <div class="side-nav" onclick="$('.app').toggleClass('is-collapsed')">
                 <div class="side-nav-inner">
                     <div class="side-nav-logo">
                         <a href="/">
                             <div class="logo logo-dark" style="background-image: url(assets/logo.png); background-size:contain;"></div>
                             <div class="logo logo-white" style="background-image: url(assets/logo.png); background-size:contain;"></div>
                         </a>
-                        <div class="mobile-toggle side-nav-toggle" onclick="$('.app').toggleClass('is-collapsed')">
+                        <div class="mobile-toggle side-nav-toggle">
                             
                                 <i class="ti-arrow-circle-left" style="color: #fff;"></i>
                            
@@ -13,34 +13,23 @@
                     </div>
                     <ul class="side-nav-menu scrollable ps-container ps-theme-default" data-ps-id="25564839-924f-4228-f4e7-1d23169f52b2">
                         <li class="nav-item active">
-                            <a class="mrg-top-30" ui-sref="home" onclick="$('.app').toggleClass('is-collapsed')">
+                            <a class="mrg-top-30" ui-sref="home">
                                 <span class="icon-holder">
 										<i class="ti-home"></i>
 									</span>
                                 <span class="title">Home</span>
                             </a>
                         </li>
-                        <li class="nav-item dropdown">
-                           <a class="dropdown-toggle" href="javascript:void(0);" onclick="$(this).parent().children('.dropdown-menu').toggleClass('show')">
+                        <li class="nav-item active">
+                           <a  ui-sref="about">
                                 <span class="icon-holder">
-										<i class="ti-palette"></i>
+										<i class="ti-home"></i>
 									</span>
                                 <span class="title">About AFES</span>
-                                <span class="arrow">
-										<i class="ti-angle-right"></i>
-									</span>
                             </a>
-                           <ul class="dropdown-menu">
-                              <li>
-                                 <a onclick="$('.app').toggleClass('is-collapsed')" ui-sref="message">President Message</a>
-                              </li>
-                              <li>
-                                 <a onclick="$('.app').toggleClass('is-collapsed')" ui-sref="organization">Organization Commitee</a>
-                              </li>
-                           </ul>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="dropdown-toggle" ui-sref="schedule" onclick="$('.app').toggleClass('is-collapsed')">
+                            <a class="dropdown-toggle" ui-sref="schedule">
                                 <span class="icon-holder">
 										<i class="ti-package"></i>
 									</span>
@@ -62,7 +51,7 @@
                             </ul>-->
                         </li>
                         <li class="nav-item dropdown">
-                           <a class="dropdown-toggle" ui-sref="network" onclick="$('.app').toggleClass('is-collapsed')">
+                           <a class="dropdown-toggle" ui-sref="network">
                                 <span class="icon-holder">
 										<i class="ti-package"></i>
 									</span>
@@ -84,7 +73,7 @@
                             </ul>-->
                         </li>
                         <li class="nav-item dropdown">
-                           <a class="dropdown-toggle" ui-sref="sponsors" onclick="$('.app').toggleClass('is-collapsed')">
+                           <a class="dropdown-toggle" ui-sref="sponsors">
                                 <span class="icon-holder">
 										<i class="ti-package"></i>
 									</span>
@@ -106,7 +95,7 @@
                             </ul>-->
                         </li>
                         <li class="nav-item dropdown">
-                           <a class="dropdown-toggle" ui-sref="faculty" onclick="$('.app').toggleClass('is-collapsed')">
+                           <a class="dropdown-toggle" ui-sref="faculty">
                                 <span class="icon-holder">
 										<i class="ti-package"></i>
 									</span>
@@ -128,7 +117,7 @@
                             </ul>-->
                         </li>
                         <li class="nav-item dropdown">
-                           <a class="dropdown-toggle" ui-sref="gallery" onclick="$('.app').toggleClass('is-collapsed')">
+                           <a class="dropdown-toggle" ui-sref="gallery">
                                 <span class="icon-holder">
 										<i class="ti-package"></i>
 									</span>
@@ -150,7 +139,7 @@
                             </ul>-->
                         </li>
                         <li class="nav-item dropdown">
-                           <a class="dropdown-toggle" ui-sref="video" onclick="$('.app').toggleClass('is-collapsed')">
+                           <a class="dropdown-toggle" ui-sref="video">
                                 <span class="icon-holder">
 										<i class="ti-video-camera"></i>
 									</span>

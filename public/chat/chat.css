@@ -2,20 +2,13 @@
 App Base
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 html, body, strong, button, small, input, p, div, h1, h2, h3, h4 {
-    outline: 0;
-    margin: 0;
-    padding: 0;
-    border: 0;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-    line-height: 1.4em;
-    font-weight: 400;
-    font-size: 16px;
-    overflow: hidden;
 }
 
 button, input[type="submit"] {
     cursor: pointer;
 }
+
 
 .clear { clear: both }
 
@@ -152,6 +145,7 @@ form.chat-input input[type="text"] {
     color: rgba(32,40,70,0.9);
     padding: 20px;
     background: transparent;
+    border:none;
 }
 
 form.chat-input input[type="submit"] {

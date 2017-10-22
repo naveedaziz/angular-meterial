@@ -41,10 +41,12 @@
                                                         <br />
 
                                                         <div class="text-center">
-                                                            <a href="">Login</a> |
-                                                            <a href="">Forgot Password?</a>
+                                                            <a ui-sref="signin">Login</a> 
+                                                            <!--<a href="">Forgot Password?</a>-->
                                                         </div>
-
+                                                         <p class="col-md-12 h5 text-danger text-center padding-25" ng-if="loadingData">
+                                                            <span class="fa fa-spinner fa-spin "></span> Loading
+                                                         </p>
                                                     </form>
                                                 </div>
                                             </div>

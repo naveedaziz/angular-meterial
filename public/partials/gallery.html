@@ -1,11 +1,11 @@
-<div class="main-content">
+<div class="main-content" ng-init="get_data('gallery','gallerys')">
    <div class="container-fluid">
       <div class="row">
          <div class="col-md-12">
             <div class="card">
                <div class="card-heading">
                   <a ui-sref="galleryadd" style="color: #fff;" class="btn btn-primary card-title inline-block">Add</a>
-                  <div class="pull-right mrg-top-10">
+                  <!--<div class="pull-right mrg-top-10">
                      <span class="pdd-right-10">Sort by : </span>
                      <ul class="list-unstyled list-inline inline-block">
                         <li class="list-inline-item pdd-right-10">
@@ -15,39 +15,25 @@
                            <a href="" class="text-gray text-semibold">Date</a>
                         </li>
                      </ul>
-                  </div>
+                  </div>-->
                </div>
                <div class="card-body">
+                  <p class="col-md-12 h5 text-danger text-center padding-25" ng-if="loadingData">
+                     <span class="fa fa-spinner fa-spin "></span> Loading
+                  </p>
                   <div class="row masonry-grid" data-pswp-uid="1" style="position: relative;">
-                     <figure class="col-md-3 masonry-brick mrg-btm-10" style="padding:0 0;">
+                     <figure ng-repeat="gallery in gallerys" class="col-md-3 masonry-brick mrg-btm-10" style="padding:0 0;">
                         <a href="javascript:void(0)" class="gallery-item" data-size="700x500">
-                                                    <img class="img-fluid" src="assets/bg.jpg" alt="">
+                                                    <img class="img-fluid" src="https://event-app-gallery.herokuapp.com/images/{{gallery.image}}" alt="">
                                                     <div class="overlay">
                                                         <div class="overlay-content">
                                                             <div class="inline-block">
-                                                                <h4 class="caption-title">New Seat</h4>
-                                                                <span class="caption-date">27/6/2017</span>
+                                                                <h4 class="caption-title">{{gallery.name}}</h4>
+                                                                <span class="caption-date">{{dateFormat(gallery.createdAt)}}</span>
                                                             </div>
-                                                            <div class="inline-block pull-right pdd-top-20 font-size-16">
+                                                            <div class="inline-block pull-right pdd-top-20 font-size-16" ng-click="likeAdd(gallery.id,gallery.likes);gallery.likes = gallery.likes +1">
                                                                 <i class="ti-heart text-white"></i>
-                                                                <span class="text-white">18</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                     </figure>
-                     <figure class="col-md-3 masonry-brick mrg-btm-10" style="padding:0 0;">
-                        <a href="javascript:void(0)" class="gallery-item" data-size="700x500">
-                                                    <img class="img-fluid" src="assets/bg.jpg" alt="">
-                                                    <div class="overlay">
-                                                        <div class="overlay-content">
-                                                            <div class="inline-block">
-                                                                <h4 class="caption-title">New Seat</h4>
-                                                                <span class="caption-date">27/6/2017</span>
-                                                            </div>
-                                                            <div class="inline-block pull-right pdd-top-20 font-size-16">
-                                                                <i class="ti-heart text-white"></i>
-                                                                <span class="text-white">18</span>
+                                                                <span class="text-white">{{gallery.likes}}</span>
                                                             </div>
                                                         </div>
                                                     </div>

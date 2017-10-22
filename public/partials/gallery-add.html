@@ -18,7 +18,7 @@
                                        <p class="mrg-btm-15 font-size-13">Please select your image and assign a title for image</p>
                                        <form name="fileinfo" id="frmUploader" enctype="multipart/form-data" class="ng-pristine ng-valid" ng-submit="upload()">
                                           <div class="form-group">
-                                             <input required type="text"  ng-model="imageName" class="form-control" placeholder="Image Title">
+                                             <input required type="text" id="imageName"  class="form-control" placeholder="Image Title">
                                           </div>
                                           <div class="form-group">
                                              <input required type="file" id="imageFile" name="imgUploader" placeholder="Select Image" />
@@ -27,7 +27,10 @@
                                           <div class="mrg-top-20 text-right">
                                              <button class="btn btn-info btn-block">Upload</button>
                                           </div>
-
+                                             <p class="col-md-12 h5 text-danger text-center padding-25" ng-if="loadingData">
+                                                <span class="fa fa-spinner fa-spin "></span> Loading
+                                             </p>
+                                             <a class="btn btn-info btn-block" ui-sref="gallery" ng-if="galleryLink">Back to Gallery</a>
                                        </form>
                                        <!--<form name="fileinfo" id="frmUploader" enctype="multipart/form-data" ng-submit="upload()">
                                           <input ng-model="fileName" type="file" name="imgUploader" />

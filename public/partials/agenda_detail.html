@@ -6,22 +6,22 @@
             </p>
             <div class="col-md-4 col-xs-12">
                 <div class="card calendar-event">
-                    <div class="card-block">
+                    <div class="card-block" style="padding: 10px;">
                         <h2>{{schedule_info.name}}</h2>
                         <h4 ng-if="schedule_info.name">
-                           <i class="ti-timer"></i> {{returnDated(schedule_info.dated)}} {{schedule_info.start_hours}}:{{schedule_info.start_minutes}} - {{schedule_info.end_hours}}:{{schedule_info.end_minutes}}</h4>
+                           <i class="ti-timer"></i> {{returnDated(schedule_info.dated)}} At {{returnTimeFormat(schedule_info.start_hours+':'+schedule_info.start_minutes+'-'+schedule_info.end_hours+':'+schedule_info.end_minutes)}}</h4>
                         <hr ng-if="schedule_info.name" />
                         <p ng-if="schedule_info.description">{{schedule_info.description}}</p>
                         <div ng-if="faculty_detail">
                             <h5><b>Faculty</b></h5>
                             <ul class="schedule-detail">
                                 <li ng-repeat="faculty in faculty_detail">
-                                  <i class="ei-time"></i>
+                                 <img src="images/icons/faculty.svg">
                                  <img src="main_images/Speakers/{{faculty}}.jpg" width="100%"> {{faculty}}
                                 </li>
                             </ul>
                             <div class="clearfix"></div>
-                            <button class="btn btn-primary" style="width:100%" ng-if="faculty_detail.length">Ask a Moderator</button>
+                            <a ui-sref="chat({from:schedule_info.id,name:schedule_info.name})" class="btn btn-primary" style="width:100%" ng-if="faculty_detail.length">Ask a Moderator</a>
                         </div>
                     </div>
                 </div>

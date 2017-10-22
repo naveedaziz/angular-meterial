@@ -1,0 +1,96 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3 social">
+                <div class="card">
+                    <div class="card-heading border bottom">
+                        <h4 class="card-title">Abstract</h4>
+                    </div>
+                    <div class="card-block" style="padding:10px;">
+                        <p class="col-md-12 h5 text-danger text-center" ng-if="loadingData">
+                            <span class="fa fa-spinner fa-spin "></span> Loading
+                        </p>
+
+
+                        <div id="accordion-1" class="accordion panel-group" role="tablist" aria-multiselectable="true">
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingOne">
+                                    <h4 class="panel-title">
+                                        <a href="javascript:;"  data-toggle="collapse" data-parent="#accordion-1" ng-click="activeAccordian('first')">
+                                            <span>Individual Abstract- AFES Investigator Award</span>
+                                            <i class="icon ti-arrow-circle-down"></i>
+                                        </a>
+                                    </h4>
+                                </div>
+
+                                <div id="first" class="collapse panel-collapse show">
+                                    <div class="panel-body">
+                                        <ul class="list-unstyled list-info">
+                                            <li class="border bottom" ng-repeat="n in range(1,4)">
+                                                <a href="abstracts/Individual Abstract- AFES Investigator Award/A{{n}}.pdf" target="_blank">
+                                                    <i class="fa fa-file-pdf-o"></i> A{{n}}.pdf
+                                                </a>
+                                                <span class="clearfix"></span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingTwo">
+                                    <h4 class="panel-title">
+                                        <a href="javascript:;"  class="collapsed" data-toggle="collapse" data-parent="#accordion-1" ng-click="activeAccordian('second')">
+                                            <span>Individual Abstract- Oral Presentation</span>
+                                            <i class="icon ti-arrow-circle-down"></i>
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="second" class="collapse panel-collapse" role="tabpanel">
+                                    <div class="panel-body">
+                                        <ul class="list-unstyled list-info">
+                                            <li class="border bottom" ng-repeat="n in range(1,48)">
+                                                <a href="abstracts/Individual Abstract- Oral Presentation/O{{n}}.pdf" target="_blank">
+                                                    <i class="fa fa-file-pdf-o"></i> O{{n}}.pdf
+                                                </a>
+                                                <span class="clearfix"></span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingThree">
+                                    <h4 class="panel-title">
+                                        <a href="javascript:;"  class="collapsed" data-toggle="collapse" data-parent="#accordion-1" ng-click="activeAccordian('third')">
+                                            <span>Individual Abstract- Poster Award & Presentation</span>
+                                            <i class="icon ti-arrow-circle-down"></i>
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="third" class="collapse panel-collapse" role="tabpanel">
+                                    <div class="panel-body">
+                                        <ul class="list-unstyled list-info">
+                                            <li class="border bottom" ng-repeat="n in range(1,112)">
+                                                <a href="abstracts/Individual Abstract- Poster Award & Presentation/P{{n}}.pdf" target="_blank">
+                                                    <i class="fa fa-file-pdf-o"></i> P{{n}}.pdf
+                                                </a>
+                                                <span class="clearfix"></span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

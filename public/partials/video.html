@@ -1,69 +1,20 @@
-<div class="main-content">
+<div class="main-content" ng-init="getYoutubeChannelVideos()">
    <div class="container-fluid">
       <div class="row">
-         <div class="col-lg-3">
+         <div class="col-lg-3" ng-repeat="videos in youtubeVideos">
             <div class="card">
                <div class="card-media">
-                  <object data="http://www.youtube.com/embed/W7qWa52k-nE" width="100%" height="100%"></object>
+                        <iframe id="player" type="text/html" width="100%" height="100%"
+                        ng-src="{{getVideoSrc(videos.id.videoId)}}"
+                        frameborder="0" sandbox="allow-same-origin allow-scripts"></iframe>
                </div>
                <div class="card-block padding-15">
-                  <h4 class="mrg-btm-10 no-mrg-top">Video Title</h4>
-                  <p>All right! Up! Move! Come on! Quickly! Quickly, Chewie. Han! Hurry! The fleet will be here any moment.
-                     Charges! Come on, come on! Oh, my! They'll be captured! Wa-wait! Wait, come back! Artoo, stay with me.
-                     Freeze! You Rebel scum.</p>
+                  <h4 class="mrg-btm-10 no-mrg-top">{{videos.snippet.title}}</h4>
+                  <p>{{videos.snippet.description}}</p>
 
                </div>
             </div>
          </div>
-
-
-         <div class="col-lg-3">
-            <div class="card">
-               <div class="card-media">
-                  <object data="http://www.youtube.com/embed/W7qWa52k-nE" width="100%" height="100%"></object>
-               </div>
-               <div class="card-block padding-15">
-                  <h4 class="mrg-btm-10 no-mrg-top">Video Title</h4>
-                  <p>All right! Up! Move! Come on! Quickly! Quickly, Chewie. Han! Hurry! The fleet will be here any moment.
-                     Charges! Come on, come on! Oh, my! They'll be captured! Wa-wait! Wait, come back! Artoo, stay with me.
-                     Freeze! You Rebel scum.</p>
-
-               </div>
-            </div>
-         </div>
-
-
-         <div class="col-lg-3">
-            <div class="card">
-               <div class="card-media">
-                  <object data="http://www.youtube.com/embed/W7qWa52k-nE" width="100%" height="100%"></object>
-               </div>
-               <div class="card-block padding-15">
-                  <h4 class="mrg-btm-10 no-mrg-top">Video Title</h4>
-                  <p>All right! Up! Move! Come on! Quickly! Quickly, Chewie. Han! Hurry! The fleet will be here any moment.
-                     Charges! Come on, come on! Oh, my! They'll be captured! Wa-wait! Wait, come back! Artoo, stay with me.
-                     Freeze! You Rebel scum.</p>
-
-               </div>
-            </div>
-         </div>
-
-
-         <div class="col-lg-3">
-            <div class="card">
-               <div class="card-media">
-                  <object data="http://www.youtube.com/embed/W7qWa52k-nE" width="100%" height="100%"></object>
-               </div>
-               <div class="card-block padding-15">
-                  <h4 class="mrg-btm-10 no-mrg-top">Video Title</h4>
-                  <p>All right! Up! Move! Come on! Quickly! Quickly, Chewie. Han! Hurry! The fleet will be here any moment.
-                     Charges! Come on, come on! Oh, my! They'll be captured! Wa-wait! Wait, come back! Artoo, stay with me.
-                     Freeze! You Rebel scum.</p>
-
-               </div>
-            </div>
-         </div>
-
       </div>
    </div>
 </div>

@@ -20,7 +20,7 @@
                         <div class="chat">
                             <div class="chat-user-list scrollable ps-container ps-theme-default ps-active-y" data-ps-id="600b22a2-c49e-0691-1a8f-5f29c083167a">
                                 <div class="chat-section">
-                                    <a ui-sref="chat({from:user.id})" class="chat-user chat-toggle" ng-repeat="user in users">
+                                    <a ui-sref="chat({from:user.id,name:user.name})" class="chat-user chat-toggle" ng-repeat="user in users">
                                         <img class="thumb-img" src="assets/thumb-1.jpg" alt="">
                                         <div class="user-info">
                                             <span class="user-name">{{user.name}}</span>

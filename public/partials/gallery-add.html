@@ -1,0 +1,47 @@
+<div class="app">
+   <div class="authentication">
+      <div class="sign-in-2">
+         <div class="container-fluid no-pdd-horizon bg" style="background-image: url('assets/img-30.jpg')">
+            <div class="row">
+               <div class="col-md-10 mr-auto ml-auto">
+                  <div class="row">
+                     <div class="mr-auto ml-auto full-height height-100">
+                        <div class="vertical-align full-height">
+                           <div class="table-cell">
+                              <div class="card">
+                                 <div class="card-body">
+                                    <div class="pdd-horizon-30 pdd-vertical-30">
+                                       <div class="mrg-btm-30">
+                                          <img class="img-responsive inline-block" src="assets/images/logo/logo.png" alt="">
+                                          <h2 class="inline-block pull-right no-mrg-vertical pdd-top-15">Upload Image</h2>
+                                       </div>
+                                       <p class="mrg-btm-15 font-size-13">Please select your image and assign a title for image</p>
+                                       <form name="fileinfo" id="frmUploader" enctype="multipart/form-data" class="ng-pristine ng-valid" ng-submit="upload()">
+                                          <div class="form-group">
+                                             <input required type="text"  ng-model="imageName" class="form-control" placeholder="Image Title">
+                                          </div>
+                                          <div class="form-group">
+                                             <input required type="file" id="imageFile" name="imgUploader" placeholder="Select Image" />
+                                          </div>
+
+                                          <div class="mrg-top-20 text-right">
+                                             <button class="btn btn-info btn-block">Upload</button>
+                                          </div>
+
+                                       </form>
+                                       <!--<form name="fileinfo" id="frmUploader" enctype="multipart/form-data" ng-submit="upload()">
+                                          <input ng-model="fileName" type="file" name="imgUploader" />
+                                          <input type="submit" name="submit" id="btnSubmit" value="Upload" /> </form>-->
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

@@ -102,7 +102,7 @@
         </ul>
         <ul class="nav-right">
             <li class="user-profile dropdown ">
-                <a href="javascript:void(0)" onclick="$(this).parent().toggleClass('show');$('#userdrop').toggleClass('show')" class="dropdown-toggle"
+                <a href="javascript:void(0)" id="userMenu" onclick="$('#userMenu').parent().toggleClass('show');$('#userdrop').toggleClass('show')" class="dropdown-toggle"
                     data-toggle="dropdown">
                     <i class="ti-user pdd-right-10"></i>
                     <!--<div class="user-info">
@@ -112,33 +112,33 @@
                 </a>
                 <ul class="dropdown-menu" id="userdrop">
                     <!-- <li>{{loggedIn}}</li> -->
-                    <li ng-if="!user_info">
+                    <li ng-if="!user_info" ng-click="hideMenu()">
                         <a ui-sref="signin" onclick="$('#userdrop').toggleClass('show')">
                             <i class="ti-settings pdd-right-10"></i>
                             <span>Login</span>
                         </a>
                     </li>
                     <li ng-if="!user_info">
-                        <a ui-sref="register" onclick="$('#userdrop').toggleClass('show')">
+                        <a ui-sref="register" ng-click="hideMenu()">
                             <i class="ti-settings pdd-right-10"></i>
                             <span>Signup</span>
                         </a>
                     </li>
                     <!-- <li role="separator" class="divider"></li> -->
                   <li ng-if="user_info">
-                     <a ui-sref="home" onclick="$('#userdrop').toggleClass('show')">
+                     <a ui-sref="home" ng-click="hideMenu()">
                             <i class="ti-user pdd-right-10"></i>
                             <span>Welcome {{user_info.name}}</span>
                         </a>
                   </li>
                   <li ng-if="user_info">
-                     <a ui-sref="agenda" onclick="$('#userdrop').toggleClass('show')">
+                     <a ui-sref="agenda" ng-click="hideMenu()">
                             <i class="ti-user pdd-right-10"></i>
                             <span>My Agenda</span>
                         </a>
                   </li>
                     <li ng-if="user_info">
-                        <a href="" ng-click="logout();" onclick="$('#userdrop').toggleClass('show')">
+                        <a href="" ng-click="logout();" ng-click="hideMenu()">
                             <i class="ti-power-off pdd-right-10"></i>
                             <span>Logout</span>
                         </a>

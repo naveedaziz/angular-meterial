@@ -20,10 +20,11 @@
                             </p>
                             <ul class="email-list-item list-unstyled list-info">
                                 <li class="email-item" ng-repeat="faculty in facultys">
-                                    <img class="thumb-img img-circle"src="main_images/Faculty/{{faculty.name}}.jpg" alt="">
+                                    <!-- {{faculty}} -->
+                                    <img  class="thumb-img img-circle" ng-src="main_images/Faculty/{{faculty.name}}.jpg" alt="">
                                     <div class="info">
-                                        <a href="" class="title no-pdd-vertical text-semibold inline-block">{{faculty.name}},
-                                            <small>{{faculty.Designation}}</small>
+                                        <a href="" class="title no-pdd-vertical text-semibold inline-block">{{faculty.name}}<br />
+                                            <small>{{faculty.designation}}</small>
                                         </a>
                                         <!--<p class="width-80 no-mrg-btm" style="line-height: 1.3">{{faculty.description}}</p>-->
                                     </div>

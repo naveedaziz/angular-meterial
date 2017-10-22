@@ -1,9 +1,8 @@
-
 <div class="main-content" ng-init="get_data('organization_commitee','organization_commitees')">
-   <div class="container-fluid">
-      <div class="row">
-         <div class="col-lg-3 social">
-            <!--<div class="card ">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3 social">
+                <!--<div class="card ">
                                     <div class="overlay-dark bg" style="background-image: url('assets/bg.jpeg')">
                                        <div class="card-block">
                                           <div class="mrg-top-130">
@@ -18,372 +17,386 @@
                                        </div>
                                     </div>
                                  </div>-->
-            <div class="social-cover card">
-               <div class="cover-img overlay-dark bg" style="background-image: url('assets/bg.jpeg')">
-                  <div class="cover-content" style="width: 100%;">
-                     <div class="text-center border bottom border-hide-sm pdd-horizon-30 pdd-btm-10">
-                        <h1 class="no-mrg-btm" style="font-size: 60px;color: #ffffff;text-shadow: aqua;-webkit-text-stroke: 1px #614f50;">AFES</h1>
-                        <p> M Y A N M A R</p>
-                     </div>
-                     <div class="row mrg-top-15">
-                        <div class="col-md-6 border right border-hide-sm" style="background: rgba(0, 0, 0, 0.12); width: 100%;padding: 16px;">
-                           <div class="text-center">
-                              <h3 class="no-mrg">9th-12th Nov 2017</h3>
-                              <span>19th ASEAN Federation of Endocrine Sociaties Congress</span>
-                           </div>
+                <div class="social-cover card">
+                    <div class="cover-img overlay-dark bg" style="background-image: url('assets/bg.jpeg')">
+                        <div class="cover-content" style="width: 100%;">
+                            <div class="text-center border bottom border-hide-sm pdd-horizon-30 pdd-btm-10">
+                                <h1 class="no-mrg-btm" style="font-size: 60px;color: #ffffff;text-shadow: aqua;-webkit-text-stroke: 1px #614f50;">AFES</h1>
+                                <p> M Y A N M A R</p>
+                            </div>
+                            <div class="row mrg-top-15">
+                                <div class="col-md-6 border right border-hide-sm" style="background: rgba(0, 0, 0, 0.12); width: 100%;padding: 16px;">
+                                    <div class="text-center">
+                                        <h3 class="no-mrg">9th-12th Nov 2017</h3>
+                                        <span>19th ASEAN Federation of Endocrine Sociaties Congress</span>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
+                    </div>
 
-                     </div>
-                  </div>
-               </div>
-
-            </div>
-            <a ui-sref="home2" class="theme-toggle btn btn-rounded btn-icon"><i class="ti-palette"></i></a>
-            <div class="card">
-               <!--<div class="padding-20">
+                </div>
+                <a ui-sref="home2" class="theme-toggle btn btn-rounded btn-icon btn-switch-view">
+                    <i class="ti-palette"></i> Switch View
+                </a>
+                <div class="card">
+                    <!--<div class="padding-20">
                                         <h4 class="card-title no-mrg-btm">Tabs Danger</h4>
                                     </div>-->
-               <div class="tab-danger">
-                  <div class="tab-scroll" style="width:100%; overflow:scroll;">
-                     <ul class="nav nav-tabs" role="tablist" style="width:480px;">
-                        <li class="nav-item">
-                           <a href="javascript:void(0)" onclick="$('.nav-tabs .nav-item').children().removeClass('active');$(this).addClass('active');$('.tab-content').children().removeClass('in');$('.tab-content').children().removeClass('active');$('#tab-danger-1').addClass('in');$('#tab-danger-1').addClass('active')"
-                              class="nav-link active" role="tab" data-toggle="tab">About AFES</a>
-                        </li>
-                        <li class="nav-item">
-                           <a href="javascript:void(0)" onclick="$('.nav-tabs .nav-item').children().removeClass('active');$(this).addClass('active');$('.tab-content').children().removeClass('in');$('.tab-content').children().removeClass('active');$('#tab-danger-2').addClass('in');$('#tab-danger-2').addClass('active')"
-                              class="nav-link" role="tab" data-toggle="tab">Organization Commitee</a>
-                        </li>
-                        <li class="nav-item">
-                           <a href="javascript:void(0)" onclick="$('.nav-tabs .nav-item').children().removeClass('active');$(this).addClass('active');$('.tab-content').children().removeClass('in');$('.tab-content').children().removeClass('active');$('#tab-danger-3').addClass('in');$('#tab-danger-3').addClass('active')"
-                              class="nav-link" role="tab" data-toggle="tab">Congress Information</a>
-                        </li>
-                     </ul>
-                  </div>
-                  <div class="tab-content">
-                     <div role="tabpanel" class="tab-pane fade in active" id="tab-danger-1">
-                        <div class="card" style="border:none;">
-                           <ul class="list-unstyled list-info">
-                              <li>
-                                 <div class="pdd-vertical-10 pdd-horizon-20">
-                                    <!--<img class="thumb-img img-circle" src="assets/user.jpeg" alt="">-->
-                                    <div class="info" style="padding-left:0">
-                                       <span class="title">Dr Than Than Aye</span>
-                                       <span class="sub-title">
-																<i class="ti-timer pdd-right-5"></i>
-																<span>Chairperson</span>
-                                       </span>
-                                    </div>
-                                 </div>
-                              </li>
-                           </ul>
-                           <div class="card-media">
-                              <img class="img-responsive" src="assets/picture.svg" alt="">
-                           </div>
-                           <div class="card-block">
-                              <h4>Welcome to AFES</h4>
-                              <p>Dear friends and colleagues,<br> It is a great honor and distinct privilege for us to announce that Myanmar Society of Endocrinology
-                                 and Metabolism is hosting the 19th ASEAN Federation of Endocrine Societies Congress 2017
-                                 (AFES2017). It will be held from 9 – 12 November 2017 in Yangon, Myanmar. <button class="btn btn-primary btn-xs  about-text"
-                                    onclick="$('.about-text').toggleClass('hidden')">More</button>
-                                 <span class="about-text hidden"> 
-                                          On behalf of the Organizing Committee, I am delighted to invite you
-                                       to participate in this regional educational conference. Themed “Synergy among ASEAN”, this
-                                       congress will cover all the disciplines in endocrinology with a good blend of international
-                                       and ASEAN perspectives delivered by many prominent speakers from various parts of the world.
-                                       The congress will be another major step forward in the field of endocrinology by encouraging
-                                       more young professionals to play a leading role in the future endocrinology field. There
-                                       will be state-of- the-art updates and cutting edge technology applied for endocrinology
-                                       practice in this congress. The scientific program varies from plenaries, symposia, meet-the-
-                                       expert sessions, pre- congress workshops, industry symposia and free paper presentations.
-                                       In addition to the scientific session, you will have an opportunity to experience the warm
-                                       hospitality of Myanmar. We are delighted to welcome you to Myanmar for AFES 2017 and hope
-                                       that you will join us to be part of the outstanding scientific program and grab the opportunity
-                                       of visiting many attractive places which are particularities of MYANMAR. The Congress is
-                                       endorsed by the Endocrine Society and the International Society of Endocrinology.
-                                       <br> Yours sincerely,<br><b>Dr Than Than Aye</b><br>Chairperson Organizing Committee, AFES
-                                       2017
-                                 </span>
-                              </p>
-                           </div>
+                    <div class="tab-danger">
+                        <div class="tab-scroll" style="width:100%; overflow:scroll;">
+                            <ul class="nav nav-tabs" role="tablist" style="width:480px;">
+                                <li class="nav-item">
+                                    <a href="javascript:void(0)" onclick="$('.nav-tabs .nav-item').children().removeClass('active');$(this).addClass('active');$('.tab-content').children().removeClass('in');$('.tab-content').children().removeClass('active');$('#tab-danger-1').addClass('in');$('#tab-danger-1').addClass('active')"
+                                        class="nav-link active" role="tab" data-toggle="tab">About AFES</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="javascript:void(0)" onclick="$('.nav-tabs .nav-item').children().removeClass('active');$(this).addClass('active');$('.tab-content').children().removeClass('in');$('.tab-content').children().removeClass('active');$('#tab-danger-2').addClass('in');$('#tab-danger-2').addClass('active')"
+                                        class="nav-link" role="tab" data-toggle="tab">Organization Commitee</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="javascript:void(0)" onclick="$('.nav-tabs .nav-item').children().removeClass('active');$(this).addClass('active');$('.tab-content').children().removeClass('in');$('.tab-content').children().removeClass('active');$('#tab-danger-3').addClass('in');$('#tab-danger-3').addClass('active')"
+                                        class="nav-link" role="tab" data-toggle="tab">Congress Information</a>
+                                </li>
+                            </ul>
                         </div>
-                     </div>
-                     <div role="tabpanel" class="tab-pane fade" id="tab-danger-2">
-                        <div class="row">
-                           <div class="col-md-4 col-xs-12">
-                              <p class="col-md-12 h5 text-danger text-center padding-25" ng-if="loadingData">
-                                 <span class="fa fa-spinner fa-spin "></span> Loading
-                              </p>
-                              <div class="card calendar-event">
-
-                                 <div class="card-block">
-                                    <div class="feed-header">
-                                       <ul class="list-unstyled list-info">
-                                          <li class="pdd-vertical-15 border bottom" ng-repeat="committee in organization_commitees">
-                                             <img class="thumb-img img-circle" src="assets/user.png" alt="No Image Available" ng-if="!committee.image" />
-                                             <img class="thumb-img img-circle" src="assets/thumb-1.jpg" alt="" ng-if="committee.image" />
-                                             <div class="info">
-                                                <a href="" class="title no-pdd-vertical text-semibold inline-block">{{committee.name}}</a>
-                                                <p class="text-muted">{{committee.designation}}</p>
-                                                <p class="width-80 no-mrg-btm" style="line-height: 1.3">{{committee.description}}</p>
-                                             </div>
-                                          </li>
-                                       </ul>
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade in active" id="tab-danger-1">
+                                <div class="card" style="border:none;">
+                                    <ul class="list-unstyled list-info">
+                                        <li>
+                                            <div class="pdd-vertical-10 pdd-horizon-20">
+                                                <!--<img class="thumb-img img-circle" src="assets/user.jpeg" alt="">-->
+                                                <div class="info" style="padding-left:0">
+                                                    <span class="title">Dr Than Than Aye</span>
+                                                    <span class="sub-title">
+                                                        <i class="ti-timer pdd-right-5"></i>
+                                                        <span>Chairperson</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <div class="card-media">
+                                        <img class="img-responsive" src="assets/picture.svg" alt="">
                                     </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <div role="tabpanel" class="tab-pane fade" id="tab-danger-3">
-                        <div class="row">
-                           <div class="col-md-12">
-                              <div class="">
-                                 <div class="card">
-                                    
-                                    <div class="card-body">
-                                       <h2 class="title">AFES 2017 Program Book</h2>
-                                       <h5>
-                                          <b>CONGRESS INFORMATION</b>
-                                       </h5>
-
-                                       <h6>
-                                          <b>CONGRESS DATE</b>
-                                       </h6>
-                                       9 to 12 November 2017
-
-                                       <br />
-                                       <br />
-
-                                       <h6>
-                                          <b>CONGRESS VENUE</b>
-                                       </h6>
-                                       Meliá Yangon Hotel
-                                       <br /> 192 Kaba Aye Pagoda Road, Bahan Township
-                                       <br /> Yangon, Myanmar
-                                       <br /> Tel: +(95) 1 934 5000
-                                       <br /> Fax +(95) 1 934 5055
-                                       <br /> URL:
-                                       <a href="https://www.melia.com/en/hotels/myanmar/yangon/melia-yangon/index.html" target="_blank">https://www.melia.com/en/hotels/myanmar/yangon/melia-yangon/index.html</a>
-
-                                       <br />
-                                       <br />
-
-                                       <h6>
-                                          <b>CONGRESS HOST</b>
-                                       </h6>
-                                       Myanmar Society of Endocrinology and Metabolism
-
-                                       <br />
-                                       <br />
-
-                                       <h6>
-                                          <b>CONGRESS SECRETARIAT </b>
-                                       </h6>
-                                       695E East Coast Road
-                                       <br /> Singapore 459059
-                                       <br /> Email: secretariat@afes2017myanmar.com
-
-                                       <br />
-                                       <br />
-
-                                       <h6>
-                                          <b>OFFICIAL LANGUAGE</b>
-                                       </h6>
-                                       English
-
-                                       <br />
-                                       <br />
-
-                                       <h6>
-                                          <b>REGISTRATION</b>
-                                       </h6>
-                                       Venue: Level 1 Foyer
-
-                                       <table class="table table-bordered font-size-11">
-                                          <tr>
-                                             <td>9 Nov 2017, Thursday</td>
-                                             <td>
-                                                0730 – 1200 hours
-                                                <br /> (Thyroid Workshop Registration only)
-                                                <br /> 1400 - 1700 hours
-                                             </td>
-                                          </tr>
-                                          <tr>
-                                             <td>10 Nov 2017, Friday</td>
-                                             <td>0730 – 1600 hours</td>
-                                          </tr>
-                                          <tr>
-                                             <td>11 Nov 2017, Saturday</td>
-                                             <td>0730 – 1600 hours</td>
-                                          </tr>
-                                          <tr>
-                                             <td>12 Nov 2017, Sunday</td>
-                                             <td>0730 – 1000 hours</td>
-                                          </tr>
-
-                                       </table>
-
-                                       <h6>
-                                          <b>SLIDE REVIEW</b>
-                                       </h6>
-                                       Venue: Room 1, Level 1
-
-                                       <table class="table table-bordered font-size-11">
-                                          <tr>
-                                             <td>9 November 2017, Thursday</td>
-                                             <td>0730 – 1700 hours</td>
-                                          </tr>
-                                          <tr>
-                                             <td>10 November 2017, Friday</td>
-                                             <td>0730 – 1700 hours</td>
-                                          </tr>
-                                          <tr>
-                                             <td>11 November 2017, Saturday</td>
-                                             <td>0730 – 1700 hours</td>
-                                          </tr>
-                                          <tr>
-                                             <td>12 November 2017, Sunday</td>
-                                             <td>0730 – 1030 hours</td>
-                                          </tr>
-                                       </table>
-
-                                       <h6>
-                                          <b>EXHIBITION</b>
-                                       </h6>
-                                       Venue: Level 1 Foyer
-
-                                       <table class="table table-bordered font-size-11">
-                                          <tr>
-                                             <td>10 Nov 2017, Friday</td>
-                                             <td>0830 – 1700 hours</td>
-                                          </tr>
-                                          <tr>
-                                             <td>11 Nov 2017, Saturday</td>
-                                             <td>0830 – 1700 hours</td>
-                                          </tr>
-                                          <tr>
-                                             <td>12 Nov 2017, Sunday</td>
-                                             <td>0830 – 1030 hours</td>
-                                          </tr>
-                                       </table>
-
-                                       <h6>
-                                          <b>POSTERS</b>
-                                       </h6>
-                                       Venue: Level 2 Foyer
-
-                                       <table class="table table-bordered font-size-11">
-                                          <tr>
-                                             <td>10 Nov 2017, Friday</td>
-                                             <td>0830 – 1600 hours</td>
-                                          </tr>
-                                          <tr>
-                                             <td>11 Nov 2017, Saturday</td>
-                                             <td>0830 – 1600 hours</td>
-                                          </tr>
-                                       </table>
-
-                                       <h6>
-                                          <b>MOBILE</b>
-                                       </h6>
-                                       <b>APPS Please download the AFES2017 mobileapps from the App Store or Google
-                                                    Play for more information.</b>
-
-                                       <br />
-                                       <br />
-
-                                       <h6>
-                                          <b>BADGE</b>
-                                       </h6>
-                                       Admissions to AFES2017 meetings and social events are strictly by congress name badge.
-                                       <br />
-                                       <br />
-                                       <i>An admin fee of US$100 is applicable for loss and re-print of badge. </i>
-
-                                       <br />
-                                       <br />
-
-                                       <h6>
-                                          <b>CERFITICATE OF PARTICIPATION</b>
-                                       </h6>
-                                       All participants will receive an e-certificate via email by 19 Nov 2017. If you do not receive your email by this date, you
-                                       may contact the AFES2017 Secretariat.
-
-                                       <br />
-                                       <br />
-
-                                       <h6>
-                                          <b>TRADE EXHIBITORS</b>
-                                       </h6>
-                                       <table class="table table-bordered font-size-11">
-                                          <tr>
-                                             <th>Company</th>
-                                             <th>Booth</th>
-                                          </tr>
-                                          <tr>
-                                             <td>Diamond: Servier</td>
-                                             <td>L1-01</td>
-                                          </tr>
-                                          <tr>
-                                             <td>Gold: Novo Nordisk</td>
-                                             <td>L1-09 / L1-10</td>
-                                          </tr>
-                                          <tr>
-                                             <td>Gold: Sanofi</td>
-                                             <td>L1-11</td>
-                                          </tr>
-                                          <tr>
-                                             <td>Gold: T.T.O. Pharm</td>
-                                             <td>L1-04 / L1-05</td>
-                                          </tr>
-                                          <tr>
-                                             <td>Dr Reddy&#39;s Laboratories</td>
-                                             <td>L1-19</td>
-                                          </tr>
-                                          <tr>
-                                             <td>GETZ Pharma</td>
-                                             <td>L1-14</td>
-                                          </tr>
-                                          <tr>
-                                             <td>Kalbe International</td>
-                                             <td>L1-16</td>
-                                          </tr>
-                                          <tr>
-                                             <td>DKSH (Myanmar) Ltd</td>
-                                             <td>L1-18</td>
-                                          </tr>
-                                          <tr>
-                                             <td>Pfizer</td>
-                                             <td>L1-15</td>
-                                          </tr>
-                                          <tr>
-                                             <td>San Lwin</td>
-                                             <td>L1-07 </td>
-                                          </tr>
-                                          <tr>
-                                             <td>Sun Pharma</td>
-                                             <td>L1-08</td>
-                                          </tr>
-                                          <tr>
-                                             <td>Workhardt</td>
-                                             <td>L1-13</td>
-                                          </tr>
-                                          <tr>
-                                             <td>AFES &amp; Partners Village</td>
-                                             <td>L2-01</td>
-                                          </tr>
-                                       </table>
+                                    <div class="card-block">
+                                        <h4>Welcome to AFES</h4>
+                                        <p>Dear friends and colleagues,
+                                            <br> It is a great honor and distinct privilege for us to announce that Myanmar Society
+                                            of Endocrinology and Metabolism is hosting the 19th ASEAN Federation of Endocrine
+                                            Societies Congress 2017 (AFES2017). It will be held from 9 – 12 November 2017
+                                            in Yangon, Myanmar.
+                                            <button class="btn btn-primary btn-xs  about-text" onclick="$('.about-text').toggleClass('hidden')">More</button>
+                                            <span class="about-text hidden">
+                                                On behalf of the Organizing Committee, I am delighted to invite you to participate in this regional educational conference.
+                                                Themed “Synergy among ASEAN”, this congress will cover all the disciplines
+                                                in endocrinology with a good blend of international and ASEAN perspectives
+                                                delivered by many prominent speakers from various parts of the world. The
+                                                congress will be another major step forward in the field of endocrinology
+                                                by encouraging more young professionals to play a leading role in the future
+                                                endocrinology field. There will be state-of- the-art updates and cutting
+                                                edge technology applied for endocrinology practice in this congress. The
+                                                scientific program varies from plenaries, symposia, meet-the- expert sessions,
+                                                pre- congress workshops, industry symposia and free paper presentations.
+                                                In addition to the scientific session, you will have an opportunity to experience
+                                                the warm hospitality of Myanmar. We are delighted to welcome you to Myanmar
+                                                for AFES 2017 and hope that you will join us to be part of the outstanding
+                                                scientific program and grab the opportunity of visiting many attractive places
+                                                which are particularities of MYANMAR. The Congress is endorsed by the Endocrine
+                                                Society and the International Society of Endocrinology.
+                                                <br> Yours sincerely,
+                                                <br>
+                                                <b>Dr Than Than Aye</b>
+                                                <br>Chairperson Organizing Committee, AFES 2017
+                                            </span>
+                                        </p>
                                     </div>
-                                 </div>
-                              </div>
-                           </div>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="tab-danger-2">
+                                <div class="row">
+                                    <div class="col-md-4 col-xs-12">
+                                        <p class="col-md-12 h5 text-danger text-center padding-25" ng-if="loadingData">
+                                            <span class="fa fa-spinner fa-spin "></span> Loading
+                                        </p>
+                                        <div class="card calendar-event">
+
+                                            <div class="card-block" style="padding-top: 0;">
+                                                <div class="feed-header">
+                                                    <ul class="list-unstyled list-info">
+                                                        <li class="pdd-vertical-15 border bottom" ng-repeat="committee in organization_commitees">
+                                                            <img class="thumb-img img-circle" src="images/icons/user.svg" alt="No Image Available" ng-if="!committee.image" />
+                                                            <img class="thumb-img img-circle" src="assets/thumb-1.jpg" alt="" ng-if="committee.image" />
+                                                            <div class="info">
+                                                                <a href="" class="title no-pdd-vertical text-semibold inline-block">{{committee.name}}</a>
+                                                                <p class="text-muted">{{committee.designation}}</p>
+                                                                <p class="width-80 no-mrg-btm" style="line-height: 1.3">{{committee.description}}</p>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="tab-danger-3">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="">
+                                            <div class="card"> 
+
+                                                <div class="card-body">
+                                                    <h2 class="title">AFES 2017 Program Book</h2>
+                                                    <h5>
+                                                        <b>CONGRESS INFORMATION</b>
+                                                    </h5>
+
+                                                    <h6>
+                                                        <b>CONGRESS DATE</b>
+                                                    </h6>
+                                                    9 to 12 November 2017
+
+                                                    <br />
+                                                    <br />
+
+                                                    <h6>
+                                                        <b>CONGRESS VENUE</b>
+                                                    </h6>
+                                                    Meliá Yangon Hotel
+                                                    <br /> 192 Kaba Aye Pagoda Road, Bahan Township
+                                                    <br /> Yangon, Myanmar
+                                                    <br /> Tel: +(95) 1 934 5000
+                                                    <br /> Fax +(95) 1 934 5055
+                                                    <br /> URL:
+                                                    <a href="https://www.melia.com/en/hotels/myanmar/yangon/melia-yangon/index.html" target="_blank">https://www.melia.com/en/hotels/myanmar/yangon/melia-yangon/index.html</a>
+
+                                                    <br />
+                                                    <br />
+
+                                                    <h6>
+                                                        <b>CONGRESS HOST</b>
+                                                    </h6>
+                                                    Myanmar Society of Endocrinology and Metabolism
+
+                                                    <br />
+                                                    <br />
+
+                                                    <h6>
+                                                        <b>CONGRESS SECRETARIAT </b>
+                                                    </h6>
+                                                    695E East Coast Road
+                                                    <br /> Singapore 459059
+                                                    <br /> Email: secretariat@afes2017myanmar.com
+
+                                                    <br />
+                                                    <br />
+
+                                                    <h6>
+                                                        <b>OFFICIAL LANGUAGE</b>
+                                                    </h6>
+                                                    English
+
+                                                    <br />
+                                                    <br />
+
+                                                    <h6>
+                                                        <b>REGISTRATION</b>
+                                                    </h6>
+                                                    Venue: Level 1 Foyer
+
+                                                    <table class="table table-bordered font-size-11">
+                                                        <tr>
+                                                            <td>9 Nov 2017, Thursday</td>
+                                                            <td>
+                                                                0730 – 1200 hours
+                                                                <br /> (Thyroid Workshop Registration only)
+                                                                <br /> 1400 - 1700 hours
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>10 Nov 2017, Friday</td>
+                                                            <td>0730 – 1600 hours</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>11 Nov 2017, Saturday</td>
+                                                            <td>0730 – 1600 hours</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>12 Nov 2017, Sunday</td>
+                                                            <td>0730 – 1000 hours</td>
+                                                        </tr>
+
+                                                    </table>
+
+                                                    <h6>
+                                                        <b>SLIDE REVIEW</b>
+                                                    </h6>
+                                                    Venue: Room 1, Level 1
+
+                                                    <table class="table table-bordered font-size-11">
+                                                        <tr>
+                                                            <td>9 November 2017, Thursday</td>
+                                                            <td>0730 – 1700 hours</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>10 November 2017, Friday</td>
+                                                            <td>0730 – 1700 hours</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>11 November 2017, Saturday</td>
+                                                            <td>0730 – 1700 hours</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>12 November 2017, Sunday</td>
+                                                            <td>0730 – 1030 hours</td>
+                                                        </tr>
+                                                    </table>
+
+                                                    <h6>
+                                                        <b>EXHIBITION</b>
+                                                    </h6>
+                                                    Venue: Level 1 Foyer
+
+                                                    <table class="table table-bordered font-size-11">
+                                                        <tr>
+                                                            <td>10 Nov 2017, Friday</td>
+                                                            <td>0830 – 1700 hours</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>11 Nov 2017, Saturday</td>
+                                                            <td>0830 – 1700 hours</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>12 Nov 2017, Sunday</td>
+                                                            <td>0830 – 1030 hours</td>
+                                                        </tr>
+                                                    </table>
+
+                                                    <h6>
+                                                        <b>POSTERS</b>
+                                                    </h6>
+                                                    Venue: Level 2 Foyer
+
+                                                    <table class="table table-bordered font-size-11">
+                                                        <tr>
+                                                            <td>10 Nov 2017, Friday</td>
+                                                            <td>0830 – 1600 hours</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>11 Nov 2017, Saturday</td>
+                                                            <td>0830 – 1600 hours</td>
+                                                        </tr>
+                                                    </table>
+
+                                                    <h6>
+                                                        <b>MOBILE</b>
+                                                    </h6>
+                                                    <b>APPS Please download the AFES2017 mobileapps from the App Store or Google
+                                                        Play for more information.</b>
+
+                                                    <br />
+                                                    <br />
+
+                                                    <h6>
+                                                        <b>BADGE</b>
+                                                    </h6>
+                                                    Admissions to AFES2017 meetings and social events are strictly by congress name badge.
+                                                    <br />
+                                                    <br />
+                                                    <i>An admin fee of US$100 is applicable for loss and re-print of badge.
+                                                        </i>
+
+                                                    <br />
+                                                    <br />
+
+                                                    <h6>
+                                                        <b>CERFITICATE OF PARTICIPATION</b>
+                                                    </h6>
+                                                    All participants will receive an e-certificate via email by 19 Nov 2017. If you do not receive your email by this date, you
+                                                    may contact the AFES2017 Secretariat.
+
+                                                    <br />
+                                                    <br />
+
+                                                    <h6>
+                                                        <b>TRADE EXHIBITORS</b>
+                                                    </h6>
+                                                    <table class="table table-bordered font-size-11">
+                                                        <tr>
+                                                            <th>Company</th>
+                                                            <th>Booth</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Diamond: Servier</td>
+                                                            <td>L1-01</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Gold: Novo Nordisk</td>
+                                                            <td>L1-09 / L1-10</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Gold: Sanofi</td>
+                                                            <td>L1-11</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Gold: T.T.O. Pharm</td>
+                                                            <td>L1-04 / L1-05</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Dr Reddy&#39;s Laboratories</td>
+                                                            <td>L1-19</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>GETZ Pharma</td>
+                                                            <td>L1-14</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Kalbe International</td>
+                                                            <td>L1-16</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>DKSH (Myanmar) Ltd</td>
+                                                            <td>L1-18</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Pfizer</td>
+                                                            <td>L1-15</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>San Lwin</td>
+                                                            <td>L1-07 </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Sun Pharma</td>
+                                                            <td>L1-08</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Workhardt</td>
+                                                            <td>L1-13</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>AFES &amp; Partners Village</td>
+                                                            <td>L2-01</td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                     </div>
-                  </div>
-               </div>
+                    </div>
+                </div>
             </div>
-         </div>
-      </div>
-   </div>
+        </div>
+    </div>
 </div>
+<script>
+    window.onbeforeunload = function () {
+         window.scrollTo(0, 0);
+      }
+   </script>

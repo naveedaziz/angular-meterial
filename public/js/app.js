@@ -98,6 +98,13 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                               title: "Gallery"
                         }
                   })
+               .state('galleryadd', {
+                  url: '/gallery-add',
+                  templateUrl: 'partials/gallery-add.html',
+                  params: {
+                     title: "Gallery"
+                  }
+               })
                   .state('sponsors', {
                         url: '/sponsors',
                         templateUrl: 'partials/sponsors.html',
@@ -189,11 +196,26 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 
 }])
    .controller('AppController', function ($scope, $state, $stateParams, $rootScope, $location, $http, Messages) {
-      $rootScope.$on('$stateChangeStart',
-         function (event, toState, toParams, fromState, fromParams) {
-            // do something
-            $('.main-content').scrollTop(0);
-         })
+     
+      $scope.hideMenu = function(){
+         if ($('#userMenu').parent().hasClass('show'))
+         $('#userMenu').parent().toggleClass('show'); $('#userdrop').toggleClass('show')
+      }
+      //$scope.fileName = false;
+      $scope.upload = function(){
+         var form = document.forms.namedItem("fileinfo");
+            oData = new FormData(form);
+         var oReq = new XMLHttpRequest();
+         oReq.open("POST", "upload", true);
+         oReq.onload = function (oEvent) {
+            if (oReq.status == 200) {
+               console.log('uploaded');
+            } else {
+               console.log('Error');
+            }
+         };
+         oReq.send(oData);
+      }
       $scope.my_agenda = [];
       $scope.userAgendaCheck = function(id){
          var found = false;

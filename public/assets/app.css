@@ -9,14 +9,14 @@
 /*----------------------------
 --------- 1. General ---------
 ----------------------------*/
-@import url("https://fonts.googleapis.com/css?family=Lato:300,400,700|Roboto:300,400,500,700");
+@import url("https://fonts.googleapis.com/css?family=Ubuntu:300,400,700|Ubuntu:300,400,500,700");
 html, html a, body { -webkit-font-smoothing: antialiased; }
 
-body { font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif; font-size: 14px; background-color: #f6f7fb; color: #888da8; line-height: 1.5; letter-spacing: 0.2px; overflow-x: hidden; width:100%;margin:0; padding:0; }
+body { font-family: 'Ubuntu', sans-serif; font-size: 14px; background-color: #fff; color: #888da8; line-height: 1.5; letter-spacing: 0.2px; overflow-x: hidden; width:100%;margin:0; padding:0; }
 
-h1, h2, h3, h4, h5, h6 { color: #515365; font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif; letter-spacing: 0.5px; font-weight: normal; line-height: 1.5; }
+h1, h2, h3, h4, h5, h6 { color: #515365; font-family: 'Ubuntu', sans-serif; letter-spacing: 0.5px; font-weight: normal; line-height: 1.5; }
 
-h1 a, h2 a, h3 a, h4 a, h5 a, h6 a { font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif; }
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a { font-family: 'Ubuntu', sans-serif; }
 
 h1 small, h2 small, h3 small, h4 small, h5 small, h6 small { font-weight: 300; color: #5c5f73; }
 
@@ -32,7 +32,7 @@ h5 { font-size: 16px; }
 
 h6 { font-size: 12px; }
 
-p { font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif; color: #888da8; line-height: 1.9; }
+p { font-family: 'Ubuntu', sans-serif; color: #888da8; line-height: 1.9; }
 
 .lead { font-size: 18px; }
 
@@ -41,7 +41,10 @@ ul { margin-bottom: 0px; }
 a { color: #0f9aee; }
 
 a:hover, a:focus { text-decoration: none; color: #0c7bbe; }
-
+.icons{
+   width: 83px;
+    padding: 6px;
+}
 a:focus { outline: none; }
 
 a.text-gray:hover, a.text-gray:focus, a.text-gray.active { color: #515365 !important; }
@@ -50,9 +53,9 @@ a.text-gray:hover, a.text-gray:focus, a.text-gray.active { color: #515365 !impor
 
 hr { border-top: 1px solid #e6ecf5; }
 
-.font-primary { font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif; }
+.font-primary { font-family: 'Ubuntu', sans-serif; }
 
-.font-secondary { font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif; }
+.font-secondary { font-family: 'Ubuntu', sans-serif; }
 
 .text-link:hover, .text-link:focus { text-decoration: underline; }
 
@@ -414,7 +417,7 @@ iframe { border: 0; }
 
 .mrg-btm-25 { margin-bottom: 25px !important; }
 
-.mrg-btm-30 { margin-bottom: 30px !important; }
+.mrg-btm-30 { margin-bottom: 30px !important;padding:0; }
 
 .mrg-btm-35 { margin-bottom: 35px !important; }
 
@@ -1698,7 +1701,7 @@ iframe { border: 0; }
 
 @media print { .page-container .main-content { padding: 10px 0px; } }
 
-@media only screen and (max-width: 992px) { .page-container .main-content { padding: 75px 5px 5px 5px; } }
+@media only screen and (max-width: 992px) { .page-container .main-content { padding: 65px 0px 0px 0px; } }
 
 .full-container { position: absolute; top: 65px; left: 280px; right: 0px; min-height: calc(100vh - 65px); transition: all 0.2s ease; -webkit-transition: all 0.2s ease; -moz-transition: all 0.2s ease; -o-transition: all 0.2s ease; -ms-transition: all 0.2s ease; }
 
@@ -1732,7 +1735,7 @@ iframe { border: 0; }
 
 .widget-news-1 .news-wrapper .user-thumbnail .user-info { display: inline-block; margin-left: 10px; color: #ffffff; padding-top: 5px; }
 
-.widget-news-1 .news-wrapper .user-thumbnail .user-info .name { display: block; font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif; font-size: 16px; }
+.widget-news-1 .news-wrapper .user-thumbnail .user-info .name { display: block; font-family: 'Ubuntu', sans-serif; font-size: 16px; }
 
 .widget-news-1 .news-wrapper .user-thumbnail .user-info .date { display: block; opacity: 0.8; }
 
@@ -1963,7 +1966,7 @@ iframe { border: 0; }
 
 .header-dark .side-nav .side-nav-inner .side-nav-logo a .logo-white { display: block; }
 
-.theme-toggle { position: absolute;    top: 330px; right: 20px; padding: 15px !important; z-index: 1001; font-size: 15px !important; color: #ffffff; background-color: #d91f29; }
+.theme-toggle { position: absolute;    top: 330px; right: 20px; padding: 15px !important; z-index: 1001; font-size: 15px; color: #ffffff; background-color: #d91f29; }
 
 .theme-toggle:hover { opacity: 0.85; }
 
@@ -2292,7 +2295,7 @@ table.dataTable.no-footer { border-bottom: 1px solid #e6ecf5; margin-bottom: 20p
 
 .nvd3 .nv-axis path { stroke: #e6ecf5; }
 
-.nvd3 text { font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif; fill: #888da8; }
+.nvd3 text { font-family: 'Ubuntu', sans-serif; fill: #888da8; }
 
 .nvtooltip { color: #888da8; border-color: #e6ecf5; background: #ffffff; border-radius: 0px; -webkit-box-shadow: 0 0px 6px rgba(0, 0, 0, 0.1) ; -moz-box-shadow: 0 0px 6px rgba(0, 0, 0, 0.1) ; box-shadow: 0 0px 6px rgba(0, 0, 0, 0.1) ; }
 
@@ -2323,7 +2326,7 @@ button:active:focus { outline: none; box-shadow: none; }
 
 button.disabled, button:disabled { opacity: 0.5; cursor: not-allowed; }
 
-.btn { cursor: pointer; font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif; letter-spacing: 1px; font-size: 13px; padding: 10px 20px; border-radius: 6px; margin-right: 5px; margin-bottom: 10px; transition: all 0.3s ease-in-out; -webkit-transition: all 0.3s ease-in-out; -moz-transition: all 0.3s ease-in-out; -o-transition: all 0.3s ease-in-out; -ms-transition: all 0.3s ease-in-out; }
+.btn { cursor: pointer; font-family: 'Ubuntu', sans-serif; letter-spacing: 1px; font-size: 13px; padding: 10px 20px; border-radius: 6px; margin-right: 5px; margin-bottom: 10px; transition: all 0.3s ease-in-out; -webkit-transition: all 0.3s ease-in-out; -moz-transition: all 0.3s ease-in-out; -o-transition: all 0.3s ease-in-out; -ms-transition: all 0.3s ease-in-out; }
 
 .btn.dropdown-toggle { margin-bottom: 0px; }
 
@@ -2343,7 +2346,9 @@ button.disabled, button:disabled { opacity: 0.5; cursor: not-allowed; }
 
 .btn-default.active:hover, .btn-default.active:focus { color: #515365; background-color: #edf2f8; border-color: #edf2f8; }
 
-.btn-primary { background-color: #7774e7; border-color: #7774e7; color: #ffffff; }
+.btn-primary {     background-color: #d91f29;
+    border-color: #d91f29;
+    color: #ffffff;}
 
 .btn-primary:hover, .btn-primary:focus { color: #ffffff; background-color: #8c8aeb; border-color: #8c8aeb; }
 
@@ -2931,7 +2936,7 @@ label.success { color: #37c936; }
 
 .portlet .show .dropdown-menu { transform: scale(1, 1); -webkit-transform: scale(1, 1); -moz-transform: scale(1, 1); -o-transform: scale(1, 1); -ms-transform: scale(1, 1); }
 
-.card-title { font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif; color: #515365; margin-top: 0px; margin-bottom: 15px; }
+.card-title { font-family: 'Ubuntu', sans-serif; color: #515365; margin-top: 0px; margin-bottom: 15px; }
 
 .card-media { position: relative; }
 
@@ -2960,7 +2965,7 @@ a.card { display: block; }
 
 a.card:hover, a.card:focus { -webkit-box-shadow: 0 7px 15px rgba(0, 0, 0, 0.075) ; -moz-box-shadow: 0 7px 15px rgba(0, 0, 0, 0.075) ; box-shadow: 0 7px 15px rgba(0, 0, 0, 0.075) ; }
 
-.page-title h1, .page-title h2, .page-title h3, .page-title h4, .page-title h5, .page-title h6, .page-title p, .page-title span { font-size: 20px; font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif; margin-top: 15px; margin-bottom: 25px; margin-top: 0px; }
+.page-title h1, .page-title h2, .page-title h3, .page-title h4, .page-title h5, .page-title h6, .page-title p, .page-title span { font-size: 20px; font-family: 'Ubuntu', sans-serif; margin-top: 15px; margin-bottom: 25px; margin-top: 0px; }
 
 .breadcrumb { padding: 0px 15px; margin-bottom: 0px; list-style: none; background-color: transparent; border-radius: 0px; }
 
@@ -3596,9 +3601,23 @@ glyphs.character-mapping { margin: 0 0 20px 0; padding: 20px 0 20px 30px; color:
 
 .gallery-item { display: block; position: relative; cursor: pointer; }
 
-.gallery-item .overlay { position: absolute; width: 100%; height: 100%; top: 0px; left: 0px; right: 0px; bottom: 0px; opacity: 0; visibility: hidden; background: #000; /* The Fallback */ background: rgba(0, 0, 0, 0.7); transition: all 0.4s ease-in-out; -webkit-transition: all 0.4s ease-in-out; -moz-transition: all 0.4s ease-in-out; -o-transition: all 0.4s ease-in-out; -ms-transition: all 0.4s ease-in-out; }
+.gallery-item .overlay { position: absolute;
+       position: absolute;
+    width: 100%;
+    height: 26%;
+    bottom: 12px;
+    left: 0px;
+    right: 0px;
+    bottom: 6px;
+    background: #000;
+    background: rgba(8, 8, 8, 0.33);
+    transition: all 0.4s ease-in-out;
+    -webkit-transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;
+    -ms-transition: all 0.4s ease-in-out;}
 
-.gallery-item .overlay .overlay-content { position: absolute; padding: 20px 15px; width: 100%; left: 0px; bottom: 0px; }
+.gallery-item .overlay .overlay-content { position: absolute; padding:2%; width: 100%; left: 0px; bottom: -8px; }
 
 .gallery-item .overlay .overlay-content .caption-title { color: #ffffff; margin: 0px; }
 
@@ -3655,18 +3674,27 @@ glyphs.character-mapping { margin: 0 0 20px 0; padding: 20px 0 20px 30px; color:
 .icon-tab{
    width:100%;
    background:#fff;
+   padding-top:10px; 
 }
 .icon-tab a{
-    background: rgba(217, 31, 41,1);
-    width: 48%;
+       background: rgb(255, 255, 255);
+    width: 33%;
     text-align: center;
+        float: left;
 }
 .icon-tab a i{
-   font-size: 85px;
+     font-size: 55px;
     color: #fff;
+    background: rgba(216, 31, 42, 0.78);
+    padding: 10px;
+    /* height: 11px; */
+    vertical-align: middle;
+    padding-top: 10px;
+    padding-bottom: 0px;
+    border-radius: 17px;
 }
 .icon-tab a h4{
-    color: #fff;
+        color: #000;
     font-size: 14px;
 }
 .schedule-detail{
@@ -3689,4 +3717,10 @@ glyphs.character-mapping { margin: 0 0 20px 0; padding: 20px 0 20px 30px; color:
     width: 100%;
     display: inline-block;
     text-align: center;
+}
+.btn-switch-view a:hover{
+  color: #fff !important;
+}
+.btn-switch-view a:focus {
+  color: #fff !important;
 }

@@ -1701,7 +1701,8 @@ iframe { border: 0; }
 
 @media print { .page-container .main-content { padding: 10px 0px; } }
 
-@media only screen and (max-width: 992px) { .page-container .main-content { padding: 65px 0px 0px 0px; } }
+@media only screen and (max-width: 992px) { .page-container .main-content { padding: 65px 0px 0px 0px;     width: 100%;
+    overflow: hidden;} }
 
 .full-container { position: absolute; top: 65px; left: 280px; right: 0px; min-height: calc(100vh - 65px); transition: all 0.2s ease; -webkit-transition: all 0.2s ease; -moz-transition: all 0.2s ease; -o-transition: all 0.2s ease; -ms-transition: all 0.2s ease; }
 

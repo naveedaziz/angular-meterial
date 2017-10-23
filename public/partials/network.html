@@ -1,8 +1,8 @@
 <div class="main-content" ng-init="get_data('appuser','users')">
     <div class="full-container">
-        <div class="email-app">
-            <div class="email-wrapper row">
-                <div class="email-list">
+        <div>
+            <div>
+                <div>
                     <!--<div class="email-list-tools">
                         <div class="form-group input-group no-mrg-btm">
                             <input type="text" class="form-control input-sm" placeholder="Search">
@@ -18,7 +18,7 @@
                                     <span class="fa fa-spinner fa-spin "></span> Loading
                                 </p>
                         <div class="chat">
-                            <div class="chat-user-list scrollable ps-container ps-theme-default ps-active-y" data-ps-id="600b22a2-c49e-0691-1a8f-5f29c083167a">
+                            <div class="chat-user-list" data-ps-id="600b22a2-c49e-0691-1a8f-5f29c083167a">
                                 <div class="chat-section">
                                     <a ui-sref="chat({from:user.id,name:user.name})" class="chat-user chat-toggle" ng-repeat="user in users">
                                         <img class="thumb-img" src="assets/thumb-1.jpg" alt="">
@@ -28,12 +28,6 @@
                                         </div>
                                         <i class="ei-email chat-icon"></i>
                                     </a>
-                                </div>
-                                <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;">
-                                    <div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div>
-                                </div>
-                                <div class="ps-scrollbar-y-rail" style="top: 0px; height: 602px; right: 0px;">
-                                    <div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 439px;"></div>
                                 </div>
                             </div>
                            

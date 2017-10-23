@@ -214,10 +214,10 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                   console.log($scope.textbox)
                   if (typeof ($scope.textbox) == 'undefined' || $scope.textbox == '')
                         return false;
-                  // $scope.messages.push({
-                  //       data: $scope.textbox,
-                  //       user: $scope.me
-                  // });
+                  $scope.messages.push({
+                        data: $scope.textbox,
+                        user: $scope.me
+                  });
                   Messages.send({
                         data: $scope.textbox,
                         to: $state.params.from

@@ -1,4 +1,4 @@
-var app = angular.module("myApp", ['ui.router', 'chat', 'jtt_youtube']);
+var app = angular.module("myApp", ['ui.router', 'chat', 'jtt_youtube','ngSanitize']);
 app.constant('config', {
       rltm: {
             service: "pubnub",
@@ -70,6 +70,20 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                               title: "Scientific Programe"
                         }
                   })
+                  .state('ask', {
+                     url: '/ask',
+                     templateUrl: 'partials/ask.html',
+                     params: {
+                        title: "Ask a Moderator"
+                     }
+                  })
+               .state('moderator', {
+                  url: '/moderator',
+                  templateUrl: 'partials/moderator.html',
+                  params: {
+                     title: "Moderator Schedule"
+                  }
+               })
                   .state('agenda_detail', {
                         url: '/agenda_detail/:id',
                         templateUrl: 'partials/agenda_detail.html',
@@ -77,6 +91,21 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                            title: "Scientific Programe Detail"
                         }
                   })
+               .state('question', {
+                  url: '/question/:id/:name',
+                  templateUrl: 'partials/question.html',
+                  params: {
+                     title: "Question"
+                  }
+               })
+               .state('questionlist', {
+                  url: '/questionlist/:id/:name',
+                  templateUrl: 'partials/questionlist.html',
+                  params: {
+                     title: "Questions"
+                  }
+               })
+            
                   .state('network', {
                         url: '/network',
                         templateUrl: 'partials/network.html',
@@ -185,13 +214,13 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                   console.log($scope.textbox)
                   if (typeof ($scope.textbox) == 'undefined' || $scope.textbox == '')
                         return false;
-                  $scope.messages.push({
-                        data: $scope.textbox,
-                        user: $scope.me
-                  });
+                  // $scope.messages.push({
+                  //       data: $scope.textbox,
+                  //       user: $scope.me
+                  // });
                   Messages.send({
                         data: $scope.textbox,
-                        to: $state.params.from
+                        channel: $state.params.from
                   });
 
                   $scope.status = "sending";
@@ -205,9 +234,51 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
       }])
       .controller('AppController', function ($scope, $state, $stateParams, $rootScope, $location, $http, Messages, youtubeFactory, $sce) {
 
-            $scope.hideMenu = function(){
+      $scope.hideMenu = function(){
          if ($('#userMenu').parent().hasClass('show'))
          $('#userMenu').parent().toggleClass('show'); $('#userdrop').toggleClass('show')
+      }
+      $scope.currentSchedule = function (schedule){
+         console.log(schedule);
+         if (schedule == 'Fri (10th Nov)' || schedule == '10:20-12:0'){
+            return true
+         }
+         return false;
+      }
+      $scope.questionInit = function(){
+        $scope.questionName =  $state.params.name;
+      }
+      $scope.question_list = function(){
+         console.log(123)
+         $scope.loadingData = true;
+         var table = clientRef.getTable('moderator_question');
+         table.where({schedule_id:$state.params.id}).read().then(function (data) {
+            $scope.questionList = data;
+            $scope.loadingData = false;
+            $scope.$apply();
+         }, $scope.failure);
+      }
+      $scope.strikeThrogh = function(id){
+         var table = clientRef.getTable('moderator_question');
+         var data = { id: id, status: true };
+         table.update(data)
+            .done(function (insertedItem) {
+               $scope.$apply();
+            }, $scope.failure);
+      }
+      $scope.doneSendModerator = false;
+      $scope.askModerator = function(){
+         $scope.loadingData = true;
+         $scope.doneSendModerator = false;
+         var table = clientRef.getTable('moderator_question');
+         var data = { name: $scope.user_info.name, user_id: $scope.user_info.id, question: $('#question').val(), schedule_id: $state.params.id, schedule_title: $state.params.name,status:false}
+         table.insert(data)
+            .done(function (insertedItem) {
+               console.log(insertedItem);
+               $scope.loadingData = false;
+               $scope.doneSendModerator = true;
+               $scope.$apply()
+            }, $scope.failure);
       }
       $scope.likeAdd = function(id,counts){
          var table = clientRef.getTable('gallery');
@@ -313,19 +384,19 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                               }, $scope.failure);
                   }
             }
-            $scope.messages = [];
-            // Receive Messages
-            Messages.receive(function (message) {
-                  $scope.messages.push(message);
-                  console.log($scope.messages)
-            });
-            // Send Messages
-            $scope.send = function () {
-                  console.log(Messages)
-                  Messages.send({
-                        data: $scope.textbox
-                  });
-            };
+            // $scope.messages = [];
+            // // Receive Messages
+            // Messages.receive(function (message) {
+            //       $scope.messages.push(message);
+            //       console.log($scope.messages)
+            // });
+            // // Send Messages
+            // $scope.send = function () {
+            //       console.log(Messages)
+            //       Messages.send({
+            //             data: $scope.textbox
+            //       });
+            // };
 
             $scope.updateTitle = function (state, pre) {
                   $scope.title = pre.params.title;
@@ -533,7 +604,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                               if (data[index].dated) {
                                     var dated_pre = data[index].dated.split('T');
                                     var date = dated_pre[0].replace('"', '');
-                                    var dated = moment(date + ' ' + data[index].start_hours + ':' + data[index].start_minutes).format('ddd (Do MMM)');
+                                    var dated = moment(date + ' ' + data[index].start_hours + ':' + data[index].start_minutes).add(1, 'day').format('ddd (Do MMM)');
                                     if (!$scope.schedule[dated]) {
                                           $scope.schedule[dated] = {};
                                     }

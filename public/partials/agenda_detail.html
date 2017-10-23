@@ -11,7 +11,7 @@
                         <h4 ng-if="schedule_info.name">
                            <i class="ti-timer"></i> {{returnDated(schedule_info.dated)}} At {{returnTimeFormat(schedule_info.start_hours+':'+schedule_info.start_minutes+'-'+schedule_info.end_hours+':'+schedule_info.end_minutes)}}</h4>
                         <hr ng-if="schedule_info.name" />
-                        <p ng-if="schedule_info.description">{{schedule_info.description}}</p>
+                        <p ng-if="schedule_info.description" ng-bind-html="schedule_info.description"></p>
                         <div ng-if="faculty_detail">
                             <h5><b>Faculty</b></h5>
                             <ul class="schedule-detail">
@@ -21,7 +21,7 @@
                                 </li>
                             </ul>
                             <div class="clearfix"></div>
-                            <a ui-sref="chat({from:schedule_info.id,name:schedule_info.name})" class="btn btn-primary" style="width:100%" ng-if="faculty_detail.length">Ask a Moderator</a>
+                            <a ui-sref="ask" class="btn btn-primary" style="width:100%" ng-if="faculty_detail.length">Ask a Moderator</a>
                         </div>
                     </div>
                 </div>
@@ -29,3 +29,11 @@
         </div>
     </div>
 </div>
+<style>
+   p{
+    font-weight: bold;
+    color: #515466;
+    background: rgba(217, 31, 41, 0.07);
+    padding: 5px;
+   }
+</style>

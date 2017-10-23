@@ -12,12 +12,13 @@ angular.module('chat').service( 'Messages', [ 'ChatCore', function(ChatCore) {
 
     // Send Messages
     self.send = function(message) {
-
+       console.log(message)
         if (!message.data) return;
-
+        
         ChatCore.publish({
             to: message.to || 'global',
-            message: message.data,   
+            message: message.data, 
+            channel:message.channel,  
             user: ChatCore.user()
         });
 

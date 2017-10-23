@@ -220,7 +220,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                   // });
                   Messages.send({
                         data: $scope.textbox,
-                        channel: $state.params.from
+                        to: $state.params.from
                   });
 
                   $scope.status = "sending";
@@ -582,7 +582,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                   if (date) {
                         var dated_pre = date.split('T');
                         var date = dated_pre[0].replace('"', '');
-                        return moment(date).format('ddd (Do MMM)');
+                        return moment(date).add(1,'day').format('ddd (Do MMM)');
                   }
             }
             $scope.dateFormat = function(date){

@@ -3730,6 +3730,5 @@ glyphs.character-mapping { margin: 0 0 20px 0; padding: 20px 0 20px 30px; color:
   text-decoration: line-through;
 }
 .body-scroll-stop{
-    height: 100%;
-    overflow: hidden;
+    position:fixed;
 }

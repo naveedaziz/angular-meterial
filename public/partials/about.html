@@ -83,8 +83,8 @@
                                     <div class="feed-header">
                                        <ul class="list-unstyled list-info">
                                           <li class="pdd-vertical-15 border bottom" ng-repeat="committee in organization_commitees">
-                                             <img class="thumb-img img-circle" src="images/icons/user.svg" alt="No Image Available" ng-if="!committee.image" />
-                                             <img class="thumb-img img-circle" src="assets/thumb-1.jpg" alt="" ng-if="committee.image" />
+                                           
+                                             <img class="thumb-img img-circle" ng-src="main_images/Speakers/{{replaceSlash(committee.name)}}.jpg" alt="" />
                                              <div class="info">
                                                 <a href="" class="title no-pdd-vertical text-semibold inline-block">{{committee.name}}</a>
                                                 <p class="text-muted">{{committee.designation}}</p>

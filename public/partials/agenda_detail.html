@@ -12,17 +12,30 @@
                            <i class="ti-timer"></i> {{returnDated(schedule_info.dated)}} At {{returnTimeFormat(schedule_info.start_hours+':'+schedule_info.start_minutes+'-'+schedule_info.end_hours+':'+schedule_info.end_minutes)}}</h4>
                         <hr ng-if="schedule_info.name" />
                         <p ng-if="schedule_info.description" ng-bind-html="schedule_info.description"></p>
+                        <div ng-if="organizers">
+                           <h5><b>Chairperson</b></h5>
+                           <ul class="schedule-detail">
+                              <li ng-repeat="faculty in organizers" style="min-height:auto;">
+                                 <img src="main_images/Speakers/{{replaceSlash(faculty)}}.jpg" width="100%" style="padding:5px;">
+                                 <span>{{faculty}}</span>
+                              </li>
+                           </ul>
+                           <div class="clearfix"></div>
+
+                        </div>
+                        <br>
                         <div ng-if="faculty_detail">
                             <h5><b>Faculty</b></h5>
                             <ul class="schedule-detail">
-                                <li ng-repeat="faculty in faculty_detail">
-                                 <img src="images/icons/faculty.svg">
-                                 <img src="main_images/Speakers/{{faculty}}.jpg" width="100%"> {{faculty}}
+                                <li ng-repeat="faculty in faculty_detail" style="min-height:auto;">
+                                 <img src="main_images/Speakers/{{replaceSlash(faculty)}}.jpg" width="100%" style="padding:5px;"> 
+                              <span>{{faculty}}</span>
                                 </li>
                             </ul>
                             <div class="clearfix"></div>
                             <a ui-sref="ask" class="btn btn-primary" style="width:100%" ng-if="faculty_detail.length">Ask a Moderator</a>
                         </div>
+                        
                     </div>
                 </div>
             </div>

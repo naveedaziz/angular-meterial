@@ -1,4 +1,4 @@
- <div class="side-nav" onclick="$('.app').toggleClass('is-collapsed')">
+ <div class="side-nav" onclick="$('.app').toggleClass('is-collapsed');$('body').toggleClass('body-scroll-stop')">
                 <div class="side-nav-inner">
                     <div class="side-nav-logo">
                         <a href="/">
@@ -11,7 +11,7 @@
                            
                         </div>
                     </div>
-                    <ul class="side-nav-menu scrollable ps-container ps-theme-default" data-ps-id="25564839-924f-4228-f4e7-1d23169f52b2">
+                    <ul class="side-nav-menu   ps-theme-default" data-ps-id="25564839-924f-4228-f4e7-1d23169f52b2">
                         <li class="nav-item active">
                             <a class="mrg-top-30" ui-sref="home">
                                 <span class="icon-holder">
@@ -177,7 +177,7 @@
                                      <span class="icon-holder">
                                              <i class="ti-video-camera"></i>
                                          </span>
-                                     <span class="title">Ask a Moderator</span>
+                                     <span class="title">Ask Moderator</span>
                                      <span class="arrow">
                                              <!--<i class="ti-angle-right"></i>-->
                                          </span>
@@ -189,6 +189,17 @@
                                              <i class="ti-video-camera"></i>
                                          </span>
                                      <span class="title">Moderator</span>
+                                     <span class="arrow">
+                                             <!--<i class="ti-angle-right"></i>-->
+                                         </span>
+                                 </a>
+                        </li>
+                        <li class="nav-item dropdown">
+                           <a class="dropdown-toggle" ui-sref="exhibition">
+                                     <span class="icon-holder">
+                                             <i class="ti-video-camera"></i>
+                                         </span>
+                                     <span class="title">Exhibition</span>
                                      <span class="arrow">
                                              <!--<i class="ti-angle-right"></i>-->
                                          </span>

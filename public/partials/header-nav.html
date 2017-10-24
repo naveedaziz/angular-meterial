@@ -2,7 +2,7 @@
     <div class="header-container">
         <ul class="nav-left">
             <li ng-if="user_info">
-                <a class="side-nav-toggle" href="javascript:void(0);" onclick="$('.app').toggleClass('is-collapsed')">
+                <a class="side-nav-toggle" href="javascript:void(0);" onclick="$('.app').toggleClass('is-collapsed');$('body').toggleClass('body-scroll-stop')">
                     <i class="ti-view-grid"></i>
                 </a>
             </li>
@@ -126,9 +126,9 @@
                     </li>
                     <!-- <li role="separator" class="divider"></li> -->
                   <li ng-if="user_info">
-                     <a ui-sref="home" ng-click="hideMenu()">
+                     <a ui-sref="registerupdate" ng-click="hideMenu()">
                             <i class="ti-user pdd-right-10"></i>
-                            <span>Welcome {{user_info.name}}</span>
+                            <span>Edit Profile</span>
                         </a>
                   </li>
                   <li ng-if="user_info">
@@ -144,6 +144,7 @@
                         </a>
                     </li>
                 </ul>
+                
             </li>
             <!--<li class="notifications dropdown">
                 <a onclick="$(this).parent().toggleClass('show');$('#userdrop').toggleClass('show')" href="javascript:void(0)" class="dropdown-toggle"

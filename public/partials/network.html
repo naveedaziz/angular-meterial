@@ -21,7 +21,8 @@
                             <div class="chat-user-list" data-ps-id="600b22a2-c49e-0691-1a8f-5f29c083167a">
                                 <div class="chat-section">
                                     <a ui-sref="chat({from:user.id,name:user.name})" class="chat-user chat-toggle" ng-repeat="user in users">
-                                        <img class="thumb-img" src="assets/thumb-1.jpg" alt="">
+                                        <img ng-if="!user.image" class="thumb-img" src="images/icons/user.svg" alt="">
+                                        <img ng-if="user.image" class="thumb-img" src="https://event-app-gallery.herokuapp.com/images/{{user.image}}" alt="">
                                         <div class="user-info">
                                             <span class="user-name">{{user.name}}</span>
                                             <span class="prev-chat">{{user.email}}</span>

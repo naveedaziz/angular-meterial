@@ -28,6 +28,13 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                               title: "Register to AFES"
                         }
                   })
+               .state('registerupdate', {
+                  url: '/register-edit',
+                  templateUrl: 'partials/register-edit.html',
+                  params: {
+                     title: "Update Profile"
+                  }
+               })
                   .state('chat', {
                         url: '/chat/:from/:name',
                         templateUrl: 'partials/chat.html',
@@ -134,6 +141,14 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                               title: "Gallery Add"
                         }
                   })
+               .state('exhibition', {
+                  url: '/exhibition',
+                  templateUrl: 'partials/exhibition.html',
+                  params: {
+                     title: "Exhibition Floor Plan"
+                  }
+               })
+            
                   .state('sponsors', {
                         url: '/sponsors',
                         templateUrl: 'partials/sponsors.html',
@@ -238,6 +253,9 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
          if ($('#userMenu').parent().hasClass('show'))
          $('#userMenu').parent().toggleClass('show'); $('#userdrop').toggleClass('show')
       }
+      $scope.replaceSlash = function(name){
+         return name.replace('/','');
+      }
       $scope.currentSchedule = function (schedule){
          console.log(schedule);
          if (schedule == 'Fri (10th Nov)' || schedule == '10:20-12:0'){
@@ -318,6 +336,47 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                }
             };
             oReq.send(oData);
+         }
+
+      }
+      $scope.registerUserUpdate = function () {
+         if ($scope.user_info) {
+            $scope.galleryLink = false;
+            $scope.loadingData = true;
+            if ($('#imgUploader').val() != ''){
+               var form = document.forms.namedItem("fileinfo");
+               oData = new FormData(form);
+               var oReq = new XMLHttpRequest();
+               oReq.open("POST", "https://event-app-gallery.herokuapp.com/upload", true);
+               oReq.onload = function (oEvent) {
+                  if (oReq.status == 200) {
+                     console.log(oEvent.currentTarget.responseText);
+                     $scope.user_info.image = oEvent.currentTarget.responseText;
+                     var table = clientRef.getTable('appuser');
+                     var data = { id: $scope.user_info.id, designation: $scope.user_info.designation, phone: $scope.user_info.phone, image: $scope.user_info.image };
+                        console.log(data)
+                     table.update(data)
+                        .done(function (insertedItem) {
+                           $scope.loadingData = false;
+                           localStorage.setItem('user_info',JSON.stringify($scope.user_info));
+                           $scope.$apply()
+                        }, $scope.failure);
+                  } else {
+                     console.log('Error');
+                  }
+               };
+               oReq.send(oData);
+            }else{
+               var table = clientRef.getTable('appuser');
+               var data = { id: $scope.user_info.id, designation: $scope.user_info.designation, phone: $scope.user_info.phone, image: $scope.user_info.image };
+               table.update(data)
+                  .done(function (insertedItem) {
+                     $scope.loadingData = false;
+                     localStorage.setItem('user_info', JSON.stringify($scope.user_info));
+                     $scope.$apply()
+                  }, $scope.failure);
+            }
+            
          }
 
       }
@@ -433,13 +492,23 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                               //       $scope[scope].faculty = JSON.parse($scope[scope].faculty);
                               // }
                               $scope.faculty_detail = JSON.parse($scope[scope].faculty);
+                              $scope.organizers = JSON.parse($scope[scope].organizer);
                               console.log($scope.faculty_detail);
                               $scope.$apply();
                         }, $scope.failure);
                   }
             }
             // Edit data end 
-
+            $scope.deleteRow = function(table,id){
+               $scope.loadingData = true;
+               var table = clientRef.getTable(table);
+               table.del({ id: id })
+                  .done(function (insertedItem) {
+                     $scope.loadingData = false;
+                     $scope.userAgenda();
+                     $scope.$apply()
+                  }, $scope.failure);
+            }
 
             // Insert Data in database Start -----
             $scope.insert_data = function (table, data, redirect) {

@@ -29,7 +29,7 @@
                                                         <div class="overlay-content">
                                                             <div class="inline-block">
                                                                 <h4 class="caption-title">{{gallery.name}}</h4>
-                                                                <span class="caption-date">{{dateFormat(gallery.createdAt)}}</span>
+                                                                <span class="caption-date">{{gallery.user_name}} {{dateFormat(gallery.createdAt)}}</span>
                                                             </div>
                                                             <div class="inline-block pull-right pdd-top-20 font-size-16" ng-click="likeAdd(gallery.id,gallery.likes);gallery.likes = gallery.likes +1">
                                                                 <i class="ti-heart text-white"></i>

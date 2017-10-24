@@ -1,31 +1,33 @@
 <div class="main-content" ng-init="userAgenda()">
     <div class="full-container">
-        <div class="email-app">
-            <div class="email-wrapper row">
-                <div class="email-list">
+        <div class="">
+            <div class="">
+                <div class="">
                    
                     <div id="chat" role="tabpanel" class="tab-pane fade in active show" aria-expanded="true">
                             <p class="col-md-12 h5 text-danger text-center padding-25" ng-if="loadingData">
                                     <span class="fa fa-spinner fa-spin "></span> Loading
                                 </p>
                         <div class="chat">
-                            <div class="chat-user-list scrollable ps-container ps-theme-default ps-active-y" data-ps-id="600b22a2-c49e-0691-1a8f-5f29c083167a">
-                                <div class="chat-section">
-                                    <a ui-sref="chat({from:user.id})" class="chat-user chat-toggle" ng-repeat="agenda in my_agenda" ng-if="agenda.name">
+                            <div class="chat-user-list ps-theme-default ps-active-y" data-ps-id="600b22a2-c49e-0691-1a8f-5f29c083167a">
+                                <div ng-repeat="agenda in my_agenda">
+                                    <a style="width: 84%;
+    padding: 15px;
+    float:left;
+    margin: 0;" ui-sref="agenda_detail({id:agenda.agenda_id})" class="chat-user chat-toggle"  ng-if="agenda.name">
                                        <i class="thumb-img ei-link" style="font-size:27px;"></i>
                                         <div class="user-info">
                                             <span class="user-name">{{agenda.name}}</span>
                                             <span class="prev-chat">{{agenda.date}} At {{returnTimeFormat(agenda.time)}}</span>
                                         </div>
                                     </a>
+                                    <i ng-click="deleteRow('agenda',agenda.id)" class="ei-file-delete" style="font-size: 20px;
+    float: right;
+    margin-right: 15px;
+    margin-top: 15px;"></i>
                                 </div>
                                 <p class="padding-20" style="text-align:center" ng-if="!loadingData && !my_agenda.length">There is no agenda avalible now</p>
-                                <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;">
-                                    <div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div>
-                                </div>
-                                <div class="ps-scrollbar-y-rail" style="top: 0px; height: 602px; right: 0px;">
-                                    <div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 439px;"></div>
-                                </div>
+                               
                             </div>
                            
                         </div>

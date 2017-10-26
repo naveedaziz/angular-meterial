@@ -8,6 +8,24 @@ app.constant('config', {
             }
       }
 });
+var checkImg = function (ig) {
+   $(ig).attr('src', 'images/icons/user.svg');
+}
+app.directive('checkImage', function ($http) {
+   return {
+      restrict: 'A',
+      link: function (scope, element, attrs) {
+         attrs.$observe('ngSrc', function (ngSrc) {
+            $http.get(ngSrc).success(function () {
+               alert('image exist');
+            }).error(function () {
+               alert('image not exist');
+               element.attr('src', '/images/icons/user.svg'); // set default image
+            });
+         });
+      }
+   };
+});
 app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
             $urlRouterProvider.otherwise('/');
 
@@ -299,7 +317,21 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
             }, $scope.failure);
       }
       $scope.likeAdd = function(id,counts){
+         console.log(counts)
          var table = clientRef.getTable('gallery');
+         if (!counts){
+            counts = [1,2];
+         }
+         obj = counts.filter(function (v) {
+            return v === $scope.user_info.id; // Filter out the appropriate one
+         }).length;
+         if (obj){
+            counts.splice(counts.indexOf($scope.user_info.id), 1);
+         }else{
+            counts.push($scope.user_info.id);
+         }
+         console.log(counts);
+         return true;
          counts = parseInt(counts) + 1;
          var data = {id: id, likes: counts};
          table.update(data)
@@ -467,9 +499,11 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
             $scope.get_data = function (table, scope) {
                   var filter = {};
                   $scope.loadingData = true;
-                  var table = clientRef.getTable(table);
-                  table.where(filter).read().then(function (data) {
-                        $scope[scope] = data;
+                  $http({
+                     method: 'GET',
+                     url: 'https://fishry-app-services.azurewebsites.net/api/table_read?table=' + table
+                  }).then(function successCallback(response) {
+                     $scope[scope] = response.data;
                         $scope.loadingData = false;
                         $scope.$apply();
                   }, $scope.failure);
@@ -566,6 +600,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                $location.path('/signin');
             }
             $scope.login = function () {
+               console.log('in');
                $scope.loadingData = true;
                   $scope.signinError = false;
                   console.log($scope.user);
@@ -669,11 +704,12 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                         // console.log(data);
                         $scope.schedule = {};
                         for (var index in data) {
-                              console.log($scope.schedule.id);
                               if (data[index].dated) {
                                     var dated_pre = data[index].dated.split('T');
                                     var date = dated_pre[0].replace('"', '');
-                                    var dated = moment(date + ' ' + data[index].start_hours + ':' + data[index].start_minutes).add(1, 'day').format('ddd (Do MMM)');
+                                    console.log(date + ' ' + data[index].start_hours + ':' + data[index].start_minutes)
+                                    console.log(moment('2017-11-08').format())
+                                    var dated = moment(date).add(1, 'day').format('ddd (Do MMM)');
                                     if (!$scope.schedule[dated]) {
                                           $scope.schedule[dated] = {};
                                     }
@@ -747,6 +783,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
             $scope.getYoutubeChannelVideos = function () {
                   youtubeFactory.getVideosFromChannelById({
                         channelId: "UCsTcErHg8oDvUnTzoqsYeNw",
+                        //channelId: "UCsAi7trEaEjeMhldQnH6Fg",
                         key: 'AIzaSyAJtgJaxJhLRjKYXXpoMX2dSW9edAm46Ss'
                   }).then(function (_data) {
                         //on success 

@@ -24,14 +24,14 @@
                   <div class="row masonry-grid" data-pswp-uid="1" style="position: relative;">
                      <figure ng-repeat="gallery in gallerys" class="col-md-3 masonry-brick mrg-btm-10" style="padding:0 0;">
                         <a href="javascript:void(0)" class="gallery-item" data-size="700x500">
-                                                    <img class="img-fluid" src="https://event-app-gallery.herokuapp.com/images/{{gallery.image}}" alt="">
+                                                    <img style="min-height:180px" class="img-fluid" src="https://event-app-gallery.herokuapp.com/images/{{gallery.image}}" alt="">
                                                     <div class="overlay">
                                                         <div class="overlay-content">
                                                             <div class="inline-block">
                                                                 <h4 class="caption-title">{{gallery.name}}</h4>
                                                                 <span class="caption-date">{{gallery.user_name}} {{dateFormat(gallery.createdAt)}}</span>
                                                             </div>
-                                                            <div class="inline-block pull-right pdd-top-20 font-size-16" ng-click="likeAdd(gallery.id,gallery.likes);gallery.likes = gallery.likes +1">
+                                                            <div class="inline-block pull-right pdd-top-20 font-size-16" ng-click="likeAdd(gallery.id,gallery.likes);">
                                                                 <i class="ti-heart text-white"></i>
                                                                 <span class="text-white">{{gallery.likes}}</span>
                                                             </div>

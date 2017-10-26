@@ -2990,7 +2990,7 @@ a.card:hover, a.card:focus { -webkit-box-shadow: 0 7px 15px rgba(0, 0, 0, 0.075)
 
 .chat .chat-user-list { transition: all 0.2s ease-out; -webkit-transition: all 0.2s ease-out; -moz-transition: all 0.2s ease-out; -o-transition: all 0.2s ease-out; -ms-transition: all 0.2s ease-out; position: relative; left: 0; height: calc(100vh - 65px); }
 
-.chat .chat-user-list .chat-section { margin-bottom: 50px; }
+.chat .chat-user-list .chat-section { margin-bottom: 0; }
 
 .chat .chat-user-list .chat-section .chat-title { padding: 0px 20px 10px 20px; }
 
@@ -3449,7 +3449,12 @@ glyphs.character-mapping { margin: 0 0 20px 0; padding: 20px 0 20px 30px; color:
 
 .email-app .email-wrapper .email-list .email-list-tools .tools > li > a:hover, .email-app .email-wrapper .email-list .email-list-tools .tools > li > a:focus { color: #0f9aee; }
 
-.email-app .email-wrapper .email-list .email-list-wrapper { position: relative; min-height: calc(100vh - 101px); overflow-y: scroll; max-height: calc(100vh - 101px); }
+.email-app .email-wrapper .email-list .email-list-wrapper {
+    position: relative;
+    min-height: 100%;
+    overflow-y: scroll;
+    max-height: 100%;
+ }
 
 .email-app .email-wrapper .email-list .email-list-wrapper .email-list-item { padding-left: 0px; list-style: none; }
 

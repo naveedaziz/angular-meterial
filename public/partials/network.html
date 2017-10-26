@@ -1,18 +1,18 @@
 <div class="main-content" ng-init="get_data('appuser','users')">
-    <div class="full-container">
-        <div>
-            <div>
-                <div>
-                    <!--<div class="email-list-tools">
-                        <div class="form-group input-group no-mrg-btm">
-                            <input type="text" class="form-control input-sm" placeholder="Search">
-                            <div class=" input-group-addon padding-3">
+      <div class="full-container">
+         <div class="email-app">
+            <div class="email-wrapper row">
+               <div class="email-list" style="overflow-y:auto;">
+                  <div class="email-list-tools">
+                  <div class="form-group input-group no-mrg-btm">
+                     <input style="height:50px" ng-model="filterName" type="text" class="form-control input-sm" placeholder="Search">
+                     <!--<div class=" input-group-addon padding-3">
                                 <button class="btn btn-sm" type="submit">
                                     <i class="ti-search"></i>
                                 </button>
-                            </div>
-                        </div>
-                    </div>-->
+                            </div>-->
+                  </div>
+                  </div>
                     <div id="chat" role="tabpanel" class="tab-pane fade in active show" aria-expanded="true">
                             <p class="col-md-12 h5 text-danger text-center padding-25" ng-if="loadingData">
                                     <span class="fa fa-spinner fa-spin "></span> Loading
@@ -20,9 +20,9 @@
                         <div class="chat">
                             <div class="chat-user-list" data-ps-id="600b22a2-c49e-0691-1a8f-5f29c083167a">
                                 <div class="chat-section">
-                                    <a ui-sref="chat({from:user.id,name:user.name})" class="chat-user chat-toggle" ng-repeat="user in users">
-                                        <img ng-if="!user.image" class="thumb-img" src="images/icons/user.svg" alt="">
-                                        <img ng-if="user.image" class="thumb-img" src="https://event-app-gallery.herokuapp.com/images/{{user.image}}" alt="">
+                                    <a ui-sref="chat({from:user.id,name:user.name})" class="chat-user chat-toggle" ng-repeat="user in users | filter:filterName">
+                                        <img onerror="checkImg(this)" ng-if="!user.image" class="thumb-img" src="images/icons/user.svg" alt="">
+                                        <img onerror="checkImg(this)" ng-if="user.image" class="thumb-img" src="https://event-app-gallery.herokuapp.com/images/{{user.image}}" alt="">
                                         <div class="user-info">
                                             <span class="user-name">{{user.name}}</span>
                                             <span class="prev-chat">{{user.email}}</span>

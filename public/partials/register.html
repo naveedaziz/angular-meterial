@@ -12,7 +12,7 @@
                                             <div class="card-body">
                                                 <div class="pdd-horizon-30 pdd-vertical-30">
                                                     <div class="mrg-btm-30">
-                                                        <img class="img-responsive inline-block" src="assets/images/logo/logo.png" alt="">
+                                                      <img class="img-responsive inline-block" width="100px" src="assets/logo.png" alt="">
                                                         <h2 class="inline-block pull-right no-mrg-vertical pdd-top-15">Register</h2>
                                                     </div>
 
@@ -21,21 +21,22 @@
                                                     </div>
 
                                                     <p class="mrg-btm-15 font-size-13">Please fill the form below and get your self register for the event</p>
-                                                    <form class="ng-pristine ng-valid" ng-submit="registerUser()">
+                                                    <form  novalidate class="ng-pristine ng-valid" ng-submit="registerUser()" name="signupForm">
                                                         <div class="form-group">
-                                                            <input required type="text" id="register_name" ng-model="register.name" class="form-control" placeholder="Name">
+                                                            <input name="name" required type="text" id="register_name" ng-model="register.name" class="form-control" placeholder="Name">
                                                         </div>
                                                         <div class="form-group">
-                                                            <input required type="email" id="register_email" ng-model="register.email" class="form-control" placeholder="Email">
+                                                            <input   name="email" required type="email" id="register_email" ng-model="register.email" class="form-control" placeholder="Email">
+                                                            <span class="text-danger" ng-if="signupForm.email.$viewValue && !signupForm.email.$valid">Please enter valid email address</span>
                                                         </div>
                                                         <div class="form-group">
-                                                            <input required type="password" id="register_password" ng-model="register.password" class="form-control" placeholder="Password">
+                                                            <input name="password" required type="password" id="register_password" ng-model="register.password" class="form-control" placeholder="Password">
                                                         </div>
                                                         <div class="form-group">
-                                                            <input  type="text" id="register_designation" ng-model="register.designation" class="form-control" placeholder="Designation">
+                                                            <input  name="designation"  type="text" id="register_designation" ng-model="register.designation" class="form-control" placeholder="Designation">
                                                         </div>
                                                         <div class="mrg-top-20 text-right">
-                                                            <button class="btn btn-info btn-block">Register</button>
+                                                            <button type="submit" ng-disabled="!signupForm.$valid" class="btn btn-info btn-block">Register</button>
                                                         </div>
 
                                                         <br />

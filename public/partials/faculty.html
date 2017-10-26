@@ -1,27 +1,27 @@
-<div class="main-content" ng-init="get_data('faculty','facultys')">
+<div class="main-content" ng-init="get_data('speaker','facultys')">
     <div class="full-container">
         <div class="email-app">
             <div class="email-wrapper row">
                 <div class="email-list" style="overflow-y:auto;">
-                    <!--<div class="email-list-tools">
-                        <div class="form-group input-group no-mrg-btm">
-                            <input type="text" class="form-control input-sm" placeholder="Search">
-                            <div class=" input-group-addon padding-3">
+                  <div class="email-list-tools">
+                     <div class="form-group input-group no-mrg-btm">
+                        <input style="height:50px" ng-model="filterName" type="text" class="form-control input-sm" placeholder="Search">
+                        <!--<div class=" input-group-addon padding-3">
                                 <button class="btn btn-sm" type="submit">
                                     <i class="ti-search"></i>
                                 </button>
-                            </div>
-                        </div>
-                    </div>-->
+                            </div>-->
+                     </div>
+                  </div>
                     <div class="email-list-wrapper scrollable ps-theme-default ps-active-y" data-ps-id="58758e10-f15b-ea97-70c0-6c1ebe3ba29e">
                         <div class="list-view-group-container">
                             <p class="col-md-12 h5 text-danger text-center padding-25" ng-if="loadingData">
                                 <span class="fa fa-spinner fa-spin "></span> Loading
                             </p>
                             <ul class="email-list-item list-unstyled list-info">
-                                <li class="email-item" ng-repeat="faculty in facultys">
+                                <li class="email-item" ng-repeat="faculty in facultys | filter:filterName">
                                     <!-- {{faculty}} -->
-                                    <img  class="thumb-img img-circle" ng-src="main_images/Speakers/{{replaceSlash(faculty.name)}}.jpg" alt="">
+                                    <img onerror="checkImg(this)"  class="thumb-img img-circle"  ng-src="{{ 'main_images/Speakers/'+replaceSlash(faculty.name)+'.jpg'}}" alt="">
                                     <div class="info">
                                         <a onclick="$(this).parent().children('.descitpions').toggleClass('hidden')" href="javascript:void(0)" class="title no-pdd-vertical text-semibold inline-block">{{faculty.name}}<br />
                                             <small>{{faculty.designation}}</small>
@@ -37,3 +37,5 @@
         </div>
     </div>
 </div>
+
+

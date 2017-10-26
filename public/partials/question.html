@@ -16,13 +16,13 @@
                                                         <h2 class="inline-block pull-right no-mrg-vertical pdd-top-15">Ask Moderator ({{questionName}})</h2>
                                                     </div>
                                                     <p class="mrg-btm-15 font-size-13">Please add question and send to Moderator</p>
-                                                    <form class="ng-pristine ng-valid" ng-submit="askModerator()">
+                                                    <form novalidate name="ask" class="ng-pristine ng-valid" ng-submit="askModerator()">
                                                         <div class="form-group">
-                                                            <textarea required  id="question" ng-model="question" class="form-control"></textarea>
+                                                            <textarea required name="question"  id="question" ng-model="question" class="form-control"></textarea>
                                                         </div>
                                                        
                                                         <div class="mrg-top-20 text-right">
-                                                            <button class="btn btn-info btn-block">Send</button>
+                                                            <button type="submit" ng-disabled="ask.question.$invalid" class="btn btn-info btn-block">Send</button>
                                                         </div>
                                                          <p class="col-md-12 h5 text-danger text-center padding-25" ng-if="loadingData">
                                                             <span class="fa fa-spinner fa-spin "></span> Loading

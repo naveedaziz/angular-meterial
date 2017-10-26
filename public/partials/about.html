@@ -15,7 +15,7 @@
                         </li>
                         <li class="nav-item">
                            <a href="javascript:void(0)" onclick="$('.nav-tabs .nav-item').children().removeClass('active');$(this).addClass('active');$('.tab-content').children().removeClass('in');$('.tab-content').children().removeClass('active');$('#tab-danger-2').addClass('in');$('#tab-danger-2').addClass('active')"
-                              class="nav-link" role="tab" data-toggle="tab">Organization Commitee</a>
+                              class="nav-link" role="tab" data-toggle="tab">Organizing Commitee</a>
                         </li>
                         <li class="nav-item">
                            <a href="javascript:void(0)" onclick="$('.nav-tabs .nav-item').children().removeClass('active');$(this).addClass('active');$('.tab-content').children().removeClass('in');$('.tab-content').children().removeClass('active');$('#tab-danger-3').addClass('in');$('#tab-danger-3').addClass('active')"
@@ -84,7 +84,7 @@
                                        <ul class="list-unstyled list-info">
                                           <li class="pdd-vertical-15 border bottom" ng-repeat="committee in organization_commitees">
                                            
-                                             <img class="thumb-img img-circle" ng-src="main_images/Speakers/{{replaceSlash(committee.name)}}.jpg" alt="" />
+                                             <img onerror="checkImg(this)" class="thumb-img img-circle" ng-src="main_images/Speakers/{{replaceSlash(committee.name)}}.jpg" alt="" />
                                              <div class="info">
                                                 <a href="" class="title no-pdd-vertical text-semibold inline-block">{{committee.name}}</a>
                                                 <p class="text-muted">{{committee.designation}}</p>

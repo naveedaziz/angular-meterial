@@ -12,20 +12,22 @@
                                                 <div class="card-body">
                                                     <div class="pdd-horizon-30 pdd-vertical-30">
                                                         <div class="mrg-btm-30">
-                                                            <img class="img-responsive inline-block" src="assets/images/logo/logo.png" alt="">
+                                                            <img class="img-responsive inline-block" width="100px" src="assets/logo.png" alt="">
                                                             <h2 class="inline-block pull-right no-mrg-vertical pdd-top-15">Login</h2>
                                                         </div>
                                                         <p class="mrg-btm-15 font-size-13">Please enter your email and password to login</p>
-                                                        <form class="ng-pristine ng-valid" ng-submit="login()">
+                                                        <form novalidate class="ng-pristine ng-valid" ng-submit="login()" name="loginForm">
                                                             <div class="form-group">
-                                                                <input required type="email" id="user_email" ng-model="user.email" class="form-control" placeholder="Email">
+                                                                <input  required name="email"  type="email" id="user_email" ng-model="user.email" class="form-control" placeholder="Email">
+                                                                <span class="text-danger" ng-if="loginForm.email.$viewValue && !loginForm.email.$valid">Please enter valid email address</span>
                                                             </div>
                                                             <div class="form-group">
-                                                                <input required type="password" id="user_password" ng-model="user.password" class="form-control" placeholder="Password">
+                                                                <input required  type="password" id="user_password" ng-model="user.password" class="form-control" placeholder="Password">
+                                                              
                                                             </div>
 
                                                             <div class="mrg-top-20 text-right">
-                                                                <button class="btn btn-info btn-block" >Login</button>
+                                                                <button type="submit" ng-disabled="!loginForm.$valid" class="btn btn-info btn-block" >Login</button>
                                                             </div>
                                                             <p class="col-md-12 h5 text-danger text-center padding-25" ng-if="loadingData">
                                                                <span class="fa fa-spinner fa-spin "></span> Loading
@@ -51,3 +53,4 @@
             </div>
         </div>
     </div>
+

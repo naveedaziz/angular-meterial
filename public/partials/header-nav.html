@@ -3,12 +3,16 @@
         <ul class="nav-left">
             <li ng-if="user_info">
                 <a class="side-nav-toggle" href="javascript:void(0);" onclick="$('.app').toggleClass('is-collapsed');$('ui-view').toggleClass('body-scroll-stop')">
-                    <i class="ti-view-grid"></i>
+                    <i class="ei-menu"></i>
                 </a>
             </li>
             <li class="search-box">
-                <a class="search-toggle no-pdd" ui-sref="home">
-                    <h4 style="color:#fff;padding: 16px;padding-left: 0">{{title}}</h4>
+                <a class="search-toggle no-pdd" href="javascript:void(0)" onclick="window.history.back()" ng-if="title != 'Welcome to AFES' && title != 'Register to AFES' && title != 'Login to AFES'">
+                   <i class="ei-left-chevron" style="float:left"></i>
+                    <h4 style="color:#fff;padding: 16px;padding-left: 0;float:left">{{title}}</h4>
+                </a>
+               <a href="javascript:void(0)" class="search-toggle no-pdd" ng-if="title == 'Welcome to AFES' || title == 'Register to AFES' || title == 'Login to AFES'">
+                    <h4 style="color:#fff;padding: 16px;padding-left: 0;float:left">{{title}}</h4>
                 </a>
             </li>
             <li class="search-input">

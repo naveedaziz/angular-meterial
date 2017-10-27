@@ -9,7 +9,7 @@
     <!-- versionCode is optional and Android only -->
 
    <icon src="icon.png" />
-	<splash src="splash.png" /> 
+	<splash src="splash.jpg" /> 
 
 	<feature name="Device">
         <param name="android-package" value="org.apache.cordova.device.Device" />
@@ -60,9 +60,7 @@
  	<plugin name="cordova-plugin-whitelist"/>
 		<!-- <gap:plugin name="nl.x-services.plugins.socialsharing" /> -->
 		<!-- <gap:plugin name="com.adobe.plugins.gaplugin" /> -->
-	<gap:config-file platform="ios" parent="UIViewControllerBasedStatusBarAppearance" overwrite="true">
-	<false/>
-	</gap:config-file>
+	
 
     <feature name="SplashScreen">
       <param name="ios-package" value="CDVSplashScreen"/>
@@ -156,15 +154,15 @@
 
 	<platform name="android">
 		<!-- you can use any density that exists in the Android project -->
-		<!--<splash src="splash.png" density="land-hdpi"/>
-		<splash src="splash.png" density="land-ldpi"/>
-		<splash src="splash.png" density="land-mdpi"/>
-		<splash src="splash.png" density="land-xhdpi"/>
+		<splash src="splash.jpg" density="land-hdpi"/>
+		<splash src="splash.jpg" density="land-ldpi"/>
+		<splash src="splash.jpg" density="land-mdpi"/>
+		<splash src="splash.jpg" density="land-xhdpi"/>
 
-		<splash src="splash.png" density="port-hdpi"/>
-		<splash src="splash.png" density="port-ldpi"/>
-		<splash src="splash.png" density="port-mdpi"/>
-		<splash src="splash.png" density="port-xhdpi"/> -->
+		<splash src="splash.jpg" density="port-hdpi"/>
+		<splash src="splash.jpg" density="port-ldpi"/>
+		<splash src="splash.jpg" density="port-mdpi"/>
+		<splash src="splash.jpg" density="port-xhdpi"/> 
       <splash src="res/splash/android/800x480.png" platform="android" width="800" height="480"/>
       <splash src="res/splash/android/320x200.png" platform="android" width="320" height="200"/>
       <splash src="res/splash/android/480x320.png" platform="android" width="480" height="320"/>

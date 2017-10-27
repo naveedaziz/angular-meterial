@@ -92,7 +92,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                         url: '/schedule',
                         templateUrl: 'partials/schedule.html',
                         params: {
-                              title: "Scientific Programe"
+                           title: "Scientific Programme"
                         }
                   })
                   .state('ask', {

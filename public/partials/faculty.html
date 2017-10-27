@@ -26,7 +26,7 @@
                                         <a onclick="$(this).parent().children('.descitpions').toggleClass('hidden')" href="javascript:void(0)" class="title no-pdd-vertical text-semibold inline-block">{{faculty.name}}<br />
                                             <small>{{faculty.designation}}</small>
                                         </a>
-                                        <p style="font-size: 11px;margin-top: 7px;" class="descitpions hidden" style="line-height: 1.3">{{faculty.description}}</p>
+                                        <p style="font-size: 11px;margin-top: 7px;" class="descitpions hidden" style="line-height: 1.3" ng-bind-html="faculty.description"></p>
                                     </div>
                                 </li>
                             </ul>
@@ -39,3 +39,8 @@
 </div>
 
 
+<style>
+   p{
+      margin:0;
+   }
+   </style>

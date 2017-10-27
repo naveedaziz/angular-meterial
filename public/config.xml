@@ -9,7 +9,7 @@
     <!-- versionCode is optional and Android only -->
 
    <icon src="icon.png" />
-	<splash src="splash.jpg" /> 
+	<splash src="splash.png" /> 
 
 	<feature name="Device">
         <param name="android-package" value="org.apache.cordova.device.Device" />
@@ -156,15 +156,24 @@
 
 	<platform name="android">
 		<!-- you can use any density that exists in the Android project -->
-		<splash src="splash.jpg" density="land-hdpi"/>
-		<splash src="splash.jpg" density="land-ldpi"/>
-		<splash src="splash.jpg" density="land-mdpi"/>
-		<splash src="splash.jpg" density="land-xhdpi"/>
+		<!--<splash src="splash.png" density="land-hdpi"/>
+		<splash src="splash.png" density="land-ldpi"/>
+		<splash src="splash.png" density="land-mdpi"/>
+		<splash src="splash.png" density="land-xhdpi"/>
 
-		<splash src="splash.jpg" density="port-hdpi"/>
-		<splash src="splash.jpg" density="port-ldpi"/>
-		<splash src="splash.jpg" density="port-mdpi"/>
-		<splash src="splash.jpg" density="port-xhdpi"/> 
+		<splash src="splash.png" density="port-hdpi"/>
+		<splash src="splash.png" density="port-ldpi"/>
+		<splash src="splash.png" density="port-mdpi"/>
+		<splash src="splash.png" density="port-xhdpi"/> -->
+      <splash src="res/splash/android/800x480.png" platform="android" width="800" height="480"/>
+      <splash src="res/splash/android/320x200.png" platform="android" width="320" height="200"/>
+      <splash src="res/splash/android/480x320.png" platform="android" width="480" height="320"/>
+      <splash src="res/screen/android/1280x720.png" platform="android" width="1280" height="720"/>
+
+      <splash src="res/splash/android/480x800.png" platform="ios" width="480" height="800"/>
+      <splash src="res/splash/android/200x320.png" platform="ios" width="200" height="320"/>
+      <splash src="res/splash/android/320x480.png" platform="ios" width="320" height="480"/>
+      <splash src="res/splash/android/720x1280.png" platform="ios" width="720" height="1280"/> 
 		<icon src="res/icon/android/48.png" platform="android" qualifier="ldpi" />
 		<icon src="res/icon/android/72.png" platform="android" qualifier="mdpi" />
 		<icon src="res/icon/android/96.png" platform="android" qualifier="hdpi" />

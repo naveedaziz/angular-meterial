@@ -31,9 +31,15 @@
                                                                 <h4 class="caption-title">{{gallery.name}}</h4>
                                                                 <span class="caption-date">{{gallery.user_name}} {{dateFormat(gallery.createdAt)}}</span>
                                                             </div>
-                                                            <div class="inline-block pull-right pdd-top-20 font-size-16" ng-click="likeAdd(gallery.id,gallery.likes);">
-                                                                <i class="ti-heart text-white"></i>
-                                                                <span class="text-white">{{gallery.likes}}</span>
+                                                            <div  class="inline-block pull-right pdd-top-20 font-size-16" ng-click="likeAdd(gallery.id,gallery.likes);">
+                                                               <span ng-if="likeAddCheck(gallery.likes)">
+                                                                     <i class="ei-heart-full" style="color:#d91f29"></i>
+                                                                     <span class="text-white">{{parseJSON(gallery.likes)}}</span>
+                                                                </span>
+                                                               <span ng-if="!likeAddCheck(gallery.likes)">
+                                                                     <i class="ti-heart text-white"></i>
+                                                                     <span class="text-white">{{parseJSON(gallery.likes)}}</span>
+                                                               </span>
                                                             </div>
                                                         </div>
                                                     </div>

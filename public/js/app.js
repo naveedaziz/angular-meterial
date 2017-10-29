@@ -113,7 +113,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                         url: '/agenda_detail/:id',
                         templateUrl: 'partials/agenda_detail.html',
                         params: {
-                           title: "Scientific Programe Detail"
+                           title: "Scientific Programme Detail"
                         }
                   })
                .state('question', {
@@ -202,7 +202,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
       // Chat App Controller
       // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
       .controller('ChatController', ['$scope', 'Messages', '$state', function ($scope, Messages, $state) {
-            console.log($state);
+            //console.log($state);
             // Sent Indicator
             $scope.from = $state.params.from;
             $scope.name = $state.params.name;
@@ -231,7 +231,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
             var chatmessages = document.querySelector(".chat-messages");
 
             Messages.receive(function (msg) {
-                  console.log(msg);
+                  //console.log(msg);
                   $scope.messages.push(msg);
 
                   setTimeout(function () {
@@ -244,7 +244,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
             // Send Messages
             // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
             $scope.send = function () {
-                  console.log($scope.textbox)
+                  //console.log($scope.textbox)
                   if (typeof ($scope.textbox) == 'undefined' || $scope.textbox == '')
                         return false;
                   $scope.messages.push({
@@ -275,7 +275,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
          return name.replace('/','');
       }
       $scope.currentSchedule = function (schedule){
-         console.log(schedule);
+         //console.log(schedule);
          if (schedule == 'Fri (10th Nov)' || schedule == '10:20-12:0'){
             return true
          }
@@ -285,7 +285,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
         $scope.questionName =  $state.params.name;
       }
       $scope.question_list = function(){
-         console.log(123)
+         //console.log(123)
          $scope.loadingData = true;
          var table = clientRef.getTable('moderator_question');
          table.where({schedule_id:$state.params.id}).read().then(function (data) {
@@ -310,30 +310,64 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
          var data = { name: $scope.user_info.name, user_id: $scope.user_info.id, question: $('#question').val(), schedule_id: $state.params.id, schedule_title: $state.params.name,status:false}
          table.insert(data)
             .done(function (insertedItem) {
-               console.log(insertedItem);
+               //console.log(insertedItem);
                $scope.loadingData = false;
                $scope.doneSendModerator = true;
                $scope.$apply()
             }, $scope.failure);
       }
-      $scope.likeAdd = function(id,counts){
-         console.log(counts)
-         var table = clientRef.getTable('gallery');
-         if (!counts){
-            counts = [1,2];
+      $scope.parseJSON = function(count){
+         if (typeof (count) != 'array' && count != '' && count != 0 && typeof (count) != 'object'){
+            count = JSON.parse(count);
+            return count.length;
+         } else if (typeof (count) == 'array' || typeof (count) == 'object'){
+            //console.log(2);
+            return count.length;
+         }else{
+            //console.log(3);
+            return 0;
+         }
+      }
+      $scope.likeAddCheck = function (counts) {
+         if (!counts || counts == 0){
+            return false;
+         }
+         if (typeof (counts) != 'array' && typeof (counts) != 'object') {
+            counts = JSON.parse(counts);
          }
          obj = counts.filter(function (v) {
-            return v === $scope.user_info.id; // Filter out the appropriate one
+            return v === $scope.user_info.id;
+         }).length;
+         if(obj){
+            return true;
+         }else{
+            return false;
+         }
+      }
+      $scope.likeAdd = function(id,counts){
+         //console.log(counts)
+         var table = clientRef.getTable('gallery');
+         if (!counts || counts == 0){
+            counts = [];
+         }
+         //console.log(typeof (counts),counts);
+         if (typeof (counts) != 'array' && typeof (counts) != 'object') {
+            counts = JSON.parse(counts);
+         }
+         obj = counts.filter(function (v) {
+            return v === $scope.user_info.id; 
          }).length;
          if (obj){
             counts.splice(counts.indexOf($scope.user_info.id), 1);
          }else{
             counts.push($scope.user_info.id);
          }
-         console.log(counts);
-         return true;
-         counts = parseInt(counts) + 1;
-         var data = {id: id, likes: counts};
+         for (var ind in $scope.gallerys){
+            if ($scope.gallerys[ind].id  == id){
+               $scope.gallerys[ind].likes = counts;
+            }
+         }
+         var data = {id: id, likes: JSON.stringify(counts)};
          table.update(data)
             .done(function (insertedItem) {
                $scope.$apply();
@@ -350,21 +384,21 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
             var oReq = new XMLHttpRequest();
             oReq.open("POST", "https://gallery-api.azurewebsites.net/upload", true);
             oReq.onload = function (oEvent) {
-               console.log(oReq);
+               //console.log(oReq);
                if (oReq.status == 200) {
-                  console.log(oEvent.currentTarget.responseText)
+                  //console.log(oEvent.currentTarget.responseText)
                   var table = clientRef.getTable('gallery');
                   var data = { name: $('#imageName').val(), image: oEvent.currentTarget.responseText,user_name:$scope.user_info.name,user_id:$scope.user_info.id,status:0,likes:0}
                   table.insert(data)
                      .done(function (insertedItem) {
-                        console.log(insertedItem);
+                        //console.log(insertedItem);
                         $scope.loadingData = false;
                         $scope.galleryLink = true;
                         $scope.userAgenda();
                         $scope.$apply()
                      }, $scope.failure);
                } else {
-                  console.log('Error');
+                  //console.log('Error');
                }
             };
             oReq.send(oData);
@@ -382,11 +416,11 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                oReq.open("POST", "https://gallery-api.azurewebsites.net/upload", true);
                oReq.onload = function (oEvent) {
                   if (oReq.status == 200) {
-                     console.log(oEvent.currentTarget.responseText);
+                     //console.log(oEvent.currentTarget.responseText);
                      $scope.user_info.image = oEvent.currentTarget.responseText;
                      var table = clientRef.getTable('appuser');
                      var data = { id: $scope.user_info.id, designation: $scope.user_info.designation, phone: $scope.user_info.phone, image: $scope.user_info.image };
-                        console.log(data)
+                        //console.log(data)
                      table.update(data)
                         .done(function (insertedItem) {
                            $scope.loadingData = false;
@@ -394,7 +428,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                            $scope.$apply()
                         }, $scope.failure);
                   } else {
-                     console.log('Error');
+                     //console.log('Error');
                   }
                };
                oReq.send(oData);
@@ -450,7 +484,12 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                         table.where({
                               user_id: $scope.user_info.id
                         }).read().then(function (data) {
-                              $scope.my_agenda = data;
+                           $scope.my_agenda = [];
+                           for (var ind in data){
+                              if(!data[ind].deleted){
+                                 $scope.my_agenda.push(data[ind]);
+                              }
+                           }
                               $scope.loadingData = false;
                               $scope.$apply();
                         }, $scope.failure);
@@ -469,21 +508,42 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                         var table = clientRef.getTable('agenda');
                         table.insert(data)
                               .done(function (insertedItem) {
-                                    console.log(insertedItem)
+                                    //console.log(insertedItem)
                                     $scope.userAgenda();
                                     $scope.$apply()
                               }, $scope.failure);
                   }
             }
+            $scope.deleteFromAgenda = function (id, date, time, name){
+                  if ($scope.user_info) {
+                     var delId = false;
+                     for (var ind in $scope.my_agenda){
+                        if ($scope.my_agenda[ind].agenda_id == id){
+                           delId = $scope.my_agenda[ind].id;
+                        }
+                     }
+                     var data = {
+                        id: delId
+                     };
+                     var table = clientRef.getTable('agenda');
+                     table.del(data)
+                        .done(function (insertedItem) {
+                           //console.log(insertedItem)
+                           $scope.userAgenda();
+                           $scope.$apply()
+                        }, $scope.failure);
+                  }
+
+            }
             // $scope.messages = [];
             // // Receive Messages
             // Messages.receive(function (message) {
             //       $scope.messages.push(message);
-            //       console.log($scope.messages)
+            //       //console.log($scope.messages)
             // });
             // // Send Messages
             // $scope.send = function () {
-            //       console.log(Messages)
+            //       //console.log(Messages)
             //       Messages.send({
             //             data: $scope.textbox
             //       });
@@ -520,14 +580,14 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                               id: $stateParams.id
                         }).read().then(function (data) {
                               $scope[scope] = data[0];
-                              console.log($scope[scope]);
+                              //console.log($scope[scope]);
                               $scope.loadingData = false;
                               // if($scope[scope].faculty) {
                               //       $scope[scope].faculty = JSON.parse($scope[scope].faculty);
                               // }
                               $scope.faculty_detail = JSON.parse($scope[scope].faculty);
                               $scope.organizers = JSON.parse($scope[scope].organizer);
-                              console.log($scope.faculty_detail);
+                              //console.log($scope.faculty_detail);
                               $scope.$apply();
                         }, $scope.failure);
                   }
@@ -574,8 +634,8 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                         table.insert(data)
                               .done(function (insertedItem) {
                                     var id = insertedItem.id;
-                                    //console.log(id);
-                                    //console.log(redirect)
+                                    ////console.log(id);
+                                    ////console.log(redirect)
                                     $location.path(redirect)
                                     $scope.$apply()
                               }, $scope.failure);
@@ -600,15 +660,15 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                $location.path('/signin');
             }
             $scope.login = function () {
-               console.log('in');
+               //console.log('in');
                $scope.loadingData = true;
                   $scope.signinError = false;
-                  console.log($scope.user);
+                  //console.log($scope.user);
                   var table = clientRef.getTable('appuser');
                   table.where($scope.user).read().then(function (data) {
                      $scope.loadingData = false;
                         if (data.length) {
-                              console.log("success")
+                              //console.log("success")
                               $scope.user_info = data[0];
                               localStorage.setItem('user_info', JSON.stringify(data[0]));
                               localStorage.setItem('user_id', data[0].id);
@@ -618,7 +678,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                               $location.path('/');
                               $scope.$apply()
                         } else {
-                              console.log("errorrrr")
+                              //console.log("errorrrr")
                               $scope.signinError = true;
                               $scope.$apply()
                         }
@@ -642,7 +702,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                               $scope.$apply();
                               $('#duplicateEmailError').delay(5000).fadeOut();
                         } else {
-                              console.log("no email.. can register");
+                              //console.log("no email.. can register");
                               $scope.registerError = false;
                               // $scope.insert_data('appuser', $scope.register, '/signin');
 
@@ -657,8 +717,8 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                                           $scope.user_info = insertedItem;
                                           localStorage.setItem('user_info', JSON.stringify($scope.user_info));
                                           var id = insertedItem.id;
-                                          //console.log(id);
-                                          //console.log(redirect)
+                                          ////console.log(id);
+                                          ////console.log(redirect)
                                           $location.path('/')
                                           $scope.$apply()
                                     }, $scope.failure);
@@ -701,14 +761,14 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                         url: 'https://fishry-app-services.azurewebsites.net/api/table_read?table=schedule'
                   }).then(function successCallback(response) {
                         var data = response.data;
-                        // console.log(data);
+                        // //console.log(data);
                         $scope.schedule = {};
                         for (var index in data) {
                               if (data[index].dated) {
                                     var dated_pre = data[index].dated.split('T');
                                     var date = dated_pre[0].replace('"', '');
-                                    console.log(date + ' ' + data[index].start_hours + ':' + data[index].start_minutes)
-                                    console.log(moment('2017-11-08').format())
+                                    //console.log(date + ' ' + data[index].start_hours + ':' + data[index].start_minutes)
+                                    //console.log(moment('2017-11-08').format())
                                     var dated = moment(date).add(1, 'day').format('ddd (Do MMM)');
                                     if (!$scope.schedule[dated]) {
                                           $scope.schedule[dated] = {};
@@ -751,7 +811,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                                     $scope.loadingData = false;
                               }
                         }
-                        console.log($scope.schedule);
+                        //console.log($scope.schedule);
                   }, $scope.failure);
             }
             $scope.activeTab = function (id) {
@@ -782,18 +842,18 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 
             $scope.getYoutubeChannelVideos = function () {
                   youtubeFactory.getVideosFromChannelById({
-                        channelId: "UCsTcErHg8oDvUnTzoqsYeNw",
+                     channelId: "UCsAi-7trEaEjeMhldQnH6Fg",
                         //channelId: "UCsAi7trEaEjeMhldQnH6Fg",
                         key: 'AIzaSyAJtgJaxJhLRjKYXXpoMX2dSW9edAm46Ss'
                   }).then(function (_data) {
                         //on success 
-                        console.log("success..")
-                        console.log(_data.data.items);
+                        //console.log("success..")
+                        //console.log(_data.data.items);
                         $scope.youtubeVideos = _data.data.items;
                   }).catch(function (_data) {
                         //on error 
-                        console.log("error..");
-                        console.log(_data);
+                        //console.log("error..");
+                        //console.log(_data);
                   });
 
             }

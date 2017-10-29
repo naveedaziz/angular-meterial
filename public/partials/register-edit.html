@@ -17,7 +17,7 @@
                                                       <p class="mrg-btm-15 font-size-13">
                                                          Please fill the form below and edit your profile for the event</p>
                                                     <form name="fileinfo" class="ng-pristine ng-valid" ng-submit="registerUserUpdate()">
-                                                       <img ng-if="user_info.image && user_info.image != ''" src="https://event-app-gallery.herokuapp.com/images/{{user_info.image}}" width="100" style="margin:10px">
+                                                       <img ng-if="user_info.image && user_info.image != ''" src="https://gallery-api.azurewebsites.net/images/{{user_info.image}}" width="100" style="margin:10px">
                                                       <div class="form-group">
                                                          <input name="imgUploader" id="imgUploader"  type="file" id="register_image" ng-model="user_info.image" class="form-control">
                                                       </div>

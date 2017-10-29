@@ -348,7 +348,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
             var form = document.forms.namedItem("fileinfo");
             oData = new FormData(form);
             var oReq = new XMLHttpRequest();
-            oReq.open("POST", "https://event-app-gallery.herokuapp.com/upload", true);
+            oReq.open("POST", "https://gallery-api.azurewebsites.net/upload", true);
             oReq.onload = function (oEvent) {
                console.log(oReq);
                if (oReq.status == 200) {
@@ -379,7 +379,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                var form = document.forms.namedItem("fileinfo");
                oData = new FormData(form);
                var oReq = new XMLHttpRequest();
-               oReq.open("POST", "https://event-app-gallery.herokuapp.com/upload", true);
+               oReq.open("POST", "https://gallery-api.azurewebsites.net/upload", true);
                oReq.onload = function (oEvent) {
                   if (oReq.status == 200) {
                      console.log(oEvent.currentTarget.responseText);

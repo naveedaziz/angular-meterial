@@ -38,7 +38,21 @@
    <plugin name="cordova-plugin-splashscreen"  /> 
    <plugin name="cordova-plugin-statusbar" />
    <plugin name="cordova-plugin-whitelist"/>
+      <!-- iPhone 5 / iPod Touch (5th Generation) -->
+   <splash src="res/splash/ios/640-1136.png" platform="ios" width="640" height="1136" />
 
+   <!-- iPhone 6 -->
+   <splash src="res/splash/ios/750-1334.png" platform="ios" width="750" height="1334" />
+   <splash src="res/splash/ios/1242-2208.png" platform="ios" width="1242" height="2208" />
+   <splash src="res/splash/ios/2208-1242.png" platform="ios" width="2208" height="1242" />
+
+   <!-- iPad -->
+   <splash src="res/splash/ios/768-1024.png" platform="ios" width="768" height="1024" />
+   <splash src="res/splash/ios/1024-768.png" platform="ios" width="1024" height="768" />
+
+   <!-- Retina iPad -->
+   <splash src="res/splash/ios/1536-2048.png" platform="ios" width="1536" height="2048" />
+   <splash src="res/splash/ios/2048-1536.png" platform="ios" width="2048" height="1536" />
 
    <name>AFES</name>
 	<description>

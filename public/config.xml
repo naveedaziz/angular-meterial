@@ -38,43 +38,57 @@
    <plugin name="cordova-plugin-splashscreen"  /> 
    <plugin name="cordova-plugin-statusbar" />
    <plugin name="cordova-plugin-whitelist"/>
-      <!-- iPhone 5 / iPod Touch (5th Generation) -->
-   <splash src="res/splash/ios/640-1136.png" platform="ios" width="640" height="1136" />
+   
 
-   <!-- iPhone 6 -->
-   <splash src="res/splash/ios/750-1334.png" platform="ios" width="750" height="1334" />
-   <splash src="res/splash/ios/1242-2208.png" platform="ios" width="1242" height="2208" />
-   <splash src="res/splash/ios/2208-1242.png" platform="ios" width="2208" height="1242" />
 
-   <!-- iPad -->
-   <splash src="res/splash/ios/768-1024.png" platform="ios" width="768" height="1024" />
-   <splash src="res/splash/ios/1024-768.png" platform="ios" width="1024" height="768" />
+   <platform name="ios">
+	    <icon src="res/icons/ios/icon-20.png" width="20" height="20" />
+	    <icon src="res/icons/ios/icon-20@2x.png" width="40" height="40" />
+	    <icon src="res/icons/ios/icon-20@3x.png" width="60" height="60" />
+	    
+        <icon src="res/icons/ios/icon-29.png" width="29" height="29" />
+        <icon src="res/icons/ios/icon-29@2x.png" width="58" height="58" /> 
+        <icon src="res/icons/ios/icon-29@3x.png" width="87" height="87" />
+        
+        <icon src="res/icons/ios/icon-40.png" width="40" height="40" />
+        <icon src="res/icons/ios/icon-40@2x.png" width="80" height="80" />
+        <icon src="res/icons/ios/icon-40@3x.png" width="120" height="120" />
+        
+        <icon src="res/icons/ios/icon-50.png" width="50" height="50" />
+        <icon src="res/icons/ios/icon-50@2x.png" width="100" height="100" />
+        
+        <icon src="res/icons/ios/icon-57.png" width="57" height="57" />
+        <icon src="res/icons/ios/icon-57@2x.png" width="114" height="114" />
+        
+        <icon src="res/icons/ios/icon-60.png" width="60" height="60" />
+        <icon src="res/icons/ios/icon-60@2x.png" width="120" height="120" />
+        <icon src="res/icons/ios/icon-60@3x.png" width="180" height="180" />
+        
+        <icon src="res/icons/ios/icon-72.png" width="72" height="72" />
+        <icon src="res/icons/ios/icon-72@2x.png" width="144" height="144" />
+        
+        <icon src="res/icons/ios/icon-76.png" width="76" height="76" />
+        <icon src="res/icons/ios/icon-76@2x.png" width="152" height="152" />
+        
+        <icon src="res/icons/ios/icon-83.5@2x.png" width="167" height="167" />   
+            <!-- iPhone 5 / iPod Touch (5th Generation) -->
+      <splash src="res/splash/ios/640-1136.png" platform="ios" width="640" height="1136" />
 
-   <!-- Retina iPad -->
-   <splash src="res/splash/ios/1536-2048.png" platform="ios" width="1536" height="2048" />
-   <splash src="res/splash/ios/2048-1536.png" platform="ios" width="2048" height="1536" />
+      <!-- iPhone 6 -->
+      <splash src="res/splash/ios/750-1334.png" platform="ios" width="750" height="1334" />
+      <splash src="res/splash/ios/1242-2208.png" platform="ios" width="1242" height="2208" />
+      <splash src="res/splash/ios/2208-1242.png" platform="ios" width="2208" height="1242" />
 
-      <!-- iPhone 6 / 6+ -->
-   <icon src="res/icon/ios/180.png" platform="ios" width="180" height="180" />
+      <!-- iPad -->
+      <splash src="res/splash/ios/768-1024.png" platform="ios" width="768" height="1024" />
+      <splash src="res/splash/ios/1024-768.png" platform="ios" width="1024" height="768" />
 
-   <!-- iPhone / iPod Touch  -->
-   <icon src="res/icon/ios/60.png" platform="ios" width="60" height="60" />
-   <icon src="res/icon/ios/120.png" platform="ios" width="120" height="120" />
-
-   <!-- iPad -->
-   <icon src="res/icon/ios/76.png" platform="ios" width="76" height="76" />
-   <icon src="res/icon/ios/152.png" platform="ios" width="152" height="152" />
-   <icon src="res/icon/ios/167.png" platform="ios" width="167" height="167" />
-
-   <!-- Settings Icon -->
-   <icon src="res/icon/ios/29.png" platform="ios" width="29" height="29" />
-   <icon src="res/icon/ios/58.png" platform="ios" width="58" height="58" />
-   <icon src="res/icon/ios/87.png" platform="ios" width="87" height="87" />
-
-   <!-- Spotlight Icon -->
-   <icon src="res/icon/ios/40.png" platform="ios" width="40" height="40" />
-   <icon src="res/icon/ios/80.png" platform="ios" width="80" height="80" />
-   <icon src="res/icon/ios/120.png" platform="ios" width="120" height="120" />
+      <!-- Retina iPad -->
+      <splash src="res/splash/ios/1536-2048.png" platform="ios" width="1536" height="2048" />
+      <splash src="res/splash/ios/2048-1536.png" platform="ios" width="2048" height="1536" />
+     
+        
+</platform>
 
    <name>AFES</name>
 	<description>

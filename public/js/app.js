@@ -142,7 +142,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                         url: '/faculty',
                         templateUrl: 'partials/faculty.html',
                         params: {
-                              title: "Faculty"
+                           title: "Presenter"
                         }
                   })
                   .state('gallery', {
@@ -280,6 +280,40 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
             return true
          }
          return false;
+      }
+      $scope.returnSureName =  function(name){
+         if(name.indexOf('.') >= 0){
+            var bds = name.split('.');
+            var nm = bds[1].split(' ');
+            if (nm.length == 2) {
+               return bds[0]+'.'+nm[1] +' ' + nm[0];
+            }
+            if (nm.length == 3) {
+               return bds[0] +'.'+ nm[2] + ' ' + nm[0] + ' ' + nm[1];
+            }
+            if (nm.length == 4) {
+               return bds[0] + '.' +nm[3] + ' ' + nm[2] + ' ' + nm[0] + ' ' + nm[1];
+            }
+            if (nm.length == 4) {
+               return bds[0] + '.' + nm[3] + ' ' + nm[2] + ' ' + nm[0] + ' ' + nm[1];
+            }
+            return name;
+         }else{
+            var nm = name.split(' ');
+            console.log(nm.length);
+            if (nm.length == 2) {
+               return nm[1] + nm[0];
+            }
+            if (nm.length == 3) {
+               return nm[2] + ' ' + nm[0] + ' ' + nm[1];
+            }
+            if (nm.length == 4) {
+               return nm[3] + ' '+nm[2] + ' ' + nm[0] + ' ' + nm[1];
+            }
+            return name;
+         }
+        
+         
       }
       $scope.questionInit = function(){
         $scope.questionName =  $state.params.name;
@@ -592,6 +626,70 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                         }, $scope.failure);
                   }
             }
+            $scope.extraAbracts = {
+               "Plenary": [
+                  { name: "Prof William Young", file: "PL1 Prof William Young" },
+                  { name: "Susumu Seino", file: "PL2  Susumu Seino" },
+                  { name: "A Prof Charlotte Hoybye", file: "PL4 A Prof Charlotte Hoybye" },
+                  { name: "Dr Dolores Shoback", file: "PL5 Dr Dolores Shoback" },
+                  { name: "Dr Lynette Nieman", file: "PL6 Dr Lynette Nieman" },
+                  { name: "Prof Ken Ho", file: "PL8 Prof Ken Ho" },
+               ],
+               "Symposium": [
+                  { name: "Dr Kevin Yuen", file: "S1.1 Dr Kevin Yuen" },
+                  { name: "Dr Tran Quang Nam", file: "S1.3 Dr Tran Quang Nam" },
+                  { name: "Dr Abel Soh", file: "S2.1 Dr Abel Soh" },
+                  { name: "Prof Weerapan Khovidhunkit", file: "S3.1 Prof Weerapan Khovidhunkit" },
+                  { name: "Prof Mafauzy Mohamed", file: "S3.2 Prof Mafauzy Mohamed" },
+                  { name: "Dr Ruby Tan Go", file: "S3.3 Dr Ruby Tan Go" },
+                  { name: "Prof Hossein Gharib", file: "S4.1 Prof Hossein Gharib" },
+                  { name: "Dr Tjokorda", file: "S4.2 Dr Tjokorda" },
+                  { name: "Prof Won Bae Kim", file: "S4.3 Prof Won Bae Kim" },
+                  { name: "Prof AndrÈ Lacroix", file: "S5.1 Prof AndrÈ Lacroix" },
+                  { name: "Prof Ken Ho", file: "S5.2 Prof Ken Ho" },
+                  { name: "Prof Than Than Aye", file: "S5.3 Prof Than Than Aye" },
+                  { name: "Dr Kyaw Kyaw Soe", file: "S6.1 Dr Kyaw Kyaw Soe" },
+                  { name: "Prof K O Lee", file: "S6.2 Prof K O Lee" },
+                  { name: "Dr Vivien Lim", file: "S7.2 Dr Vivien Lim" },
+                  { name: "Prof Siew Pheng Chan", file: "S7.3 Prof Siew Pheng Chan" },
+                  { name: "A Prof Kah Yin Loke", file: "S8.2 A Prof Kah Yin Loke" },
+                  { name: "A Prof Charlotte Hoeybye", file: "S8.3 A Prof Charlotte Hoeybye" },
+                  { name: "Prof Cecilia A Jimeno", file: "S9.1 Prof Cecilia A Jimeno" },
+                  { name: "A Prof Graham McMahon", file: "S9.2 A Prof Graham McMahon" },
+                  { name: "Prof Tint Swe Latt", file: "S9.3 Prof Tint Swe Latt" },
+                  { name: "Dr Aung Ko Win", file: "S10.1 Dr Aung Ko Win" },
+                  { name: "Prof Tjin-Shing Jap", file: "S10.3 Prof Tjin-Shing Jap" },
+                  { name: "A Prof Soe Naing", file: "S11.1 A Prof Soe Naing" },
+                  { name: "Prof AndrÈ Lacroix", file: "S11.2 Prof AndrÈ Lacroix" },
+                  { name: "Prof Leilani Mercado-Asis", file: "S11.3 Prof Leilani Mercado-Asis" },
+                  { name: "Dr Gabriel Jasul", file: "S12.1 Dr Gabriel Jasul" },
+                  { name: "Prof Thein Hlaing Oo", file: "S12.3 Prof Thein Hlaing Oo" },
+
+               ],
+               "Meet the Expert": [
+                  { name: "Prof William Young", file: "ME1 Prof William Young" },
+                  { name: "Prof Hossein Gharib", file: "ME2 Prof Hossein Gharib" },
+                  { name: "Dr Kevin Yuen", file: "ME3 Dr Kevin Yuen" },
+                  { name: "Dr Heri-Nugroho Hario Seno", file: "ME4 Dr Heri-Nugroho Hario Seno" },
+                  { name: "Prof Thi Thanh Huyen Vu", file: "ME5 Prof Thi Thanh Huyen Vu" },
+                  { name: "A Prof Melvin Leow", file: "ME6 A Prof Melvin Leow" },
+                  { name: "Dr Lynette Nieman", file: "ME7 Dr Lynette Nieman" },
+                  { name: "A Prof Graham McMahon", file: "ME8 A Prof Graham McMahon" },
+                  { name: "Prof Ken Ho", file: "ME9 Prof Ken Ho" },
+                  { name: "Dr Kyaw Kyaw Soe", file: "ME10 Dr Kyaw Kyaw Soe" },
+
+               ]
+            };
+            $scope.getCountryOrganizer = function(name){
+               var country = '';
+               for (var ind in $scope.organizerList){
+                  if ($scope.organizerList[ind].name == name){
+                     country = $scope.organizerList[ind].country
+                  }
+               }
+               return country;
+            }
+            $scope.get_data('organizer', 'organizerList')
             // Edit data end 
             $scope.deleteRow = function(table,id){
                $scope.loadingData = true;

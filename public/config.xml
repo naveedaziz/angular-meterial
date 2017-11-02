@@ -3,7 +3,7 @@
         xmlns:gap   = "http://phonegap.com/ns/1.0"
         id          = "com.afes.mynamar"
         versionCode = "1"
-		CFBundleVersion = "1.0.0"
+		  CFBundleVersion = "1.0.0"
         version     = "1.0.0" >
 
     <!-- versionCode is optional and Android only -->

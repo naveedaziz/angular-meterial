@@ -17,7 +17,7 @@
                            <ul class="schedule-detail">
                               <li ng-repeat="faculty in organizers" style="min-height:auto;">
                                  <img onerror="checkImg(this)" src="main_images/Speakers/{{replaceSlash(faculty)}}.jpg" width="100%" style="padding:5px;">
-                                 <span>{{faculty}}</span>
+                                 <span>{{faculty}} <br>{{getCountryOrganizer(faculty)}}</span>
                               </li>
                            </ul>
                            <div class="clearfix"></div>

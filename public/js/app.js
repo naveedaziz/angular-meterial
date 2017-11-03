@@ -163,7 +163,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                   url: '/exhibition',
                   templateUrl: 'partials/exhibition.html',
                   params: {
-                     title: "Exhibition Floor Plan"
+                     title: "Floor Plan"
                   }
                })
             

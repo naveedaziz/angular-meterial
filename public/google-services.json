@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "978031567925",
+    "firebase_url": "https://samsung-53bf7.firebaseio.com",
+    "project_id": "samsung-53bf7",
+    "storage_bucket": "samsung-53bf7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:978031567925:android:bdaf900ec08be4d2",
+        "android_client_info": {
+          "package_name": "com.afes.mynamar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "978031567925-p23d9ho1uqi1be2s8e4jugefj9bgf7ui.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4WdJG8fh9qV5pVB03PKxrrniRZspMIHM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

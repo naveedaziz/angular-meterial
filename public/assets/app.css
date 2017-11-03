@@ -2991,7 +2991,9 @@ a.card:hover, a.card:focus { -webkit-box-shadow: 0 7px 15px rgba(0, 0, 0, 0.075)
 .chat .chat-user-list { transition: all 0.2s ease-out; -webkit-transition: all 0.2s ease-out; -moz-transition: all 0.2s ease-out; -o-transition: all 0.2s ease-out; -ms-transition: all 0.2s ease-out; position: relative; left: 0; height: calc(100vh - 65px); }
 
 .chat .chat-user-list .chat-section { margin-bottom: 0; }
-
+.hide{
+   display: none;
+}
 .chat .chat-user-list .chat-section .chat-title { padding: 0px 20px 10px 20px; }
 
 .chat .chat-user-list .chat-user { padding: 12px 20px; display: block; position: relative; }

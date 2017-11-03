@@ -1084,6 +1084,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
             $scope.activeAccordian = function (id) {
                   console.log(id);
                   $('#' + id).toggleClass('show');
+                  $('.' + id).toggleClass('hide');
 
             }
 

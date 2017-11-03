@@ -89,7 +89,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                         }
                   })
                   .state('schedule', {
-                        url: '/schedule',
+                        url: '/schedule/:tab',
                         templateUrl: 'partials/schedule.html',
                         params: {
                            title: "Scientific Programme"
@@ -627,15 +627,19 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                   }
             }
             $scope.extraAbracts = {
-               "Plenary": [
-                  { name: "Prof William Young", file: "PL1 Prof William Young" },
-                  { name: "Susumu Seino", file: "PL2  Susumu Seino" },
-                  { name: "A Prof Charlotte Hoybye", file: "PL4 A Prof Charlotte Hoybye" },
-                  { name: "Dr Dolores Shoback", file: "PL5 Dr Dolores Shoback" },
-                  { name: "Dr Lynette Nieman", file: "PL6 Dr Lynette Nieman" },
-                  { name: "Prof Ken Ho", file: "PL8 Prof Ken Ho" },
-               ],
-               "Symposium": [
+               "Plenary": {
+                  data: [
+                           { name: "Prof William Young", file: "PL1 Prof William Young" },
+                           { name: "Susumu Seino", file: "PL2  Susumu Seino" },
+                           { name: "A Prof Charlotte Hoybye", file: "PL4 A Prof Charlotte Hoybye" },
+                           { name: "Dr Dolores Shoback", file: "PL5 Dr Dolores Shoback" },
+                           { name: "Dr Lynette Nieman", file: "PL6 Dr Lynette Nieman" },
+                           { name: "Prof Ken Ho", file: "PL8 Prof Ken Ho" },
+                        ],
+                  key:'Plenary'
+                  },
+               "Symposium": {
+                  data:  [
                   { name: "Dr Kevin Yuen", file: "S1.1 Dr Kevin Yuen" },
                   { name: "Dr Tran Quang Nam", file: "S1.3 Dr Tran Quang Nam" },
                   { name: "Dr Abel Soh", file: "S2.1 Dr Abel Soh" },
@@ -666,7 +670,10 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                   { name: "Prof Thein Hlaing Oo", file: "S12.3 Prof Thein Hlaing Oo" },
 
                ],
-               "Meet the Expert": [
+                  key: 'Symposium'
+               },
+               "Meet the Expert": {
+                  data:   [
                   { name: "Prof William Young", file: "ME1 Prof William Young" },
                   { name: "Prof Hossein Gharib", file: "ME2 Prof Hossein Gharib" },
                   { name: "Dr Kevin Yuen", file: "ME3 Dr Kevin Yuen" },
@@ -678,7 +685,9 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                   { name: "Prof Ken Ho", file: "ME9 Prof Ken Ho" },
                   { name: "Dr Kyaw Kyaw Soe", file: "ME10 Dr Kyaw Kyaw Soe" },
 
-               ]
+               ],
+               key:'meet'
+               },
             };
             $scope.getCountryOrganizer = function(name){
                var country = '';
@@ -850,6 +859,13 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
             $scope.dateFormat = function(date){
                return moment(date).format('DD/MM/YYYY hh:mm');
             }
+            $scope.beutifyDate = function(dt){
+               var date  = dt.replace('(','').replace(')','').split(' ');
+               return date[1]+' '+date[2];
+            }
+            $scope.initSchedule = function(){
+               $scope.currentUrl = $state.params.tab;
+            }
             $scope.loadSchedule = function () {
                   $scope.loadingData = true;
                   var filter = {};
@@ -869,7 +885,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                                     //console.log(moment('2017-11-08').format())
                                     var dated = moment(date).add(1, 'day').format('ddd (Do MMM)');
                                     if (!$scope.schedule[dated]) {
-                                          $scope.schedule[dated] = {};
+                                       $scope.schedule[dated] = {};
                                     }
                                     var timeCap = data[index].start_hours + ':' + data[index].start_minutes + '-' + data[index].end_hours + ':' + data[index].end_minutes;
                                     if (!$scope.schedule[dated][timeCap]) {
@@ -909,7 +925,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                                     $scope.loadingData = false;
                               }
                         }
-                        //console.log($scope.schedule);
+                        console.log($scope.schedule);
                   }, $scope.failure);
             }
             $scope.activeTab = function (id) {
@@ -933,7 +949,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
             };
 
             $scope.activeAccordian = function (id) {
-
+                  console.log(id);
                   $('#' + id).toggleClass('show');
 
             }

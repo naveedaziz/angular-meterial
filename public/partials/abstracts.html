@@ -13,6 +13,28 @@
 
 
                         <div id="accordion-1" class="accordion panel-group" role="tablist" aria-multiselectable="true">
+                           <div class="panel panel-default" ng-repeat="(key,n) in extraAbracts">
+                              <div class="panel-heading" role="tab" id="headingThree">
+                                 <h4 class="panel-title">
+                                    <a href="javascript:;" class="collapsed" data-toggle="collapse" data-parent="#accordion-1" ng-click="activeAccordian('ids-'+n.key)">
+                                            <span>{{key}}</span>
+                                            <i class="icon ti-arrow-circle-down"></i>
+                                        </a>
+                                 </h4>
+                              </div>
+                              <div id="ids-{{n.key}}" class="collapse panel-collapse" role="tabpanel">
+                                 <div class="panel-body">
+                                    <ul class="list-unstyled list-info">
+                                       <li class="border bottom">
+                                          <a ng-repeat="id in n.data" href="https://gallery-api.azurewebsites.net/abstracts/PosterAwards/{{id.file}}.pdf" target="_blank">
+                                                    <i class="fa fa-file-pdf-o"></i> {{id.name}}
+                                                </a>
+                                          <span class="clearfix"></span>
+                                       </li>
+                                    </ul>
+                                 </div>
+                              </div>
+                           </div>
                             <div class="panel panel-default">
                                 <div class="panel-heading" role="tab" id="headingOne">
                                     <h4 class="panel-title">
@@ -23,7 +45,7 @@
                                     </h4>
                                 </div>
 
-                                <div id="first" class="collapse panel-collapse show">
+                                <div id="first" class="collapse panel-collapse">
                                     <div class="panel-body">
                                         <ul class="list-unstyled list-info">
                                             <li class="border bottom" ng-repeat="n in range(1,4)">
@@ -73,7 +95,7 @@
                                 <div id="third" class="collapse panel-collapse" role="tabpanel">
                                     <div class="panel-body">
                                         <ul class="list-unstyled list-info">
-                                            <li class="border bottom" ng-repeat="n in range(1,112)" ng-if="n != 8 && n != 11 && n != 21 && n !=30 && n != 32 && n != 36 && n != 76 && n != 82 && n != 101">
+                                            <li class="border bottom" ng-repeat="n in range(1,112)" ng-if="n > 4 && n != 8 && n != 11 && n != 21 && n !=30 && n != 32 && n != 36 && n != 76 && n != 82 && n != 101">
                                                 <a href="https://gallery-api.azurewebsites.net/abstracts/IndividualAbstractPosterAwardandPresentation/P{{n}}.pdf" target="_blank">
                                                     <i class="fa fa-file-pdf-o"></i> P{{n}}.pdf
                                                 </a>
@@ -86,20 +108,18 @@
                            <div class="panel panel-default">
                               <div class="panel-heading" role="tab" id="headingThree">
                                  <h4 class="panel-title">
-                                    <a href="javascript:;" class="collapsed" data-toggle="collapse" data-parent="#accordion-1" ng-click="activeAccordian('fourth')">
+                                    <a href="javascript:;" class="collapsed" data-toggle="collapse" data-parent="#accordion-1" ng-click="activeAccordian('thirds')">
                                             <span>Poster Awards</span>
                                             <i class="icon ti-arrow-circle-down"></i>
                                         </a>
                                  </h4>
                               </div>
-                              <div id="fourth" class="collapse panel-collapse" role="tabpanel">
+                              <div id="thirds" class="collapse panel-collapse" role="tabpanel">
                                  <div class="panel-body">
                                     <ul class="list-unstyled list-info">
-                                       <li class="border bottom" ng-repeat="(key,n) in extraAbracts">
-                                          <h4 class="panel-title">{{key}}</h4>
-                                          <a ng-repeat="id in n" href="https://gallery-api.azurewebsites.net/abstracts/PosterAwards/{{id.file}}.pdf"
-                                             target="_blank">
-                                                    <i class="fa fa-file-pdf-o"></i> {{id.name}}
+                                       <li class="border bottom" ng-repeat="n in range(1,112)" ng-if="n <= 4">
+                                          <a href="https://gallery-api.azurewebsites.net/abstracts/IndividualAbstractPosterAwardandPresentation/P{{n}}.pdf" target="_blank">
+                                                    <i class="fa fa-file-pdf-o"></i> P{{n}}.pdf
                                                 </a>
                                           <span class="clearfix"></span>
                                        </li>
@@ -107,6 +127,7 @@
                                  </div>
                               </div>
                            </div>
+                          
                         </div>
 
                         

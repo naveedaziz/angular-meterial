@@ -1,4 +1,4 @@
-<div class="main-content" ng-init="loadSchedule()">
+<div class="main-content" ng-init="loadSchedule();initSchedule()">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-3 social" style="min-height:100%;background:#fff;">
@@ -8,19 +8,25 @@
                                         <h4 class="card-title no-mrg-btm">Tabs Danger</h4>
                                     </div>-->
                     <div class="tab-danger">
-                        <p class="col-md-12 h5 text-danger text-center padding-25" ng-if="loadingData">
-                            <span class="fa fa-spinner fa-spin "></span> Loading
-                        </p>
+                      
                         <div class="tab-scroll" style="width:100%; overflow:scroll;" ng-if="schedule">
-                            <ul class="nav nav-tabs" role="tablist" style="width:550px;">
-                                <li class="nav-item" ng-repeat="(key,sch) in schedule">
-                                    <a href="javascript:void(0)" ng-class="{'active':$index == 0}" id="tab-{{$index}}" ng-click="activeTab($index)" class="nav-link"
-                                        role="tab" data-toggle="tab">{{key}}</a>
+                            <ul class="nav nav-tabs" role="tablist" style="width:550px;    width: 100%;
+    position: fixed;
+    left: 0;
+    top: 66px;
+    z-index: 9999;
+    background: #fff;">
+                                <li class="nav-item" ng-repeat="(key,sch) in schedule" style="width: 25%;
+    padding: 5px;
+    margin: 0;">
+                                    <a ui-sref="schedule({tab:$index+1})" style="font-size: 11px;" href="javascript:void(0)" ng-class="{'active':$index+1 == currentUrl}" id="tab-{{$index}}" ng-click="activeTab($index)" class="nav-link"
+                                        role="tab" data-toggle="tab">{{beutifyDate(key)}}</a>
                                 </li>
                             </ul>
                         </div>
-                        <div class="tab-content">
-                            <div ng-repeat="(key,sch) in schedule" ng-class="{'active':$index == 0}" role="tabpanel" class="tab-pane" id="tab-content-{{$index}}"
+                        <div class="tab-content" style="    position: relative;
+    top: 46px;">
+                            <div ng-repeat="(key,sch) in schedule" ng-class="{'active':$index+1 == currentUrl}" role="tabpanel" class="tab-pane" id="tab-content-{{$index}}"
                                 style="background:#f6f7fb">
                                 <div class="card" style="border:none;margin-top:2px;" ng-repeat="(key_first,sch_first) in sch">
                                     
@@ -53,6 +59,9 @@
                                 </div>
                             </div>
                         </div>
+                        <p class="col-md-12 h5 text-danger text-center padding-25" ng-if="loadingData">
+                           <span class="fa fa-spinner fa-spin "></span> Loading
+                        </p>
                     </div>
                 </div>
             </div>

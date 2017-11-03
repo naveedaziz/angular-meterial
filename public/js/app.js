@@ -863,8 +863,141 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                var date  = dt.replace('(','').replace(')','').split(' ');
                return date[1]+' '+date[2];
             }
+            $scope.namedNew = [
+               { name: 'Dr. Low Kiat Mun Serena' },
+               { name: 'Mr. Zumaraga Mark Pretzel' },
+               { name: 'Ms. Dau Ly Na' },
+               { name: 'Dr. Villamiel Katrina Marie' },
+               { name: 'Mr. Trinh Ngoc Anh' },
+               { name: 'Dr. Aye Htar Ni' },
+               { name: 'Ms. Jo Carolina Margaret' },
+               { name: 'Dr. Macalalad-Josue Anna Angelica' },
+               { name: 'Dr. Huynh Ngoc Diem' },
+               { name: 'Dr. Gutch Manish' },
+               { name: 'Dr. Pramono Laurentius Aswin' },
+               { name: 'Dr. Yong Lit Sin' },
+               { name: 'Dr. Panuda Jose Paolo' },
+               { name: 'Prof. Shong Young Kee' },
+               { name: 'Dr. Sree Dharan Shalini' },
+               { name: 'Dr. Ilagan Ma. Karen Celine' },
+               { name: 'Mrs. Le Than Phuong' },
+               { name: 'Dr. Vo Tuan Khoa' },
+               { name: 'Dr. Hla Shwe Thu Zar' },
+               { name: 'Dr. Sebastian Siao Ria Mari' },
+               { name: 'Dr. Uy Melissa Claire' },
+               { name: 'Dr. Lim Kim Piow' },
+               { name: 'Dr. Pyone Zar Chi' },
+               { name: 'Dr. Bautista Francesca Paula' },
+               { name: 'Dr. Valera Grethel Fatima' },
+               { name: 'Dr. Diane Carla Bernardo ' },
+               { name: 'Dr. Gabat Julie Anne' },
+               { name: 'Dr. Huan Nai Chien' },
+               { name: 'Dr. Ilagan Ma. Karen Celine' },
+               { name: 'Dr. Kim Tae Yong' },
+               {name: 'A/Prof. Yun Jong Won' },
+               {name: 'Dr. Sorongon-Legaspi Mishell Kris' },
+               {name: 'Dr. Villamiel Katrina Marie' },
+               {name: 'Dr. Wardhana Wardhana' },
+               {name: 'Dr. Aung Aye Thida' },
+               {name: 'Dr. Chaniago Lita Septina' },
+               {name: 'Dr. Han Ji Min' },
+               {name: 'Dr. Kyaw Swar Myint Aung' },
+               {name: 'Dr. Le Anh Tu' },
+               {name: 'Dr. Luy Sybil Claudine' },
+               {name: 'Dr. Aung Win Yu' },
+               {name: 'Dr. Myint Kyar Nyo Soe' },
+               {name: 'Dr.Cabrera Carmen Carina' },
+               {name: 'Dr. Felipe Roy Raoul' },
+               {name: 'Dr. Low Kiat Mun Serena' },
+               {name: 'Mr. Trinh Ngoc Anh' },
+               {name: 'Dr. Kao Mei-teng' },
+               {name: 'Dr. Lim Kim Piow' },
+               {name: 'Dr. Togonon Johann Christine' },
+               {name: 'A/Prof. Wee Shiou-Liang' },
+               {name: 'Dr. Jao - Sanchez Suzanne' },
+               {name: 'Dr. Macalalad-Josue Anna Angelica' },
+               {name: 'Dr. See Chee Keong' },
+               {name: 'Dr. Oo Su Myo Myat' },
+               {name: 'Dr. Yu Marc Gregory' },
+               {name: 'Dr. Bautista Francesca Paula' },
+               {name: 'Dr. Gabat Julie Anne' },
+               {name: 'Dr. Haydar Ali Tajuddin Amalina' },
+               {name: 'Dr. Lin Yi-chun' },
+               {name: 'Dr. Li-yu Tsai' },
+               {name: 'Dr. Sarmiento Annie Jane' },
+               {name: 'Dr. Wong Hui Chin' },
+               {name: 'Prof. Aung Moe Wint' },
+               {name: 'Prof. Kang Sun Chul' },
+               {name: 'Dr. Macalalad-Josue Anna Angelica' },
+               {name: 'Dr. Moe Aung Soe' }	,
+               {name: 'Dr. Nguyen Ngoc Tam' }	,
+               {name: 'Dr. Nguyen Thi Thu Huong' },
+               {name: 'Mrs. Nguyen Xuan Thanh' },
+               {name: 'Dr. Ooi Xi Yan' },
+               {name: 'Prof. Orbak Zerrin' },
+               {name: 'Dr. Panuda Jose Paolo' },
+               {name: 'Dr. Park Jung Hwan' },
+               {name: 'Dr. Rangkuti Deske Muhadi' } 	,
+               {name: 'Prof. Rhee Eun-jung' },
+               {name: 'Dr. San Bo Bo' }	,
+               {name: 'Prof. Song Kee Ho' },
+               {name: 'Dr. Tappan Sweet Garllie Albert' },
+               {name: 'Dr. Uy Angelique Bea' },
+               {name: 'Dr. Wai Linn Thiri' },
+               {name: 'Dr. Agoncillo Karen Elouie' },
+               {name: 'Dr. Libre Michelle Angeli' },
+               {name: 'Dr. Tappan Sweet Garllie Albert' },
+               {name: 'Dr. Hlaing Zarchi-Theint-Theint' },
+               {name: 'Dr. Llanes Mark Ramon Victor' },
+               {name: 'Prof. Orbak Zerrin' },
+               {name: 'Prof. Orbak Zerrin' },
+               {name: 'A/Prof. Yun Jong Won' },
+               {name: 'Dr. Libre Michelle Angeli' },
+               {name: 'Dr. Macalalad-Josue Anna Angelica' },
+               {name: 'Prof. Chan Siew Pheng' },
+               {name: 'Dr. Hario Seno Heri-Nugroho' },
+               {name: 'Dr. Hlaing Thinn Thinn' },
+               {name: 'A/Prof. Hoeybye Charlotte' },
+               {name: 'Prof. Jap Tjin-Shing' },
+               {name: 'Dr. Jeon Min Ji' },
+               {name: 'Prof. Jones Thomas Hugh' },
+               {name: 'Dr. Khaing Maung Maung' },
+               {name: 'Prof. Kim Won Bae' },
+               {name: 'Prof. Latt Tint Swe' },
+               {name: 'Prof. Lee Kok Onn' },
+               {name: 'A/Prof. Loke Kah Yin' },
+               {name: 'Dr. Myint Khin Swe' },
+               {name: 'Dr. Nam Tran Quang' },
+               {name: 'Prof. Oo Thein Hlaing' },
+               {name: 'Dr. Pemayun Tjokorda G D' },
+               {name: 'Dr. Soe Kyaw Kyaw' },
+               {name: 'Dr. Tan  Go Ruby' }	,
+               {name: 'Prof. Van Gaal Luc' },
+               {name: 'A/Prof. Vethakkan Shireene Ratna' },
+               {name: 'A/Prof. Vu Thi Thanh Huyen' },
+               {name: 'Dr. Win Aung Ko' }
+            ];
             $scope.initSchedule = function(){
                $scope.currentUrl = $state.params.tab;
+            }
+            $scope.findName = function(name){
+               var named = name;
+               for(var id in $scope.namedNew){
+                  var nd = $scope.namedNew[id].name;
+                  var nam = nd.split(' ');
+                  var found = 0;
+                  for (var ind in nam){
+                     if (name.indexOf(nam[ind]) >= 0){
+                        found++;
+                     }
+                  }
+                  if(found == nam.length){
+                     named = nd;
+                  }
+                  
+               }
+               console.log(named)
+               return named;
             }
             $scope.loadSchedule = function () {
                   $scope.loadingData = true;

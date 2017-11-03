@@ -23,7 +23,7 @@
                                     <!-- {{faculty}} -->
                                     <img onerror="checkImg(this)"  class="thumb-img img-circle"  ng-src="{{ 'main_images/Speakers/'+replaceSlash(faculty.name)+'.jpg'}}" alt="">
                                     <div class="info">
-                                        <a onclick="$(this).parent().children('.descitpions').toggleClass('hidden')" href="javascript:void(0)" class="title no-pdd-vertical text-semibold inline-block">{{returnSureName(faculty.name)}}<br />
+                                        <a onclick="$(this).parent().children('.descitpions').toggleClass('hidden')" href="javascript:void(0)" class="title no-pdd-vertical text-semibold inline-block">{{findName(returnSureName(faculty.name))}}<br />
                                             <small>{{faculty.designation}}</small>
                                         </a>
                                         <p style="font-size: 11px;margin-top: 7px;" class="descitpions hidden" style="line-height: 1.3" ng-bind-html="faculty.description"></p>

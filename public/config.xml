@@ -3,8 +3,8 @@
         xmlns:gap   = "http://phonegap.com/ns/1.0"
         id          = "com.afes.mynamar"
         versionCode = "1"
-		  CFBundleVersion = "1.0.0"
-        version     = "1.0.0" >
+		  CFBundleVersion = "1.0.1"
+        version     = "1.0.1" >
 
     <!-- versionCode is optional and Android only -->
 
@@ -39,7 +39,9 @@
    <plugin name="cordova-plugin-statusbar" />
    <plugin name="cordova-plugin-whitelist"/>
    <plugin name="phonegap-plugin-push" spec="2.0.0" />
-
+   <platform name="android">
+   <resource-file src="google-services.json" target="google-services.json" />
+   </platform>
 
    <platform name="ios">
 	    <icon src="res/icons/ios/icon-20.png" width="20" height="20" />

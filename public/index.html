@@ -121,17 +121,17 @@
             alert('ready');
             //alert(PushNotification);
             var push = PushNotification.init({ "android": { "senderID": "761913983169" } });
-            alert(push);
+            //alert(push);
             push.on('registration', function (data) {
-               alert(data.registrationId);
+               //alert(data.registrationId);
             });
 
             push.on('notification', function (data) {
-               alert(data.title + " Message: " + data.message);
+               //alert(data.title + " Message: " + data.message);
             });
 
             push.on('error', function (e) {
-               alert(e);
+               //alert(e);
             });
          }
    </script>

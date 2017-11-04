@@ -7,15 +7,15 @@
                         <h4 class="card-title">Floor Plan</h4>
                     </div>
                     <div class="card-block" style="padding:10px;">
-                        <div class="col-lg-3"  ng-click="toggleClassHidden('.sub-title'+$index)" style="    border-bottom: 1px solid #ccc;">
+                        <div class="col-lg-3" style="overflow:auto;"  ng-click="toggleClassHidden('.sub-title'+$index)" style="    border-bottom: 1px solid #ccc;">
                             <div class="card">
                                 <div class="card-media" >
-                                  <img class="img-responsive" src="images/floor1.png" alt="">
+                                  <img onclick="$(this).toggleClass('big');" class="img-responsive" src="images/floor1.png" alt="">
                                 </div>
                             </div>
                            <div class="card">
                               <div class="card-media">
-                                 <img class="img-responsive" src="images/floor2.png" alt="">
+                                 <img onclick="$(this).toggleClass('big');" class="img-responsive" src="images/floor2.png" alt="">
                               </div>
                            </div>
                         </div>
@@ -25,4 +25,4 @@
         </div>
     </div>
 </div>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, shrink-to-fit=no">
+

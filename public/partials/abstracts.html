@@ -86,29 +86,7 @@
                                 </div>
                             </div>
 
-                            <div class="panel panel-default">
-                                <div class="panel-heading" role="tab" id="headingThree">
-                                    <h4 class="panel-title">
-                                        <a href="javascript:;"  class="collapsed" data-toggle="collapse" data-parent="#accordion-1" ng-click="activeAccordian('third')">
-                                            <span>Individual Abstract- Poster Award & Presentation</span>
-                                          <i class="icon ti-arrow-circle-down third"></i>
-                                          <i class="icon ti-arrow-circle-left third hide"></i>
-                                        </a>
-                                    </h4>
-                                </div>
-                                <div id="third" class="collapse panel-collapse" role="tabpanel">
-                                    <div class="panel-body">
-                                        <ul class="list-unstyled list-info">
-                                            <li class="border bottom" ng-repeat="n in range(1,112)" ng-if="n > 4 && n != 8 && n != 11 && n != 21 && n !=30 && n != 32 && n != 36 && n != 76 && n != 82 && n != 101">
-                                                <a href="https://gallery-api.azurewebsites.net/abstracts/IndividualAbstractPosterAwardandPresentation/P{{n}}.pdf" target="_blank">
-                                                    <i class="fa fa-file-pdf-o"></i> P{{n}}.pdf
-                                                </a>
-                                                <span class="clearfix"></span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
+                           
                            <div class="panel panel-default">
                               <div class="panel-heading" role="tab" id="headingThree">
                                  <h4 class="panel-title">
@@ -123,6 +101,29 @@
                                  <div class="panel-body">
                                     <ul class="list-unstyled list-info">
                                        <li class="border bottom" ng-repeat="n in range(1,112)" ng-if="n <= 4">
+                                          <a href="https://gallery-api.azurewebsites.net/abstracts/IndividualAbstractPosterAwardandPresentation/P{{n}}.pdf" target="_blank">
+                                                    <i class="fa fa-file-pdf-o"></i> P{{n}}.pdf
+                                                </a>
+                                          <span class="clearfix"></span>
+                                       </li>
+                                    </ul>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="panel panel-default">
+                              <div class="panel-heading" role="tab" id="headingThree">
+                                 <h4 class="panel-title">
+                                    <a href="javascript:;" class="collapsed" data-toggle="collapse" data-parent="#accordion-1" ng-click="activeAccordian('third')">
+                                            <span>Poster Presentation</span>
+                                          <i class="icon ti-arrow-circle-down third"></i>
+                                          <i class="icon ti-arrow-circle-left third hide"></i>
+                                        </a>
+                                 </h4>
+                              </div>
+                              <div id="third" class="collapse panel-collapse" role="tabpanel">
+                                 <div class="panel-body">
+                                    <ul class="list-unstyled list-info">
+                                       <li class="border bottom" ng-repeat="n in range(1,112)" ng-if="n > 4 && n != 8 && n != 11 && n != 21 && n !=30 && n != 32 && n != 36 && n != 76 && n != 82 && n != 101">
                                           <a href="https://gallery-api.azurewebsites.net/abstracts/IndividualAbstractPosterAwardandPresentation/P{{n}}.pdf" target="_blank">
                                                     <i class="fa fa-file-pdf-o"></i> P{{n}}.pdf
                                                 </a>

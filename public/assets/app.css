@@ -2994,6 +2994,9 @@ a.card:hover, a.card:focus { -webkit-box-shadow: 0 7px 15px rgba(0, 0, 0, 0.075)
 .hide{
    display: none;
 }
+.big{
+   width:800px !important;
+}
 .chat .chat-user-list .chat-section .chat-title { padding: 0px 20px 10px 20px; }
 
 .chat .chat-user-list .chat-user { padding: 12px 20px; display: block; position: relative; }

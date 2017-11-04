@@ -1,25 +1,27 @@
 {
    "project_info": {
-      "project_number": "584747194764",
-      "project_id": "afes-2017"
+      "project_number": "761913983169",
+      "firebase_url": "https://push-notification-test-d2c73.firebaseio.com",
+      "project_id": "push-notification-test-d2c73",
+      "storage_bucket": "push-notification-test-d2c73.appspot.com"
    },
    "client": [
       {
          "client_info": {
-            "mobilesdk_app_id": "1:584747194764:android:bdaf900ec08be4d2",
+            "mobilesdk_app_id": "1:761913983169:android:bdaf900ec08be4d2",
             "android_client_info": {
                "package_name": "com.afes.mynamar"
             }
          },
          "oauth_client": [
             {
-               "client_id": "584747194764-ucq18mumu8nit7ustavn2eae1deos93p.apps.googleusercontent.com",
+               "client_id": "761913983169-pt8etu488eluq93ktj7ej8khp77hbn6n.apps.googleusercontent.com",
                "client_type": 3
             }
          ],
          "api_key": [
             {
-               "current_key": "AIzaSyALuRHXHdfDHHPGpAZTQfxK1jijZD9_-v4"
+               "current_key": "AIzaSyDWyr3eASdj5AMx2d7hyXrkG5O1N7rbMUw"
             }
          ],
          "services": {
@@ -31,7 +33,7 @@
                "other_platform_oauth_client": []
             },
             "ads_service": {
-               "status": 1
+               "status": 2
             }
          }
       }

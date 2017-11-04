@@ -286,16 +286,16 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
             var bds = name.split('.');
             var nm = bds[1].split(' ');
             if (nm.length == 2) {
-               return bds[0]+'.'+nm[1] +' ' + nm[0];
+               return bds[0]+'. '+nm[1] +' ' + nm[0];
             }
             if (nm.length == 3) {
-               return bds[0] +'.'+ nm[2] + ' ' + nm[0] + ' ' + nm[1];
+               return bds[0] +'. '+ nm[2] + ' ' + nm[0] + ' ' + nm[1];
             }
             if (nm.length == 4) {
-               return bds[0] + '.' +nm[3] + ' ' + nm[2] + ' ' + nm[0] + ' ' + nm[1];
+               return bds[0] + '. ' +nm[3] + ' ' + nm[2] + ' ' + nm[0] + ' ' + nm[1];
             }
             if (nm.length == 4) {
-               return bds[0] + '.' + nm[3] + ' ' + nm[2] + ' ' + nm[0] + ' ' + nm[1];
+               return bds[0] + '. ' + nm[3] + ' ' + nm[2] + ' ' + nm[0] + ' ' + nm[1];
             }
             return name;
          }else{

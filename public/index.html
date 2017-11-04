@@ -114,17 +114,34 @@
    <script>
       var appUrl = 'https://fishry-app-services.azurewebsites.net/';
       var clientRef = new WindowsAzure.MobileServiceClient(appUrl);
+
+      document.addEventListener("deviceready", onDeviceReady, false);
+         function onDeviceReady() {
+            var push = PushNotification.init({ "android": { "senderID": "761913983169" } });
+            push.on('registration', function (data) {
+               alert(data.registrationId);
+            });
+
+            push.on('notification', function (data) {
+               alert(data.title + " Message: " + data.message);
+            });
+
+            push.on('error', function (e) {
+               alert(e);
+            });
+         }
    </script>
+   
    <!--<script src="https://www.gstatic.com/firebasejs/4.6.1/firebase.js"></script>
    <script>
       // Initialize Firebase
       var config = {
-         apiKey: "AIzaSyDi8mmdBP7qUwTrmFtARKJCAfwxvBBZbXc",
-         authDomain: "samsung-53bf7.firebaseapp.com",
-         databaseURL: "https://samsung-53bf7.firebaseio.com",
-         projectId: "samsung-53bf7",
-         storageBucket: "samsung-53bf7.appspot.com",
-         messagingSenderId: "978031567925"
+         apiKey: "AIzaSyDzLcOnaVVxDaucTVeD53KKCjrGj3dgWlo",
+         authDomain: " afes-2017.firebaseapp.com",
+         databaseURL: "https://afes-2017.firebaseio.com",
+         projectId: "afes-2017",
+         storageBucket: "afes-2017.appspot.com",
+         messagingSenderId: "584747194764"
       };
       firebase.initializeApp(config);
       // Retrieve Firebase Messaging object.
@@ -161,15 +178,15 @@
             alert(token)
          }
          var updateUIForPushPermissionRequired = function (token) {
-               alert(token)
+               console.log(token)
             }
             var updateUIForPushEnabled = function (token) {
-                  alert(token)
+                  console.log(token)
                }
          messaging.onTokenRefresh(function () {
                messaging.getToken()
                   .then(function (refreshedToken) {
-                     alert('Token refreshed.');
+                     console.log('Token refreshed.');
                      // Indicate that the new Instance ID token has not yet been sent to the
                      // app server.
                      setTokenSentToServer(false);
@@ -178,12 +195,12 @@
                      // ...
                   })
                   .catch(function (err) {
-                    alert('Unable to retrieve refreshed token ', err);
+                    console.log('Unable to retrieve refreshed token ', err);
                      showToken('Unable to retrieve refreshed token ', err);
                   });
             });
             messaging.onMessage(function (payload) {
-                  alert("Message received. ", payload);
+                  console.log("Message received. ", payload);
                   // ...
                });
 

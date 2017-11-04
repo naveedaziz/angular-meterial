@@ -18,7 +18,9 @@
                             <p class="col-md-12 h5 text-danger text-center padding-25" ng-if="loadingData">
                                 <span class="fa fa-spinner fa-spin "></span> Loading
                             </p>
+                            
                             <ul class="email-list-item list-unstyled list-info">
+                              <h4>Faculty</h4>
                                 <li class="email-item" ng-repeat="faculty in facultys | filter:filterName" ng-if="$index >= 161">
                                     <!-- {{faculty}} -->
                                     <img onerror="checkImg(this)"  class="thumb-img img-circle"  ng-src="{{ 'main_images/Speakers/'+replaceSlash(faculty.name)+'.jpg'}}" alt="">
@@ -29,6 +31,7 @@
                                         <p style="font-size: 11px;margin-top: 7px;" class="descitpions hidden" style="line-height: 1.3" ng-bind-html="faculty.description"></p>
                                     </div>
                                 </li>
+                              <h4>Presenter</h4>
                               <li class="email-item" ng-repeat="faculty in facultys | filter:filterName" ng-if="$index >= 0 && $index <= 160">
                                  <!-- {{faculty}} -->
                                  <img onerror="checkImg(this)" class="thumb-img img-circle" ng-src="{{ 'main_images/Speakers/'+replaceSlash(faculty.name)+'.jpg'}}"

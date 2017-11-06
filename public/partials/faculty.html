@@ -14,39 +14,25 @@
                      </div>
                   </div>
                     <div class="email-list-wrapper scrollable ps-theme-default ps-active-y" data-ps-id="58758e10-f15b-ea97-70c0-6c1ebe3ba29e">
-                        <div class="list-view-group-container">
-                            <p class="col-md-12 h5 text-danger text-center padding-25" ng-if="loadingData">
-                                <span class="fa fa-spinner fa-spin "></span> Loading
-                            </p>
-                            
-                            <ul class="email-list-item list-unstyled list-info">
+                        <p class="col-md-12 h5 text-danger text-center padding-25" ng-if="loadingData">
+                           <span class="fa fa-spinner fa-spin "></span> Loading
+                        </p>
+                        <div class="list-view-group-container" ng-if="facultys.length">
+                          
+                            <ul class="email-list-item list-unstyled list-info" ng-repeat="(key,pre) in presentors">
                               <h4 ng-if="facultys.length" style="    text-align: center;
     padding: 13px;
-    border-bottom: 1px solid rgba(221, 221, 221, 0.47);">Faculty</h4>
-                                <li class="email-item" ng-repeat="faculty in facultys | filter:filterName" ng-if="$index >= 161">
+    border-bottom: 1px solid rgba(221, 221, 221, 0.47);">{{key}}</h4>
+                                <li class="email-item" ng-repeat="faculty in pre">
                                     <!-- {{faculty}} -->
-                                    <img onerror="checkImg(this)"  class="thumb-img img-circle"  ng-src="{{ 'main_images/Speakers/'+replaceSlash(faculty.name)+'.jpg'}}" alt="">
+                                    <img onerror="checkImg(this)"  class="thumb-img img-circle"  ng-src="{{ 'main_images/Speakers/'+replaceSlash(faculty.image)+'.jpg'}}" alt="">
                                     <div class="info">
-                                        <a onclick="$(this).parent().children('.descitpions').toggleClass('hidden')" href="javascript:void(0)" class="title no-pdd-vertical text-semibold inline-block">{{findName(returnSureName(faculty.name))}}<br />
+                                        <a  ng-click="returnDescription(faculty.name,key,$index)" href="javascript:void(0)" class="title no-pdd-vertical text-semibold inline-block">{{faculty.name}}<br />
                                             <small>{{faculty.designation}}</small>
                                         </a>
-                                        <p style="font-size: 11px;margin-top: 7px;" class="descitpions hidden" style="line-height: 1.3" ng-bind-html="faculty.description"></p>
+                                        <p ng-if="faculty.showDescp" style="font-size: 11px;margin-top: 7px;" class="descitpions" style="line-height: 1.3" ng-bind-html="faculty.description"></p>
                                     </div>
                                 </li>
-                              <h4 ng-if="facultys.length" style="    text-align: center;
-    padding: 13px;
-    border-bottom: 1px solid rgba(221, 221, 221, 0.47);">Presenter</h4>
-                              <li class="email-item" ng-repeat="faculty in facultys | filter:filterName" ng-if="$index >= 0 && $index <= 160">
-                                 <!-- {{faculty}} -->
-                                 <img onerror="checkImg(this)" class="thumb-img img-circle" ng-src="{{ 'main_images/Speakers/'+replaceSlash(faculty.name)+'.jpg'}}"
-                                    alt="">
-                                 <div class="info">
-                                    <a onclick="$(this).parent().children('.descitpions').toggleClass('hidden')" href="javascript:void(0)" class="title no-pdd-vertical text-semibold inline-block">{{returnSureName(faculty.name)}}<br />
-                                            <small>{{faculty.designation}}</small>
-                                        </a>
-                                    <p style="font-size: 11px;margin-top: 7px;" class="descitpions hidden" style="line-height: 1.3" ng-bind-html="faculty.description"></p>
-                                 </div>
-                              </li>
                             </ul>
                         </div>
                     </div>

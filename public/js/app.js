@@ -272,7 +272,40 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
          $('#userMenu').parent().toggleClass('show'); $('#userdrop').toggleClass('show')
       }
       $scope.replaceSlash = function(name){
+         if (name)
          return name.replace('/','');
+      }
+      $scope.returnDescription = function(named,key,idx){
+         var namePass = '';
+         if ($scope.facultys){
+            if ($scope.presentors[key][idx].description){
+               if ($scope.presentors[key][idx].showDescp){
+                  $scope.presentors[key][idx].showDescp = false;
+               }else{
+                  $scope.presentors[key][idx].showDescp = true;
+               }
+            }else{
+               for (var ind in $scope.facultys) {
+                  var name = $scope.facultys[ind].name;
+                  var nm_split = name.split(' ');
+                 // console.log(nm_split)
+                  var num_split = named.split(' ');
+                  var found = 0;
+                  for (var is in nm_split) {
+                     for (var isd in num_split) {
+                        if (num_split[isd] == nm_split[is]) {
+                           found++;
+                        }
+                     }
+                  }
+                  if (found == nm_split.length) {
+                     namePass = $scope.facultys[ind].description;
+                  }
+               }
+               $scope.presentors[key][idx].description = namePass;
+               $scope.presentors[key][idx].showDescp = true;
+            }
+         }
       }
       $scope.currentSchedule = function (schedule){
          //console.log(schedule);
@@ -281,6 +314,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
          }
          return false;
       }
+      $scope.organizerCommitee = '';
       $scope.returnSureName =  function(name){
          if(name.indexOf('.') >= 0){
             var bds = name.split('.');
@@ -593,9 +627,14 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
             $scope.get_data = function (table, scope) {
                   var filter = {};
                   $scope.loadingData = true;
+                  if (table == 'speaker'){
+                     var link =  'https://fishry-app-services.azurewebsites.net/api/table_read?table=' + table;
+                  }else{
+                     var link = 'https://fishry-app-services.azurewebsites.net/api/table_read?table=' + table
+                  }
                   $http({
                      method: 'GET',
-                     url: 'https://fishry-app-services.azurewebsites.net/api/table_read?table=' + table
+                     url: link 
                   }).then(function successCallback(response) {
                      $scope[scope] = response.data;
                         $scope.loadingData = false;
@@ -627,7 +666,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                   }
             }
             $scope.extraAbracts = {
-               "Plenary": {
+               "Faculty Abstract - Plenary": {
                   data: [
                            { name: "Prof William Young", file: "PL1 Prof William Young" },
                            { name: "Susumu Seino", file: "PL2  Susumu Seino" },
@@ -638,7 +677,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                         ],
                   key:'Plenary'
                   },
-               "Symposium": {
+               "Faculty Abstract - Symposium": {
                   data:  [
                   { name: "Dr Kevin Yuen", file: "S1.1 Dr Kevin Yuen" },
                   { name: "Dr Tran Quang Nam", file: "S1.3 Dr Tran Quang Nam" },
@@ -672,7 +711,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                ],
                   key: 'Symposium'
                },
-               "Meet the Expert": {
+               "Faculty Abstract - Meet the Expert": {
                   data:   [
                   { name: "Prof William Young", file: "ME1 Prof William Young" },
                   { name: "Prof Hossein Gharib", file: "ME2 Prof Hossein Gharib" },
@@ -688,6 +727,188 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                ],
                key:'meet'
                },
+            };
+            $scope.presentors = {
+               "Faculty": [
+                  { name: "Prof. Aung Moe Wint", image: "Prof. Moe Wint Aung" },
+                  { name: "Dr. Aye Than Than", image: "Prof. Than Than Aye" },
+                  { name: "Prof. Aye Mo", image: "Dr. Mo Aye" },
+                  { name: "Prof. Borghi Claudio" },
+                  { name: "Prof. Chan Siew Pheng", image: "Prof. Siew Pheng Chan" },
+                  { name: "Dr. Chan Wing Bun", image: "Dr. Wing Bun Chan" },
+                  { name: "Dr. F. H. Pfeiffer Andreas", image: "Dr. Andreas F. H. Pfeiffer" },
+                  { name: "Prof. Gharib Hossein", image: "Prof. Hossein Gharib" },
+                  { name: "Prof. Gilbert Richard E", image: "Prof. Richard E Gilbert" },
+                  { name: "Dr. Hario Seno Heri-Nugroho", image: "Dr. Heri-Nugroho Hario Seno" },
+                  { name: "Dr. Hlaing Thinn Thinn", image: "Dr. Thinn Thinn Hlaing" },
+                  { name: "Prof. Ho Ken", image: "Prof. Ken Ho" },
+                  { name: "A/Prof. Hoeybye Charlotte", image: "AProf. Charlotte Hoeybye" },
+                  { name: "Dr. Hussein Zanariah", image: "Dr. Zanariah Hussein" },
+                  { name: "Prof. Jap Tjin-Shing", image: "Prof. Tjin-Shing Jap" },
+                  { name: "Dr. Jeon Min Ji", image: "Dr. Min Ji Jeon" },
+                  { name: "Prof. Jimeno Cecile A.", image: "Prof. Cecile A. Jimeno" },
+                  { name: "Prof. Jones Thomas Hugh", image: "Prof. Thomas Hugh Jones" },
+                  { name: "Dr. Joshi Shashank", image: "Dr. Shashank Joshi" },
+                  { name: "Dr. Khaing Maung Maung" },
+                  { name: "Prof. Khovidhunkit Weerapan", image: "Prof. Weerapan Khovidhunkit" },
+                  { name: "Prof. Kim Won Bae", image: "Prof. Won Bae Kim" },
+                  { name: "Prof. Ko Ko" },
+                  { name: "Prof. Lacroix Andre", image: "Prof. Andre Lacroix" },
+                  { name: "Prof. Latt Tint Swe", image: "Prof. Tint Swe Latt" },
+                  { name: "Prof. Lee K O", image: "Prof. K O Lee" },
+                  { name: "Prof. Lee Kok Onn" },
+                  { name: "A/Prof. Leow Melvin", image: "A Prof Melvin Leow" },
+                  { name: "Dr. Lim Vivien", image: "Dr Vivien Lim" },
+                  { name: "A/Prof. Loke Kah Yin", image: "AProf. Kah Yin Loke" },
+                  { name: "A/Prof. McMahon Graham", image: "AProf. Graham McMahon" },
+                  { name: "Prof. Mercado-Asis Leilani", image: "Prof. Leilani Mercado-Asis" },
+                  { name: "Prof. Mohamed Mafauzy", image: "Prof. Mafauzy Mohamed" },
+                  { name: "Prof. Mourad Jean-Jacques" },
+                  { name: "Dr. Myint Khin Swe", image: "Prof. Dr. Khin Swe Myint" },
+                  { name: "A/Prof. Myint Thein" },
+                  { name: "A/Prof. Naing Soe", image: "AProf. Soe Naing" },
+                  { name: "Dr. Nam Tran Quang", image: "Dr. Tran Quang Nam" },
+                  { name: "Dr. Nieman Lynnette" },
+                  { name: "Prof. Oo Thein Hlaing", image: "Prof Thein Hlaing Oo" },
+                  { name: "Dr. Pemayun Tjokorda G D", image: "Dr. Tjokorda Gde Dalem Pemayun" },
+                  { name: "Prof. Sahay Rakesh", image: "Prof. Rakesh Sahay" },
+                  { name: "Dr. Sampangi Sudhakar", image: "Dr. Sudhakar Sampangi" },
+                  { name: "Prof. Seino Susumu", image: "Prof Susumu Seino" },
+                  { name: "Dr. Shoback Dolores", image: "Dr. Dolores Shoback" },
+                  { name: "Dr. Soe Kyaw Kyaw", image: "Dr. Kyaw Kyaw Soe" },
+                  { name: "Prof. Soegondo Sidartawan", image: "Prof. Sidartawan Soegondo" },
+                  { name: "Dr. Soh Abel", image: "Dr. Abel Soh" },
+                  { name: "Dr. Tan Gerry", image: "Dr. Gerry Tan" },
+                  { name: "Dr. Tan  Go Ruby", image: "Dr. Ruby Tan Go" },
+                  { name: "Prof. Van Gaal Luc", image: "Prof Luc Van Gaal" },
+                  { name: "A/Prof. Vethakkan Shireene Ratna", image: "AProf. Shireene Ratna Vethakkan" },
+                  { name: "A/Prof. Vu Thi Thanh Huyen", image: "AProf. Thi Thanh Huyen Vu" },
+                  { name: "Dr. Win Aung Ko", image: "Dr. Aung Ko Win" },
+                  { name: "Prof. Young William", image: "Prof. William Young" },
+                  { name: "Dr.. Yuen Kevin", image: "Dr. Kevin Yuen" },
+               ],
+               "Presenter": [
+                  { name: "Adam John" },
+                  { name: "Dr. Agoncillo Karen Elouie", image: "Dr. Karen Elouie Agoncillo" },
+                  { name: "Ms. Anusornvongchai Thitinun" },
+                  { name: "Dr. Aung Aye Thida" },
+                  { name: "Dr. Aung Win Yu", image: "Dr. Win Yu Aung" },
+                  { name: "Prof. Aung Moe Wint", image: "Prof. Moe Wint Aung" },
+                  { name: "Dr. Aye Htar Ni", image: "Dr. Htar Ni Aye" },
+                  { name: "Dr. Balansa Endrile", image: "Dr. Endrile Balansa" },
+                  { name: "Dr. Bautista Francesca Paula", image: "Dr. Francesca Paula Bautista" },
+                  { name: "Dr. Cabrera Carmen Carina", image: "Dr. Carmen Carina Cabrera" },
+                  { name: "Dr. Cheung Kitty" },
+                  { name: "Dr. Chiang Brenda", image: "Dr. Brenda Chiang" },
+                  { name: "Mr. Chotwanvirat Phawinpon", image: "Mr. Phawinpon Chotwanvirat" },
+                  { name: "Prof. Chung Yoon-Sok", image: "Prof. Yoon-Sok Chung" },
+                  { name: "Dr. Corpuz Hannah", image: "Dr. Hannah Corpuz" },
+                  { name: "Ms. Dau Ly Na", image: "Ms. Ly Na Dau" },
+                  { name: "Dr. Diane Carla Bernardo", image: "Dr. Bernardo Diane Carla" },
+                  { name: "Mr. Donadi Eduardo", image: "Mr. Eduardo Donadi" },
+                  { name: "Dr. Eliana Fatimah", image: "Dr. Fatimah Eliana" },
+                  { name: "Dr. Felipe Roy Raoul" },
+                  { name: "Dr. Francisco Danica", image: "Dr. Danica Francisco" },
+                  { name: "Dr. Gabat Julie Anne", image: "Dr. Julie Anne Gabat" },
+                  { name: "Dr. Gadekar Arvind", image: "Dr. Arvind Gadekar" },
+                  { name: "Mr. Ghosh Chiranjit", image: "Mr. Chiranjit Ghosh" },
+                  { name: "Dr. Gutch Manish", image: "Dr. Manish Gutch" },
+                  { name: "Dr. Han Ji Min" },
+                  { name: "Dr. Haydar Ali Tajuddin Amalina", image: "Dr. Amalina Haydar Ali Tajuddin" },
+                  { name: "Mrs. Herrera Lenor", image: "Mrs. Lenor Herrera" },
+                  { name: "Dr. Hla Shwe Thu Zar", image: "Dr. Thu Zar Hla Shwe" },
+                  { name: "Dr. Hlaing Zarchi-Theint-Theint", image: "Dr. Zarchi-Theint-Theint Hlaing" },
+                  { name: "A/Prof. Hoang Thanh", image: "AProf. Thanh Hoang" },
+                  { name: "Dr. Htike Hein", image: "Dr. Hein Htike" },
+                  { name: "Dr. Huan Nai Chien", image: "Dr. Nai Chien Huan" },
+                  { name: "Dr. Huynh Ngoc Diem", image: "Dr. Ngoc Diem Huynh" },
+                  { name: "Dr. Ilagan Ma. Karen Celine", image: "Dr. Ma. Karen Celine Ilagan" },
+                  { name: "Dr. Jao - Sanchez Suzanne", image: "Dr. Suzanne Jao - Sanchez" },
+                  { name: "Dr. Jeni Diana", image: "Dr. Diana Jeni" },
+                  { name: "Ms. Jo Carolina Margaret", image: "Ms. Carolina Margaret Jo" },
+                  { name: "Prof. Kang Sun Chul" },
+                  { name: "Dr. Kao Mei-teng", image: "Dr. Mei-teng Kao" },
+                  { name: "Dr. Kim Tae Yong", image: "Dr. Tae Yong Kim" },
+                  { name: "Dr. Kuwata Hitoshi", image: "Dr. Hitoshi Kuwata" },
+                  { name: "A/Prof. Kyaw Theingi", image: "AProf. Theingi Kyaw" },
+                  { name: "Dr. Kyaw Phyo" },
+                  { name: "Dr. Kyaw Swar Myint Aung", image: "Dr. Aung Kyaw Swar Myint" },
+                  { name: "Dr. Lazaro Karen" },
+                  { name: "Mrs. Le Trang", image: "Mrs. Trang Le" },
+                  { name: "Dr. Le Anh Tu", image: "Dr. Tu Le Anh" },
+                  { name: "Mrs. Le Than Phuong", image: "Mrs. Phuong Le Than" },
+                  { name: "Prof. Lebl Jan" },
+                  { name: "Mr. Lee Jeongkun", image: "Mr. Jeongkun Lee" },
+                  { name: "Prof. Lee Jihyun" },
+                  { name: "Prof. Lee Sihoon", image: "Prof. Sihoon Lee" },
+                  { name: "Dr. Libre Michelle Angeli", image: "Dr. Michelle Angeli Libre" },
+                  { name: "Dr. Lim Kim Piow", image: "Dr. Kim Piow Lim" },
+                  { name: "Dr. Lin Jui-hsiang", image: "Dr. Jui-hsiang Lin" },
+                  { name: "Dr. Lin Yi-chun", image: "Dr. Yi-chun Lin" },
+                  { name: "Dr. Li-yu Tsai", image: "Dr. Tsai Li-yu" },
+                  { name: "Dr. Llanes Mark Ramon Victor" },
+                  { name: "Dr. Low Kiat Mun Serena" },
+                  { name: "Dr. Lu Johanna", image: "Dr. Johanna Lu" },
+                  { name: "Dr. Luy Sybil Claudine" },
+                  { name: "Mrs. Marfianti Erlina", image: "Mrs. Erlina Marfianti" },
+                  { name: "Dr. Mercado Jonathan" },
+                  { name: "Dr. Moe Aung Soe", image: "Dr. Aung Soe Moe" },
+                  { name: "Dr. Myint Kyar Nyo Soe", image: "Dr. Kyar Nyo Soe Myint" },
+                  { name: "Dr. Nguyen Ngoc Tam", image: "Dr. Ngoc Tam Nguyen" },
+                  { name: "Dr. Nguyen Thi Thu Huong", image: "Dr. Huong Nguyen Thi Thu" },
+                  { name: "Mrs. Nguyen Xuan Thanh", image: "Mrs. Thanh Nguyen Xuan" },
+                  { name: "Dr. Oo Su Myo Myat", image: "Dr. Su Myo Myat Oo" },
+                  { name: "Dr. Ooi Xi Yan", image: "Dr. Xi Yan Ooi" },
+                  { name: "Prof. Orbak Zerrin", image: "Prof. Zerrin Orbak" },
+                  { name: "Dr. Paningbatan James" },
+                  { name: "Dr. Panuda Jose Paolo", image: "Dr. Jose Paolo Panuda" },
+                  { name: "Dr. Park Jung Hwan", image: "Dr. Jung Hwan Park" },
+                  { name: "Dr. Payumo Edelissa", image: "Dr. Edelissa Payumo" },
+                  { name: "Dr. Peng Ng", image: "Dr. Ng Peng" },
+                  { name: "Ms. Plianpan Panitta" },
+                  { name: "Dr. Pramono Laurentius Aswin" },
+                  { name: "Dr. Pyone Zar Chi", image: "Dr. Zar Chi Pyone" },
+                  { name: "Dr. Rangkuti Deske Muhadi", image: "Dr. Deske Muhadi Rangkuti" },
+                  { name: "Prof. Rhee Eun-jung" },
+                  { name: "Dr. San Bo Bo", image: "Dr. Bo Bo San" },
+                  { name: "Dr. Sanda Khin", image: "Dr. Khin Sanda" },
+                  { name: "Dr. Sarmiento Annie Jane", image: "Dr. Annie Jane Sarmiento" },
+                  { name: "Dr. Sebastian Siao Ria Mari", image: "Dr. Ria Mari Sebastian Siao" },
+                  { name: "Dr. See Chee Keong", image: "Dr. Chee Keong See" },
+                  { name: "A/Prof. Seo Mihye", image: "AProf. Mihye Seo" },
+                  { name: "Prof. Shakir Mohamed" },
+                  { name: "Prof. Shong Young Kee", image: "Prof. Young Kee Shong" },
+                  { name: "Ms. Sifuentes Vanessa", image: "Ms. Vanessa Sifuentes" },
+                  { name: "Prof. Snajderova Marta", image: "Prof. Marta Snajderova" },
+                  { name: "Prof. Song Kee Ho", image: "Prof. Kee Ho Song" },
+                  { name: "Dr. Sorongon-Legaspi Mishell Kris", image: "Dr. Mishell Kris Sorongon-Legaspi" },
+                  { name: "Dr. Sree Dharan Shalini" },
+                  { name: "Dr. Tappan Sweet Garllie Albert", image: "Dr. Sweet Garllie Albert Tappan" },
+                  { name: "Dr. Than Vutha", image: "Dr. Vutha Than" },
+                  { name: "Dr. Thandar Khine", image: "Dr. Khine Thandar" },
+                  { name: "A/Prof. Thant Zarli", image: "AProf. Zarli Thant" },
+                  { name: "Dr. Thewjitcharoen Yotsapon" },
+                  { name: "Dr. Tin Thiri", image: "Dr. Thiri Tin" },
+                  { name: "Dr. Togonon Johann Christine", image: "Dr. Johann Christine Togonon" },
+                  { name: "Dr. Totesora Darwin", image: "Dr. Darwin Totesora" },
+                  { name: "Mr. Trinh Ngoc Anh", image: "Mr. Ngoc Anh Trinh" },
+                  { name: "Dr. Uy Melissa Claire", image: "Dr. Melissa Claire Uy" },
+                  { name: "Dr. Valera Grethel Fatima", image: "Dr. Grethel Fatima Valera" },
+                  { name: "Dr. Villamiel Katrina Marie", image: "Dr. Katrina Marie Villamiel" },
+                  { name: "Dr. Vo Tuan Khoa", image: "Dr. Tuan Khoa Vo" },
+                  { name: "Dr. Wai Linn Thiri", image: "Dr. Thiri Wai Linn" },
+                  { name: "Dr. Wardhana Wardhana" },
+                  { name: "A/Prof. Wee Shiou-Liang", image: "AProf. Shiou-Liang Wee" },
+                  { name: "Dr. Wong Hui Chin", image: "Dr. Hui Chin Wong" },
+                  { name: "Dr. Ynn Kyaw", image: "Dr. Kyaw Ynn" },
+                  { name: "Dr. Yong Lit Sin", image: "Dr. Lit Sin Yong" },
+                  { name: "Dr. Yu Marc Gregory", image: "Dr. Marc Gregory Yu" },
+                  { name: "A/Prof. Yun Jong Won", image: "AProf. Jong Won Yun" },
+                  { name: "Dr. Zaw Thurein", image: "Dr. Thurein Zaw" },
+                  { name: "Dr. Zhang Xiao", image: "Dr. Xiao Zhang" },
+                  { name: "Mr. Zumaraga Mark Pretzel", image: "Mr. Mark Pretzel Zumaraga" },
+
+               ],
             };
             $scope.getCountryOrganizer = function(name){
                var country = '';
@@ -863,120 +1084,194 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                var date  = dt.replace('(','').replace(')','').split(' ');
                return date[1]+' '+date[2];
             }
-            $scope.namedNew = [
-               { name: 'Dr. Low Kiat Mun Serena' },
-               { name: 'Mr. Zumaraga Mark Pretzel' },
-               { name: 'Ms. Dau Ly Na' },
-               { name: 'Dr. Villamiel Katrina Marie' },
-               { name: 'Mr. Trinh Ngoc Anh' },
-               { name: 'Dr. Aye Htar Ni' },
-               { name: 'Ms. Jo Carolina Margaret' },
-               { name: 'Dr. Macalalad-Josue Anna Angelica' },
-               { name: 'Dr. Huynh Ngoc Diem' },
-               { name: 'Dr. Gutch Manish' },
-               { name: 'Dr. Pramono Laurentius Aswin' },
-               { name: 'Dr. Yong Lit Sin' },
-               { name: 'Dr. Panuda Jose Paolo' },
-               { name: 'Prof. Shong Young Kee' },
-               { name: 'Dr. Sree Dharan Shalini' },
-               { name: 'Dr. Ilagan Ma. Karen Celine' },
-               { name: 'Mrs. Le Than Phuong' },
-               { name: 'Dr. Vo Tuan Khoa' },
-               { name: 'Dr. Hla Shwe Thu Zar' },
-               { name: 'Dr. Sebastian Siao Ria Mari' },
-               { name: 'Dr. Uy Melissa Claire' },
-               { name: 'Dr. Lim Kim Piow' },
-               { name: 'Dr. Pyone Zar Chi' },
-               { name: 'Dr. Bautista Francesca Paula' },
-               { name: 'Dr. Valera Grethel Fatima' },
-               { name: 'Dr. Diane Carla Bernardo ' },
-               { name: 'Dr. Gabat Julie Anne' },
-               { name: 'Dr. Huan Nai Chien' },
-               { name: 'Dr. Ilagan Ma. Karen Celine' },
-               { name: 'Dr. Kim Tae Yong' },
-               {name: 'A/Prof. Yun Jong Won' },
-               {name: 'Dr. Sorongon-Legaspi Mishell Kris' },
-               {name: 'Dr. Villamiel Katrina Marie' },
-               {name: 'Dr. Wardhana Wardhana' },
-               {name: 'Dr. Aung Aye Thida' },
-               {name: 'Dr. Chaniago Lita Septina' },
-               {name: 'Dr. Han Ji Min' },
-               {name: 'Dr. Kyaw Swar Myint Aung' },
-               {name: 'Dr. Le Anh Tu' },
-               {name: 'Dr. Luy Sybil Claudine' },
-               {name: 'Dr. Aung Win Yu' },
-               {name: 'Dr. Myint Kyar Nyo Soe' },
-               {name: 'Dr.Cabrera Carmen Carina' },
-               {name: 'Dr. Felipe Roy Raoul' },
-               {name: 'Dr. Low Kiat Mun Serena' },
-               {name: 'Mr. Trinh Ngoc Anh' },
-               {name: 'Dr. Kao Mei-teng' },
-               {name: 'Dr. Lim Kim Piow' },
-               {name: 'Dr. Togonon Johann Christine' },
-               {name: 'A/Prof. Wee Shiou-Liang' },
-               {name: 'Dr. Jao - Sanchez Suzanne' },
-               {name: 'Dr. Macalalad-Josue Anna Angelica' },
-               {name: 'Dr. See Chee Keong' },
-               {name: 'Dr. Oo Su Myo Myat' },
-               {name: 'Dr. Yu Marc Gregory' },
-               {name: 'Dr. Bautista Francesca Paula' },
-               {name: 'Dr. Gabat Julie Anne' },
-               {name: 'Dr. Haydar Ali Tajuddin Amalina' },
-               {name: 'Dr. Lin Yi-chun' },
-               {name: 'Dr. Li-yu Tsai' },
-               {name: 'Dr. Sarmiento Annie Jane' },
-               {name: 'Dr. Wong Hui Chin' },
-               {name: 'Prof. Aung Moe Wint' },
-               {name: 'Prof. Kang Sun Chul' },
-               {name: 'Dr. Macalalad-Josue Anna Angelica' },
-               {name: 'Dr. Moe Aung Soe' }	,
-               {name: 'Dr. Nguyen Ngoc Tam' }	,
-               {name: 'Dr. Nguyen Thi Thu Huong' },
-               {name: 'Mrs. Nguyen Xuan Thanh' },
-               {name: 'Dr. Ooi Xi Yan' },
-               {name: 'Prof. Orbak Zerrin' },
-               {name: 'Dr. Panuda Jose Paolo' },
-               {name: 'Dr. Park Jung Hwan' },
-               {name: 'Dr. Rangkuti Deske Muhadi' } 	,
-               {name: 'Prof. Rhee Eun-jung' },
-               {name: 'Dr. San Bo Bo' }	,
-               {name: 'Prof. Song Kee Ho' },
-               {name: 'Dr. Tappan Sweet Garllie Albert' },
-               {name: 'Dr. Uy Angelique Bea' },
-               {name: 'Dr. Wai Linn Thiri' },
-               {name: 'Dr. Agoncillo Karen Elouie' },
-               {name: 'Dr. Libre Michelle Angeli' },
-               {name: 'Dr. Tappan Sweet Garllie Albert' },
-               {name: 'Dr. Hlaing Zarchi-Theint-Theint' },
-               {name: 'Dr. Llanes Mark Ramon Victor' },
-               {name: 'Prof. Orbak Zerrin' },
-               {name: 'Prof. Orbak Zerrin' },
-               {name: 'A/Prof. Yun Jong Won' },
-               {name: 'Dr. Libre Michelle Angeli' },
-               {name: 'Dr. Macalalad-Josue Anna Angelica' },
-               {name: 'Prof. Chan Siew Pheng' },
-               {name: 'Dr. Hario Seno Heri-Nugroho' },
-               {name: 'Dr. Hlaing Thinn Thinn' },
-               {name: 'A/Prof. Hoeybye Charlotte' },
-               {name: 'Prof. Jap Tjin-Shing' },
-               {name: 'Dr. Jeon Min Ji' },
-               {name: 'Prof. Jones Thomas Hugh' },
-               {name: 'Dr. Khaing Maung Maung' },
-               {name: 'Prof. Kim Won Bae' },
-               {name: 'Prof. Latt Tint Swe' },
-               {name: 'Prof. Lee Kok Onn' },
-               {name: 'A/Prof. Loke Kah Yin' },
-               {name: 'Dr. Myint Khin Swe' },
-               {name: 'Dr. Nam Tran Quang' },
-               {name: 'Prof. Oo Thein Hlaing' },
-               {name: 'Dr. Pemayun Tjokorda G D' },
-               {name: 'Dr. Soe Kyaw Kyaw' },
-               {name: 'Dr. Tan  Go Ruby' }	,
-               {name: 'Prof. Van Gaal Luc' },
-               {name: 'A/Prof. Vethakkan Shireene Ratna' },
-               {name: 'A/Prof. Vu Thi Thanh Huyen' },
-               {name: 'Dr. Win Aung Ko' }
-            ];
+            $scope.namedNew = {
+               'Faculty': [
+                  { name: 'Dr. Low Kiat Mun Serena' },
+                  { name: 'Mr. Zumaraga Mark Pretzel' },
+                  { name: 'Ms. Dau Ly Na' },
+                  { name: 'Dr. Villamiel Katrina Marie' },
+                  { name: 'Mr. Trinh Ngoc Anh' },
+                  { name: 'Dr. Aye Htar Ni' },
+                  { name: 'Ms. Jo Carolina Margaret' },
+                  { name: 'Dr. Macalalad-Josue Anna Angelica' },
+                  { name: 'Dr. Huynh Ngoc Diem' },
+                  { name: 'Dr. Gutch Manish' },
+                  { name: 'Dr. Pramono Laurentius Aswin' },
+                  { name: 'Dr. Yong Lit Sin' },
+                  { name: 'Dr. Panuda Jose Paolo' },
+                  { name: 'Prof. Shong Young Kee' },
+                  { name: 'Dr. Sree Dharan Shalini' },
+                  { name: 'Dr. Ilagan Ma. Karen Celine' },
+                  { name: 'Mrs. Le Than Phuong' },
+                  { name: 'Dr. Vo Tuan Khoa' },
+                  { name: 'Dr. Hla Shwe Thu Zar' },
+                  { name: 'Dr. Sebastian Siao Ria Mari' },
+                  { name: 'Dr. Uy Melissa Claire' },
+                  { name: 'Dr. Lim Kim Piow' },
+                  { name: 'Dr. Pyone Zar Chi' },
+                  { name: 'Dr. Bautista Francesca Paula' },
+                  { name: 'Dr. Valera Grethel Fatima' },
+                  { name: 'Dr. Diane Carla Bernardo ' },
+                  { name: 'Dr. Gabat Julie Anne' },
+                  { name: 'Dr. Huan Nai Chien' },
+                  { name: 'Dr. Ilagan Ma. Karen Celine' },
+                  { name: 'Dr. Kim Tae Yong' },
+                  { name: 'A/Prof. Yun Jong Won' },
+                  { name: 'Dr. Sorongon-Legaspi Mishell Kris' },
+                  { name: 'Dr. Villamiel Katrina Marie' },
+                  { name: 'Dr. Wardhana Wardhana' },
+                  { name: 'Dr. Aung Aye Thida' },
+                  { name: 'Dr. Chaniago Lita Septina' },
+                  { name: 'Dr. Han Ji Min' },
+                  { name: 'Dr. Kyaw Swar Myint Aung' },
+                  { name: 'Dr. Le Anh Tu' },
+                  { name: 'Dr. Luy Sybil Claudine' },
+                  { name: 'Dr. Aung Win Yu' },
+                  { name: 'Dr. Myint Kyar Nyo Soe' },
+                  { name: 'Dr.Cabrera Carmen Carina' },
+                  { name: 'Dr. Felipe Roy Raoul' },
+                  { name: 'Dr. Low Kiat Mun Serena' },
+                  { name: 'Mr. Trinh Ngoc Anh' },
+                  { name: 'Dr. Kao Mei-teng' },
+                  { name: 'Dr. Lim Kim Piow' },
+                  { name: 'Dr. Togonon Johann Christine' },
+                  { name: 'A/Prof. Wee Shiou-Liang' },
+                  { name: 'Dr. Jao - Sanchez Suzanne' },
+                  { name: 'Dr. Macalalad-Josue Anna Angelica' },
+                  { name: 'Dr. See Chee Keong' },
+                  { name: 'Dr. Oo Su Myo Myat' },
+                  { name: 'Dr. Yu Marc Gregory' },
+                  { name: 'Dr. Bautista Francesca Paula' },
+                  { name: 'Dr. Gabat Julie Anne' },
+                  { name: 'Dr. Haydar Ali Tajuddin Amalina' },
+                  { name: 'Dr. Lin Yi-chun' },
+                  { name: 'Dr. Li-yu Tsai' },
+                  { name: 'Dr. Sarmiento Annie Jane' },
+                  { name: 'Dr. Wong Hui Chin' },
+                  { name: 'Prof. Aung Moe Wint' },
+                  { name: 'Prof. Kang Sun Chul' },
+                  { name: 'Dr. Macalalad-Josue Anna Angelica' },
+                  { name: 'Dr. Moe Aung Soe' },
+                  { name: 'Dr. Nguyen Ngoc Tam' },
+                  { name: 'Dr. Nguyen Thi Thu Huong' },
+                  { name: 'Mrs. Nguyen Xuan Thanh' },
+                  { name: 'Dr. Ooi Xi Yan' },
+                  { name: 'Prof. Orbak Zerrin' },
+                  { name: 'Dr. Panuda Jose Paolo' },
+                  { name: 'Dr. Park Jung Hwan' },
+                  { name: 'Dr. Rangkuti Deske Muhadi' },
+                  { name: 'Prof. Rhee Eun-jung' },
+                  { name: 'Dr. San Bo Bo' },
+                  { name: 'Prof. Song Kee Ho' },
+                  { name: 'Dr. Tappan Sweet Garllie Albert' },
+                  { name: 'Dr. Uy Angelique Bea' },
+                  { name: 'Dr. Wai Linn Thiri' },
+                  { name: 'Dr. Agoncillo Karen Elouie' },
+                  { name: 'Dr. Libre Michelle Angeli' },
+                  { name: 'Dr. Tappan Sweet Garllie Albert' },
+                  { name: 'Dr. Hlaing Zarchi-Theint-Theint' },
+                  { name: 'Dr. Llanes Mark Ramon Victor' },
+                  { name: 'Prof. Orbak Zerrin' },
+                  { name: 'Prof. Orbak Zerrin' },
+                  { name: 'A/Prof. Yun Jong Won' },
+                  { name: 'Dr. Libre Michelle Angeli' },
+                  { name: 'Dr. Macalalad-Josue Anna Angelica' },
+                  { name: 'Prof. Chan Siew Pheng' },
+                  { name: 'Dr. Hario Seno Heri-Nugroho' },
+                  { name: 'Dr. Hlaing Thinn Thinn' },
+                  { name: 'A/Prof. Hoeybye Charlotte' },
+                  { name: 'Prof. Jap Tjin-Shing' },
+                  { name: 'Dr. Jeon Min Ji' },
+                  { name: 'Prof. Jones Thomas Hugh' },
+                  { name: 'Dr. Khaing Maung Maung' },
+                  { name: 'Prof. Kim Won Bae' },
+                  { name: 'Prof. Latt Tint Swe' },
+                  { name: 'Prof. Lee Kok Onn' },
+                  { name: 'A/Prof. Loke Kah Yin' },
+                  { name: 'Dr. Myint Khin Swe' },
+                  { name: 'Dr. Nam Tran Quang' },
+                  { name: 'Prof. Oo Thein Hlaing' },
+                  { name: 'Dr. Pemayun Tjokorda G D' },
+                  { name: 'Dr. Soe Kyaw Kyaw' },
+                  { name: 'Dr. Tan  Go Ruby' },
+                  { name: 'Prof. Van Gaal Luc' },
+                  { name: 'A/Prof. Vethakkan Shireene Ratna' },
+                  { name: 'A/Prof. Vu Thi Thanh Huyen' },
+                  { name: 'Dr. Win Aung Ko' }
+               ]
+            };
+            $scope.organizerCommitee =  {
+               "Advisory Board": [
+                  { Name: "Professor Tint Swe Latt", Designation: "Advisor" },
+                  { Name: "Professor Khin Ye Myint ", Designation: "Advisor" },
+                  { Name: "Professor Ye Thwe", Designation: "Advisor" },
+               ],
+               "Chairperson": [
+                  { Name: "Professor Than Than Aye", Designation: "Chairperson" },
+               ],
+               "Secretaries": [
+                  { Name: "Professor Ko Ko", Designation: "Secretary General" },
+                  { Name: "Professor Aye Myint Khaing", Designation: "Joint Secretary (1)" },
+                  { Name: "Associate Professor Thein Myint", Designation: "Joint Secretary (2)" },
+                  { Name: "Dr Soe Wai Phyo", Designation: "Joint Secretary (3)" },
+               ],
+               "Treasurer": [
+                  { Name: "Professor Moe Wint Aung", Designation: "Treasurer (1)" },
+                  { Name: "Professor Theingi Kyaw", Designation: "Treasurer (2)" },
+                  { Name: "Associate Professor San San Win", Designation: "Treasurer (3)" },
+               ],
+               "Abstract & Publications": [
+                  { Name: "Professor Kyu Kyu Maung", Designation: "Chairperson" },
+                  { Name: "Professor Khin Than Aye", Designation: "Vice-Chairperson (1)" },
+                  { Name: "Professor Aye Thida", Designation: "Vice-Chairperson (2)" },
+                  { Name: "Associate Professor Khin Thin Yu", Designation: "Secretary" },
+
+               ],
+               "Social & Media Sub-committee": [
+                  { Name: "Professor Nu Nu Maw", Designation: "Chairperson" },
+                  { Name: "Professor Aye Aye Chit", Designation: "Vice-Chairperson" },
+                  { Name: "Associate Professor  Htet Htet Khin", Designation: "Secretary (1)" },
+                  { Name: "Dr Mg Mg Thant", Designation: "Secretary (2)" },
+                  { Name: "Major Kyaw Myint Oo", Designation: "Joint Secretary" },
+               ],
+               "Trade & Exhibition": [
+                  { Name: "Associate Professor Ye Myint", Designation: "Chairperson" },
+                  { Name: "Associate Professor Tet Tun Chit", Designation: "Vice-Chairperson " },
+                  { Name: "Dr Tin Win Aung", Designation: "Secretary " },
+                  { Name: "Dr Yar Pyae", Designation: "Joint Secretary " },
+               ],
+               "Scientific Sub-Committee": [
+                  { Name: "Professor Aye Aye Aung", Designation: "Chairperson" },
+                  { Name: "Professor Khin Saw Than", Designation: "Vice-Chairperson" },
+                  { Name: "Dr Khin Sandar", Designation: "Secretary" },
+               ],
+               "Members of Academic Sub-Committee": [
+                  { Name: "Professor Myo Win" },
+                  { Name: "Professor Myat Thandar" },
+                  { Name: "Professor Zaw Lynn Aung" },
+                  { Name: "Professor Aung Cho Myint" },
+                  { Name: "Professor Win Win Myint" },
+                  { Name: "Professor Nyo Nyo Wah" },
+                  { Name: "Professor Cho Mar Hlaing" },
+                  { Name: "Professor Lt Col Thet Naing" },
+                  { Name: "Professor Lt. Col. Mo Mo Than" },
+                  { Name: "Professor Wah Wah Wan Maung" },
+                  { Name: "Professor Mya Thandar Sein" },
+                  { Name: "Professor Cho Cho Khin" },
+                  { Name: "Col. Khin Soe Win" },
+                  { Name: "Dr. Thin Thin Hlaing" },
+                  { Name: "Dr. Kyaw Swar Lin" },
+                  { Name: "Dr. Ni Ni Hlaing" },
+                  { Name: "Dr. Kyar Nyo Soe Myint" },
+                  { Name: "Dr. Thet Mon Zaw" },
+                  { Name: "Dr. Yin Yin Win" },
+                  { Name: "Major Khaing Lwin" },
+                  { Name: "Major Kaung Myat" },
+                  { Name: "Major Aung Myo Saw" },
+                  { Name: "Dr. Mya Sandar Thein " },
+                  { Name: "Dr. Ei Sandar Oo" },
+               ]
+            }
             $scope.initSchedule = function(){
                $scope.currentUrl = $state.params.tab;
             }
@@ -1058,7 +1353,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                                     $scope.loadingData = false;
                               }
                         }
-                        console.log($scope.schedule);
+                       // console.log(JSON.stringify($scope.schedule));
                   }, $scope.failure);
             }
             $scope.activeTab = function (id) {

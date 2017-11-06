@@ -692,7 +692,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                   { name: "Prof Ken Ho", file: "S5.2 Prof Ken Ho" },
                   { name: "Prof Than Than Aye", file: "S5.3 Prof Than Than Aye" },
                   { name: "Dr Kyaw Kyaw Soe", file: "S6.1 Dr Kyaw Kyaw Soe" },
-                  { name: "Prof K O Lee", file: "S6.2 Prof K O Lee" },
+                  { name: "Prof Kok Onn Lee", file: "S6.2 Prof K O Lee" },
                   { name: "Dr Vivien Lim", file: "S7.2 Dr Vivien Lim" },
                   { name: "Prof Siew Pheng Chan", file: "S7.3 Prof Siew Pheng Chan" },
                   { name: "A Prof Kah Yin Loke", file: "S8.2 A Prof Kah Yin Loke" },
@@ -755,8 +755,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                   { name: "Prof. Ko Ko" },
                   { name: "Prof. Lacroix Andre", image: "Prof. Andre Lacroix" },
                   { name: "Prof. Latt Tint Swe", image: "Prof. Tint Swe Latt" },
-                  { name: "Prof. Lee K O", image: "Prof. K O Lee" },
-                  { name: "Prof. Lee Kok Onn" },
+                  { name: "Prof. Lee Kok Onn", image: "Prof. K O Lee" }
                   { name: "A/Prof. Leow Melvin", image: "A Prof Melvin Leow" },
                   { name: "Dr. Lim Vivien", image: "Dr Vivien Lim" },
                   { name: "A/Prof. Loke Kah Yin", image: "AProf. Kah Yin Loke" },

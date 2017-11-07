@@ -135,10 +135,10 @@ h1 {
 <body>
 <div class="app">
    <div id="deviceready" class="blink">
-      <p class="event listening">Connecting to Device</p>
-      <p class="event received">Device is Ready</p>
+      <!--<p class="event listening">Connecting to Device</p>
+      <p class="event received">Device is Ready</p>-->
    </div>
-   <br>
+   <!--<br>
    <fieldset>
       <legend>Pushwoosh status:</legend>
       Push token: <br>
@@ -147,7 +147,7 @@ h1 {
       <div class="statustext" id="pushMessage"></div>
       Push data: <br>
       <div class="statustext" id="pushData"></div>
-   </fieldset>
+   </fieldset>-->
 </div>
 <script type="text/javascript">
    /*
@@ -220,8 +220,8 @@ h1 {
             var message = event.notification.message;
             var userData = event.notification.userdata;
 
-            document.getElementById("pushMessage").innerHTML = message + "<p>";
-            document.getElementById("pushData").innerHTML = JSON.stringify(event.notification) + "<p>";
+            alert(message);
+            //document.getElementById("pushData").innerHTML = JSON.stringify(event.notification) + "<p>";
 
             //dump custom data to the console if it exists
             if (typeof (userData) != "undefined") {
@@ -240,7 +240,7 @@ h1 {
       //register for push notifications
       pushNotification.registerDevice(
          function (status) {
-            document.getElementById("pushToken").innerHTML = status.pushToken + "<p>";
+           // document.getElementById("pushToken").innerHTML = status.pushToken + "<p>";
             onPushwooshInitialized(pushNotification);
          },
          function (status) {

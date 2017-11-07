@@ -3,8 +3,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
 <title>Event App</title>
-
-<script src="cordova.js"></script>
+<!--
+<script src="cordova.js"></script>-->
 <script src="phonegap.js"></script>
 </head>
 
@@ -19,31 +19,31 @@
       document.addEventListener("deviceready", onDeviceReady, false);
          function onDeviceReady() {
             alert(123)
-            const push = PushNotification.init({
-               android: {
-               },
-               browser: {
-                  pushServiceURL: 'http://push.api.phonegap.com/v1/push'
-               },
-               ios: {
-                  alert: "true",
-                  badge: "true",
-                  sound: "true"
-               },
-               windows: {}
-            });
+            // const push = PushNotification.init({
+            //    android: {
+            //    },
+            //    browser: {
+            //       pushServiceURL: 'http://push.api.phonegap.com/v1/push'
+            //    },
+            //    ios: {
+            //       alert: "true",
+            //       badge: "true",
+            //       sound: "true"
+            //    },
+            //    windows: {}
+            // });
 
-            push.on('registration', (data) => {
-              alert(data);
-            });
+            // push.on('registration', (data) => {
+            //   alert(data);
+            // });
 
-            push.on('notification', (data) => {
-              alert(data);
-            });
+            // push.on('notification', (data) => {
+            //   alert(data);
+            // });
 
-            push.on('error', (e) => {
-               alert(e);
-            });
+            // push.on('error', (e) => {
+            //    alert(e);
+            // });
             // alert(1)
             // FCMPlugin.onTokenRefresh(function (token) {
             //    alert(token);

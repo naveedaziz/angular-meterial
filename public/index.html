@@ -8,9 +8,17 @@
       document.addEventListener("deviceready", onDeviceReady, false);
 
       function onDeviceReady() {
-         alert('ready')
-         FCMPlugin.getToken(function (token) {
-            alert(token);
+         var push = PushNotification.init({ "android": { "senderID": "679784320006" } });
+         push.on('registration', function (data) {
+            console.log(data.registrationId);
+         });
+
+         push.on('notification', function (data) {
+            console.log(data.title + " Message: " + data.message);
+         });
+
+         push.on('error', function (e) {
+            console.log(e);
          });
       }
    </script>

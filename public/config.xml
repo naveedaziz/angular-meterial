@@ -39,7 +39,9 @@
    <plugin name="cordova-plugin-statusbar" />
    <plugin name="cordova-plugin-whitelist"/>
    <plugin name="cordova-plugin-firebase" spec="0.1.24" />
-   <plugin name="cordova-plugin-fcm" />
+   <plugin name="phonegap-plugin-push" spec="2.0.0">
+    <variable name="SENDER_ID" value="1:912878758461:android:bdaf900ec08be4d2" />
+</plugin>
 <platform name="android">
 <resource-file src="google-services.json" target="google-services.json" />
 </platform>

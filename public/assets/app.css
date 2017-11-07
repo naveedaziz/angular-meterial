@@ -111,7 +111,7 @@ hr { border-top: 1px solid #e6ecf5; }
 
 .overlay-dark p { color: #cccccc; }
 
-.overlay-dark:before { content: ""; background-color: #515365; position: absolute; width: 100%; height: 100%; opacity: 0.5; top: 0px; left: 0px; z-index: 2; }
+.overlay-dark:before { content: "";  position: absolute; width: 100%; height: 100%; opacity: 0.5; top: 0px; left: 0px; z-index: 2; }
 
 .overlay-dark > div { position: relative; z-index: 3; }
 
@@ -1967,7 +1967,7 @@ iframe { border: 0; }
 
 .header-dark .side-nav .side-nav-inner .side-nav-logo a .logo-white { display: block; }
 
-.theme-toggle { position: absolute;    top: 330px; right: 20px; padding: 15px !important; z-index: 1001; font-size: 15px; color: #ffffff; background-color: #d91f29; }
+.theme-toggle { position: absolute;    top: 409px; right: 20px; padding: 15px !important; z-index: 1001; font-size: 15px; color: #ffffff; background-color: #d91f29; }
 
 .theme-toggle:hover { opacity: 0.85; }
 
@@ -3594,9 +3594,15 @@ glyphs.character-mapping { margin: 0 0 20px 0; padding: 20px 0 20px 30px; color:
 
 .social .social-cover { position: relative; }
 
-.social .social-cover .cover-img { min-height: 400px; background-repeat: no-repeat; background-size: cover; background-position: center; position: relative; }
+.social .social-cover .cover-img {     min-height: 474px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 0px 1px;
+    position: relative; }
 
-.social .social-cover .cover-img .cover-content { position: absolute; left: 50%; top: 50%; transform: translateX(-50%) translateY(-50%); -webkit-transform: translateX(-50%) translateY(-50%); -moz-transform: translateX(-50%) translateY(-50%); -o-transform: translateX(-50%) translateY(-50%); -ms-transform: translateX(-50%) translateY(-50%); }
+.social .social-cover .cover-img .cover-content {     position: absolute;
+    left: 50%;
+    top: 219px; transform: translateX(-50%) translateY(-50%); -webkit-transform: translateX(-50%) translateY(-50%); -moz-transform: translateX(-50%) translateY(-50%); -o-transform: translateX(-50%) translateY(-50%); -ms-transform: translateX(-50%) translateY(-50%); }
 
 .social .social-cover .cover-footer { padding: 15px; background-color: #ffffff; }
 

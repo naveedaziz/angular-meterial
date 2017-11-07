@@ -1299,7 +1299,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                   $scope.loadingData = true;
                   $http({
                         method: 'GET',
-                        url: 'https://fishry-app-services.azurewebsites.net/api/table_read?table=schedule'
+                        url: 'https://fishry-app-services.azurewebsites.net/api/table_read?table=schedule&orderBy=start_hours&orderSeq=asc'
                   }).then(function successCallback(response) {
                         var data = response.data;
                         // //console.log(data);
@@ -1352,6 +1352,29 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                                     $scope.loadingData = false;
                               }
                         }
+                        var schArrange = {};
+                        for (var inds in $scope.schedule){
+                           if (inds == 'Thu (9th Nov)'){
+                              schArrange[inds] = $scope.schedule[inds];
+                           }
+                        }
+                        for (var inds in $scope.schedule) {
+                           if (inds == 'Fri (10th Nov)') {
+                              schArrange[inds] = $scope.schedule[inds];
+                           }
+                        }
+                        for (var inds in $scope.schedule) {
+                           if (inds == 'Sat (11th Nov)') {
+                              schArrange[inds] = $scope.schedule[inds];
+                           }
+                        }
+                        for (var inds in $scope.schedule) {
+                           if (inds == 'Sun (12th Nov)') {
+                              schArrange[inds] = $scope.schedule[inds];
+                           }
+                        }
+                        $scope.schedule = schArrange;
+                        console.log($scope.schedule)
                        // console.log(JSON.stringify($scope.schedule));
                   }, $scope.failure);
             }

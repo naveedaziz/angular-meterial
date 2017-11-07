@@ -23,7 +23,7 @@
                               <h4 ng-if="facultys.length" style="    text-align: center;
     padding: 13px;
     border-bottom: 1px solid rgba(221, 221, 221, 0.47);">{{key}}</h4>
-                                <li class="email-item" ng-repeat="faculty in pre">
+                                <li class="email-item" ng-repeat="faculty in pre | filter:filterName">
                                     <!-- {{faculty}} -->
                                     <img onerror="checkImg(this)"  class="thumb-img img-circle"  ng-src="{{ 'main_images/Speakers/'+replaceSlash(faculty.image)+'.jpg'}}" alt="">
                                     <div class="info">

@@ -42,6 +42,9 @@
    <plugin name="phonegap-plugin-push" spec="2.0.0">
     <variable name="SENDER_ID" value="1:912878758461:android:bdaf900ec08be4d2" />
 </plugin>
+  <plugin name="phonegap-plugin-push" source="npm" spec="~1.8.0">
+        <variable name="SENDER_ID" value="1:679784320006:android:bdaf900ec08be4d2" />
+    </plugin>
 <platform name="android">
 <resource-file src="google-services.json" target="google-services.json" />
 </platform>

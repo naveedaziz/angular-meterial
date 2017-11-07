@@ -2,88 +2,22 @@
 <html>
 
 <head>
-   <title>Device Ready Example</title>
+   <title>Push demo</title>
+   <script type="text/javascript" src="cordova.js"></script>
+   <script type="text/javascript">
+      document.addEventListener("deviceready", onDeviceReady, false);
 
-   <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
-   <!--<script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>-->
-   <script type="text/javascript" charset="utf-8">
-      // Wait for device API libraries to load
-      //
-      function onLoad() {
-         document.addEventListener("deviceready", onDeviceReady, false);
-      }
-
-      // device APIs are available
-      //
       function onDeviceReady() {
          alert('ready')
-            var push = PushNotification.init({
-                  "android": {
-                     "senderID": "679784320006"
-                  },
-                  "browser": {},
-                  "ios": {
-                     "sound": true,
-                     "vibration": true,
-                     "badge": true
-                  },
-                  "windows": {}
-               });
-            alert(123);
-            push.on('registration', (data) => {
-                 alert(data);
-               });
-
-               push.on('notification', (data) => {
-                  alert(data)
-               });
-
-               push.on('error', (e) => {
-                 alert(e)
-               });
-               alert('ed')
-      //   var myFirebaseRef = new Firebase("https://afes-2017.firebaseio.com/");
-      // window.FirebasePlugin.grantPermission();
-      // window.FirebasePlugin.getToken(function (token) {
-      //       // save this server-side and use it to push notifications to this device
-      //       console.log(token);
-      //       alert(token);
-      //    }, function (error) {
-      //       console.error(error);
-      //    });
-      //    window.FirebasePlugin.onTokenRefresh(function (token) {
-      //          // save this server-side and use it to push notifications to this device
-      //          console.log(token);
-      //          alert(token)
-      //       }, function (error) {
-      //          console.error(error);
-      //       });
-      //    window.FirebasePlugin.onNotificationOpen(function (notification) {
-      //          alert(notification);
-      //       }, function (error) {
-      //          alert(error);
-      //       });
-
-
-//         
-// 
-//    // Initialize Firebase
-//   var config = {
-//       apiKey: "AIzaSyCCUlqdRIgr2xC6XH0kOBh44PdBXYH0zDI",
-//       authDomain: "nidobda-9a3e5.firebaseapp.com",
-//       databaseURL: "https://nidobda-9a3e5.firebaseio.com",
-//       projectId: "nidobda-9a3e5",
-//       storageBucket: "",
-//       messagingSenderId: "292204151410"
-//    };
-//    firebase.initializeApp(config);
-
-// 
+         FCMPlugin.getToken(function (token) {
+            alert(token);
+         });
       }
    </script>
 </head>
 
-<body onload="onLoad()">
+<body>
+   <h1>Push Notification Example</h1>
 </body>
 
 </html>

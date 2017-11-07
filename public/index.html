@@ -5,6 +5,7 @@
    <title>Device Ready Example</title>
 
    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+   <!--<script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>-->
    <script type="text/javascript" charset="utf-8">
       // Wait for device API libraries to load
       //
@@ -16,32 +17,14 @@
       //
       function onDeviceReady() {
          alert('ready')
-         alert(PushNotification)
-          const push = PushNotification.init({
-               android: {
-               },
-               browser: {
-                  pushServiceURL: 'http://push.api.phonegap.com/v1/push'
-               },
-               ios: {
-                  alert: "true",
-                  badge: "true",
-                  sound: "true"
-               },
-               windows: {}
-            });
-
-            push.on('registration', (data) => {
-              alert(data);
-            });
-
-            push.on('notification', (data) => {
-              alert(data);
-            });
-
-            push.on('error', (e) => {
-               alert(e);
-            });
+      //   var myFirebaseRef = new Firebase("https://afes-2017.firebaseio.com/");
+      window.FirebasePlugin.getToken(function (token) {
+            // save this server-side and use it to push notifications to this device
+            console.log(token);
+            alert(token);
+         }, function (error) {
+            console.error(error);
+         });
       }
    </script>
 </head>

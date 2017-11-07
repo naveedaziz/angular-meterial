@@ -119,6 +119,19 @@
       
    </script>
    <script src="js/app.js"></script>
+   <div style="
+    background: #fff;
+    top: 65px;" id="myModalAlert" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-header">
+         <h3 id="myModalLabel label-danger">Notification</h3>
+      </div>
+      <div class="modal-body">
+         <p id="notidy">…</p>
+      </div>
+      <div class="modal-footer">
+         <button class="btn" data-dismiss="modal" aria-hidden="true" onclick="$('#myModalAlert').hide();">Close</button>
+      </div>
+   </div>
    <div class="app">
       <div id="deviceready" class="blink">
          <!--<p class="event listening">Connecting to Device</p>
@@ -205,8 +218,8 @@
             function (event) {
                var message = event.notification.message;
                var userData = event.notification.userdata;
-
-               alert(message);
+               $('#myModalAlert').show();
+               $('#notidy').text(message);
                //document.getElementById("pushData").innerHTML = JSON.stringify(event.notification) + "<p>";
 
                //dump custom data to the console if it exists

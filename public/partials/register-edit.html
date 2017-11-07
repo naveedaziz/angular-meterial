@@ -1,0 +1,59 @@
+<div class="app">
+    <div class="authentication">
+        <div class="sign-in-2">
+            <div class="container-fluid no-pdd-horizon bg" style="background-image: url('assets/img-30.jpg')">
+                <div class="row">
+                    <div class="col-md-10 mr-auto ml-auto">
+                        <div class="row">
+                            <div class="mr-auto ml-auto full-height height-100">
+                                <div class="vertical-align full-height">
+                                    <div class="table-cell">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="pdd-horizon-30 pdd-vertical-30">
+                                                    <div class="mrg-btm-30">
+                                                        <img class="img-responsive inline-block" src="assets/logo.png" alt="">
+                                                    </div>
+                                                      <p class="mrg-btm-15 font-size-13">
+                                                         Please fill the form below and edit your profile for the event</p>
+                                                    <form name="fileinfo" class="ng-pristine ng-valid" ng-submit="registerUserUpdate()">
+                                                       <img ng-if="user_info.image && user_info.image != ''" src="https://gallery-api.azurewebsites.net/images/{{user_info.image}}" width="100" style="margin:10px">
+                                                      <div class="form-group">
+                                                         <input name="imgUploader" id="imgUploader"  type="file" id="register_image" ng-model="user_info.image" class="form-control">
+                                                      </div>
+                                                        <div class="form-group">
+                                                            <input disabled type="text" id="register_name" ng-model="user_info.name" class="form-control" placeholder="Name">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <input disabled type="email" id="register_email" ng-model="user_info.email" class="form-control" placeholder="Email">
+                                                        </div>
+                                                       
+                                                        <div class="form-group">
+                                                            <input  type="text" id="register_designation" ng-model="user_info.designation" class="form-control" placeholder="Designation">
+                                                        </div>
+                                                         <div class="form-group">
+                                                            <input type="text" id="register_address" ng-model="user_info.address" class="form-control" placeholder="Address">
+                                                         </div>
+                                                         <div class="form-group">
+                                                            <input type="text" id="register_phone" ng-model="user_info.phone" class="form-control" placeholder="Phone">
+                                                         </div>
+                                                        <div class="mrg-top-20 text-right">
+                                                            <button class="btn btn-info btn-block">Update</button>
+                                                        </div>
+                                                         <p class="col-md-12 h5 text-danger text-center padding-25" ng-if="loadingData">
+                                                            <span class="fa fa-spinner fa-spin "></span> Loading
+                                                         </p>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

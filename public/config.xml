@@ -39,7 +39,6 @@
    <plugin name="cordova-plugin-statusbar" />
    <plugin name="cordova-plugin-whitelist"/>
    <plugin name="pushwoosh-cordova-plugin"/>
-   
 
    <platform name="ios">
 	    <icon src="res/icons/ios/icon-20.png" width="20" height="20" />

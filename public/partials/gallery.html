@@ -1,0 +1,55 @@
+<div class="main-content" ng-init="get_data('gallery','gallerys')">
+   <div class="container-fluid">
+      <div class="row">
+         <div class="col-md-12">
+            <div class="card">
+               <div class="card-heading">
+                  <a ui-sref="galleryadd" style="color: #fff;" class="btn btn-primary card-title inline-block">Add</a>
+                  <!--<div class="pull-right mrg-top-10">
+                     <span class="pdd-right-10">Sort by : </span>
+                     <ul class="list-unstyled list-inline inline-block">
+                        <li class="list-inline-item pdd-right-10">
+                           <a href="" class="text-gray text-semibold active">Name</a>
+                        </li>
+                        <li class="list-inline-item pdd-right-10">
+                           <a href="" class="text-gray text-semibold">Date</a>
+                        </li>
+                     </ul>
+                  </div>-->
+               </div>
+               <div class="card-body">
+                  <p class="col-md-12 h5 text-danger text-center padding-25" ng-if="loadingData">
+                     <span class="fa fa-spinner fa-spin "></span> Loading
+                  </p>
+                  <div class="row masonry-grid" data-pswp-uid="1" style="position: relative;">
+                     <figure ng-repeat="gallery in gallerys" class="col-md-3 masonry-brick mrg-btm-10" style="padding:0 0;">
+                        <a href="javascript:void(0)" class="gallery-item" data-size="700x500">
+                                                    <img style="min-height:180px" class="img-fluid" src="https://gallery-api.azurewebsites.net/images/{{gallery.image}}" alt="">
+                                                    <div class="overlay">
+                                                        <div class="overlay-content">
+                                                            <div class="inline-block">
+                                                                <h4 class="caption-title">{{gallery.name}}</h4>
+                                                                <span class="caption-date">{{gallery.user_name}} {{dateFormat(gallery.createdAt)}}</span>
+                                                            </div>
+                                                            <div  class="inline-block pull-right pdd-top-20 font-size-16" ng-click="likeAdd(gallery.id,gallery.likes);">
+                                                               <span ng-if="likeAddCheck(gallery.likes)">
+                                                                     <i class="ei-heart-full" style="color:#d91f29"></i>
+                                                                     <span class="text-white">{{parseJSON(gallery.likes)}}</span>
+                                                                </span>
+                                                               <span ng-if="!likeAddCheck(gallery.likes)">
+                                                                     <i class="ti-heart text-white"></i>
+                                                                     <span class="text-white">{{parseJSON(gallery.likes)}}</span>
+                                                               </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                     </figure>
+                    
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

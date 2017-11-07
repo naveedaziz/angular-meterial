@@ -1,0 +1,266 @@
+<div class="header navbar">
+    <div class="header-container">
+        <ul class="nav-left">
+            <li ng-if="user_info">
+                <a class="side-nav-toggle" href="javascript:void(0);" onclick="$('.app').toggleClass('is-collapsed');$('ui-view').toggleClass('body-scroll-stop')">
+                    <i class="ei-menu"></i>
+                </a>
+            </li>
+            <li class="search-box">
+                <a class="search-toggle no-pdd" href="javascript:void(0)" onclick="window.history.back()" ng-if="title != 'Welcome to AFES' && title != 'Register to AFES' && title != 'Login to AFES'">
+                   <i class="ei-left-chevron" style="float:left"></i>
+                    <h4 style="color:#fff;padding: 16px;padding-left: 0;float:left">{{title}}</h4>
+                </a>
+               <a href="javascript:void(0)" class="search-toggle no-pdd" ng-if="title == 'Welcome to AFES' || title == 'Register to AFES' || title == 'Login to AFES'">
+                    <h4 style="color:#fff;padding: 16px;padding-left: 0;float:left">{{title}}</h4>
+                </a>
+            </li>
+            <li class="search-input">
+                <input class="form-control" type="text" placeholder="Search...">
+                <div class="advanced-search">
+                    <div class="search-wrapper">
+                        <div class="pdd-vertical-10">
+                            <span class="display-block mrg-vertical-5 pdd-horizon-20 text-gray">
+                                <i class="ti-user pdd-right-5"></i>
+                                <span>People</span>
+                            </span>
+                            <ul class="list-unstyled list-info">
+                                <li>
+                                    <a href="">
+                                        <img class="thumb-img" src="assets/thumb-1.jpg" alt="">
+                                        <div class="info">
+                                            <span class="title">Jordan Hurst</span>
+                                            <span class="sub-title">
+                                                <i class="ti-location-pin"></i>
+                                                <span>44 Shirley Ave. West Chicago</span>
+                                            </span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        <img class="thumb-img" src="assets/thumb-5.jpg" alt="">
+                                        <div class="info">
+                                            <span class="title">Jennifer Watkins</span>
+                                            <span class="sub-title">
+                                                <i class="ti-location-pin"></i>
+                                                <span>514 S. Magnolia St. Orlando</span>
+                                            </span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        <img class="thumb-img" src="assets/thumb-4.jpg" alt="">
+                                        <div class="info">
+                                            <span class="title">Michael Birch</span>
+                                            <span class="sub-title">
+                                                <i class="ti-location-pin"></i>
+                                                <span>70 Bowman St. South Windsor</span>
+                                            </span>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="mrg-horizon-20 border top"></div>
+                        <div class="pdd-vertical-10">
+                            <span class="display-block mrg-vertical-5 pdd-horizon-20 text-gray">
+                                <i class="ti-rss pdd-right-5"></i>
+                                <span>Post</span>
+                            </span>
+                            <ul class="list-unstyled list-info">
+                                <li>
+                                    <a href="">
+                                        <img class="thumb-img" src="assets/img-1.jpg" alt="">
+                                        <div class="info">
+                                            <span class="title">Artoo expresses his relief</span>
+                                            <span class="sub-title">
+                                                <span>Oh, thank goodness we're coming out...</span>
+                                            </span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        <img class="thumb-img" src="assets/img-2.jpg" alt="">
+                                        <div class="info">
+                                            <span class="title">Ready for some power?</span>
+                                            <span class="sub-title">
+                                                <span>Lord Vader. You may take Caption So...</span>
+                                            </span>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="search-footer">
+                        <span>You are Searching for '
+                            <b class="text-dark">
+                                <span class="serach-text-bind"></span>
+                            </b>'</span>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <ul class="nav-right">
+            <li class="user-profile dropdown ">
+                <a href="javascript:void(0)" id="userMenu" onclick="$('#userMenu').parent().toggleClass('show');$('#userdrop').toggleClass('show')" class="dropdown-toggle"
+                    data-toggle="dropdown">
+                    <i class="ti-user pdd-right-10"></i>
+                    <!--<div class="user-info">
+                        <span class="name pdd-right-5">Nate Leong</span>
+                        <i class="ti-angle-down font-size-10"></i>
+                    </div>-->
+                </a>
+                <ul class="dropdown-menu" id="userdrop">
+                    <!-- <li>{{loggedIn}}</li> -->
+                    <li ng-if="!user_info" ng-click="hideMenu()">
+                        <a ui-sref="signin" onclick="$('#userdrop').toggleClass('show')">
+                            <i class="ti-settings pdd-right-10"></i>
+                            <span>Login</span>
+                        </a>
+                    </li>
+                    <li ng-if="!user_info">
+                        <a ui-sref="register" ng-click="hideMenu()">
+                            <i class="ti-settings pdd-right-10"></i>
+                            <span>Signup</span>
+                        </a>
+                    </li>
+                    <!-- <li role="separator" class="divider"></li> -->
+                  <li ng-if="user_info">
+                     <a ui-sref="registerupdate" ng-click="hideMenu()">
+                            <i class="ti-user pdd-right-10"></i>
+                            <span>Edit Profile</span>
+                        </a>
+                  </li>
+                  <li ng-if="user_info">
+                     <a ui-sref="agenda" ng-click="hideMenu()">
+                            <i class="ti-user pdd-right-10"></i>
+                            <span>My Agenda</span>
+                        </a>
+                  </li>
+                    <li ng-if="user_info">
+                        <a href="" ng-click="logout();" ng-click="hideMenu()">
+                            <i class="ti-power-off pdd-right-10"></i>
+                            <span>Logout</span>
+                        </a>
+                    </li>
+                </ul>
+                
+            </li>
+            <!--<li class="notifications dropdown">
+                <a onclick="$(this).parent().toggleClass('show');$('#userdrop').toggleClass('show')" href="javascript:void(0)" class="dropdown-toggle"
+                    data-toggle="dropdown">
+                    <i class="ti-bell"></i>
+                </a>
+
+                <ul class="dropdown-menu " style="    right: -16px;">
+                    <li class="notice-header">
+                        <i class="ti-bell pdd-right-10"></i>
+                        <span>Notifications</span>
+                    </li>
+                    <li>
+                        <ul class="list-info overflow-y-auto relative scrollable ps-container ps-theme-default ps-active-y" data-ps-id="5f984929-77fb-61a8-8269-945153cf3bbc">
+                            <li>
+                                <a href="">
+                                    <img class="thumb-img" src="assets/thumb-5.jpg" alt="">
+                                    <div class="info">
+                                        <span class="title">
+                                            <span class="font-size-14 text-semibold">Jennifer Watkins</span>
+                                            <span class="text-gray">speaks on your
+                                                <span class="text-dark">post</span>
+                                            </span>
+                                        </span>
+                                        <span class="sub-title">5 mins ago</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <img class="thumb-img" src="assets/thumb-4.jpg" alt="">
+                                    <div class="info">
+                                        <span class="title">
+                                            <span class="font-size-14 text-semibold">Samuel Field</span>
+                                            <span class="text-gray">likes your
+                                                <span class="text-dark">photo</span>
+                                            </span>
+                                        </span>
+                                        <span class="sub-title">8 hours ago</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <span class="thumb-img bg-primary">
+                                        <span class="text-white">M</span>
+                                    </span>
+                                    <div class="info">
+                                        <span class="title">
+                                            <span class="font-size-14 text-semibold">Michael Birch</span>
+                                            <span class="text-gray">likes your
+                                                <span class="text-dark">photo</span>
+                                            </span>
+                                        </span>
+                                        <span class="sub-title">5 hours ago</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <span class="thumb-img bg-success">
+                                        <span class="text-white">
+                                            <i class="fa fa-paper-plane-o"></i>
+                                        </span>
+                                    </span>
+                                    <div class="info">
+                                        <span class="title">
+                                            <span class="font-size-14 text-semibold">Message sent</span>
+                                        </span>
+                                        <span class="sub-title">8 hours ago</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <span class="thumb-img bg-info">
+                                        <span class="text-white">
+                                            <i class="ti-user"></i>
+                                        </span>
+                                    </span>
+                                    <div class="info">
+                                        <span class="title">
+                                            <span class="font-size-14 text-semibold">Admin</span>
+                                            <span class="text-gray">Welcome on board</span>
+                                        </span>
+                                        <span class="sub-title">8 hours ago</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;">
+                                <div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+                            </div>
+                            <div class="ps-scrollbar-y-rail" style="top: 0px; height: 248px; right: 0px;">
+                                <div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 142px;"></div>
+                            </div>
+                        </ul>
+                    </li>
+
+                    <li class="notice-footer">
+                        <span>
+                            <a href="" class="text-gray">Check all notifications
+                                <i class="ei-right-chevron pdd-left-5 font-size-10"></i>
+                            </a>
+                        </span>
+                    </li>
+                </ul>
+            </li>-->
+            <!--<li>
+                <a class="side-panel-toggle" href="javascript:void(0);" onclick="$('.side-panel').toggleClass('side-panel-open')">
+                    <i class="ti-align-right"></i>
+                </a>
+            </li>-->
+        </ul>
+    </div>
+</div>

@@ -1,144 +1,130 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-   <title>Push demo</title>
-   <script type="text/javascript" src="cordova.js"></script>
-   <style>
-      /*
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
-* {
-    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
-}
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+<title>Event App</title>
 
-body {
-    -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
-    -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
-    -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
-    background-color:#E4E4E4;
-    background-image:linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-    background-image:-webkit-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-    background-image:-ms-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-    background-image:-webkit-gradient(
-        linear,
-        left top,
-        left bottom,
-        color-stop(0, #A7A7A7),
-        color-stop(0.51, #E4E4E4)
-    );
-    background-attachment:fixed;
-    font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
-    font-size:12px;
-    height:100%;
-    margin:0px;
-    padding:0px;
-    text-transform:uppercase;
-    width:100%;
-}
+<!-- plugins css -->
+<link rel="stylesheet" href="assets/bootstrap.css">
+<link rel="stylesheet" href="assets/pace-theme-minimal.css">
+<link rel="stylesheet" href="assets/perfect-scrollbar.min.css">
+<link rel="manifest" href="/manifest.json">
+<!-- page plugins css -->
+<link rel="stylesheet" href="assets/jquery-jvectormap-1.2.2.css">
+<link rel="stylesheet" href="assets/nv.d3.min.css">
 
-/* Portrait layout (default) */
-.app {
-    background:url(../img/logo.png) no-repeat center top; /* 170px x 200px */
-    position:absolute;             /* position in the center of the screen */
-    left:50%;
-    top:30%;
-    height:50px;                   /* text area height */
-    width:90%;                   /* text area width */
-    text-align:center;
-    padding:180px 0px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
-    margin:-115px 0px 0px -45%;  /* offset vertical: half of image height and text area height */
-                                   /* offset horizontal: half of text area width */
-}
+<!-- core css -->
+<link href="assets/ei-icon.css" rel="stylesheet">
+<link href="assets/themify-icons.css" rel="stylesheet">
+<link href="assets/font-awesome.min.css" rel="stylesheet">
+<link href="assets/animate.min.css" rel="stylesheet">
+<link rel="stylesheet" href="chat/chat.css">
+<link href="assets/app.css" rel="stylesheet">
+<style type="text/css">
+   .jqstooltip {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      visibility: hidden;
+      background: rgb(0, 0, 0) transparent;
+      background-color: rgba(0, 0, 0, 0.6);
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+      -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
+      color: white;
+      font: 10px arial, san serif;
+      text-align: left;
+      white-space: nowrap;
+      padding: 5px;
+      border: 1px solid white;
+      z-index: 10000;
+   }
 
-.statustext {
-    height: 50px; 
-    width: 90%; 
-    font-size: 12px; 
-    overflow: auto;
-}
-
-/* Landscape layout (with min-width) */
-@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
-    .app {
-        /* background-position:left center; */
-        /* padding:75px 0px 75px 170px; */  /* padding-top + padding-bottom + text area = image height */
-        /* margin:-90px 0px 0px -198px; */  /* offset vertical: half of image height */
-                                      /* offset horizontal: half of image width and text area width */
-    }
-}
-
-h1 {
-    font-size:24px;
-    font-weight:normal;
-    margin:0px;
-    overflow:visible;
-    padding:0px;
-    text-align:center;
-}
-
-.event {
-    border-radius:4px;
-    -webkit-border-radius:4px;
-    color:#FFFFFF;
-    font-size:12px;
-    margin:0px 30px;
-    padding:2px 0px;
-}
-
-.event.listening {
-    background-color:#333333;
-    display:block;
-}
-
-.event.received {
-    background-color:#4B946A;
-    display:none;
-}
-
-@keyframes fade {
-    from { opacity: 1.0; }
-    50% { opacity: 0.4; }
-    to { opacity: 1.0; }
-}
- 
-@-webkit-keyframes fade {
-    from { opacity: 1.0; }
-    50% { opacity: 0.4; }
-    to { opacity: 1.0; }
-}
- 
-.blink {
-    animation:fade 3000ms infinite;
-    -webkit-animation:fade 3000ms infinite;
-}
-
-      </style>
-
+   .jqsfield {
+      color: white;
+      font: 10px arial, san serif;
+      text-align: left;
+   }
+</style>
+<script src="cordova.js"></script>
 </head>
 
-<body>
-<div class="app">
-   <div id="deviceready" class="blink">
-      <!--<p class="event listening">Connecting to Device</p>
-      <p class="event received">Device is Ready</p>-->
+<body class="pace-done" ng-app="myApp" ng-controller="AppController">
+   <div class="app header-dark">
+      <div class="layout">
+         <!-- Side Nav START -->
+         <div ng-include="'partials/side-nav.html'"></div>
+         <!-- Side Nav END -->
+
+         <!-- Page Container START -->
+         <div class="page-container">
+            <!-- Header START -->
+            <div ng-include="'partials/header-nav.html'"></div>
+            <!-- Header END -->
+
+            <!-- Side Panel START -->
+           
+            <!-- Side Panel END -->
+
+            <!-- theme configurator START -->
+            <div ng-include="'partials/theme-config.html'"></div>
+            <!-- theme configurator END -->
+
+            <!-- Theme Toggle Button START -->
+            <!--<button class="theme-toggle btn btn-rounded btn-icon">
+                    <i class="ti-palette"></i>
+                </button>-->
+            <!-- Theme Toggle Button END -->
+
+            <!-- Content Wrapper START -->
+            <ui-view autoscroll="true" ng-click="hideMenu()"></ui-view>
+            <!-- Content Wrapper END -->
+
+            <!-- Footer START -->
+            <div ng-include="'partials/side-panel.html'"></div>
+            <!-- Footer END -->
+
+         </div>
+         <!-- Page Container END -->
+
+      </div>
    </div>
-   <!--<br>
+
+   <!--<script src="assets/vendor.js"></script>
+
+
+    <script src="assets/jquery-jvectormap-1.2.2.min.js"></script>
+    <script src="assets/jquery-jvectormap-us-aea.js"></script>
+    <script src="assets/d3.min.js"></script>
+    <script src="assets/nv.d3.min.js"></script>
+    <script src="assets/index.js"></script>
+    <script src="assets/Chart.min.js"></script>-->
+
+   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+      crossorigin="anonymous"></script>
+
+   <script src="js/angular.min.js"></script>
+   <script src="js/angular-ui-router.min.js"></script>
+   <script src="js/angular-sanitize.min.js"></script>
+   <script src="js/moment.min.js"></script>
+
+   <script src="chat/assets/rltm/web/rltm.js"></script>
+   <script src="chat/assets/angular-chat/angular-chat.js"></script>
+   <script src="js/angular-youtube-api-factory.min.js"></script>
+
+   <script src="js/azure-mobile-apps-client.js"></script>
+   <script>
+      var appUrl = 'https://fishry-app-services.azurewebsites.net/';
+      var clientRef = new WindowsAzure.MobileServiceClient(appUrl);
+      //alert(123);
+      
+   </script>
+   <script src="js/app.js"></script>
+   <div class="app">
+      <div id="deviceready" class="blink">
+         <!--<p class="event listening">Connecting to Device</p>
+      <p class="event received">Device is Ready</p>-->
+      </div>
+      <!--<br>
    <fieldset>
       <legend>Pushwoosh status:</legend>
       Push token: <br>
@@ -148,9 +134,9 @@ h1 {
       Push data: <br>
       <div class="statustext" id="pushData"></div>
    </fieldset>-->
-</div>
-<script type="text/javascript">
-   /*
+   </div>
+   <script type="text/javascript">
+      /*
   * Licensed to the Apache Software Foundation (ASF) under one
   * or more contributor license agreements.  See the NOTICE file
   * distributed with this work for additional information
@@ -169,122 +155,124 @@ h1 {
   * under the License.
   */
 
-   function onPushwooshInitialized(pushNotification) {
+      function onPushwooshInitialized(pushNotification) {
 
-      //if you need push token at a later time you can always get it from Pushwoosh plugin
-      pushNotification.getPushToken(
-         function (token) {
-            console.info('push token: ' + token);
-         }
-      );
-
-      //and HWID if you want to communicate with Pushwoosh API
-      pushNotification.getPushwooshHWID(
-         function (token) {
-            console.info('Pushwoosh HWID: ' + token);
-         }
-      );
-
-      //settings tags
-      pushNotification.setTags({
-         tagName: "tagValue",
-         intTagName: 10
-      },
-         function (status) {
-            console.info('setTags success: ' + JSON.stringify(status));
-         },
-         function (status) {
-            console.warn('setTags failed');
-         }
-      );
-
-      pushNotification.getTags(
-         function (status) {
-            console.info('getTags success: ' + JSON.stringify(status));
-         },
-         function (status) {
-            console.warn('getTags failed');
-         }
-      );
-
-      //start geo tracking.
-      pushNotification.startLocationTracking();
-   }
-
-   function initPushwoosh() {
-      var pushNotification = cordova.require("pushwoosh-cordova-plugin.PushNotification");
-
-      //set push notifications handler
-      document.addEventListener('push-notification',
-         function (event) {
-            var message = event.notification.message;
-            var userData = event.notification.userdata;
-
-            alert(message);
-            //document.getElementById("pushData").innerHTML = JSON.stringify(event.notification) + "<p>";
-
-            //dump custom data to the console if it exists
-            if (typeof (userData) != "undefined") {
-               console.warn('user data: ' + JSON.stringify(userData));
+         //if you need push token at a later time you can always get it from Pushwoosh plugin
+         pushNotification.getPushToken(
+            function (token) {
+               console.info('push token: ' + token);
             }
-         }
-      );
+         );
 
-      //initialize Pushwoosh with projectid: "GOOGLE_PROJECT_ID", appid : "PUSHWOOSH_APP_ID". This will trigger all pending push notifications on start.
-      pushNotification.onDeviceReady({
-         projectid: "697813948914",
-         appid: "65F73-60083",
-         serviceName: ""
-      });
+         //and HWID if you want to communicate with Pushwoosh API
+         pushNotification.getPushwooshHWID(
+            function (token) {
+               console.info('Pushwoosh HWID: ' + token);
+            }
+         );
 
-      //register for push notifications
-      pushNotification.registerDevice(
-         function (status) {
-           // document.getElementById("pushToken").innerHTML = status.pushToken + "<p>";
-            onPushwooshInitialized(pushNotification);
+         //settings tags
+         pushNotification.setTags({
+            tagName: "tagValue",
+            intTagName: 10
          },
-         function (status) {
-            alert("failed to register: " + status);
-            console.warn(JSON.stringify(['failed to register ', status]));
-         }
-      );
-   }
+            function (status) {
+               console.info('setTags success: ' + JSON.stringify(status));
+            },
+            function (status) {
+               console.warn('setTags failed');
+            }
+         );
 
-   var app = {
-      // Application Constructor
-      initialize: function () {
-         this.bindEvents();
-      },
-      // Bind Event Listeners
-      //
-      // Bind any events that are required on startup. Common events are:
-      // 'load', 'deviceready', 'offline', and 'online'.
-      bindEvents: function () {
-         document.addEventListener('deviceready', this.onDeviceReady, false);
-      },
-      // deviceready Event Handler
-      //
-      // The scope of 'this' is the event. In order to call the 'receivedEvent'
-      // function, we must explicity call 'app.receivedEvent(...);'
-      onDeviceReady: function () {
-         initPushwoosh();
-         app.receivedEvent('deviceready');
-      },
-      // Update DOM on a Received Event
-      receivedEvent: function (id) {
-         var parentElement = document.getElementById(id);
-         var listeningElement = parentElement.querySelector('.listening');
-         var receivedElement = parentElement.querySelector('.received');
+         pushNotification.getTags(
+            function (status) {
+               console.info('getTags success: ' + JSON.stringify(status));
+            },
+            function (status) {
+               console.warn('getTags failed');
+            }
+         );
 
-         listeningElement.setAttribute('style', 'display:none;');
-         receivedElement.setAttribute('style', 'display:block;');
-
-         console.log('Received Event: ' + id);
+         //start geo tracking.
+         pushNotification.startLocationTracking();
       }
-   };
 
-   app.initialize();
-</script>
+      function initPushwoosh() {
+         var pushNotification = cordova.require("pushwoosh-cordova-plugin.PushNotification");
+
+         //set push notifications handler
+         document.addEventListener('push-notification',
+            function (event) {
+               var message = event.notification.message;
+               var userData = event.notification.userdata;
+
+               alert(message);
+               //document.getElementById("pushData").innerHTML = JSON.stringify(event.notification) + "<p>";
+
+               //dump custom data to the console if it exists
+               if (typeof (userData) != "undefined") {
+                  console.warn('user data: ' + JSON.stringify(userData));
+               }
+            }
+         );
+
+         //initialize Pushwoosh with projectid: "GOOGLE_PROJECT_ID", appid : "PUSHWOOSH_APP_ID". This will trigger all pending push notifications on start.
+         pushNotification.onDeviceReady({
+            projectid: "697813948914",
+            appid: "65F73-60083",
+            serviceName: ""
+         });
+
+         //register for push notifications
+         pushNotification.registerDevice(
+            function (status) {
+               // document.getElementById("pushToken").innerHTML = status.pushToken + "<p>";
+               onPushwooshInitialized(pushNotification);
+            },
+            function (status) {
+               alert("failed to register: " + status);
+               console.warn(JSON.stringify(['failed to register ', status]));
+            }
+         );
+      }
+
+      var app = {
+         // Application Constructor
+         initialize: function () {
+            this.bindEvents();
+         },
+         // Bind Event Listeners
+         //
+         // Bind any events that are required on startup. Common events are:
+         // 'load', 'deviceready', 'offline', and 'online'.
+         bindEvents: function () {
+            document.addEventListener('deviceready', this.onDeviceReady, false);
+         },
+         // deviceready Event Handler
+         //
+         // The scope of 'this' is the event. In order to call the 'receivedEvent'
+         // function, we must explicity call 'app.receivedEvent(...);'
+         onDeviceReady: function () {
+            initPushwoosh();
+            app.receivedEvent('deviceready');
+         },
+         // Update DOM on a Received Event
+         receivedEvent: function (id) {
+            var parentElement = document.getElementById(id);
+            var listeningElement = parentElement.querySelector('.listening');
+            var receivedElement = parentElement.querySelector('.received');
+
+            listeningElement.setAttribute('style', 'display:none;');
+            receivedElement.setAttribute('style', 'display:block;');
+
+            console.log('Received Event: ' + id);
+         }
+      };
+
+      app.initialize();
+
+   </script>
+
 </body>
 
 </html>

@@ -1,0 +1,56 @@
+<div class="app">
+        <div class="authentication">
+            <div class="sign-in-2">
+                <div class="container-fluid no-pdd-horizon bg" style="background-image: url('assets/img-30.jpg')">
+                    <div class="row">
+                        <div class="col-md-10 mr-auto ml-auto">
+                            <div class="row">
+                                <div class="mr-auto ml-auto full-height height-100">
+                                    <div class="vertical-align full-height">
+                                        <div class="table-cell">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="pdd-horizon-30 pdd-vertical-30">
+                                                        <div class="mrg-btm-30">
+                                                            <img class="img-responsive inline-block" width="100px" src="assets/logo.png" alt="">
+                                                            <h2 class="inline-block pull-right no-mrg-vertical pdd-top-15">Login</h2>
+                                                        </div>
+                                                        <p class="mrg-btm-15 font-size-13">Please enter your email and password to login</p>
+                                                        <form novalidate class="ng-pristine ng-valid" ng-submit="login()" name="loginForm">
+                                                            <div class="form-group">
+                                                                <input  required name="email"  type="email" id="user_email" ng-model="user.email" class="form-control" placeholder="Email">
+                                                                <span class="text-danger" ng-if="loginForm.email.$viewValue && !loginForm.email.$valid">Please enter valid email address</span>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input required  type="password" id="user_password" ng-model="user.password" class="form-control" placeholder="Password">
+                                                              
+                                                            </div>
+
+                                                            <div class="mrg-top-20 text-right">
+                                                                <button type="submit" ng-disabled="!loginForm.$valid" class="btn btn-info btn-block" >Login</button>
+                                                            </div>
+                                                            <p class="col-md-12 h5 text-danger text-center padding-25" ng-if="loadingData">
+                                                               <span class="fa fa-spinner fa-spin "></span> Loading
+                                                            </p>
+                                                            <p ng-if="signinError" class=" text-danger">Please enter valid Email/Password</p>
+                                                            <br />
+                                                            
+                                                            <div class="text-center">
+                                                                <a ui-sref="register">Register</a> 
+                                                            </div>
+                                                            
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+

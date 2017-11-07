@@ -16,7 +16,31 @@
       //
       function onDeviceReady() {
          alert('ready')
-         // Now safe to use device APIs
+          const push = PushNotification.init({
+               android: {
+               },
+               browser: {
+                  pushServiceURL: 'http://push.api.phonegap.com/v1/push'
+               },
+               ios: {
+                  alert: "true",
+                  badge: "true",
+                  sound: "true"
+               },
+               windows: {}
+            });
+
+            push.on('registration', (data) => {
+              alert(data);
+            });
+
+            push.on('notification', (data) => {
+              alert(data);
+            });
+
+            push.on('error', (e) => {
+               alert(e);
+            });
       }
    </script>
 </head>

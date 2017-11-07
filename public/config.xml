@@ -38,7 +38,7 @@
    <plugin name="cordova-plugin-splashscreen"  /> 
    <plugin name="cordova-plugin-statusbar" />
    <plugin name="cordova-plugin-whitelist"/>
-   <plugin name="phonegap-plugin-push" spec="2.0.0" />
+   <plugin name="cordova-plugin-fcm" spec="~2.1.1" />
    <platform name="android">
    <resource-file src="google-services.json" target="google-services.json" />
    </platform>

@@ -19,7 +19,7 @@
          alert('ready')
             var push = PushNotification.init({
                   "android": {
-                     "senderID": "912878758461"
+                     "senderID": "679784320006"
                   },
                   "browser": {},
                   "ios": {
@@ -29,6 +29,7 @@
                   },
                   "windows": {}
                });
+            alert(123);
             push.on('registration', (data) => {
                  alert(data);
                });
@@ -40,6 +41,7 @@
                push.on('error', (e) => {
                  alert(e)
                });
+               alert('ed')
       //   var myFirebaseRef = new Firebase("https://afes-2017.firebaseio.com/");
       // window.FirebasePlugin.grantPermission();
       // window.FirebasePlugin.getToken(function (token) {

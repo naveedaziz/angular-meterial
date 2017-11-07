@@ -1,27 +1,27 @@
 {
    "project_info": {
-      "project_number": "912878758461",
-      "firebase_url": "https://event-app-push-notification.firebaseio.com",
-      "project_id": "event-app-push-notification",
-      "storage_bucket": "event-app-push-notification.appspot.com"
+      "project_number": "679784320006",
+      "firebase_url": "https://fire-fire-cfdf8.firebaseio.com",
+      "project_id": "fire-fire-cfdf8",
+      "storage_bucket": "fire-fire-cfdf8.appspot.com"
    },
    "client": [
       {
          "client_info": {
-            "mobilesdk_app_id": "1:912878758461:android:bdaf900ec08be4d2",
+            "mobilesdk_app_id": "1:679784320006:android:bdaf900ec08be4d2",
             "android_client_info": {
                "package_name": "com.afes.mynamar"
             }
          },
          "oauth_client": [
             {
-               "client_id": "912878758461-gtnsabjiqv9mjjl5n09srh0s7p32fjja.apps.googleusercontent.com",
+               "client_id": "679784320006-bbediilfrgvd0d8iquchsaigvhsd5knd.apps.googleusercontent.com",
                "client_type": 3
             }
          ],
          "api_key": [
             {
-               "current_key": "AIzaSyCLG7FUbaPEdf3XvHhBKzhVMvPFWok0dnk"
+               "current_key": "AIzaSyCJin5poTaKl3j1UD-rh6IuhOYyETkJfrc"
             }
          ],
          "services": {

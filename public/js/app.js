@@ -1331,7 +1331,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                   $scope.loadingData = true;
                   $http({
                         method: 'GET',
-                        url: 'https://fishry-app-services.azurewebsites.net/api/table_read?table=schedule&orderBy=start_hours&orderSeq=asc'
+                        url: 'https://fishry-app-services.azurewebsites.net/api/table_read?table=schedule&orderBy=start_hours,start_minutes&orderSeq=asc'
                   }).then(function successCallback(response) {
                         var data = response.data;
                         // //console.log(data);

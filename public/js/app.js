@@ -799,7 +799,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                   { name: "A/Prof. Myint Thein" },
                   { name: "A/Prof. Naing Soe", image: "AProf. Soe Naing" },
                   { name: "Dr. Nam Tran Quang", image: "Dr. Tran Quang Nam" },
-                  { name: "Dr. Nieman Lynnette" },
+                  { name: "Dr. Nieman Lynnette", image: "Dr. Lynnette Nieman" },
                   { name: "Prof. Oo Thein Hlaing", image: "Prof Thein Hlaing Oo" },
                   { name: "Dr. Pemayun Tjokorda G D", image: "Dr. Tjokorda Gde Dalem Pemayun" },
                   { name: "Prof. Sahay Rakesh", image: "Prof. Rakesh Sahay" },

@@ -130,6 +130,13 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                      title: "Questions"
                   }
                })
+               .state('notification', {
+                  url: '/notification',
+                  templateUrl: 'partials/notification.html',
+                  params: {
+                     title: "Notification"
+                  }
+               })
             
                   .state('network', {
                         url: '/network',
@@ -307,12 +314,37 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
             }
          }
       }
-      $scope.currentSchedule = function (schedule){
-         //console.log(schedule);
-         if (schedule == 'Fri (10th Nov)' || schedule == '10:20-12:0'){
-            return true
+      $scope.currentSchedule = function (key,key_first){
+        // console.log(key, key_first);
+         var timers = key_first.split('-');
+         st_time = timers[0].split(':');
+         end_time = timers[1].split(':');
+         var rt = false;
+         if (key.indexOf('9th') >= 0 && parseInt(moment().add(5, 'hour').format('D')) == 9){
+            if (parseInt(moment().add(5, 'hour').format('H')) >= parseInt(st_time[0])  && parseInt(moment().add(5, 'hour').format('H')) <= parseInt(end_time[0])){
+               rt = true;
+               console.log(parseInt(moment().add(5, 'hour').format('H')),st_time,end_time)
+            }
          }
-         return false;
+         if (key.indexOf('10th') >= 0 && parseInt(moment().add(5, 'hour').format('D')) == 10) {
+            if (parseInt(moment().add(5, 'hour').format('H')) >= parseInt(st_time[0]) && parseInt(moment().add(5, 'hour').format('H')) <= parseInt(end_time[0])) {
+               rt = true;
+               console.log(2)
+            }
+         }
+         if (key.indexOf('11th') >= 0 && parseInt(moment().add(5, 'hour').format('D')) == 11) {
+            if (parseInt(moment().add(5, 'hour').format('H')) >= parseInt(st_time[0]) && parseInt(moment().add(5, 'hour').format('H')) <= parseInt(end_time[0])) {
+               rt = true;
+               console.log(3)
+            }
+         }
+         if (key.indexOf('12th') >= 0 && parseInt(moment().add(5, 'hour').format('D')) == 12) {
+            if (parseInt(moment().add(5, 'hour').format('H')) >= parseInt(st_time[0]) && parseInt(moment().add(5, 'hour').format('H')) <= parseInt(end_time[0])) {
+               rt = true;
+               console.log(4)
+            }
+         }
+         return rt;
       }
       $scope.organizerCommitee = '';
       $scope.returnSureName =  function(name){

@@ -12,7 +12,7 @@
                             <span class="fa fa-spinner fa-spin "></span> Loading
                         </p>
                         <div class="">
-                            <div ng-repeat="(key,sch) in schedule" ng-if="currentSchedule(key)"  role="tabpanel" class="tab-pane" style="background:#f6f7fb">
+                            <div ng-repeat="(key,sch) in schedule"  role="tabpanel" class="tab-pane" style="background:#f6f7fb">
                                 <div class="card" style="border:none;margin-top:2px;" ng-repeat="(key_first,sch_first) in sch" ng-if="currentSchedule(key_first)">
                                     
                                     <div class="card-header schedule-card-header">

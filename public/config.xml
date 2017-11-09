@@ -4,7 +4,7 @@
         id          = "com.afes.mynamar"
         versionCode = "4"
 		  CFBundleVersion = "1.0.3"
-        version     = "4.0.0" >
+        version     = "1.0.3" >
 
     <!-- versionCode is optional and Android only -->
 

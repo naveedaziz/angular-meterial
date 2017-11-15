@@ -1,47 +1,67 @@
-<div class="main-content" ng-init="loadSchedule()">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-3 social" style="min-height:100%;background:#fff;">
-                <div class="card">
 
-                    <!--<div class="padding-20">
+
+<div class="main-content">
+   <div class="container-fluid">
+      <div class="row">
+         <div class="col-lg-3 social" style="min-height:100%;background:#fff;">
+            <div class="card">
+
+               <!--<div class="padding-20">
                                         <h4 class="card-title no-mrg-btm">Tabs Danger</h4>
                                     </div>-->
-                    <div class="tab-danger">
-                        <p class="col-md-12 h5 text-danger text-center padding-25" ng-if="loadingData">
-                            <span class="fa fa-spinner fa-spin "></span> Loading
-                        </p>
-                        <div class="">
-                            <div ng-repeat="(key,sch) in schedule"  role="tabpanel" class="tab-pane" style="background:#f6f7fb">
-                                <div class="card" style="border:none;margin-top:2px;" ng-repeat="(key_first,sch_first) in sch" ng-if="currentSchedule(key,key_first)">
-                                    
-                                    <div class="card-header schedule-card-header">
+               <div class="tab-danger">
 
-                                        <h4>
-                                            <i class="ti-timer"></i> {{returnTimeFormat(key_first)}}</h4>
-                                       
-                                    </div>
-                                    <div class="card-block" ng-repeat="(key_second,sch_second) in sch_first">
-                                        <a>
-                                            <h4 ui-sref="agenda_detail({id:sch_second[0].id})">{{sch_second[0].name}}</h4>
-                                            <span class="pull-left btn-icon">
+                  <!--<div class="tab-scroll" style="width:100%; overflow:scroll;">
+                            <ul class="nav nav-tabs" role="tablist" style="width:550px;    width: 100%;
+    position: fixed;
+    left: 0;
+    top: 66px;
+    z-index: 9999;
+    background: #fff;">
+                                <li class="nav-item" ng-repeat="(key,sch) in ortho.ScientificProgram" style="width: 25%;
+    padding: 5px;
+    margin: 0;">
+                                    <a ui-sref="schedule({tab:$index+1})" style="font-size: 11px;" href="javascript:void(0)" ng-class="{'active':$index+1 == currentUrl}" id="tab-{{$index}}" ng-click="activeTab($index)" class="nav-link"
+                                        role="tab" data-toggle="tab">{{beutifyDate(key)}}</a>
+                                </li>
+                            </ul>
+                        </div>-->
+                  <div class="tab-content active" style="    position: relative;display:block !important;
+    top: 1px;">
+
+                     <div ng-repeat="(key,sch) in ortho.ScientificProgram" role="tabpanel" class="tab-pane" id="tab-content-{{$index}}" style="background:#f6f7fb;display:block !important;">
+                        <div class="card" style="border:none;margin-top:2px;">
+
+                           <div class="card-header schedule-card-header">
+
+                              <h4>
+                                 <i class="ti-timer"></i> {{sch.Date}} <br> <span style="margin-left:23px;">{{sch.Start}} To {{sch.End}}</span></h4>
+
+                           </div>
+                           <div class="card-block" ng-repeat="hd in sch.Activity">
+                              <a>
+                                 <h4>{{hd.Name}}</h4>
+                                 <span class="pull-left btn-icon">
                                                 <i class="ei ei-menu-6 pdd-right-5" ng-if="sch_second[0].room[0] || key_second != 'open'"></i>
-                                                 {{sch_second[0].room[0]}} <small  ng-if="key_second != 'open'">({{key_second}})</small>
+                                                 Hall {{hd.Hall}} 
                                             </span>
-                                             <a  class="btn btn-primary pull-right" ui-sref="question({id:sch_second[0].id,name:sch_second[0].name})" style="margin-top:12px">
+                                 <div ng-if="user_info.name != 'Moderator Ortho 2017'">
+                                    <a class="btn btn-primary pull-right" ui-sref="question({id:hd.Name,name:hd.Name})" style="margin-top:12px">
                                                 <span style="color:#fff">Ask Moderator</span>
-                                             </a>
-                                        </a>
-                                        <div class="clearfix"></div>
-                                        <hr>
+                                    </a>
+                                 </div>
+                              </a>
+                              <div class="clearfix"></div>
+                              <hr>
 
-                                    </div>
-                                </div>
-                            </div>
+                           </div>
                         </div>
-                    </div>
-                </div>
+                     </div>
+                  </div>
+
+               </div>
             </div>
-        </div>
-    </div>
+         </div>
+      </div>
+   </div>
 </div>

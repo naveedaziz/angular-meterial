@@ -111,9 +111,9 @@
 
                                             <div class="card-block" style="padding-top: 0;">
                                                 <div class="feed-header">
-                                                   <ul class="list-unstyled list-info" ng-repeat="(key,com) in ortho.organization_commitee">
-                                                      <h4>{{com.Group}}</h4>
-                                                      <li class="pdd-vertical-15 border bottom" ng-repeat="(keys,coms) in ortho.organization_commitee" ng-if="coms.Group == com.Group">
+                                                   <ul class="list-unstyled list-info" ng-repeat="(key,com) in orgCont">
+                                                      <h4>{{key}}</h4>
+                                                      <li class="pdd-vertical-15 border bottom" ng-repeat="(keys,coms) in com">
 
                                                          <img onerror="checkImg(this)" class="thumb-img img-circle" ng-src="images/ortho/organizationComittee/.jpg"
                                                             alt="" />

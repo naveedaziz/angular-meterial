@@ -36,14 +36,14 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                         url: '/signin',
                         templateUrl: 'partials/signin.html',
                         params: {
-                              title: "Login to AFES"
+                              title: "Login to Orthocon"
                         }
                   })
                   .state('register', {
                         url: '/register',
                         templateUrl: 'partials/register.html',
                         params: {
-                              title: "Register to AFES"
+                              title: "Register to Orthocon"
                         }
                   })
                .state('registerupdate', {
@@ -64,21 +64,21 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                         url: '/',
                         templateUrl: 'partials/home.html',
                         params: {
-                              title: "Welcome to AFES"
+                              title: "Welcome to Orthocon"
                         }
                   })
                   .state('home2', {
                         url: '/home2',
                         templateUrl: 'partials/home2.html',
                         params: {
-                              title: "Welcome to AFES"
+                              title: "Welcome to Orthocon"
                         }
                   })
                   .state('about', {
                         url: '/about',
                         templateUrl: 'partials/about.html',
                         params: {
-                              title: "About AFES"
+                              title: "About Orthocon"
                         }
                   })
                   .state('message', {
@@ -1242,7 +1242,15 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
          , Image: "president.jpg"
       }],
 }
-
+var grpSch = {};
+for (var indsd in $scope.ortho.organization_commitee){
+   if (!grpSch[$scope.ortho.organization_commitee[indsd].Group]){
+      grpSch[$scope.ortho.organization_commitee[indsd].Group] = [];
+     }
+   grpSch[$scope.ortho.organization_commitee[indsd].Group].push($scope.ortho.organization_commitee[indsd]);
+ }
+$scope.orgCont = grpSch;
+console.log(grpSch)
             $scope.getCountryOrganizer = function(name){
                var country = '';
                for (var ind in $scope.organizerList){

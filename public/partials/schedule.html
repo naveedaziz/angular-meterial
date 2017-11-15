@@ -1,4 +1,4 @@
-<div class="main-content" ng-init="loadSchedule();initSchedule()">
+<div class="main-content">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-3 social" style="min-height:100%;background:#fff;">
@@ -9,54 +9,54 @@
                                     </div>-->
                     <div class="tab-danger">
                       
-                        <div class="tab-scroll" style="width:100%; overflow:scroll;" ng-if="schedule">
+                        <!--<div class="tab-scroll" style="width:100%; overflow:scroll;">
                             <ul class="nav nav-tabs" role="tablist" style="width:550px;    width: 100%;
     position: fixed;
     left: 0;
     top: 66px;
     z-index: 9999;
     background: #fff;">
-                                <li class="nav-item" ng-repeat="(key,sch) in schedule" style="width: 25%;
+                                <li class="nav-item" ng-repeat="(key,sch) in ortho.ScientificProgram" style="width: 25%;
     padding: 5px;
     margin: 0;">
                                     <a ui-sref="schedule({tab:$index+1})" style="font-size: 11px;" href="javascript:void(0)" ng-class="{'active':$index+1 == currentUrl}" id="tab-{{$index}}" ng-click="activeTab($index)" class="nav-link"
                                         role="tab" data-toggle="tab">{{beutifyDate(key)}}</a>
                                 </li>
                             </ul>
-                        </div>
-                        <div class="tab-content" style="    position: relative;
-    top: 46px;">
-                            <div ng-repeat="(key,sch) in schedule" ng-class="{'active':$index+1 == currentUrl}" role="tabpanel" class="tab-pane" id="tab-content-{{$index}}"
-                                style="background:#f6f7fb">
-                                <div class="card" style="border:none;margin-top:2px;" ng-repeat="(key_first,sch_first) in sch">
-                                    
+                        </div>-->
+                        <div class="tab-content active" style="    position: relative;display:block !important;
+    top: 1px;">
+    
+                            <div ng-repeat="(key,sch) in ortho.ScientificProgram" role="tabpanel" class="tab-pane" id="tab-content-{{$index}}" style="background:#f6f7fb;display:block !important;">
+                                <div class="card" style="border:none;margin-top:2px;">
+                                   
                                     <div class="card-header schedule-card-header">
 
                                         <h4>
-                                            <i class="ti-timer"></i> {{returnTimeFormat(key_first)}}</h4>
+                                            <i class="ti-timer"></i> {{sch.Date}} <br> <span style="margin-left:23px;">{{sch.Start}} To {{sch.End}}</span></h4>
                                        
                                     </div>
-                                    <div class="card-block" ng-repeat="(key_second,sch_second) in sch_first">
+                                    <div class="card-block" ng-repeat="hd in sch.Activity">
                                         <a>
-                                            <h4 ui-sref="agenda_detail({id:sch_second[0].id})">{{sch_second[0].name}}</h4>
+                                            <h4>{{hd.Name}}</h4>
                                             <span class="pull-left btn-icon">
                                                 <i class="ei ei-menu-6 pdd-right-5" ng-if="sch_second[0].room[0] || key_second != 'open'"></i>
-                                                 {{sch_second[0].room[0]}} <small  ng-if="key_second != 'open'">({{key_second}})</small>
+                                                 Hall {{hd.Hall}} 
                                             </span>
                                             <div ng-if="user_info.name != 'Moderator AFES 2017'">
-                                             <a ng-if="!userAgendaCheck(sch_second[0].id)" class="pull-right" ng-click="addToAgenda(sch_second[0].id,key,key_first,sch_second[0].name)" style="margin-top:12px">
+                                             <!--<a ng-if="!userAgendaCheck(sch_second[0].id)" class="pull-right" ng-click="addToAgenda(sch_second[0].id,key,key_first,sch_second[0].name)" style="margin-top:12px">
                                                 <i class="ti-heart text-danger pdd-right-5"></i>
                                                 <span>Add to My Agenda</span>
                                              </a>
                                              <a ng-if="userAgendaCheck(sch_second[0].id)" class="pull-right" ng-click="deleteFromAgenda(sch_second[0].id,key,key_first,sch_second[0].name)" style="margin-top:12px">
                                                 <i class="ti-check text-danger pdd-right-5"></i>
                                                 <span>My Agenda</span>
-                                             </a>
+                                             </a>-->
                                             </div>
                                             <div ng-if="user_info.name == 'Moderator AFES 2017'">
-                                             <a class="btn btn-primary pull-right" ui-sref="questionlist({id:sch_second[0].id,name:sch_second[0].name})" style="margin-top:12px">
+                                             <!--<a class="btn btn-primary pull-right" ui-sref="questionlist({id:sch_second[0].id,name:sch_second[0].name})" style="margin-top:12px">
                                                 <span style="color:#fff">Questions</span>
-                                             </a>
+                                             </a>-->
                                             </div>
                                         </a>
                                         <div class="clearfix"></div>
@@ -66,9 +66,7 @@
                                 </div>
                             </div>
                         </div>
-                        <p class="col-md-12 h5 text-danger text-center padding-25" ng-if="loadingData">
-                           <span class="fa fa-spinner fa-spin "></span> Loading
-                        </p>
+                        
                     </div>
                 </div>
             </div>

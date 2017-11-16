@@ -1250,7 +1250,15 @@ for (var indsd in $scope.ortho.organization_commitee){
    grpSch[$scope.ortho.organization_commitee[indsd].Group].push($scope.ortho.organization_commitee[indsd]);
  }
 $scope.orgCont = grpSch;
-console.log(grpSch)
+var grpSched = {};
+         for (var indsd in $scope.ortho.ScientificProgram) {
+            if (!grpSched[$scope.ortho.ScientificProgram[indsd].Date]) {
+               grpSched[$scope.ortho.ScientificProgram[indsd].Date] = [];
+   }
+            grpSched[$scope.ortho.ScientificProgram[indsd].Date].push($scope.ortho.ScientificProgram[indsd]);
+}
+$scope.orgConted = grpSched;
+         console.log(grpSched)
             $scope.getCountryOrganizer = function(name){
                var country = '';
                for (var ind in $scope.organizerList){

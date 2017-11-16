@@ -1,0 +1,937 @@
+/*
+ * Module contains product import api calls
+ * validate dataset
+ * optimize dataset
+ * send data in packets to API
+ *
+ */
+
+module.exports = function(app) {
+	var request = require('request'),
+    path = require('path'),
+	request = require('request'),
+	fs = require('fs'),
+	azure = require('azure'),
+	xlsx = require('node-xlsx'),
+	sqlite3 = require('sqlite3').verbose();
+	const db = new sqlite3.Database('./products_import.sqlite3', (err) => {
+		if (err) {
+			console.log(err);
+		} else
+			console.log('DB file created');
+	});
+	
+	// Local imports
+	const email_templetes = require('./email_templates');
+	//const db_acions = require('./db_acions');
+	
+	var ServiceName = app.get('MOBILE_SERVICE_NAME');
+	var product_img_cdn = 'https://az866755.vo.msecnd.net/product/';
+    //var host_name = req.get('host').split('.');
+    var importProductsArray = [];
+	var p_imported_obj = [];
+    var p_imported_data = {};
+	var active_queue;
+    var p_data = {};
+    var p_host_name = '';
+    var p_email_data = '';
+    var p_blob_url = '';
+
+	
+	 /* Process 1: Import Product beta API */
+    app.post('/importproductsbeta', function(req, res) {
+         console.log('import products process initProcessiated');
+			var file_type = 'xlsx';
+            var file_name = ''
+			store_id = req.body.store_id;
+			user_id = req.body.user_id;
+			email_data = req.body.email_data;
+            if (store_id && user_id) {
+                file_name = store_id+'_'+user_id;
+            }
+            file_name += '_'+new Date().getTime()+'.'+ file_type;
+			//console.log(file_name);
+            var obj = xlsx.parse(req.files.uploadedFile.path); // parses a file
+			// validate sheet names and data
+			if ((obj[0] && obj[0].name == 'Products') && (obj[1] && obj[1].name == 'Product Variants') && (obj[2] && obj[2].name == 'Product Specification') && (obj[3] && obj[3].name == 'Product Addons')) {
+				console.log('all sheets exists..');
+				// Upload file to blob
+				uploadFiletoBlob(file_name, req.files.uploadedFile.path).then((result) => {
+					console.log('blob uploaded: ', result);
+					// queue blob to db
+					insertQueue(result, email_data, store_id).then((row) => {
+						console.log(row);
+						console.log(queueInProcess);
+						console.log('row inserted and checking current queue status..');
+						if(queueInProcess == false || !importProductsArray_length)	initProcess(true);
+						res.send(row);
+					});
+
+				});
+			} else {
+                console.log('sheet error..');
+                res.send('sheets error');
+            }
+    });
+
+	/* upload File to Blob */
+	const uploadFiletoBlob = (file_name, newPath) => {
+			var locationName = 'files';
+			process.env['AZURE_STORAGE_ACCOUNT'] =  'aecommerce';
+			process.env['AZURE_STORAGE_ACCESS_KEY']  = 'Gw0DEtkEtu5PxsFGTudE79p3ECZMfvZV4tG+7mBzkMF+NfaO4uH26dyxzIbKHlh3jtCHNYdMCQe07dv+bqBLeQ==';
+			var blobService = azure.createBlobService();
+			blobService.createContainerIfNotExists(locationName,function(error){});
+			blobService.createContainerIfNotExists(locationName,{publicAccessLevel:'blob'},function(error){});
+			blobService.setContainerAcl(locationName,'container',function(error){});
+			return new Promise(function(resolve, reject) {
+				var retryOperations = new azure.ExponentialRetryPolicyFilter();
+				var blobService = azure.createBlobService().withFilter(retryOperations);
+				blobService.createBlockBlobFromFile(locationName,file_name,newPath,function(error){
+					if(!error){
+						var url_blob = 'http://aecommerce.blob.core.windows.net/files/'+file_name;
+						if(email_data){
+							email_data = email_data.replace(new RegExp("{{link}}", 'g'), url_blob);
+							resolve(url_blob);
+						}else{
+							resolve(url_blob);
+							console.log('Blob uploaded successfully');
+						}
+					}else{
+						reject('error');
+						console.log('Error in blob uploading');
+					}
+				});
+			});
+	}
+	// END: Process 1
+
+	/* Process:2 Start XLSX parse */
+
+   /* Init product import process */
+	var queueInProcess = false;
+	const initProcess = (recursive = false) => {
+		console.log(`processQueue initProcess ${queueInProcess}, ${recursive}`);
+
+		// Check to see if process is already running
+		if (queueInProcess && !recursive)
+			return;
+
+		queueInProcess = true;
+		console.log('queueInProcess is true');
+
+		getData('1').then((result) => {
+			console.log(result);
+			if(result.id){
+				if(result.status == 'retry2'){
+					queueInProcess = false;
+					console.log('after retry2 send email and delete queue');
+					sendEmailProductImport(result, 'Bad Request â€“ The request was invalid or cannot be served.');
+					deleteRows(result.id).then((row) => { });
+					initProcess(false);
+				}else{
+					console.log('update status and start XLSX parsing');
+					updateQueueSatus(result).then((row) => {
+						console.log(row);
+						console.log('updation done..');
+						if(row && row.blob_url) streamBlob(row);
+					});
+
+				}
+			}else{
+				queueInProcess = false;
+				console.log('No data in queue..');
+			}
+		});
+	};
+
+
+	/* create the stream ahead
+	* from blob
+	* and then do start parsing
+	* on the close event
+	*/
+	const streamBlob = (data) => {
+	 var file_name = 'product_import.xlsx';
+	 var picStream = fs.createWriteStream(file_name);
+	 	picStream.on('close', function() {
+	  		console.log('file streaming done');
+	  		praseXLSXData(data, file_name);
+		});
+		request(data.blob_url+'').pipe(picStream);
+	} //end streamBlob
+
+	/* Parse a xlsx file */
+	var praseXLSXData = function(data, file_name){
+		var obj = xlsx.parse(file_name); // parses a file
+		console.log('initProcess..');
+	    if ((obj[0] && obj[0].name == 'Products') && (obj[1] && obj[1].name == 'Product Variants') && (obj[2] && obj[2].name == 'Product Specification') && (obj[3] && obj[3].name == 'Product Addons')) {
+                    var NewRow = {},
+					variantsRow = {}, variants_obj = {},
+					specRow = {}, spec_obj = {},
+					addonsRow = {},addons_obj = {};
+                    if (obj[0].data) {
+                        for (var ind in obj[0].data) {
+                            if (ind > 0) {
+                                NewRow[ind] = {};
+                                NewRow[ind]['productMultiOptionsList'] = [];
+                                for (var indx in obj[0].data[ind]) {
+                                    if (indx == 0) {
+                                        NewRow[ind]['id'] = obj[0].data[ind][indx].trim();
+									}
+                                    if (indx == 1) {
+                                        NewRow[ind]['productBarcode'] = obj[0].data[ind][indx].trim();
+									}
+                                    if (indx == 2) {
+                                        NewRow[ind]['productSKU'] = obj[0].data[ind][indx].trim();
+                                    }
+                                    if (indx == 3) {
+										obj[0].data[ind][indx] = obj[0].data[ind][indx].replace(new RegExp("'", 'g'), '');
+                                        NewRow[ind]['productName'] = obj[0].data[ind][indx].trim();
+                                    }
+                                    if (indx == 4) {
+                                        NewRow[ind]['productDescription'] = obj[0].data[ind][indx].trim();
+                                    }
+                                    if (indx == 5) {
+										obj[0].data[ind][indx] = obj[0].data[ind][indx].replace(new RegExp("'", 'g'), '');
+                                        NewRow[ind]['productType'] = obj[0].data[ind][indx].trim();
+									}
+                                    if (indx == 6) {
+										obj[0].data[ind][indx] = obj[0].data[ind][indx].replace(new RegExp("'", 'g'), '');
+                                        NewRow[ind]['productVendor'] = obj[0].data[ind][indx].trim();
+									}
+                                    if (indx == 7) {
+                                        NewRow[ind]['productPrice'] = obj[0].data[ind][indx];
+                                    }
+                                    if (indx == 8) {
+                                        NewRow[ind]['productPriceCompare'] = obj[0].data[ind][indx];
+                                        if (NewRow[ind]['productPriceCompare'] == 0) {
+                                            NewRow[ind]['productPriceCompare'] = '';
+                                        }
+                                    }
+                                    if (indx == 9) {
+										NewRow[ind]['productTaxable'] = obj[0].data[ind][indx];
+									 }
+                                    if (indx == 10) {
+                                        NewRow[ind]['inventoryManagement'] = obj[0].data[ind][indx].trim();
+                                    }
+                                    if (indx == 11) {
+										NewRow[ind]['inventoryPolicy'] = obj[0].data[ind][indx]; 
+									 }
+                                    if (indx == 12) {
+                                        NewRow[ind]['inventoryQuantity'] = obj[0].data[ind][indx];
+                                    }
+                                    if (indx == 13) {
+										 NewRow[ind]['productHasWeight'] = obj[0].data[ind][indx]; 
+									}
+                                    if (indx == 14) {
+                                        NewRow[ind]['productWeight'] = obj[0].data[ind][indx];
+                                    }
+                                    if (indx == 15) {
+										NewRow[ind]['productMultiOptions'] = obj[0].data[ind][indx];
+									}
+                                    if (indx == 16) {
+                                        var productMultiOptionsList = {};
+                                        var variants_option_obj = {};
+                                        productMultiOptionsList = obj[0].data[ind][indx];
+                                        if (productMultiOptionsList) {
+                                            productMultiOptionsList = productMultiOptionsList.split('/');
+                                            var multiListOptionsOBj = {};
+                                            for (var multi in productMultiOptionsList[0]) {
+                                                if (productMultiOptionsList[multi] != '' && productMultiOptionsList[multi] != null) {
+                                                    multiListOptionsOBj = productMultiOptionsList[0].split(':');
+                                                    var multiOptionList = [];
+                                                    variants_option_obj['option'] = multi;
+                                                    if (productMultiOptionsList[1] && typeof productMultiOptionsList[1] !== 'undefined') {
+                                                        variants_option_obj['optionSelected'] = 'custom';
+                                                    } else {
+                                                        variants_option_obj['optionSelected'] = multiListOptionsOBj[0];
+                                                    }
+                                                    multiOptionList = multiListOptionsOBj[1].split(',');
+                                                    var values = [];
+                                                    for (var opt in multiOptionList) {
+                                                        if (multiOptionList[opt]) {
+                                                            values.push({
+                                                                'value': multiOptionList[opt]
+                                                            });
+                                                        }
+                                                    }
+
+                                                    variants_option_obj['value'] = values;
+                                                    if (productMultiOptionsList[1] && typeof productMultiOptionsList[1] !== 'undefined') {
+                                                        var custom = productMultiOptionsList[1].split(':');
+                                                        variants_option_obj['custom'] = custom[1];
+                                                    }
+                                                }
+                                            }
+                                            NewRow[ind]['productMultiOptionsList'].push(variants_option_obj);
+                                        }
+									 }
+                                    if (indx == 17) {
+                                        var productMultiOptionsList = {};
+                                        var variants_option_obj = {};
+                                        productMultiOptionsList = obj[0].data[ind][indx];
+                                        if (productMultiOptionsList) {
+                                            productMultiOptionsList = productMultiOptionsList.split('/');
+                                            var multiListOptionsOBj = {};
+                                            for (var multi in productMultiOptionsList[0]) {
+                                                if (productMultiOptionsList[multi] != '' && productMultiOptionsList[multi] != null) {
+                                                    multiListOptionsOBj = productMultiOptionsList[0].split(':');
+                                                    var multiOptionList = [];
+                                                    variants_option_obj['option'] = multi;
+                                                    if (productMultiOptionsList[1] && typeof productMultiOptionsList[1] !== 'undefined') {
+                                                        variants_option_obj['optionSelected'] = 'custom';
+                                                    } else {
+                                                        variants_option_obj['optionSelected'] = multiListOptionsOBj[0];
+                                                    }
+                                                    multiOptionList = multiListOptionsOBj[1].split(',');
+                                                    var values = [];
+                                                    for (var opt in multiOptionList) {
+                                                        if (multiOptionList[opt]) {
+                                                            values.push({
+                                                                'value': multiOptionList[opt]
+                                                            });
+                                                        }
+                                                    }
+                                                    variants_option_obj['value'] = values;
+                                                    if (productMultiOptionsList[1] && typeof productMultiOptionsList[1] !== 'undefined') {
+                                                        var custom = productMultiOptionsList[1].split(':');
+                                                        variants_option_obj['custom'] = custom[1];
+                                                    }
+                                                }
+                                            }
+                                            NewRow[ind]['productMultiOptionsList'].push(variants_option_obj);
+                                        }
+                                    }
+                                    if (indx == 18) {
+                                        var productMultiOptionsList = {};
+                                        var variants_option_obj = {};
+                                        productMultiOptionsList = obj[0].data[ind][indx];
+                                        if (productMultiOptionsList) {
+                                            productMultiOptionsList = productMultiOptionsList.split('/');
+                                            var multiListOptionsOBj = {};
+                                            for (var multi in productMultiOptionsList[0]) {
+                                                if (productMultiOptionsList[multi] != '' && productMultiOptionsList[multi] != null) {
+                                                    multiListOptionsOBj = productMultiOptionsList[0].split(':');
+                                                    var multiOptionList = [];
+                                                    variants_option_obj['option'] = multi;
+                                                    if (productMultiOptionsList[1] && typeof productMultiOptionsList[1] !== 'undefined') {
+                                                        variants_option_obj['optionSelected'] = 'custom';
+                                                    } else {
+                                                        variants_option_obj['optionSelected'] = multiListOptionsOBj[0];
+                                                    }
+                                                    multiOptionList = multiListOptionsOBj[1].split(',');
+                                                    var values = [];
+                                                    for (var opt in multiOptionList) {
+                                                        if (multiOptionList[opt]) {
+                                                            values.push({
+                                                                'value': multiOptionList[opt]
+                                                            });
+                                                        }
+                                                    }
+                                                    variants_option_obj['value'] = values;
+                                                    if (productMultiOptionsList[1] && typeof productMultiOptionsList[1] !== 'undefined') {
+                                                        var custom = productMultiOptionsList[1].split(':');
+                                                        variants_option_obj['custom'] = custom[1];
+                                                    }
+                                                }
+                                            }
+                                            NewRow[ind]['productMultiOptionsList'].push(variants_option_obj);
+                                        }
+                                    }
+                                    if (indx == 19) {
+                                        var productMultiOptionsList = {};
+                                        var variants_option_obj = {};
+                                        productMultiOptionsList = obj[0].data[ind][indx];
+                                        if (productMultiOptionsList) {
+                                            productMultiOptionsList = productMultiOptionsList.split('/');
+                                            var multiListOptionsOBj = {};
+                                            for (var multi in productMultiOptionsList[0]) {
+                                                if (productMultiOptionsList[multi] != '' && productMultiOptionsList[multi] != null) {
+                                                    multiListOptionsOBj = productMultiOptionsList[0].split(':');
+                                                    var multiOptionList = [];
+                                                    variants_option_obj['option'] = multi;
+                                                    if (productMultiOptionsList[1] && typeof productMultiOptionsList[1] !== 'undefined') {
+                                                        variants_option_obj['optionSelected'] = 'custom';
+                                                    } else {
+                                                        variants_option_obj['optionSelected'] = multiListOptionsOBj[0];
+                                                    }
+                                                    multiOptionList = multiListOptionsOBj[1].split(',');
+                                                    var values = [];
+                                                    for (var opt in multiOptionList) {
+                                                        if (multiOptionList[opt]) {
+                                                            values.push({
+                                                                'value': multiOptionList[opt]
+                                                            });
+                                                        }
+                                                    }
+                                                    variants_option_obj['value'] = values;
+                                                    if (productMultiOptionsList[1] && typeof productMultiOptionsList[1] !== 'undefined') {
+                                                        var custom = productMultiOptionsList[1].split(':');
+                                                        variants_option_obj['custom'] = custom[1];
+                                                    }
+                                                }
+                                            }
+                                            NewRow[ind]['productMultiOptionsList'].push(variants_option_obj);
+
+                                        }
+                                    }
+                                    if (indx == 20) {
+                                        NewRow[ind]['productImage'] = obj[0].data[ind][indx];
+                                        if (NewRow[ind]['productImage'] != '' && NewRow[ind]['productImage'] != null) {
+                                            var arrayimages = NewRow[ind]['productImage'].split(',');
+                                            var newItems = {};
+                                            for (var objCol in arrayimages) {
+                                                if (!newItems[objCol]) {
+                                                    newItems[objCol] = {};
+                                                    if (objCol == 0) {
+                                                        newItems[objCol].Featured = true;
+                                                    } else {
+                                                        newItems[objCol].Featured = false;
+                                                    }
+                                                    arrayimages[objCol] = arrayimages[objCol].replace(new RegExp("https://cdn.fishry.com/product/", 'g'), '');
+													var image_name = arrayimages[objCol];
+													if(image_name.indexOf("http") >= 0){
+														arrayimages[objCol] = '';
+													}else{
+														newItems[objCol].Image = arrayimages[objCol];
+													}
+                                                }
+                                            }
+                                            NewRow[ind]['productImage'] = JSON.stringify(newItems);
+                                            //console.log(NewRow[ind]['productImage']);
+                                        }
+                                    }
+                                    if (indx == 21) {
+                                        NewRow[ind]['productCollections'] = obj[0].data[ind][indx];
+                                        if (NewRow[ind]['productCollections'] != '' && NewRow[ind]['productCollections'] != null) {
+                                            var arraySpecds = NewRow[ind]['productCollections'].split(',');
+                                            var newItems = {};
+                                            for (var objCol in arraySpecds) {
+												arraySpecds[objCol] = arraySpecds[objCol].replace(new RegExp("'", 'g'), '');
+                                                newItems[arraySpecds[objCol]] = arraySpecds[objCol].trim();
+                                            }
+                                            NewRow[ind]['productCollections'] = JSON.stringify(newItems);
+                                        }
+                                    }
+                                    if (indx == 22) {
+                                        NewRow[ind]['productTags'] = obj[0].data[ind][indx].trim();
+                                    }
+                                    if (indx == 23) {
+                                        NewRow[ind]['productSeoTitle'] = obj[0].data[ind][indx].trim();
+                                    }
+                                    if (indx == 24) {
+                                        NewRow[ind]['productSeoMeta'] = obj[0].data[ind][indx].trim();
+                                    }
+                                    if (indx == 25) {
+                                        NewRow[ind]['productSeoKeyword'] = obj[0].data[ind][indx].trim();
+                                    }
+                                    if (indx == 26) {
+                                        NewRow[ind]['productUrl'] = obj[0].data[ind][indx].trim();
+                                    }
+                                    if (indx == 27) {
+										if(typeof obj[0].data[ind][indx] == 'String'){
+										obj[0].data[ind][indx] = obj[0].data[ind][indx].trim(); 
+										}
+                                        if (obj[0].data[ind][indx] == true || obj[0].data[ind][indx] == "true" || obj[0].data[ind][indx] == "TRUE") {
+                                            NewRow[ind]['productVisibility'] = 'true';
+                                        } else {
+                                            NewRow[ind]['productVisibility'] = 'false';
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    if (obj[1].data) {
+                        for (var ind in obj[1].data) {
+                            if (ind > 0) {
+                                variantsRow[ind] = {};
+                                for (var indx in obj[1].data[ind]) {
+                                    if (indx == 0) {
+                                        variantsRow[ind]['id'] = obj[1].data[ind][indx].trim();
+                                    }
+                                    if (indx == 1) {
+                                        variantsRow[ind]['productBarcode'] = obj[1].data[ind][indx].trim();
+                                    }
+                                    if (indx == 2) {
+                                        var key = [];
+                                        variantsRow[ind]['key'] = obj[1].data[ind][indx];
+                                        variantsRow[ind]['name'] = key.push(obj[1].data[ind][indx]);
+                                    }
+                                    if (indx == 3) {
+                                        variantsRow[ind]['sku'] = obj[1].data[ind][indx];
+                                    }
+                                    if (indx == 4) {
+                                        variantsRow[ind]['upc'] = obj[1].data[ind][indx];
+                                    }
+                                    if (indx == 5) {
+                                        variantsRow[ind]['price'] = obj[1].data[ind][indx];
+                                    }
+                                    if (indx == 6) {
+                                        variantsRow[ind]['inventory'] = obj[1].data[ind][indx];
+                                    }
+                                }
+                            }
+                        }
+                        if (variantsRow) {
+                            for (row in variantsRow) {
+                                if (!variantsRow[row]['id']) {
+                                    variantsRow[row]['id'] = 'id'
+                                };
+                                var val = variantsRow[row]['id'] + '|' + variantsRow[row]['productBarcode'];
+                                varients = [];
+                                var keys = [];
+                                if (!variants_obj[val]) {
+                                    variants_obj[val] = [];
+                                }
+                                var vname_array = [];
+                                if (variantsRow[row]['key']) {
+                                    vname_array = variantsRow[row]['key'].split(',');
+                                    variants_obj[val].push({
+                                        name: vname_array,
+                                        key: variantsRow[row]['key'],
+                                        price: variantsRow[row]['price'],
+                                        sku: variantsRow[row]['sku'],
+                                        barcode: variantsRow[row]['upc'],
+                                        inventoryQuantity: variantsRow[row]['inventory']
+                                    });
+                                }
+                            }
+                        }
+                        for (row in variants_obj) {
+                            var key = [];
+                            key = row.split('|');
+                            variants_obj[row].id = key[0];
+                            variants_obj[row].product_upc = key[1];
+                        }
+                        // console.log(variants_obj);
+                    }
+                    if (obj[2].data) {
+                        for (var ind in obj[2].data) {
+                            if (ind > 0) {
+                                specRow[ind] = {};
+                                for (var indx in obj[2].data[ind]) {
+                                    if (indx == 0) {
+                                        specRow[ind]['id'] = obj[2].data[ind][indx].trim();
+                                    }
+                                    if (indx == 1) {
+                                        specRow[ind]['productBarcode'] = obj[2].data[ind][indx];
+                                    }
+                                    if (indx == 2) {
+                                        specRow[ind]['name'] = obj[2].data[ind][indx].trim();
+                                        specRow[ind]['new'] = obj[2].data[ind][indx].trim();
+                                    }
+                                    if (indx == 3) {
+                                        specRow[ind]['detail'] = obj[2].data[ind][indx];
+                                    }
+                                }
+                            }
+                        }
+
+                        if (specRow) {
+                            for (row in specRow) {
+                                if (!specRow[row]['id']) {
+                                    specRow[row]['id'] = 'id'
+                                };
+                                var val = specRow[row]['id'] + '|' + specRow[row]['productBarcode'];
+                                if (!spec_obj[val]) {
+                                    spec_obj[val] = [];
+                                }
+                                var specfis = {};
+                                specfis['specificationCatagory'] = false;
+                                specfis['specificationDetais'] = specRow[row]['detail'];
+                                specfis['specificationCatagoryNew'] = specRow[row]['new'];
+                                specfis['specificationCatagoryName'] = specRow[row]['name'];
+                                if (specRow[row]['name'] && specRow[row]['name']) {
+                                    spec_obj[val].push(specfis);
+                                }
+                            }
+                            for (row in spec_obj) {
+                                var key = [];
+                                key = row.split('|');
+                                spec_obj[row].id = key[0];
+                                spec_obj[row].product_upc = key[1];
+                            }
+                        }
+					 }
+                    if (obj[3].data) {
+                        for (var ind in obj[3].data) {
+                            if (ind > 0) {
+                                addonsRow[ind] = {};
+                                for (var indx in obj[3].data[ind]) {
+                                    if (indx == 0) {
+                                        addonsRow[ind]['id'] = obj[3].data[ind][indx].trim();
+                                    }
+                                    if (indx == 1) {
+                                        addonsRow[ind]['productBarcode'] = obj[3].data[ind][indx];
+                                    }
+                                    if (indx == 2) {
+                                        addonsRow[ind]['group_name'] = obj[3].data[ind][indx].trim();
+                                    }
+                                    if (indx == 3) {
+                                        addonsRow[ind]['category_min'] = obj[3].data[ind][indx];
+                                    }
+                                    if (indx == 4) {
+                                        addonsRow[ind]['category_max'] = obj[3].data[ind][indx];
+                                    }
+                                    if (indx == 5) {
+                                        addonsRow[ind]['addon_name'] = obj[3].data[ind][indx].trim();
+                                    }
+                                    if (indx == 6) {
+                                        addonsRow[ind]['sku'] = obj[3].data[ind][indx];
+                                    }
+                                    if (indx == 7) {
+                                        addonsRow[ind]['upc'] = obj[3].data[ind][indx];
+                                    }
+                                    if (indx == 8) {
+                                        addonsRow[ind]['price'] = obj[3].data[ind][indx];
+                                    }
+                                    if (indx == 9) {
+                                        addonsRow[ind]['inventory'] = obj[3].data[ind][indx];
+                                    }
+                                    if (indx == 10) {
+                                        addonsRow[ind]['min_qty'] = obj[3].data[ind][indx];
+                                    }
+                                    if (indx == 11) {
+                                        addonsRow[ind]['max_qty'] = obj[3].data[ind][indx];
+                                    }
+                                    if (indx == 12) {
+                                        addonsRow[ind]['brief'] = obj[3].data[ind][indx];
+                                    }
+                                    if (indx == 13) {
+                                        addonsRow[ind]['required'] = obj[3].data[ind][indx];
+                                    }
+
+                                }
+                            }
+                        }
+                        if (addonsRow) {
+                            var group = {};
+                            for (row in addonsRow) {
+                                if (!addonsRow[row]['id']) {
+                                    addonsRow[row]['id'] = 'id'
+                                };
+                                var val = addonsRow[row]['id'] + '|' + addonsRow[row]['productBarcode'];
+                                group['id'] = addonsRow[row]['id'];
+                                group['product_upc'] = addonsRow[row]['productBarcode'];
+                                if (!addons_obj[val]) {
+                                    addons_obj[val] = [];
+                                }
+                                var addons = {};
+                                if (!group[val]) {
+                                    group[val] = {};
+                                }
+
+                                if (!group[val][addonsRow[row]['group_name']]) {
+                                    group[val][addonsRow[row]['group_name']] = {};
+                                    group[val][addonsRow[row]['group_name']]['catagoryName'] = addonsRow[row]['group_name'];
+                                    group[val][addonsRow[row]['group_name']]['catagoryMin'] = addonsRow[row]['category_min'];
+                                    group[val][addonsRow[row]['group_name']]['catagoryMax'] = addonsRow[row]['category_max'];
+                                    group[val][addonsRow[row]['group_name']]['addOns'] = {};
+                                }
+                                addons['name'] = addonsRow[row]['addon_name'];
+                                addons['price'] = addonsRow[row]['price'];
+                                addons['sku'] = addonsRow[row]['sku'];
+                                addons['barcode'] = addonsRow[row]['upc'];
+                                addons['inventory'] = addonsRow[row]['inventory'];
+                                addons['brief'] = addonsRow[row]['brief'];
+                                addons['required'] = addonsRow[row]['required'];
+                                addons['min'] = addonsRow[row]['min_qty'];
+                                addons['max'] = addonsRow[row]['max_qty'];
+                                if (addons['name']) {
+                                    group[val][addonsRow[row]['group_name']]['addOns'][addons['name']] = addons;
+                                }
+                            }
+                            for (row in group) {
+                                var key = [];
+                                key = row.split('|');
+                                group[row].id = key[0];
+                                group[row].product_upc = key[1];
+                            }
+                        }
+                        addons_obj = group;
+                    }
+                    p_imported_obj = [];
+                    var import_counter = 0;
+                    for (var row in NewRow) {
+                        if (NewRow[row].productBarcode == typeof undefined || NewRow[row].productName == typeof undefined || NewRow[row].productSKU == typeof undefined || NewRow[row].productType == typeof undefined || NewRow[row].productVendor == typeof undefined || NewRow[row].productPrice == typeof undefined || NewRow[row].inventoryManagement == typeof undefined || NewRow[row].productSeoTitle == typeof undefined || NewRow[row].productSeoMeta == typeof undefined || NewRow[row].productSeoKeyword == typeof undefined || NewRow[row].productUrl == typeof undefined) {
+                            delete NewRow[row];
+                        } else if ((NewRow[row].productMultiOptions == undefined || NewRow[row].productMultiOptions != 'true') && Object.keys(NewRow[row].productMultiOptionsList).length > 0) {
+                            //delete NewRow[row];
+                        } else if ((NewRow[row].productMultiOptions && NewRow[row].productMultiOptions == 'true') && NewRow[row].productMultiOptionsList.length == 0) {
+                           //delete NewRow[row];
+                        } else {
+                            import_counter++;
+                            if (NewRow[row].productHasWeight == 'true' && NewRow[row].productWeight == undefined) {
+                                NewRow[row].productWeight = 0;
+                            } else if (NewRow[row].productHasWeight == 'false' && NewRow[row].productWeight) {
+                                NewRow[row].productWeight = '';
+                            }
+                            if (NewRow[row].inventoryManagement == 'fishry' && NewRow[row].inventoryQuantity == undefined) {
+                                NewRow[row].inventoryQuantity = 0;
+                            } else if (NewRow[row].inventoryManagement == 'no' && NewRow[row].inventoryQuantity) {
+                                NewRow[row].inventoryQuantity = '';
+                            }
+                            if (NewRow[row]['productVisibility'] == undefined) {
+                                NewRow[row]['productVisibility'] = true;
+                            }
+                            if (NewRow[row]['productDescription'] == undefined) {
+                                NewRow[row]['productDescription'] = '';
+                            }
+						}
+                    }
+
+					//console.log(NewRow[row]);
+					 if (variants_obj) {
+                        for (var row in NewRow) {
+                            for (var vari in variants_obj) {
+								 if (NewRow[row].productBarcode == variants_obj[vari].product_upc) {
+									 NewRow[row].productVarients = {};
+                                    NewRow[row].productVarients = variants_obj[vari];
+                                }
+                            }
+                        }
+                    }
+
+                    if (spec_obj) {
+                        for (var row in NewRow) {
+                            for (var spec in spec_obj) {
+                                if (NewRow[row].productBarcode == spec_obj[spec].product_upc) {
+                                    NewRow[row].productSpecifications = {};
+                                    NewRow[row].productSpecifications = spec_obj[spec];
+                                }
+                            }
+                        }
+                    }
+
+                    if (addons_obj) {
+                        for (var row in NewRow) {
+                            for (var addon in addons_obj) {
+                                if (NewRow[row].productBarcode == addons_obj[addon].product_upc) {
+                                    NewRow[row].addons = {};
+                                    NewRow[row].addons = addons_obj[addon];
+                                }
+                            }
+                        }
+                    }
+					p_imported_obj = [];
+                	p_imported_obj.push(NewRow);
+
+					imported_data_arr = [];
+					for(var row in NewRow){
+					 imported_data_arr.push(NewRow[row]);
+					}
+					
+					batch_index = 0, importProductsArray_length = 0;
+					importProductsArray = createGroupedArray(imported_data_arr, 50);
+					importProductsArray_length = Math.ceil(importProductsArray.length);
+					p_data = data;
+					batchProcessProductImport();
+                }
+	}
+
+	// END: Process 2
+
+	/* Process:3 Send the excel file shipping data to shipping_import api */
+    var batch_index = 0;
+	var importProductsArray_length = 0;
+    const batchProcessProductImport = () => {
+		console.log('total array length: ',importProductsArray_length);
+		if(p_data && importProductsArray && importProductsArray[batch_index] && importProductsArray_length > 0){
+			var url = 'https://' + ServiceName + '.azure-mobile.net/api/product_import';
+				//batch_index = parseInt(batch_index) + 1;
+				//console.log(importProductsArray[batch_index]);
+				console.log(batch_index);
+				request({
+					uri: url,
+					method: "POST",
+					form: {
+						products: JSON.stringify(importProductsArray[batch_index]),
+						store_id: p_data.store_id,
+						process_counter: batch_index
+					}
+				}, function(error, response, body) {
+					console.log(response.body);
+					if(response.body && !error && response.statusCode == 200){
+							console.log('processed..');
+							var ind = response.body;
+							batch_index = parseInt(ind)+1;
+							batchProcessProductImport();
+							if (batch_index == importProductsArray_length) {
+								//console.log('all data processed. finally..');
+								if (p_data.email_data) {
+									importProductsArray = [];
+									batch_index = 0, importProductsArray_length = 0;
+									sendEmailProductImport(p_data, email_templetes.email_template.product_import.html_data);
+									deleteRows(p_data.id).then((row) => { 
+									console.log('queue sucessfully executed and deleted..'); 
+									queueInProcess = false;
+									initProcess(true); 
+									});
+								}
+							}
+				 }else{
+					console.log('error');
+					updateQueueSatus(p_data).then((row) => { });
+					queueInProcess = false;
+					initProcess(true); 
+					/*sendEmailProductImport(p_data.email_data, 'Error: Forbidden â€“ The server understood the request, but is refusing it or the something wrong with the data which is not allowed.');
+					deleteRows(p_data.id).then((row) => { console.log(row); });*/
+				 }
+				});
+		  }
+    }
+
+	/* grouping array for making chunks of larger data */
+    var createGroupedArray = function(arr, chunkSize) {
+    var groups = [], i;
+		for (i = 0; i < arr.length; i += chunkSize) {
+			groups.push(arr.slice(i, i + chunkSize));
+		}
+		return groups;
+	}
+
+	/* Send Email to moderator */
+	const sendEmailProductImport = (obj, args) => {
+		var url = 'https://'+ServiceName+'.azure-mobile.net/api/send_grid';
+		if (obj.email_data) {
+			args = args.replace(new RegExp("{{link}}", 'g'), obj.blob_url);
+			obj.email_data = JSON.parse(obj.email_data);
+			request({
+			  uri: url, method: "POST", headers: {'Content-Type': 'application/json'},
+			  form: {
+				data: args,
+				email: 'anum.ishtiaq@bramerz.pk',
+				//email: obj.email_data.email,
+				// toBCC: 'anum.ishtiaq@bramerz.pk',
+				byFrom: obj.email_data.byFrom,
+				fromName: obj.email_data.fromName,
+				subject: obj.email_data.subject
+				}
+			}, (error, response, body) => {
+				if(response && response.body){
+					console.log('email sent..');
+				}else if(error){
+					console.log('email error:', error);
+					return true;
+				}
+			});
+	  }
+	}
+
+   /* End Product Import API */
+
+	/* This section contains
+	* db functions
+	* create table if not exist
+	* drop table
+	* get all records from table
+	* delete all records from table
+	* Insert record in table
+	* get recent record in table (promise func)
+	*/
+
+
+	/* Create table if not exist */
+	const createTable = () => {
+    	console.log("createTable product_import_queue");
+    	db.run("CREATE TABLE IF NOT EXISTS product_import_queue (id integer PRIMARY KEY AUTOINCREMENT, blob_url text NOT NULL, store_id text NOT NULL, email_data text NOT NULL, status text NOT NULL)", (error) => {
+			if (error) console.log(error);
+		});
+	}
+
+	/*  drop table */
+	const deleteTBL = () => {
+		console.log('drop tbl');
+		db.run("DROP TABLE product_import_queue",(error) =>{
+			if (error) console.log('error drop table');
+		});
+	}
+
+	/* get all rows */
+	const getData = (param) => {
+		var filter = param;
+		console.log("getData product_import_queue");
+		return new Promise(function(resolve, reject) {
+			if(filter){
+				db.get("SELECT * FROM product_import_queue LIMIT 1", (err, row) => {
+					if(row) resolve(row); console.log(row); console.log('top record found');
+					if(err) reject('error get single row');
+				});
+			}else{
+				db.all("SELECT * FROM product_import_queue", (err, rows) => {
+					if(rows) rows.forEach((rows) => { resolve(rows); console.log(rows); });
+					if(err) reject('error get all rows');
+				});
+			}
+		});
+	}
+
+
+	/* delete table data */
+	const deleteRows = (id) => {
+		console.log("delete Rows product_import_queue");
+		return new Promise(function(resolve, reject) {
+			if(id){
+				console.log(id);
+				db.run("DELETE FROM product_import_queue where id ='"+id+"'", (err, row) => {
+					if(err){ 
+						reject('error delete single row'); 
+					} else {
+						resolve('delete queue');
+					}
+				});
+			}else{
+				db.run("DELETE FROM product_import_queue", (err, row) => {
+					if(row) resolve(row);
+					if(err) reject('error delete all rows');
+				});
+			}
+		});
+	}
+
+	/* Update queue status to in_progress, retry, retry2 */
+	const updateQueueSatus = (data) => {
+		return new Promise(function(resolve, reject) {
+		  	var status;
+			if(data.status == 'false'){
+				status = 'in_progress';
+			}else if(data.status == 'in_progress'){
+				status = 'retry';
+			}else if(data.status == 'retry'){
+				status = 'retry2';
+			}
+			
+			db.run("UPDATE product_import_queue set status = '"+status+"' where id = '"+data.id+"'",(error) =>{
+				if (error) console.log(error);
+					db.get("SELECT * FROM product_import_queue where id ='"+data.id+"'", (err, row) => {
+						if(row) console.log(row);resolve(row); 
+						if(err) reject('error select queue id');
+						if(err) console.log(err);
+					});
+			});
+		});
+	}
+
+ 	/* queue import request or blob url to db */
+	const insertQueue = (blobName, emailData, storeID) => {
+		return new Promise(function(resolve, reject) {
+			db.run("INSERT INTO product_import_queue (blob_url,store_id,email_data,status) VALUES ('"+blobName+"', '"+storeID+"','"+emailData+"', 'false')",(error) =>{
+				if (error) console.log(error);
+				db.get("SELECT * FROM product_import_queue where blob_url ='"+blobName+"'", (err, row) => {
+					if(row) resolve(row);
+					if(err) reject('error select blob');
+					if(err) console.log(err);
+				});
+	   		});
+		});
+	}
+	
+
+	//deleteTBL();
+	createTable(); // create table if not exist
+	initProcess(true); // Start process
+	//setInterval(initProcess, 10000);
+
+
+	}; // end of module

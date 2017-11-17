@@ -34,8 +34,8 @@
                                             <i class="ti-timer"></i> <span>{{sch.Start}} To {{sch.End}}</span></h4>
                                        
                                     </div>
-                                    <div class="card-block" ng-repeat="hd in sch.Activity">
-                                        <a>
+                                    <div class="card-block" ng-repeat="(ke,hd) in sch.Activity" ng-if="hd.Name && hd.Name != ''">
+                                        <a ui-sref="agenda_detail({id:keyss+'-'+key+'-'+ke})">
                                             <h4>{{hd.Name}}</h4>
                                             <span class="pull-left btn-icon">
                                                 <i class="ei ei-menu-6 pdd-right-5" ng-if="sch_second[0].room[0] || key_second != 'open'"></i>

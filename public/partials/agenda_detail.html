@@ -1,52 +1,32 @@
-<div class="main-content" ng-init="getEdit('schedule','schedule_info')">
-    <div class="full-container" style="min-height:100%; background:#fff">
-        <div class="row">
-            <p class="col-md-12 h5 text-danger text-center padding-25" ng-if="loadingData">
-               <span class="fa fa-spinner fa-spin "></span> Loading
-            </p>
-            <div class="col-md-4 col-xs-12">
-                <div class="card calendar-event">
-                    <div class="card-block" style="padding: 10px;">
-                        <h2>{{schedule_info.name}}</h2>
-                        <h4 ng-if="schedule_info.name">
-                           <i class="ti-timer"></i> {{returnDated(schedule_info.dated)}} At {{returnTimeFormat(schedule_info.start_hours+':'+schedule_info.start_minutes+'-'+schedule_info.end_hours+':'+schedule_info.end_minutes)}}</h4>
-                        <hr ng-if="schedule_info.name" />
-                        <p ng-if="schedule_info.description" ng-bind-html="schedule_info.description"></p>
-                        <div ng-if="organizers">
-                           <h5><b>Chairperson</b></h5>
-                           <ul class="schedule-detail">
-                              <li ng-repeat="faculty in organizers" style="min-height:auto;">
-                                 <img onerror="checkImg(this)" src="main_images/Speakers/{{replaceSlash(faculty)}}.jpg" width="100%" style="padding:5px;">
-                                 <span>{{faculty}} <br>{{getCountryOrganizer(faculty)}}</span>
-                              </li>
-                           </ul>
-                           <div class="clearfix"></div>
+<dib ng-init="agendaDetails()">
+<div ng-repeat="(keyss,schss) in orgConted" ng-if="keyss == pID" role="tabpanel" class="tab-pane"
+   id="tab-content-{{$index}}" style="background:#f6f7fb;">
+   <div class="card" style="border:none;margin-top:2px;" ng-repeat="(key,sch) in schss" ng-if="key == sID && keyss == pID">
 
-                        </div>
-                        <br>
-                        <div ng-if="faculty_detail">
-                            <h5><b>Presenter</b></h5>
-                            <ul class="schedule-detail">
-                                <li ng-repeat="faculty in faculty_detail" style="min-height:auto;">
-                                 <img onerror="checkImg(this)" src="main_images/Speakers/{{replaceSlash(faculty)}}.jpg" width="100%" style="padding:5px;"> 
-                              <span>{{faculty}}</span>
-                                </li>
-                            </ul>
-                            <div class="clearfix"></div>
-                            <a ui-sref="ask" class="btn btn-primary" style="width:100%" ng-if="faculty_detail.length">Ask a Moderator</a>
-                        </div>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+      <div class="card-header schedule-card-header">
+
+         <h4>
+            <i class="ti-timer"></i> <span>{{sch.Start}} To {{sch.End}}</span></h4>
+
+      </div>
+      
+      <div class="card-block" ng-repeat="(ke,hd) in sch.Activity" ng-if="ke == ssID && key  == sID && keyss == pID" style="padding: 13px;">
+           
+            <h4>{{hd.Name}}</h4>
+            <span class="pull-left btn-icon">
+                                                <i class="ei ei-menu-6 pdd-right-5" ng-if="sch_second[0].room[0] || key_second != 'open'"></i>
+                                                 Hall {{hd.Hall}} 
+                                            </span>
+              <div class="clearfix"></div>
+           <div ng-if="hd.Image">
+            <hr>
+               <img src="he/{{hd.Image}}.jpg" width="100%">
+           </div>
+        
+         <div class="clearfix"></div>
+         <hr>
+
+      </div>
+   </div>
 </div>
-<style>
-   p{
-    font-weight: bold;
-    color: #515466;
-    background: rgba(217, 31, 41, 0.07);
-    padding: 5px;
-   }
-</style>
+</dib>

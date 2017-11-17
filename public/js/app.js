@@ -505,6 +505,14 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
          }
 
       }
+      $scope.agendaDetails = function(){
+         var str = $stateParams.id;
+            str = str.split('-');
+            $scope.pID = str[0];
+            $scope.sID = str[1];
+            $scope.ssID = str[2];
+
+      }
       $scope.registerUserUpdate = function () {
          if ($scope.user_info) {
             $scope.galleryLink = false;
@@ -1087,21 +1095,21 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                            {"Name":"Yaseer Al-Batrawi","Country":" Egypt","Image":"Yaseer Al-Batrawi Egypt.gif"}],
 	"Preconference-workshop-Schedule" : [{"Pre-conference workshop ":"Workshop: Ponseti - I","Venue":"Nowshera","Date ":"22nd October 2017","Member":"Dr. Ziaullah Bajwa (President), Prof. Zahid Askar (Chairman), Dr. Muhammad Shoaib Khan (Co-Chairman), Prof. Muhammad Ayaz Khan (Secretary General), Dr. Sikander Hayat (Chairman, Pre-conference Workshop"},
                                        {"Pre-conference workshop ":"Workshop: Hand ","Venue":"NWGH, Peshawar","Date ":"20th & 29th October 2017","Member":"Dr. Ziaullah Bajwa (President), Prof. Zahid Askar (Chairman), Dr. Muhammad Shoaib Khan (Co-Chairman), Prof. Muhammad Ayaz Khan (Secretary General), Dr. Sikander Hayat (Chairman, Pre-conference Workshop"},
-                                       {"Pre-conference workshop ":"Workshop: Ponseti - II","Venue":"Bannu","Date ":"3rd November 2017","Member":"Dr. Ziaullah Bajwa (President), Prof. Zahid Askar (Chairman), Dr. Muhammad Shoaib Khan (Co-Chairman), Prof. Muhammad Ayaz Khan (Secretary General), Dr. Sikander Hayat (Chairman, Pre-conference Workshop"},
+                                       {"Pre-conference workshop ":"Workshop: Ponseti - II","Venue":"Bannu","Date ":"3rd Nov 2017","Member":"Dr. Ziaullah Bajwa (President), Prof. Zahid Askar (Chairman), Dr. Muhammad Shoaib Khan (Co-Chairman), Prof. Muhammad Ayaz Khan (Secretary General), Dr. Sikander Hayat (Chairman, Pre-conference Workshop"},
                                        {"Pre-conference workshop ":"Workshop: Ilizarov","Venue":"ATH Abbotabad","Date ":"13th-14th October 2017","Member":"Dr. Ziaullah Bajwa (President), Prof. Zahid Askar (Chairman), Dr. Muhammad Shoaib Khan (Co-Chairman), Prof. Muhammad Ayaz Khan (Secretary General), Dr. Sikander Hayat (Chairman, Pre-conference Workshop"},
                                        {"Pre-conference workshop ":"Workshop: Pelvis & Acetabulum","Venue":"LRH Peshawar","Date ":"20th-21st October 2017","Member":"Dr. Ziaullah Bajwa (President), Prof. Zahid Askar (Chairman), Dr. Muhammad Shoaib Khan (Co-Chairman), Prof. Muhammad Ayaz Khan (Secretary General), Dr. Sikander Hayat (Chairman, Pre-conference Workshop"},
-                                       {"Pre-conference workshop ":"Workshop: Basic Orthopedic","Venue":"KMC Peshawar","Date ":"4th-5th November 2017","Member":"Dr. Ziaullah Bajwa (President), Prof. Zahid Askar (Chairman), Dr. Muhammad Shoaib Khan (Co-Chairman), Prof. Muhammad Ayaz Khan (Secretary General), Dr. Sikander Hayat (Chairman, Pre-conference Workshop"},
+                                       {"Pre-conference workshop ":"Workshop: Basic Orthopedic","Venue":"KMC Peshawar","Date ":"4th-5th Nov 2017","Member":"Dr. Ziaullah Bajwa (President), Prof. Zahid Askar (Chairman), Dr. Muhammad Shoaib Khan (Co-Chairman), Prof. Muhammad Ayaz Khan (Secretary General), Dr. Sikander Hayat (Chairman, Pre-conference Workshop"},
                                        {"Pre-conference workshop ":"Workshop: Arthroscopy","Venue":"PIMC Peshawar","Date ":"28th-29th October 2017","Member":"Dr. Ziaullah Bajwa (President), Prof. Zahid Askar (Chairman), Dr. Muhammad Shoaib Khan (Co-Chairman), Prof. Muhammad Ayaz Khan (Secretary General), Dr. Sikander Hayat (Chairman, Pre-conference Workshop"},
-                                       {"Pre-conference workshop ":"Workshop: Spine Trauma","Venue":"SMC Swat","Date ":"1st November 2017","Member":"Dr. Ziaullah Bajwa (President), Prof. Zahid Askar (Chairman), Dr. Muhammad Shoaib Khan (Co-Chairman), Prof. Muhammad Ayaz Khan (Secretary General), Dr. Sikander Hayat (Chairman, Pre-conference Workshop"},
-                                       {"Pre-conference workshop ":"Workshop: Oncology","Venue":"RMI Peshawar","Date ":"1st November 2017","Member":"Dr. Ziaullah Bajwa (President), Prof. Zahid Askar (Chairman), Dr. Muhammad Shoaib Khan (Co-Chairman), Prof. Muhammad Ayaz Khan (Secretary General), Dr. Sikander Hayat (Chairman, Pre-conference Workshop"},
-                                       {"Pre-conference workshop ":"Workshop: PTC","Venue":"MMC Mardan","Date ":"3rd November 2017","Member":"Dr. Ziaullah Bajwa (President), Prof. Zahid Askar (Chairman), Dr. Muhammad Shoaib Khan (Co-Chairman), Prof. Muhammad Ayaz Khan (Secretary General), Dr. Sikander Hayat (Chairman, Pre-conference Workshop"},
-                                       {"Pre-conference workshop ":"Workshop: Revision THR","Venue":"HMC Peshawar ","Date ":"15th November 2017","Member":"Dr. Ziaullah Bajwa (President), Prof. Zahid Askar (Chairman), Dr. Muhammad Shoaib Khan (Co-Chairman), Prof. Muhammad Ayaz Khan (Secretary General), Dr. Sikander Hayat (Chairman, Pre-conference Workshop"},
-                                       {"Pre-conference workshop ":"Workshop: Revision TKR","Venue":"HMC Peshawar ","Date ":"16th November 2017","Member":"Dr. Ziaullah Bajwa (President), Prof. Zahid Askar (Chairman), Dr. Muhammad Shoaib Khan (Co-Chairman), Prof. Muhammad Ayaz Khan (Secretary General), Dr. Sikander Hayat (Chairman, Pre-conference Workshop"},
-                                       {"Pre-conference workshop ":"Workshop: Spine ","Venue":"KMC Peshawar","Date ":"15th-16th November 2017","Member":"Dr. Ziaullah Bajwa (President), Prof. Zahid Askar (Chairman), Dr. Muhammad Shoaib Khan (Co-Chairman), Prof. Muhammad Ayaz Khan (Secretary General), Dr. Sikander Hayat (Chairman, Pre-conference Workshop"},
-                                       {"Pre-conference workshop ":"Workshop: Foot and Ankle ","Venue":"LRH Peshawar","Date ":"16th November 2017","Member":"Dr. Ziaullah Bajwa (President), Prof. Zahid Askar (Chairman), Dr. Muhammad Shoaib Khan (Co-Chairman), Prof. Muhammad Ayaz Khan (Secretary General), Dr. Sikander Hayat (Chairman, Pre-conference Workshop"}],
+                                       {"Pre-conference workshop ":"Workshop: Spine Trauma","Venue":"SMC Swat","Date ":"1st Nov 2017","Member":"Dr. Ziaullah Bajwa (President), Prof. Zahid Askar (Chairman), Dr. Muhammad Shoaib Khan (Co-Chairman), Prof. Muhammad Ayaz Khan (Secretary General), Dr. Sikander Hayat (Chairman, Pre-conference Workshop"},
+                                       {"Pre-conference workshop ":"Workshop: Oncology","Venue":"RMI Peshawar","Date ":"1st Nov 2017","Member":"Dr. Ziaullah Bajwa (President), Prof. Zahid Askar (Chairman), Dr. Muhammad Shoaib Khan (Co-Chairman), Prof. Muhammad Ayaz Khan (Secretary General), Dr. Sikander Hayat (Chairman, Pre-conference Workshop"},
+                                       {"Pre-conference workshop ":"Workshop: PTC","Venue":"MMC Mardan","Date ":"3rd Nov 2017","Member":"Dr. Ziaullah Bajwa (President), Prof. Zahid Askar (Chairman), Dr. Muhammad Shoaib Khan (Co-Chairman), Prof. Muhammad Ayaz Khan (Secretary General), Dr. Sikander Hayat (Chairman, Pre-conference Workshop"},
+                                       {"Pre-conference workshop ":"Workshop: Revision THR","Venue":"HMC Peshawar ","Date ":"15th Nov 2017","Member":"Dr. Ziaullah Bajwa (President), Prof. Zahid Askar (Chairman), Dr. Muhammad Shoaib Khan (Co-Chairman), Prof. Muhammad Ayaz Khan (Secretary General), Dr. Sikander Hayat (Chairman, Pre-conference Workshop"},
+                                       {"Pre-conference workshop ":"Workshop: Revision TKR","Venue":"HMC Peshawar ","Date ":"16th Nov 2017","Member":"Dr. Ziaullah Bajwa (President), Prof. Zahid Askar (Chairman), Dr. Muhammad Shoaib Khan (Co-Chairman), Prof. Muhammad Ayaz Khan (Secretary General), Dr. Sikander Hayat (Chairman, Pre-conference Workshop"},
+                                       {"Pre-conference workshop ":"Workshop: Spine ","Venue":"KMC Peshawar","Date ":"15th-16th Nov 2017","Member":"Dr. Ziaullah Bajwa (President), Prof. Zahid Askar (Chairman), Dr. Muhammad Shoaib Khan (Co-Chairman), Prof. Muhammad Ayaz Khan (Secretary General), Dr. Sikander Hayat (Chairman, Pre-conference Workshop"},
+                                       {"Pre-conference workshop ":"Workshop: Foot and Ankle ","Venue":"LRH Peshawar","Date ":"16th Nov 2017","Member":"Dr. Ziaullah Bajwa (President), Prof. Zahid Askar (Chairman), Dr. Muhammad Shoaib Khan (Co-Chairman), Prof. Muhammad Ayaz Khan (Secretary General), Dr. Sikander Hayat (Chairman, Pre-conference Workshop"}],
    "ScientificProgram": [
       {
-         Date: "17th November 2017", "Start": "08:30 AM", "End": "10:00 AM",
+         Date: "17th Nov 2017", "Start": "08:30 AM", "End": "10:00 AM",
          Activity: [
             { Name: "Trauma - I", Hall: "A" },
 		 	{Name: "Arthroscopy - I", Hall:"B"},
@@ -1109,7 +1117,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
          ]
       },
       {
-         Date: "17th November 2017", "Start": "10:00 AM", "End": "11:30 AM",
+         Date: "17th Nov 2017", "Start": "10:00 AM", "End": "11:30 AM",
          Activity: [
             { Name: "Trauma-II", Hall: "A" },
 		 	{Name: "Arthroscopy-II", Hall:"B"},
@@ -1117,28 +1125,28 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
          ]
       },
       {
-         Date: "17th November 2017", "Start": "11:30 AM", "End": "12:15 PM",
+         Date: "17th Nov 2017", "Start": "11:30 AM", "End": "12:15 PM",
          Activity: [
             { Name: "Plenary Lecture - I", Hall: "A,B,C" }
 
          ]
       },
       {
-         Date: "17th November 2017", "Start": "12:15 AM", "End": "13:00 PM",
+         Date: "17th Nov 2017", "Start": "12:15 AM", "End": "13:00 PM",
          Activity: [
             { Name: "Plenary Lecture-II", Hall: "A,B,C" }
 
          ]
       },
       {
-         Date: "17th November 2017", "Start": "13:00 PM", "End": "14:30 PM",
+         Date: "17th Nov 2017", "Start": "13:00 PM", "End": "14:30 PM",
          Activity: [
             { Name: "Lunch & Prayer Break", Hall: "A,B,C" }
 
          ]
       },
       {
-         Date: "17th November 2017", "Start": "14:30 PM", "End": "16:30 PM",
+         Date: "17th Nov 2017", "Start": "14:30 PM", "End": "16:30 PM",
          Activity: [
             { Name: "Trauma-III", Hall: "A" },
 		   	{Name: "Arthroscopy-III", Hall:"B"},
@@ -1146,7 +1154,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
          ]
       },
       {
-         Date: "17th November 2017", "Start": "16:30 PM", "End": "18:30 PM",
+         Date: "17th Nov 2017", "Start": "16:30 PM", "End": "18:30 PM",
          Activity: [
 
             { Name: "Trauma-IV", Hall: "A" } ,
@@ -1155,7 +1163,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
          ]
       },
       {
-         Date: "18th November 2017", "Start": "08:30 AM", "End": "10:00 AM",
+         Date: "18th Nov 2017", "Start": "08:30 AM", "End": "10:00 AM",
          Activity: [
             { Name: "Anthroplasty-I", Hall: "A" },
 		   	{ Name: "Paediatrics-I", Hall: "B" },
@@ -1163,7 +1171,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
          ]
       },
       {
-         Date: "18th November 2017", "Start": "10:00 AM", "End": "11:30 AM",
+         Date: "18th Nov 2017", "Start": "10:00 AM", "End": "11:30 AM",
          Activity: [
             { Name: "Anthroplasty-II", Hall: "A" },
 		   	{ Name: "Paediatrics-II", Hall: "B" },
@@ -1171,28 +1179,28 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
          ]
       },
       {
-         Date: "18th November 2017", "Start": "11:30 AM", "End": "12:15 PM",
+         Date: "18th Nov 2017", "Start": "11:30 AM", "End": "12:15 PM",
          Activity: [
 
             { Name: "Plenary Lecture - III", Hall: "A,B,C" }
          ]
       },
       {
-         Date: "18th November 2017", "Start": "12:15 PM", "End": "13:00 PM",
+         Date: "18th Nov 2017", "Start": "12:15 PM", "End": "13:00 PM",
          Activity: [
 
             { Name: "Plenary Lecture - IV", Hall: "A,B,C" }
          ]
       },
       {
-         Date: "18th November 2017", "Start": "13:00 PM", "End": "14:30 PM",
+         Date: "18th Nov 2017", "Start": "13:00 PM", "End": "14:30 PM",
          Activity: [
 
             { Name: "Lunch & Prayer Break", Hall: "A,B,C" }
          ]
       },
       {
-         Date: "18th November 2017", "Start": "14:30 PM", "End": "16:00 PM",
+         Date: "18th Nov 2017", "Start": "14:30 PM", "End": "16:00 PM",
          Activity: [
             { Name: "Anthroplasty-III", Hall: "A" },
 		 	   {Name: "Paediatrics-III", Hall: "B" },
@@ -1200,7 +1208,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
          ]
       },
       {
-         Date: "18th November 2017", "Start": "16:00 PM", "End": "17:30 PM",
+         Date: "18th Nov 2017", "Start": "16:00 PM", "End": "17:30 PM",
          Activity: [
             { Name: "Anthroplasty-IV", Hall: "A" },
 		   	{Name: "MSK Oncology - I", Hall: "B" },
@@ -1208,7 +1216,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
          ]
       },
       {
-         Date: "19th November 2017", "Start": "08:30 AM", "End": "10:30 AM",
+         Date: "19th Nov 2017", "Start": "08:30 AM", "End": "10:30 AM",
          Activity: [
             { Name: "Free Papers", Hall: "A" },
 		    	{Name: "MSK Oncology-II", Hall: "B" },
@@ -1216,7 +1224,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
          ]
       },
       {
-         Date: "19th November 2017", "Start": "10:30 AM", "End": "12:30 PM",
+         Date: "19th Nov 2017", "Start": "10:30 AM", "End": "12:30 PM",
          Activity: [
             { Name: "MSK infection", Hall: "A" },
 		   	{Name: "MSK Oncology-III", Hall: "B" },
@@ -1224,7 +1232,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
          ]
       },
       {
-         Date: "19th November 2017", "Start": "12:30 AM", "End": "13:30 PM",
+         Date: "19th Nov 2017", "Start": "12:30 AM", "End": "13:30 PM",
          Activity: [
             { Name: "Closing Ceremony/ Prize Distribution", Hall: "A,B,C" }
          ]
@@ -1233,7 +1241,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
    "Miscellaneous": [
       { "Name": "About", "Description": "<h4>President Message </h4><p>DEAR COLLEAGUES, Pakistan Orthopaedic Association (POA) is holding its Annual Scientific Conference &ldquo;31st International Pak Orthocon&rdquo; in the ancient &amp; beautiful city of Peshawar. We are trying to provide you an opportunity to meet colleagues to enjoy a variety of educational program like state of the art lectures, symposia, free papers sessions, Pre Orthocon workshops, poster presentations and scientific / technical exhibits. We are expecting a good number of International faculty to share clinical experience and research ideas. Of course, you will find the best of National Senior faculty in the meeting to learn more for your professional needs. While in Peshawar do not miss to enjoy the traditional dinner and rich culture. A lot of social events await your family to experience life in a conducive environment. I hope you will find this conference interesting and informative. I look forward to seeing you in Peshawar DR. ZIA ULLAH BAJWA PRESIDENT PAKISTAN ORTHOPAEDIC ASSOCIATION (POA) </p>", Image: "president.jpg" },
       {
-         "Name": "Chairman Message", "Description": "<p>DEAR COLLEAGUES, It gives me an immense pleasure to inform you that Khyber Pakhtunkhwa has the opportunity to hold 31st International Pak Orthocon 2017. This scientific conference is going to be organized be Pakistan Orthopaedic Association (POA) from 16 ; 19th November, 2017 at Hotel Pearl Continental, Peshawar. The theme of the conference is - ;The Challenge of Change- The Emergence of Sub-specialities;. The Scientific Committee of the 31st International Pak Orthocon has the pleasure of inviting your scientific work for the conference. It is to submit a full manuscript along-with the abstract. To facilitate this, and as an incentive to researchers, we have made an elaborative arrangement with JPOA (Journal of Pakistan Orthopaedic Association) a HEC recognized Journal, to publish a special edition for our approved manuscripts, that should be available online. I would encourage all the faculty members and residents to come forward and submit their manuscript before May 30th, 2017. We are sure that this conference will provide us an opportunity to unveil the recent advances and researches that is being carried out in the field of Orthopaedic in Pakistan. It will also provide a platform for informative discussions and interactions as well as sharing knowledge and experience. Hope to have an amazing conference in Peshawar and looking forward to seeing your scientific works. With best regards Prof. Zahid Askar Chairman Pak Orthocon 2017.</p>", Image:"Chairman.jpg"},
+         "Name": "Chairman Message", "Description": "<p>DEAR COLLEAGUES, It gives me an immense pleasure to inform you that Khyber Pakhtunkhwa has the opportunity to hold 31st International Pak Orthocon 2017. This scientific conference is going to be organized be Pakistan Orthopaedic Association (POA) from 16 ; 19th Nov, 2017 at Hotel Pearl Continental, Peshawar. The theme of the conference is - ;The Challenge of Change- The Emergence of Sub-specialities;. The Scientific Committee of the 31st International Pak Orthocon has the pleasure of inviting your scientific work for the conference. It is to submit a full manuscript along-with the abstract. To facilitate this, and as an incentive to researchers, we have made an elaborative arrangement with JPOA (Journal of Pakistan Orthopaedic Association) a HEC recognized Journal, to publish a special edition for our approved manuscripts, that should be available online. I would encourage all the faculty members and residents to come forward and submit their manuscript before May 30th, 2017. We are sure that this conference will provide us an opportunity to unveil the recent advances and researches that is being carried out in the field of Orthopaedic in Pakistan. It will also provide a platform for informative discussions and interactions as well as sharing knowledge and experience. Hope to have an amazing conference in Peshawar and looking forward to seeing your scientific works. With best regards Prof. Zahid Askar Chairman Pak Orthocon 2017.</p>", Image:"Chairman.jpg"},
 {Name: "Location", "Description": "<p>History of Peshawar Khyber Pakhunkhwa</p><p>Peshawar and its history covers thousands of years. The Indian epic Ramayana describes that the city of Pushklawati, founded by Bharata son Pushkal, existed in the region somewhere in-between the present day Peshawar and Charsada. Indo-Iranian invaders renamed it as Purushapura. The famous Chinese Monk Huang Seng describes it in his writings as Po Lu Sha. The city changed its name after each invasion it faced. It saw the first period of glory during the Kingdom of Gandhara. Archaeologists have established that the Kingdom of Gandhara existed almost 3000 years ago when Aryan populations from central Asia came and established their settlements here. The hymns mentioned in the sacred book of Hinduism were first sung by the Aryans. Peshawar was first conquered by the Persian dynasty of Achaemenids in 558 B.C. Darius took control of this region in 520 B.C. Alexander the Great of Macedonia came here in 326 B.C. Then Mauryans controlled it for quite some time. Then comes the period of instability and political turmoil that lasted over 350 years. Kushan invaders from Afghanistan conquered the region in 64 A.D. and that when it started flourishing again. King Kanishka of Kushan dynasty is considered to be the one who contributed in a big way in the development of the Kingdom of Gandhara that included the present day Peshawar. All these invasions and socio cultural changes over the centuries impacted and influenced in a big way on local artists and it gave birth to a new art called Gandhara Art, a jolly melange of East and West. A visit to the Peshawar museum is highly recommended as most of the sculptures, statues, jatakas and mini Stupas there are from this period. Greek and Hindu influence is clearly visible &#8230; Hindus controlled it from 9th century to the 11th century. Afghan ruler Mahmood of Ghazni conquered it again and then came the period of Moghal dynasty who ruled in the then sub-continent. They were great builders and left their names in history for having built Taj Mahal in Agra, Red Fort and Jama Masjid in Delhi, Red Fort in Agra, Badshahi Mosque and the Red Fort in Lahore. The whole region was under the British domination for almost 100 years. During their occupation, Peshawar as well as the Pakhtoon tribal areas was the only zone that did not fell under their domination. British tried their best to control this area as well and several battles were fought against local Pathan tribes but in vain. They left the region in 1947 when the Indian subcontinent was divided into two sovereign states: India and Pakistan. Peshawar features a hot semi-arid climate with long and extremely hot summers, dry and relatively mild winters. The weather of the city is extreme during the months of May, June and July, when the temperatures soar to 40-41 &deg;C. From late July till mid of August, the monsoon seasons starts, with heavy rainfall throughout the province. For your information, here below are the average temperatures per month in Peshawar: JAN 18 FEB 20 MAR 24 APR 29 MAY 33 JUN 37 JUL 38 AUG 35 SEP 32 OCT 29 NOV 25 DEC 2 </p>", image: "Peshawar-university.jpg" },
 
 {Name: "POA", "Description": "</p>POA <p>Introduction</p><p>Pakistan Orthopaedic Association (POA) is a non-profit, NGO of Orthopaedic Surgeons in Pakistan. Launched in 1964 (Hyderabad) Founder Members were: Prof. ZK Kazi Prof Ali Muhammad Ansari Late Prof. A Raheem</p><p> Aims and objectives To bring together all professional workers interested in the field of orthopaedics and to encourage goodwill and co-operation between them. To stimulate interest in the study and advancement of the science and practice of orthopaedics in all possible ways including propaganda, education and research. To establish and run accident &amp; trauma service centers and hospitals to promote the objectives of the Association. To organize and help in the organization of Rehabilitation centers and crippled children clinics. To arrange lectures, clinical meetings, conferences and exhibitions for the study and discussion of all the problems of orthopedics. To co-operate or to enter into arrangement with other Association, Bodies and authorities (national &amp; International) in all matters which are likely to promote the objectives of the Association.</p><p>Management Office Bearers</p><p>President: (one): All Pakistan basis Vice Presidents(four): One each from four provinces Secretary General (one): All Pakistan Basis Joint Secretaries (Four): One each from four provinces</p><p>Treasure : All Pakistan basis. Executive Members (four) : One each from four provinces President Elect : All Pakistan basis Immediate : past President Chief Editor JPOA :Office bearers are elected every year Except Treasure &amp; Chief Editor JPOA</p><p>Management Committees</p><p>Committees to look after various concerns of POA in a more comprehensive and coordinated manner. They hold their meeting at least twice a year. Ethical Committee Constitution and Bylaws Committee Election Commissioner Education and Research Committee Editorial Board Committees for the Standardization of Local made Implants Committee to Organize the Annual Conference: &quot;Pakistan Orthocon&quot;</p><p>Membership</p><p>Members (Life / Term): (530: 300+230) Student members 30 Associate members 2 Honorary Fellows 4 Emeritus Fellows 17</p><p> POA Academic Activities</p><p>Fortnightly &amp; Monthly clinical meetings at POA provincial chapters &amp; major cities Pre exam (FCPS / MS Orthopaedics) intensive courses. How to take Theory &amp; Oral Examinations Workshops. POA Fellowships: Scholarships awarded to junior consultants for one year in subspecialties training in Arthroplasty, Spine &amp; Paediatric Orthopaedics &amp; Ilizarov Ex fix. POA Sub specialty Forums Workshops &amp; Courses</p><p>Pakistan Orthopaedic Association Forum</p><p>Pakistan Orthopaedic Association Forum POA Spine Forum. POA Trauma Forum. POA Ilizarov Forum (ASAMI Chapter) POA Paediatric Orthopaedic Forum POA Arthroplasty / Arthroscopic surgery Forum POA FORUM ACTIVITIES Spine trauma: Hand on Training Workshops, cadaver &amp; Live surgery. OA international has recognized Guki trust hospital Lahore for AO Spine workshop Hand surgery: hand on training &amp; live surgery workshop Pelvis &amp; Acetabulum fractures fixation hand on training &amp; Live surgery workshop</p><p>Foot and Ankle Forum</p><p>The forum aims to promote development of sub specialty care in Foot and Ankle disorders by improving knowledge and skills related to diagnosis and management of disorders of foot and ankle.</p><p> POA Forum Activities AO Foundation Basic &amp; Advanced Course &amp; workshops AO Foundation workshop for Operative Room Personals LCP Hand on training Workshop Plate Internal fixation &amp; Interlocking Nailing Hand on Training workshop Total Knee Arthroplasty: hand on training, cadaver &amp; Live surgery Total Hip Arthroplasty: Hand on training &amp; Live Surgeryv Arthroscopy Knee: Hand on Training &amp; Live surgery Ilizarov fixation: Hand on Training &amp; live demonstration Club foot Ponseti technique: hand on training on models, live on patients &amp; Cadaver PCT workshop DDH Workshops CDH live surgery Salters Osteotomy Hand on training on bone models Ortolani &amp; Barlow tests Hand on training on test models Cerebral Palsy course &amp; workshop Hand on Examination Workshop on patients Gait Laboratory Demonstration POA Social Activities</p><p>Joint secretaries arrange social activities &mdash; families get together at various major cities &amp; provincial headquarters. Liaisons Regional Liaison with OA SAARC countries International Liaison with APOA SICOT ASAM I AAOS Liaisons Objectives</p><p>To ensure mutual understanding &amp; cooperation between regional and international associations, to know each others problems, exchange knowledge &amp; recent advancements To exchange experts from various specialties of orthopaedics to provide opportunities of training for junior fellows/consultants. To provide an opportunity for implant instrument industry to develop further to achieve state art That all in the better benefit of medical education and the patients at large. Liaisons</p><p>With this objectives today over 128 delegates from Pakistan (82 POA members + 30 spouse children) are participating in APOA congress at New Delhi Multiple papers &amp; poster are being presented by Pakistani Delegate</p><p>3 faculty are participating in workshops</p><p>3 Guest lectures being presented</p><p>A workshop on DEFORMITY Correction held by APOA at Lahore - Pakistan on 15* October</p><p>Similarly we had an opportunity to have multiple delegates and experts who participated in Pak orthocon in recent past</p><p>Appreciations</p><p>The POA appreciate, acknowledge the hospitality &amp; support provided by APOA India &amp; IOA Delhi Organizers and for their immense support for getting visit to so big delegate of POA</p><p>The POA also acknowledge and thanks President APOA a dynamic personalities: Prof HKT Raza, Prof Anil Arora, Prof Ram Prabhoo, Prof Jamal Ashraf and all others for organizing this wonderful monument of education &amp; training the golden jubilee congress and awarding Pakistan &rdquo;POA as a Co-Host of this congress of world leaders in orthopaedic surgery </p>" },
@@ -1249,16 +1257,16 @@ for (var indsd in $scope.ortho.organization_commitee){
      }
    grpSch[$scope.ortho.organization_commitee[indsd].Group].push($scope.ortho.organization_commitee[indsd]);
  }
-$scope.orgCont = grpSch;
-var grpSched = {};
-         for (var indsd in $scope.ortho.ScientificProgram) {
-            if (!grpSched[$scope.ortho.ScientificProgram[indsd].Date]) {
-               grpSched[$scope.ortho.ScientificProgram[indsd].Date] = [];
-   }
-            grpSched[$scope.ortho.ScientificProgram[indsd].Date].push($scope.ortho.ScientificProgram[indsd]);
-}
-$scope.orgConted = grpSched;
-         console.log(grpSched)
+// $scope.orgCont = grpSch;
+// var grpSched = {};
+//          for (var indsd in $scope.ortho.ScientificProgram) {
+//             if (!grpSched[$scope.ortho.ScientificProgram[indsd].Date]) {
+//                grpSched[$scope.ortho.ScientificProgram[indsd].Date] = [];
+//    }
+//             grpSched[$scope.ortho.ScientificProgram[indsd].Date].push($scope.ortho.ScientificProgram[indsd]);
+// }
+         $scope.orgConted = { "17th Nov 2017": [{ "Date": "17th Nov 2017", "Start": "08:30 AM", "End": "10:00 AM", "Activity": [{ "Name": "Trauma - I", "Hall": "A", "Image": "17th" }, { "Name": "Arthroscopy - I", "Hall": "B", "Image": "17830" }, { "Name": "Spine - I", "Hall": "C", "image": "17th 6" }] }, { "Date": "17th Nov 2017", "Start": "10:00 AM", "End": "11:30 AM", "Activity": [{ "Name": "Trauma-II", "Hall": "A", "Image": "17th 1" }, { "Name": "Arthroscopy-II", "Hall": "B" }, { "Name": "Spine-II", "Hall": "C" }, { "Image": "17th 7" }] }, { "Date": "17th Nov 2017", "Start": "11:30 AM", "End": "12:15 PM", "Activity": [{ "Name": "Plenary Lecture - I", "Hall": "A,B,C", "Image": "17th 2" }] }, { "Date": "17th Nov 2017", "Start": "12:15 AM", "End": "13:00 PM", "Activity": [{ "Name": "Plenary Lecture-II", "Hall": "A,B,C" }] }, { "Date": "17th Nov 2017", "Start": "13:00 PM", "End": "14:30 PM", "Activity": [{ "Name": "Lunch & Prayer Break", "Hall": "A,B,C" }] }, { "Date": "17th Nov 2017", "Start": "14:30 PM", "End": "16:30 PM", "Activity": [{ "Name": "Trauma-III", "Hall": "A", "Image": "17th 3" }, { "Name": "Arthroscopy-I", "Hall": "B", "Image": "17th 9" }, { "Name": "Spine-III", "Hall": "C", "Image": "17th 8" }] }, { "Date": "17th Nov 2017", "Start": "16:30 PM", "End": "18:30 PM", "Activity": [{ "Name": "Trauma-IV", "Hall": "A", "Image": "17th 5" }, { "Name": "Anthroplasty II", "Hall": "B", "Image": "17th 10" }, { "Name": "Illizarove", "Hall": "C", "Image": "17illazorvec1430" }] }], "18th Nov 2017": [{ "Date": "18th Nov 2017", "Start": "08:30 AM", "End": "10:00 AM", "Activity": [{ "Name": "Anthroplasty-III", "Hall": "A", "Image": "183830" }, { "Name": "Paediatrics-I", "Hall": "B", "Image": "18b830" }, { "Name": "Hand & Upper Limb-I", "Hall": "C", "Image": "18c830" }] }, { "Date": "18th Nov 2017", "Start": "10:00 AM", "End": "11:30 AM", "Activity": [{ "Name": "Anthroplasty-III", "Hall": "A", "Image": "18th" }, { "Name": "Paediatrics-II", "Hall": "B", "Image": "18b1030ll" }, { "Name": "Hand & Upper Limb-II", "Hall": "C", "Image": "181011" }] }, { "Date": "18th Nov 2017", "Start": "11:30 AM", "End": "12:15 PM", "Activity": [{ "Name": "Plenary Lecture - III", "Hall": "A,B,C", "Image": "pl31130" }] }, { "Date": "18th Nov 2017", "Start": "12:15 PM", "End": "13:00 PM", "Activity": [{ "Name": "Plenary Lecture - IV", "Hall": "A,B,C", "Image": "pl4181215" }] }, { "Date": "18th Nov 2017", "Start": "13:00 PM", "End": "14:30 PM", "Activity": [{ "Name": "Lunch & Prayer Break", "Hall": "A,B,C" }] }, { "Date": "18th Nov 2017", "Start": "14:30 PM", "End": "16:00 PM", "Activity": [{ "Name": "Anthroplasty-IV", "Hall": "A", "Image": "18iv1430" }, { "Name": "Paediatrics-III", "Hall": "B", "Image": "18b1430" }, { "Name": "Future of Orthopedic Training", "Hall": "C" }] }, { "Date": "18th Nov 2017", "Start": "16:00 PM", "End": "17:30 PM", "Activity": [{ "Name": "Anthroplasty-IV", "Hall": "A" }, { "Name": "MSK Oncology - I", "Hall": "B" }, { "Name": "Sterilization", "Hall": "C" }] }], "19th Nov 2017": [{ "Date": "19th Nov 2017", "Start": "08:30 AM", "End": "10:30 AM", "Activity": [{ "Name": "Free Papers", "Hall": "A" }, { "Name": "MSK Oncology-II", "Hall": "B" }, { "Name": "Foot & Ankle-I", "Hall": "C", "Image": "19830fa" }] }, { "Date": "19th Nov 2017", "Start": "10:30 AM", "End": "12:30 PM", "Activity": [{ "Name": "MSK infection", "Hall": "A", "Image": "19a1030" }, { "Name": "MSK Oncology-III", "Hall": "B" }, { "Name": "Foot & Ankle-II", "Hall": "C", "Image": "191030cfa" }] }, { "Date": "19th Nov 2017", "Start": "12:30 AM", "End": "13:30 PM", "Activity": [{ "Name": "Closing Ceremony/ Prize Distribution", "Hall": "A,B,C" }] }] };
+         //console.log(JSON.stringify(grpSched));
             $scope.getCountryOrganizer = function(name){
                var country = '';
                for (var ind in $scope.organizerList){

@@ -2,9 +2,9 @@
     <widget xmlns   = "http://www.w3.org/ns/widgets"
         xmlns:gap   = "http://phonegap.com/ns/1.0"
         id          = "com.ortho.peshawar"
-        versionCode = "3"
-		  CFBundleVersion = "1.0.3"
-        version     = "1.0.3" >
+        versionCode = "4"
+		  CFBundleVersion = "1.0.4"
+        version     = "1.0.4" >
 
     <!-- versionCode is optional and Android only -->
 
@@ -38,9 +38,10 @@
    <plugin name="cordova-plugin-splashscreen"  /> 
    <plugin name="cordova-plugin-statusbar" />
    <plugin name="cordova-plugin-whitelist"/>
-   <plugin name="pushwoosh-cordova-plugin"/>
+   <!--<plugin name="pushwoosh-cordova-plugin"/>-->
 
    <platform name="ios">
+        <icon src="res/icons/ios/icon.png" width="512" height="512" />
 	    <icon src="res/icons/ios/icon-20.png" width="20" height="20" />
 	    <icon src="res/icons/ios/icon-20@2x.png" width="40" height="40" />
 	    <icon src="res/icons/ios/icon-20@3x.png" width="60" height="60" />

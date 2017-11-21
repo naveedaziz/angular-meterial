@@ -828,7 +828,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                   $scope.user_info = JSON.parse(localStorage.getItem('user_info'));
             }
             if (!$scope.user_info){
-               //$location.path('/signin');
+               $location.path('/signin');
             }
             $scope.login = function () {
                //console.log('in');

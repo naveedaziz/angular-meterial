@@ -1939,35 +1939,35 @@ iframe { border: 0; }
 
 .header-success .side-nav .side-nav-inner .side-nav-logo a .logo-white { display: block; }
 
-.header-danger .header { background-color: #4CAF50; color: #ffffff; border-color: #4CAF50; }
+.header-danger .header { background-color: #b9141b; color: #ffffff; border-color: #b9141b; }
 
 .header-danger .header .header-container ul > li > a { color: #ededed; }
 
 .header-danger .header .header-container ul > li > a:hover, .header-danger .header .header-container ul > li > a:focus { color: #ffffff; }
 
-.header-danger .header .header-container ul .user-profile { border-color: #4CAF50; }
+.header-danger .header .header-container ul .user-profile { border-color: #b9141b; }
 
-.header-danger .side-nav .side-nav-inner .side-nav-logo { background-color: #4CAF50; border-color: #4CAF50; }
+.header-danger .side-nav .side-nav-inner .side-nav-logo { background-color: #b9141b; border-color: #b9141b; }
 
 .header-danger .side-nav .side-nav-inner .side-nav-logo a .logo-dark { display: none; }
 
 .header-danger .side-nav .side-nav-inner .side-nav-logo a .logo-white { display: block; }
 
-.header-dark .header { background-color: #4CAF50; color: #ffffff; border-color: #4CAF50; }
+.header-dark .header { background-color: #b9141b; color: #ffffff; border-color: #b9141b; }
 
 .header-dark .header .header-container ul > li > a { color: #ededed; }
 
 .header-dark .header .header-container ul > li > a:hover, .header-dark .header .header-container ul > li > a:focus { color: #ffffff; }
 
-.header-dark .header .header-container ul .user-profile { border-color: #4CAF50; }
+.header-dark .header .header-container ul .user-profile { border-color: #b9141b; }
 
-.header-dark .side-nav .side-nav-inner .side-nav-logo { background-color: #4CAF50; border-color: #4CAF50; }
+.header-dark .side-nav .side-nav-inner .side-nav-logo { background-color: #b9141b; border-color: #b9141b; }
 
 .header-dark .side-nav .side-nav-inner .side-nav-logo a .logo-dark { display: none; }
 
 .header-dark .side-nav .side-nav-inner .side-nav-logo a .logo-white { display: block; }
 
-.theme-toggle { position: absolute;    top: 334px; right: 20px; padding: 15px !important; z-index: 1001; font-size: 15px; color: #ffffff; background-color: #4CAF50; }
+.theme-toggle { position: absolute;    top: 334px; right: 20px; padding: 15px !important; z-index: 1001; font-size: 15px; color: #ffffff; background-color: #b9141b; }
 
 .theme-toggle:hover { opacity: 0.85; }
 
@@ -2005,11 +2005,11 @@ iframe { border: 0; }
 
 .theme-configurator .configurator-wrapper .config-body .theme-colors.header-success input:checked + label:before { color: #ffffff; }
 
-.theme-configurator .configurator-wrapper .config-body .theme-colors.header-danger input + label:before { background-color: #4CAF50; }
+.theme-configurator .configurator-wrapper .config-body .theme-colors.header-danger input + label:before { background-color: #b9141b; }
 
 .theme-configurator .configurator-wrapper .config-body .theme-colors.header-danger input:checked + label:before { color: #ffffff; }
 
-.theme-configurator .configurator-wrapper .config-body .theme-colors.header-dark input + label:before { background-color: #4CAF50; }
+.theme-configurator .configurator-wrapper .config-body .theme-colors.header-dark input + label:before { background-color: #b9141b; }
 
 .theme-configurator .configurator-wrapper .config-body .theme-colors.header-dark input:checked + label:before { color: #ffffff; }
 
@@ -2347,8 +2347,8 @@ button.disabled, button:disabled { opacity: 0.5; cursor: not-allowed; }
 
 .btn-default.active:hover, .btn-default.active:focus { color: #515365; background-color: #edf2f8; border-color: #edf2f8; }
 
-.btn-primary {     background-color: #4CAF50;
-    border-color: #4CAF50;
+.btn-primary {     background-color: #b9141b;
+    border-color: #b9141b;
     color: #ffffff;}
 
 .btn-primary:hover, .btn-primary:focus { color: #ffffff; background-color: #8c8aeb; border-color: #8c8aeb; }
@@ -3652,7 +3652,7 @@ glyphs.character-mapping { margin: 0 0 20px 0; padding: 20px 0 20px 30px; color:
    margin-bottom: 10px;
 }
 .card-header {
-    background-color: #4CAF50;
+    background-color: #b9141b;
 }
 .card-header h4{
    color:#fff;

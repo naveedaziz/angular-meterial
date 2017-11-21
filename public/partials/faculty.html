@@ -19,13 +19,13 @@
                           
                             <ul class="email-list-item list-unstyled list-info">
                               
-                                <li class="email-item" ng-repeat="(key,pre) in ortho.InternationalFaculty">
+                                <li class="email-item" ng-repeat="(key,pre) in faculty">
                                     <!-- {{faculty}} -->
                                    
                                     <img onerror="checkImg(this)"  class="thumb-img img-circle"  ng-src="{{ 'images/ortho/international-faculty/'+replaceSlash(pre.Image)+''}}" alt="">
                                     <div class="info">
                                         <a  ng-click="returnDescription(faculty.name,key,$index)" href="javascript:void(0)" class="title no-pdd-vertical text-semibold inline-block">{{pre.Name}}<br />
-                                            <small>{{pre.Country}}</small>
+                                            <small>{{pre.Institute}}</small>
                                         </a>
                                         <p ng-if="faculty.showDescp" style="font-size: 11px;margin-top: 7px;" class="descitpions" style="line-height: 1.3" ng-bind-html="faculty.description"></p>
                                     </div>

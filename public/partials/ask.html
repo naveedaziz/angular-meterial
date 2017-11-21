@@ -1,6 +1,9 @@
 
 
-<div class="main-content">
+
+
+
+<div class="main-content" ng-init="initSchedule()">
    <div class="container-fluid">
       <div class="row">
          <div class="col-lg-3 social" style="min-height:100%;background:#fff;">
@@ -10,42 +13,25 @@
                                         <h4 class="card-title no-mrg-btm">Tabs Danger</h4>
                                     </div>-->
                <div class="tab-danger">
-
-                  <!--<div class="tab-scroll" style="width:100%; overflow:scroll;">
-                            <ul class="nav nav-tabs" role="tablist" style="width:550px;    width: 100%;
-    position: fixed;
-    left: 0;
-    top: 66px;
-    z-index: 9999;
-    background: #fff;">
-                                <li class="nav-item" ng-repeat="(key,sch) in ortho.ScientificProgram" style="width: 25%;
-    padding: 5px;
-    margin: 0;">
-                                    <a ui-sref="schedule({tab:$index+1})" style="font-size: 11px;" href="javascript:void(0)" ng-class="{'active':$index+1 == currentUrl}" id="tab-{{$index}}" ng-click="activeTab($index)" class="nav-link"
-                                        role="tab" data-toggle="tab">{{beutifyDate(key)}}</a>
-                                </li>
-                            </ul>
-                        </div>-->
-                  <div class="tab-content active" style="    position: relative;display:block !important;
-    top: 1px;">
-
-                     <div ng-repeat="(key,sch) in ortho.ScientificProgram" role="tabpanel" class="tab-pane" id="tab-content-{{$index}}" style="background:#f6f7fb;display:block !important;">
-                        <div class="card" style="border:none;margin-top:2px;">
+                  <div class="tab-content active" style=" position: relative;display:block !important; top: 1px;">
+                     <div ng-repeat="(keyss,schss) in orgConted" ng-class="{'active':$index+1 == currentUrl}" role="tabpanel" class="tab-pane"
+                        id="tab-content-{{$index}}" style="background:#f6f7fb;display:block">
+                        <div class="card" style="border:none;margin-top:2px;" ng-repeat="(key,sch) in schss">
 
                            <div class="card-header schedule-card-header">
 
                               <h4>
-                                 <i class="ti-timer"></i> {{sch.Date}} <br> <span style="margin-left:23px;">{{sch.Start}} To {{sch.End}}</span></h4>
+                                 <i class="ti-timer"></i> <span>{{sch.start_time}} To {{sch.end}}</span></h4>
 
                            </div>
-                           <div class="card-block" ng-repeat="hd in sch.Activity">
-                              <a>
-                                 <h4>{{hd.Name}}</h4>
-                                 <span class="pull-left btn-icon">
-                                                <i class="ei ei-menu-6 pdd-right-5" ng-if="sch_second[0].room[0] || key_second != 'open'"></i>
-                                                 Hall {{hd.Hall}} 
+                           <div class="card-block" ng-repeat="(ke,hd) in sch.activity">
+                              <a ui-sref="agenda_detail({id:keyss+'-'+key+'-'+ke})">
+                                 <h4>{{hd.topic}}</h4>
+                                 <span class="pull-left btn-icon" ng-if="hd.session">
+                                                <i class="ei ei-menu-6 pdd-right-5"></i>
+                                                 {{hd.session}} at {{hd.venue}} 
                                             </span>
-                                 <div ng-if="user_info.name != 'Moderator Ortho 2017'">
+                                 <div>
                                     <a class="btn btn-primary pull-right" ui-sref="question({id:hd.Name,name:hd.Name})" style="margin-top:12px">
                                                 <span style="color:#fff">Ask Moderator</span>
                                     </a>

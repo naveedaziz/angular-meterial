@@ -11,16 +11,13 @@
                   <ul class="nav nav-tabs" role="tablist" style="width:475px;">
                      <li class="nav-item">
                         <a href="javascript:void(0)" onclick="$('.nav-tabs .nav-item').children().removeClass('active');$(this).addClass('active');$('.tab-content').children().removeClass('in');$('.tab-content').children().removeClass('active');$('#tab-danger-1').addClass('in');$('#tab-danger-1').addClass('active')"
-                           class="nav-link active" role="tab" data-toggle="tab">About Orthocon</a>
+                           class="nav-link active" role="tab" data-toggle="tab">About Cardio</a>
                      </li>
                      <li class="nav-item">
                         <a href="javascript:void(0)" onclick="$('.nav-tabs .nav-item').children().removeClass('active');$(this).addClass('active');$('.tab-content').children().removeClass('in');$('.tab-content').children().removeClass('active');$('#tab-danger-2').addClass('in');$('#tab-danger-2').addClass('active')"
                            class="nav-link" role="tab" data-toggle="tab">Organising Committee</a>
                      </li>
-                     <li class="nav-item">
-                        <a href="javascript:void(0)" onclick="$('.nav-tabs .nav-item').children().removeClass('active');$(this).addClass('active');$('.tab-content').children().removeClass('in');$('.tab-content').children().removeClass('active');$('#tab-danger-3').addClass('in');$('#tab-danger-3').addClass('active')"
-                           class="nav-link" role="tab" data-toggle="tab">POA</a>
-                     </li>
+
                      <li class="nav-item">
                         <a href="javascript:void(0)" onclick="$('.nav-tabs .nav-item').children().removeClass('active');$(this).addClass('active');$('.tab-content').children().removeClass('in');$('.tab-content').children().removeClass('active');$('#tab-danger-4').addClass('in');$('#tab-danger-4').addClass('active')"
                            class="nav-link" role="tab" data-toggle="tab">Location</a>
@@ -45,18 +42,17 @@
                            </li>
                         </ul>
                         <div class="card-media">
-                           <img class="img-responsive" src="images/ortho/president.jpg" alt="">
+                           <img class="img-responsive" src="images/President.jpg" alt="">
                         </div>
                         <div class="card-block">
-                           <h4>Welcome to PAK Orthocon 2017 </h4>
-                           <p ng-bind-html="ortho.Miscellaneous[0].Description">
+                           <p ng-bind-html="misc[0].t1">
                            </p>
                         </div>
-                        <div class="card-media">
-                           <img class="img-responsive" src="images/ortho/Chairman.jpg" alt="">
-                        </div>
+                        <!--<div class="card-media">
+                                       <img class="img-responsive" src="images/ortho/Chairman.jpg" alt="">
+                                    </div>-->
                         <div class="card-block">
-                           <p ng-bind-html="ortho.Miscellaneous[1].Description">
+                           <p ng-bind-html="misc[0].t2">
                            </p>
                         </div>
 
@@ -70,7 +66,7 @@
 
                               <div class="card-block" style="padding-top: 0;">
                                  <div class="feed-header">
-                                    <ul class="list-unstyled list-info" ng-repeat="(key,com) in orgCont">
+                                    <ul class="list-unstyled list-info" ng-repeat="(key,com) in orComittee">
                                        <h4>{{key}}</h4>
                                        <li class="pdd-vertical-15 border bottom" ng-repeat="(keys,coms) in com">
 
@@ -88,26 +84,15 @@
                         </div>
                      </div>
                   </div>
-                  <div role="tabpanel" class="tab-pane fade" id="tab-danger-3">
-                     <div class="card" style="border:none;">
-                        <div class="card-media">
-                           <img class="img-responsive" src="images/ortho/president.jpg" alt="">
-                        </div>
 
-                        <div class="card-block">
-                           <p ng-bind-html="ortho.Miscellaneous[3].Description">
-                           </p>
-                        </div>
-                     </div>
-                  </div>
                   <div role="tabpanel" class="tab-pane fade" id="tab-danger-4">
                      <div class="card" style="border:none;">
                         <div class="card-media">
-                           <img class="img-responsive" src="images/ortho/Peshawar-university.jpg" alt="">
+                           <img class="img-responsive" src="images/shared/14.jpg" alt="">
                         </div>
 
                         <div class="card-block">
-                           <p ng-bind-html="ortho.Miscellaneous[2].Description">
+                           <p>Hotel Indus Thandi Sarak, Hyderabad
                            </p>
                         </div>
                      </div>

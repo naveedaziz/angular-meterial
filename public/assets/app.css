@@ -1967,7 +1967,14 @@ iframe { border: 0; }
 
 .header-dark .side-nav .side-nav-inner .side-nav-logo a .logo-white { display: block; }
 
-.theme-toggle { position: absolute;    top: 334px; right: 20px; padding: 15px !important; z-index: 1001; font-size: 15px; color: #ffffff; background-color: #b9141b; }
+.theme-toggle {     position: absolute;
+    top: 219px;
+    right: 10px;
+    padding: 15px !important;
+    z-index: 1001;
+    font-size: 15px;
+    color: #ffffff;
+    background-color: #b9141b; }
 
 .theme-toggle:hover { opacity: 0.85; }
 
@@ -3594,7 +3601,7 @@ glyphs.character-mapping { margin: 0 0 20px 0; padding: 20px 0 20px 30px; color:
 
 .social .social-cover { position: relative; }
 
-.social .social-cover .cover-img {     min-height: 386px;
+.social .social-cover .cover-img {     min-height: 256px;
     background-repeat: no-repeat;
     background-size: contain;
     background-position: 0px 1px;

@@ -35,12 +35,15 @@
                                        
                                     </div>
                                     <div class="card-block" ng-repeat="(ke,hd) in sch.activity">
-                                        <a ui-sref="agenda_detail({id:keyss+'-'+key+'-'+ke})">
+                                        <a >
                                             <h4>{{hd.topic}}</h4>
-                                            <span class="pull-left btn-icon" ng-if="hd.session">
+                                            <span class="pull-left btn-icon" ng-if="hd.presenter">
                                                 <i class="ei ei-menu-6 pdd-right-5"></i>
-                                                 {{hd.session}} at {{hd.venue}} 
-                                            </span>
+                                                 {{hd.presenter}}
+                                            </span><br>
+                                            <div class="clearfix"></div>
+                                            <p ng-if="hd.venue"> Venue : {{hd.venue}}</p>
+                                            <p ng-if="hd.description">{{hd.description}}</p>
                                             <div ng-if="user_info.name != 'Moderator Ortho 2017'">
                                              <a ng-if="!userAgendaCheck(hd.Name)" class="pull-right" ng-click="addToAgenda(hd.Name,key,key_first,hd.Name)" style="margin-top:12px">
                                                 <i class="ti-heart text-danger pdd-right-5"></i>

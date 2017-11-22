@@ -178,7 +178,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                         url: '/sponsors',
                         templateUrl: 'partials/sponsors.html',
                         params: {
-                           title: "Sponsors"
+                           title: "Exhibitors"
                         }
                   })
                   .state('video', {
@@ -275,6 +275,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
       .controller('AppController', function ($scope, $state, $stateParams, $rootScope, $location, $http, Messages, youtubeFactory, $sce) {
          $scope.misc = misc;
          $scope.faculty = faculty;
+         $scope.exhibitor = exhibitor;
          $scope.organization_comitee = organization_committee;
          var preOrg = {}
          for(var id in $scope.organization_comitee){

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
     <widget xmlns   = "http://www.w3.org/ns/widgets"
         xmlns:gap   = "http://phonegap.com/ns/1.0"
-        id          = "com.cardio.karachi"
+        id          = "com.cardio.hyd"
         versionCode = "1"
 		  CFBundleVersion = "1.0.0"
         version     = "1.0.0" >
@@ -90,9 +90,9 @@
         
 </platform>
 
-   <name>Cardio</name>
+   <name>47th cardio con</name>
 	<description>
-         Cardio  </description>
+         47th cardio con  </description>
 	<author href="http://madness.ae/" email="nidobda_92@hotmail.com">
         Naveed Aziz
     </author>

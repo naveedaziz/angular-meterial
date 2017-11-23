@@ -274,7 +274,16 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
       }])
       .controller('AppController', function ($scope, $state, $stateParams, $rootScope, $location, $http, Messages, youtubeFactory, $sce) {
          $scope.misc = misc;
-         $scope.faculty = faculty;
+         $scope.faculty_pre = faculty;
+         var preOrgF = {}
+         for (var id in $scope.faculty_pre) {
+            if (!preOrgF[$scope.faculty_pre[id].Speaker]) {
+               preOrgF[$scope.faculty_pre[id].Speaker] = [];
+            }
+            preOrgF[$scope.faculty_pre[id].Speaker].push($scope.faculty_pre[id]);
+         }
+         console.log(preOrgF)
+         $scope.faculty = preOrgF;
          $scope.exhibitor = exhibitor;
          $scope.organization_comitee = organization_committee;
          var preOrg = {}
@@ -301,10 +310,13 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
            }
         }
          $scope.orgConted = preOrgSchedule
-         console.log(preOrgSchedule)
+         console.log($scope.faculty)
       $scope.hideMenu = function(){
          if ($('#userMenu').parent().hasClass('show'))
          $('#userMenu').parent().toggleClass('show'); $('#userdrop').toggleClass('show')
+      }
+      $scope.replaceSpaces = function(name){
+         return name.replace(' ', '').replace(' ', '')
       }
       $scope.replaceSlash = function(name){
          if (name)

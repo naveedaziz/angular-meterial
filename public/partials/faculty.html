@@ -17,9 +17,11 @@
                         
                         <div class="list-view-group-container">
                           
-                            <ul class="email-list-item list-unstyled list-info">
-                              
-                                <li class="email-item" ng-repeat="(key,pre) in faculty">
+                            <ul class="email-list-item list-unstyled list-info" ng-repeat="(keys,pres) in faculty">
+                                 <h4 ng-click="toggleClassHidden('.id_name'+replaceSpaces(keys))" style="    padding: 17px;
+    text-transform: capitalize;
+    border-bottom: 1px solid #e8e3e3;">{{keys}}</h4>
+                                <li class="email-item id_name{{replaceSpaces(keys)}} hidden" ng-repeat="(key,pre) in pres">
                                     <!-- {{faculty}} -->
                                    
                                     <img onerror="checkImg(this)"  class="thumb-img img-circle"  ng-src="{{ 'images/ortho/international-faculty/'+replaceSlash(pre.Image)+''}}" alt="">

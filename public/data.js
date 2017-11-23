@@ -340,9 +340,9 @@ var faculty = [{ "Name": "Prof. Ejaz A. Vohra", "Speaker": "speaker", "Institute
 { "Name": "Dr. Rajkumar Sachdewani", "Speaker": "National Faculty", "Institute": "" },
 { "Name": "Dr. Qurban Ali Rahu,", "Speaker": "National Faculty", "Institute": "" },
 { "Name": "Dr. Abdul Rasheed Khan", "Speaker": "National Faculty", "Institute": "" },
-{ "Name": "Dr. Junaid Zafar", "Speaker": "International Speaker", "Institute": "" },
-{ "Name": "Dr. Naresh Khurrana", "Speaker": "International Speaker", "Institute": "" },
-{ "Name": "Dr. Saima Mushtaq", "Speaker": "International Speaker", "Institute": "" },
-{ "Name": "Dr. Shahid Junejo", "Speaker": "International Speaker", "Institute": "" },
-{ "Name": "Dr. Hafeez Abbasi", "Speaker": "International Speaker", "Institute": "" }];
+   { "Name": "Dr. Junaid Zafar", "Speaker": "International Faculty", "Institute": "" },
+   { "Name": "Dr. Naresh Khurrana", "Speaker": "International Faculty", "Institute": "" },
+   { "Name": "Dr. Saima Mushtaq", "Speaker": "International Faculty", "Institute": "" },
+   { "Name": "Dr. Shahid Junejo", "Speaker": "International Faculty", "Institute": "" },
+   { "Name": "Dr. Hafeez Abbasi", "Speaker": "International Faculty", "Institute": "" }];
 

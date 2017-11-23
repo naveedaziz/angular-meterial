@@ -36,14 +36,14 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                         url: '/signin',
                         templateUrl: 'partials/signin.html',
                         params: {
-                           title: "Login to Cardio Con 2017"
+                           title: "Login"
                         }
                   })
                   .state('register', {
                         url: '/register',
                         templateUrl: 'partials/register.html',
                         params: {
-                           title: "Register to  Cardio Con 2017"
+                           title: "Register"
                         }
                   })
                .state('registerupdate', {
@@ -64,21 +64,21 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                         url: '/',
                         templateUrl: 'partials/home.html',
                         params: {
-                           title: "Welcome to  Cardio Con 2017"
+                           title: "Welcome to"
                         }
                   })
                   .state('home2', {
                         url: '/home2',
                         templateUrl: 'partials/home2.html',
                         params: {
-                           title: "Welcome to  Cardio Con 2017"
+                           title: "Welcome to"
                         }
                   })
                   .state('about', {
                         url: '/about',
                         templateUrl: 'partials/about.html',
                         params: {
-                           title: "About Cardio Con 2017"
+                           title: "About"
                         }
                   })
                   .state('message', {

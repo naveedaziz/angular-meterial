@@ -1,0 +1,79 @@
+
+
+<div class="main-content" ng-init="initSchedule()">
+   <div class="container-fluid">
+      <div class="row">
+         <div class="col-lg-3 social" style="min-height:100%;background:#fff;">
+            <div class="card">
+
+               <!--<div class="padding-20">
+                                        <h4 class="card-title no-mrg-btm">Tabs Danger</h4>
+                                    </div>-->
+               <div class="tab-danger">
+
+                  <div class="tab-scroll" style="width:100%; overflow:scroll;">
+                     <ul class="nav nav-tabs" role="tablist" style="width:550px;    width: 100%;
+    position: fixed;
+    left: 0;
+    top: 66px;
+    background: #fff;">
+                        <li class="nav-item" ng-repeat="(key,sch) in orgConted" style="width: 33%;
+    padding: 5px;
+    margin: 0;">
+                           <a ui-sref="schedule({tab:$index+1})" style="font-size: 11px;" href="javascript:void(0)" ng-class="{'active':$index+1 == currentUrl}"
+                              id="tab-{{$index}}" ng-click="activeTab($index)" class="nav-link" role="tab" data-toggle="tab">{{key}}</a>
+                        </li>
+                     </ul>
+                  </div>
+                  <div class="tab-content" style="    position: relative;
+    top: 59px;">
+                     <div ng-repeat="(keyss,schss) in orgConted" ng-class="{'active':$index+1 == currentUrl}" role="tabpanel" class="tab-pane"
+                        id="tab-content-{{$index}}" style="background:#f6f7fb;">
+                        <div class="card" style="border:none;margin-top:2px;" ng-repeat="(key,sch) in schss">
+
+                           <div class="card-header schedule-card-header">
+
+                              <h4>
+                                 <i class="ti-timer"></i> <span>{{sch.start_time}} To {{sch.end}}</span></h4>
+
+                           </div>
+                           <div class="card-block" ng-repeat="(ke,hd) in sch.activity">
+                              <a>
+                                 <h4>{{hd.topic}}</h4>
+                                 <span class="pull-left btn-icon" ng-if="hd.presenter">
+                                                <i class="ei ei-menu-6 pdd-right-5"></i>
+                                                 {{hd.presenter}}
+                                            </span><br>
+                                 <div class="clearfix"></div>
+                                 <p ng-if="hd.venue"> Venue : {{hd.venue}}</p>
+                                 <p ng-if="hd.description">{{hd.description}}</p>
+                                 <div ng-if="user_info.name != 'Moderator Ortho 2017'">
+                                    <a ng-if="!userAgendaCheck(hd.Name)" class="pull-right" ng-click="addToAgenda(hd.Name,key,key_first,hd.Name)" style="margin-top:12px">
+                                                <i class="ti-heart text-danger pdd-right-5"></i>
+                                                <span>Add to My Agenda</span>
+                                             </a>
+                                    <a ng-if="userAgendaCheck(hd.Name)" class="pull-right" ng-click="deleteFromAgenda(hd.Name,key,key_first,hd.Name)" style="margin-top:12px">
+                                                <i class="ti-check text-danger pdd-right-5"></i>
+                                                <span>My Agenda</span>
+                                             </a>
+                                 </div>
+                                 <div ng-if="user_info.name == 'Moderator Ortho 2017'">
+                                    <a class="btn btn-primary pull-right" ui-sref="questionlist({id:sch_second[0].id,name:sch_second[0].name})" style="margin-top:12px">
+                                                <span style="color:#fff">Questions</span>
+                                             </a>
+                                 </div>
+                              </a>
+                              <div class="clearfix"></div>
+                              <hr>
+
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

@@ -3610,7 +3610,9 @@ glyphs.character-mapping { margin: 0 0 20px 0; padding: 20px 0 20px 30px; color:
 .social .social-cover .cover-img .cover-content {     position: absolute;
     left: 50%;
     top: 219px; transform: translateX(-50%) translateY(-50%); -webkit-transform: translateX(-50%) translateY(-50%); -moz-transform: translateX(-50%) translateY(-50%); -o-transform: translateX(-50%) translateY(-50%); -ms-transform: translateX(-50%) translateY(-50%); }
-
+.big{
+   width:800px !important;
+}
 .social .social-cover .cover-footer { padding: 15px; background-color: #ffffff; }
 
 .social .social-cover .cover-footer ul { display: inline-block; }

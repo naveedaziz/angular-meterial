@@ -36,14 +36,14 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                         url: '/signin',
                         templateUrl: 'partials/signin.html',
                         params: {
-                           title: "Login to 47th cardio con"
+                           title: "Login to Cardio Con 2017"
                         }
                   })
                   .state('register', {
                         url: '/register',
                         templateUrl: 'partials/register.html',
                         params: {
-                           title: "Register to 47th cardio con"
+                           title: "Register to  Cardio Con 2017"
                         }
                   })
                .state('registerupdate', {
@@ -64,21 +64,21 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                         url: '/',
                         templateUrl: 'partials/home.html',
                         params: {
-                           title: "Welcome to 47th cardio con"
+                           title: "Welcome to  Cardio Con 2017"
                         }
                   })
                   .state('home2', {
                         url: '/home2',
                         templateUrl: 'partials/home2.html',
                         params: {
-                           title: "Welcome to 47th cardio con"
+                           title: "Welcome to  Cardio Con 2017"
                         }
                   })
                   .state('about', {
                         url: '/about',
                         templateUrl: 'partials/about.html',
                         params: {
-                           title: "About 47th cardio con"
+                           title: "About Cardio Con 2017"
                         }
                   })
                   .state('message', {
@@ -274,6 +274,10 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
       }])
       .controller('AppController', function ($scope, $state, $stateParams, $rootScope, $location, $http, Messages, youtubeFactory, $sce) {
          $scope.misc = misc;
+        $scope.images = [];
+         for(var i = 1;i <= 14; i++){
+            $scope.images.push(i);
+         }
          $scope.faculty_pre = faculty;
          var preOrgF = {}
          for (var id in $scope.faculty_pre) {
